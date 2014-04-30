@@ -21,7 +21,7 @@ Apache Hadoop
 -------------
 Find the detailed description [here]().
 
-This stack is a template for an [Apache Hadoop](http://hadoop.apache.org/) cluster data mangement solution (big-data storage service).
+This stack is a template for an [Apache Hadoop](http://hadoop.apache.org/) cluster data mangement solution.
 
 Ghost
 -----
@@ -39,7 +39,7 @@ Spark
 -----
 Find the detailed description [here]().
 
-This stack is a template for deploying a [Spark](http://spark.apache.org/) (cluster data management) solution with [ZooKeeper](http://zookeeper.apache.org/) (cluster data configuration & synchronisation service).
+This stack is a template for deploying a [Spark](http://spark.apache.org/) solution with [ZooKeeper](http://zookeeper.apache.org/).
 
 VPC with public subnet
 ----------------------
