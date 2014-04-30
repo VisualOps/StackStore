@@ -1,4 +1,4 @@
-Welcome to VisualOps' stack storage repository
+Welcome to VisualOps' stack repository
 ==============================================
 Description
 -----------
