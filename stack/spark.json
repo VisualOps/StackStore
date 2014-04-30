@@ -1,0 +1,2104 @@
+{
+  "agent": {
+    "enabled": true,
+    "module": {
+      "repo": "https://github.com/MadeiraCloud/salt.git",
+      "tag": "v2014-04-15"
+    }
+  },
+  "name": "sapmle-spark-standalone-with-zookeeper",
+  "region": "us-east-1",
+  "platform": "ec2-vpc",
+  "version": "2014-02-17",
+  "component": {
+    "E670050C-EEAC-4A08-BE3C-A0175F8D6B05": {
+      "name": "RT-0",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "E670050C-EEAC-4A08-BE3C-A0175F8D6B05",
+      "resource": {
+        "PropagatingVgwSet": [
+          
+        ],
+        "RouteTableId": "",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "Main": "true",
+            "RouteTableAssociationId": "",
+            "SubnetId": ""
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "@{1C0A4659-BDC4-41F8-BB00-7C90F6437C83.resource.NetworkInterfaceId}",
+            "GatewayId": ""
+          }
+        ]
+      }
+    },
+    "FE4F5C85-2826-47C1-945B-747989C1618E": {
+      "name": "DefaultACL",
+      "type": "AWS.VPC.NetworkAcl",
+      "uid": "FE4F5C85-2826-47C1-945B-747989C1618E",
+      "resource": {
+        "AssociationSet": [
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{4C924DD9-7A1B-4FBC-BF61-C95760D71618.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{B784143F-A6A2-4CF1-92A5-D92DDA0E54F1.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{15C2D06D-4960-44CC-8680-E84D1C0A4D6D.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{D47F8B99-186E-4D66-A7C8-56AA51FF2F09.resource.SubnetId}"
+          }
+        ],
+        "Default": true,
+        "EntrySet": [
+          {
+            "Egress": "true",
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": "true",
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": "false",
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": "false",
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          }
+        ],
+        "NetworkAclId": "",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}"
+      }
+    },
+    "507508A9-CA2B-4598-B812-24415FFB5073": {
+      "name": "RT-1",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "507508A9-CA2B-4598-B812-24415FFB5073",
+      "resource": {
+        "PropagatingVgwSet": [
+          
+        ],
+        "RouteTableId": "",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "SubnetId": "@{B784143F-A6A2-4CF1-92A5-D92DDA0E54F1.resource.SubnetId}",
+            "RouteTableAssociationId": "",
+            "Main": false
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "@{44D12D96-C565-4820-B119-C5CB71E6FCB4.resource.InternetGatewayId}"
+          }
+        ]
+      }
+    },
+    "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F": {
+      "name": "Spark-Standalong-with-Zookeeper",
+      "type": "AWS.VPC.VPC",
+      "uid": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F",
+      "resource": {
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "EnableDnsHostnames": false,
+        "DhcpOptionsId": "",
+        "VpcId": "",
+        "CidrBlock": "10.0.0.0/16"
+      }
+    },
+    "47F8BD40-D07B-4833-991F-B421596C4C65": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "47F8BD40-D07B-4833-991F-B421596C4C65",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "8080",
+            "ToPort": "8080",
+            "IpRanges": "@{F3F15607-C80A-49B5-8D93-1F0009B9683B.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{F3F15607-C80A-49B5-8D93-1F0009B9683B.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "F3F15607-C80A-49B5-8D93-1F0009B9683B": {
+      "name": "relay",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "F3F15607-C80A-49B5-8D93-1F0009B9683B",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "relay",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "88",
+            "ToPort": "88",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "8080",
+            "ToPort": "8080",
+            "IpRanges": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9": {
+      "uid": "9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9",
+      "name": "us-east-1b",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1b",
+        "RegionName": "us-east-1"
+      }
+    },
+    "4C924DD9-7A1B-4FBC-BF61-C95760D71618": {
+      "name": "zk-zone-B",
+      "type": "AWS.VPC.Subnet",
+      "uid": "4C924DD9-7A1B-4FBC-BF61-C95760D71618",
+      "resource": {
+        "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.3.0/24"
+      }
+    },
+    "27F2B989-C36D-4A9D-BE01-15BD1752858A": {
+      "type": "AWS.EC2.Instance",
+      "uid": "27F2B989-C36D-4A9D-BE01-15BD1752858A",
+      "name": "zk-3",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "27F2B989-C36D-4A9D-BE01-15BD1752858A",
+      "serverGroupName": "zk-3",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-93D3FE43-BFDE-4F3A-A78D-1FB3F36681F0",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/zookeeper"
+            ],
+            "recursive": true
+          },
+          "id": "state-AB7EA23C-056A-40EF-B06E-52F6A276DB02",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/var/lib/zookeeper"
+            ],
+            "recursive": true
+          },
+          "id": "state-1CFE01CC-5262-4676-A676-31587F74ABB5",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/zookeeper",
+            "source": "http://ftp.riken.jp/net/apache/zookeeper/stable/zookeeper-3.4.6.tar.gz",
+            "checksum": "md5:971c379ba65714fd25dc5fe8f14e9ad1"
+          },
+          "id": "state-5075C6F6-90BA-482C-9258-07757FA2464D",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "content": "3",
+            "path": "/var/lib/zookeeper/myid"
+          },
+          "id": "state-068CC4A4-E465-4B06-8152-BCED5EF724E4",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "tickTime=2000\ninitLimit=10\nsyncLimit=5\ndataDir=/var/lib/zookeeper\nclientPort=2181\nserver.1=@{8D734360-72AB-4651-ADEC-0EE1F540783B.PrivateIpAddress}:2888:3888\nserver.2=@{7A8C7096-425A-4716-A67F-30DD28F42930.PrivateIpAddress}:2888:3888\nserver.3=@{self.PrivateIpAddress}:2888:3888\n",
+            "path": "/opt/zookeeper/zookeeper-3.4.6/conf/zoo.cfg"
+          },
+          "id": "state-3A0B0E93-A4B8-4073-857C-907D07FBCA76",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:zookeeper]\ncommand=java -Dzookeeper.log.dir=/var/log -Dzookeeper.root.logger=INFO,CONSOLE -cp /opt/zookeeper/zookeeper-3.4.6/build/classes:/opt/zookeeper/zookeeper-3.4.6/build/lib/*.jar:/opt/zookeeper/zookeeper-3.4.6/lib/slf4j-log4j12-1.6.1.jar:/opt/zookeeper/zookeeper-3.4.6/lib/slf4j-api-1.6.1.jar:/opt/zookeeper/zookeeper-3.4.6/lib/netty-3.7.0.Final.jar:/opt/zookeeper/zookeeper-3.4.6/lib/log4j-1.2.16.jar:/opt/zookeeper/zookeeper-3.4.6/lib/jline-0.9.94.jar:/opt/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.jar:/opt/zookeeper/zookeeper-3.4.6/src/java/lib/*.jar:/opt/zookeeper/zookeeper-3.4.6/conf -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain /opt/zookeeper/zookeeper-3.4.6/conf/zoo.cfg\nredirect_stderr=true\nstdout_logfile=/opt/zookeeper/zookeeper.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-01B69AF5-E518-4FE6-B54C-99124692B588",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "zookeeper"
+            ]
+          },
+          "id": "state-E59B9B04-E02A-4004-AC1E-2D0AC01FAA4C",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": "8",
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{4C924DD9-7A1B-4FBC-BF61-C95760D71618.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "275B267B-658B-4DE3-A189-7A17406D0687": {
+      "index": 0,
+      "uid": "275B267B-658B-4DE3-A189-7A17406D0687",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "zk-3-eni0",
+      "serverGroupUid": "275B267B-658B-4DE3-A189-7A17406D0687",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{4C924DD9-7A1B-4FBC-BF61-C95760D71618.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.3.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupName}",
+            "GroupId": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{27F2B989-C36D-4A9D-BE01-15BD1752858A.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "8DF20988-9AB9-42B4-B596-7E19628A21EE": {
+      "name": "DefaultKP",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "8DF20988-9AB9-42B4-B596-7E19628A21EE",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "DefaultKP"
+      }
+    },
+    "CCC1E208-85C0-4158-920D-FD9B34388ED7": {
+      "name": "zookeeper",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "CCC1E208-85C0-4158-920D-FD9B34388ED7",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "zookeeper",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "2888",
+            "ToPort": "3888",
+            "IpRanges": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "2181",
+            "ToPort": "2181",
+            "IpRanges": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "2888",
+            "ToPort": "3888",
+            "IpRanges": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "990900B8-EA68-4EC8-BF88-DDFD9A5F4035": {
+      "name": "spark",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "990900B8-EA68-4EC8-BF88-DDFD9A5F4035",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "spark",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "7077",
+            "ToPort": "7077",
+            "IpRanges": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "7177",
+            "ToPort": "7177",
+            "IpRanges": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "7077",
+            "ToPort": "7077",
+            "IpRanges": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "7177",
+            "ToPort": "7177",
+            "IpRanges": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "2181",
+            "ToPort": "2181",
+            "IpRanges": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "78883775-5D36-4667-B866-91007D41E41A": {
+      "uid": "78883775-5D36-4667-B866-91007D41E41A",
+      "name": "us-east-1a",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1a",
+        "RegionName": "us-east-1"
+      }
+    },
+    "B784143F-A6A2-4CF1-92A5-D92DDA0E54F1": {
+      "name": "subnet1",
+      "type": "AWS.VPC.Subnet",
+      "uid": "B784143F-A6A2-4CF1-92A5-D92DDA0E54F1",
+      "resource": {
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.1.0/24"
+      }
+    },
+    "A2F01C34-3FD7-497D-AA40-5DF6616C1C5A": {
+      "name": "spark-a",
+      "type": "AWS.VPC.Subnet",
+      "uid": "A2F01C34-3FD7-497D-AA40-5DF6616C1C5A",
+      "resource": {
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
+      }
+    },
+    "15C2D06D-4960-44CC-8680-E84D1C0A4D6D": {
+      "name": "zk-zone-A",
+      "type": "AWS.VPC.Subnet",
+      "uid": "15C2D06D-4960-44CC-8680-E84D1C0A4D6D",
+      "resource": {
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.2.0/24"
+      }
+    },
+    "D47F8B99-186E-4D66-A7C8-56AA51FF2F09": {
+      "name": "spark-b",
+      "type": "AWS.VPC.Subnet",
+      "uid": "D47F8B99-186E-4D66-A7C8-56AA51FF2F09",
+      "resource": {
+        "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.4.0/24"
+      }
+    },
+    "7A8C7096-425A-4716-A67F-30DD28F42930": {
+      "type": "AWS.EC2.Instance",
+      "uid": "7A8C7096-425A-4716-A67F-30DD28F42930",
+      "name": "zk-2",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "7A8C7096-425A-4716-A67F-30DD28F42930",
+      "serverGroupName": "zk-2",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-11720435-B52F-48CA-97B7-AF8A1D9EEB26",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/zookeeper"
+            ],
+            "recursive": true
+          },
+          "id": "state-D4D73487-2489-46E4-8DC1-58832E339AD8",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/var/lib/zookeeper"
+            ],
+            "recursive": true
+          },
+          "id": "state-F71E5660-CB39-443E-85A3-D15EC703FBDD",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/zookeeper",
+            "source": "http://ftp.riken.jp/net/apache/zookeeper/stable/zookeeper-3.4.6.tar.gz",
+            "checksum": "md5:971c379ba65714fd25dc5fe8f14e9ad1"
+          },
+          "id": "state-D9E6627E-1E20-4B06-844D-F1281B8CE3D6",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "content": "2",
+            "path": "/var/lib/zookeeper/myid"
+          },
+          "id": "state-7E692018-7422-45A4-BD47-3F4E4A241578",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "tickTime=2000\ninitLimit=10\nsyncLimit=5\ndataDir=/var/lib/zookeeper\nclientPort=2181\nserver.1=@{8D734360-72AB-4651-ADEC-0EE1F540783B.PrivateIpAddress}:2888:3888\nserver.2=@{self.PrivateIpAddress}:2888:3888\nserver.3=@{27F2B989-C36D-4A9D-BE01-15BD1752858A.PrivateIpAddress}:2888:3888\n",
+            "path": "/opt/zookeeper/zookeeper-3.4.6/conf/zoo.cfg"
+          },
+          "id": "state-5FAD9D2F-56FB-4385-9AA0-9962AD4FC006",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:zookeeper]\ncommand=java -Dzookeeper.log.dir=/var/log -Dzookeeper.root.logger=INFO,CONSOLE -cp /opt/zookeeper/zookeeper-3.4.6/build/classes:/opt/zookeeper/zookeeper-3.4.6/build/lib/*.jar:/opt/zookeeper/zookeeper-3.4.6/lib/slf4j-log4j12-1.6.1.jar:/opt/zookeeper/zookeeper-3.4.6/lib/slf4j-api-1.6.1.jar:/opt/zookeeper/zookeeper-3.4.6/lib/netty-3.7.0.Final.jar:/opt/zookeeper/zookeeper-3.4.6/lib/log4j-1.2.16.jar:/opt/zookeeper/zookeeper-3.4.6/lib/jline-0.9.94.jar:/opt/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.jar:/opt/zookeeper/zookeeper-3.4.6/src/java/lib/*.jar:/opt/zookeeper/zookeeper-3.4.6/conf -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain /opt/zookeeper/zookeeper-3.4.6/conf/zoo.cfg\nredirect_stderr=true\nstdout_logfile=/opt/zookeeper/zookeeper.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-E55AB2E2-63F6-4E5F-8BBE-52C1A1EEB519",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "zookeeper"
+            ]
+          },
+          "id": "state-D94D147D-7A65-49BE-8FB4-E8BFC0AA0723",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": "8",
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{15C2D06D-4960-44CC-8680-E84D1C0A4D6D.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "11A15B6A-81DF-4173-840B-19FA0C1CC18C": {
+      "index": 0,
+      "uid": "11A15B6A-81DF-4173-840B-19FA0C1CC18C",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "zk-2-eni0",
+      "serverGroupUid": "11A15B6A-81DF-4173-840B-19FA0C1CC18C",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{15C2D06D-4960-44CC-8680-E84D1C0A4D6D.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.2.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupName}",
+            "GroupId": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{7A8C7096-425A-4716-A67F-30DD28F42930.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "E0CD57DF-2B67-486A-88C7-32AABA4E1DD8": {
+      "type": "AWS.EC2.Instance",
+      "uid": "E0CD57DF-2B67-486A-88C7-32AABA4E1DD8",
+      "name": "master",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "E0CD57DF-2B67-486A-88C7-32AABA4E1DD8",
+      "serverGroupName": "master",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-E7CEF782-932B-4E7A-9DBF-3CF17E2903C2",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-ED674D1E-5B4F-491B-AF76-ABA049780529",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/spark"
+            ],
+            "recursive": true
+          },
+          "id": "state-1517261D-8BF9-47D6-B7E7-C5EC46BF931E",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/spark",
+            "source": "http://www.apache.org/dist/incubator/spark/spark-0.9.0-incubating/spark-0.9.0-incubating-bin-hadoop1.tgz",
+            "checksum": "md5:90C80A14DDD81D4426784C10ADDAE02F"
+          },
+          "id": "state-0D3F0CAF-80B1-4877-80F1-D5A3F4CF52FD",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- configuration files -----"
+          },
+          "id": "state-7DA223E3-F30C-40AA-848C-902CF52B72F3",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "hostname master"
+          },
+          "id": "state-22EE38C3-91C3-491A-B1F3-C3E7920601C9",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q master /etc/host || echo \"@{self.PrivateIpAddress} master\" >> /etc/hosts"
+          },
+          "id": "state-624C8FE2-0727-4668-A1F0-A9EF6BBB3FBF",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "content": "#!/usr/bin/env bash\n\nexport SPARK_DAEMON_JAVA_OPTS=\"-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=@{8D734360-72AB-4651-ADEC-0EE1F540783B.PrivateIpAddress}:2181,@{7A8C7096-425A-4716-A67F-30DD28F42930.PrivateIpAddress}:2181,@{27F2B989-C36D-4A9D-BE01-15BD1752858A.PrivateIpAddress}:2181\"\nexport SPARK_WORKER_PORT=7177",
+            "path": "/opt/spark/spark-0.9.0-incubating-bin-hadoop1/conf/spark-env.sh",
+            "mode": "755"
+          },
+          "id": "state-44E85C33-27D4-4EAA-90BE-0EA7496542C0",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "----- start daemon -----"
+          },
+          "id": "state-2D6FDD7B-0B4A-4B53-ADA6-29544612C48E",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:spark]\ncommand=/opt/spark/spark-0.9.0-incubating-bin-hadoop1/bin/spark-class org.apache.spark.deploy.master.Master --ip master --port 7077 --webui-port 8080\nredirect_stderr=true\nstdout_logfile=/opt/spark/spark.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-25B4EAD3-24DE-45C7-ACFE-CF8E8CEE257D",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "spark"
+            ]
+          },
+          "id": "state-CFE8BCF3-1F73-45C9-9C89-2F1084691127",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 10,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "3E765014-E099-4FEF-B254-0EFC7267241E": {
+      "index": 0,
+      "uid": "3E765014-E099-4FEF-B254-0EFC7267241E",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "master-eni0",
+      "serverGroupUid": "3E765014-E099-4FEF-B254-0EFC7267241E",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupName}",
+            "GroupId": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE": {
+      "type": "AWS.EC2.Instance",
+      "uid": "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE",
+      "name": "slave-0",
+      "index": 0,
+      "number": 2,
+      "serverGroupUid": "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE",
+      "serverGroupName": "slave",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-9AD257B9-AF60-45DA-9DA3-D0032CDB9B07",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-4893311E-FFD4-4ABB-9F20-D12EF772F543",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/spark"
+            ],
+            "recursive": true
+          },
+          "id": "state-E7198B4A-A2BA-4585-B3C9-4D78ADE0D407",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/spark",
+            "source": "http://www.apache.org/dist/incubator/spark/spark-0.9.0-incubating/spark-0.9.0-incubating-bin-hadoop1.tgz",
+            "checksum": "md5:90C80A14DDD81D4426784C10ADDAE02F"
+          },
+          "id": "state-FA339F76-9574-453B-9487-7A6E3E1054B2",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- configuration files -----"
+          },
+          "id": "state-05891256-7556-4A4D-88B1-DB0B1CDEEE58",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q `hostname` /etc/hosts || echo \"@{self.PrivateIpAddress} `hostname`\" >> /etc/hosts"
+          },
+          "id": "state-30EEFA2C-DA62-412A-BEAE-AF9F97BBED38",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q @{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.PrivateIpAddress} /etc/hosts || echo \"@{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.PrivateIpAddress} master\" >> /etc/hosts"
+          },
+          "id": "state-FC8643BC-2113-4272-AA6B-234F694993B4",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q @{5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7.PrivateIpAddress} /etc/hosts || echo \"@{5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7.PrivateIpAddress} yamaster\" >> /etc/hosts"
+          },
+          "id": "state-EA7ED123-3F21-4616-963C-FBABDE5705A8",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "content": "#!/usr/bin/env bash\n\nexport SPARK_DAEMON_JAVA_OPTS=\"-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=@{8D734360-72AB-4651-ADEC-0EE1F540783B.PrivateIpAddress}:2181,@{7A8C7096-425A-4716-A67F-30DD28F42930.PrivateIpAddress}:2181,@{27F2B989-C36D-4A9D-BE01-15BD1752858A.PrivateIpAddress}:2181\"\nexport SPARK_WORKER_PORT=7177",
+            "path": "/opt/spark/spark-0.9.0-incubating-bin-hadoop1/conf/spark-env.sh",
+            "mode": "755"
+          },
+          "id": "state-DF4A0249-52DD-4BEE-8070-BC9A13A21216",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "----- start daemon -----"
+          },
+          "id": "state-FB7D3E49-18A9-48DC-A78E-33E6C9419ABE",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:spark]\ncommand=/opt/spark/spark-0.9.0-incubating-bin-hadoop1/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077,yamaster:7077\nredirect_stderr=true\nstdout_logfile=/opt/spark/spark.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-43B76319-A09F-48AD-83DD-F5150E209A6E",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "spark"
+            ]
+          },
+          "id": "state-F1754850-D327-46DF-B590-247CA40288B0",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 10,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "31EC27DB-A5A4-4E05-AE39-B6607B7803A6": {
+      "type": "AWS.EC2.Instance",
+      "uid": "31EC27DB-A5A4-4E05-AE39-B6607B7803A6",
+      "name": "slave-1",
+      "index": 1,
+      "number": 2,
+      "serverGroupUid": "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE",
+      "serverGroupName": "slave",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-9AD257B9-AF60-45DA-9DA3-D0032CDB9B07",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-4893311E-FFD4-4ABB-9F20-D12EF772F543",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/spark"
+            ],
+            "recursive": true
+          },
+          "id": "state-E7198B4A-A2BA-4585-B3C9-4D78ADE0D407",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/spark",
+            "source": "http://www.apache.org/dist/incubator/spark/spark-0.9.0-incubating/spark-0.9.0-incubating-bin-hadoop1.tgz",
+            "checksum": "md5:90C80A14DDD81D4426784C10ADDAE02F"
+          },
+          "id": "state-FA339F76-9574-453B-9487-7A6E3E1054B2",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- configuration files -----"
+          },
+          "id": "state-05891256-7556-4A4D-88B1-DB0B1CDEEE58",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q `hostname` /etc/hosts || echo \"@{self.PrivateIpAddress} `hostname`\" >> /etc/hosts"
+          },
+          "id": "state-30EEFA2C-DA62-412A-BEAE-AF9F97BBED38",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q @{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.PrivateIpAddress} /etc/hosts || echo \"@{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.PrivateIpAddress} master\" >> /etc/hosts"
+          },
+          "id": "state-FC8643BC-2113-4272-AA6B-234F694993B4",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q @{5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7.PrivateIpAddress} /etc/hosts || echo \"@{5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7.PrivateIpAddress} yamaster\" >> /etc/hosts"
+          },
+          "id": "state-EA7ED123-3F21-4616-963C-FBABDE5705A8",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "content": "#!/usr/bin/env bash\n\nexport SPARK_DAEMON_JAVA_OPTS=\"-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=@{8D734360-72AB-4651-ADEC-0EE1F540783B.PrivateIpAddress}:2181,@{7A8C7096-425A-4716-A67F-30DD28F42930.PrivateIpAddress}:2181,@{27F2B989-C36D-4A9D-BE01-15BD1752858A.PrivateIpAddress}:2181\"\nexport SPARK_WORKER_PORT=7177",
+            "path": "/opt/spark/spark-0.9.0-incubating-bin-hadoop1/conf/spark-env.sh",
+            "mode": "755"
+          },
+          "id": "state-DF4A0249-52DD-4BEE-8070-BC9A13A21216",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "----- start daemon -----"
+          },
+          "id": "state-FB7D3E49-18A9-48DC-A78E-33E6C9419ABE",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:spark]\ncommand=/opt/spark/spark-0.9.0-incubating-bin-hadoop1/bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077,yamaster:7077\nredirect_stderr=true\nstdout_logfile=/opt/spark/spark.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-43B76319-A09F-48AD-83DD-F5150E209A6E",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "spark"
+            ]
+          },
+          "id": "state-F1754850-D327-46DF-B590-247CA40288B0",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 10,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "6071216A-1FAB-463D-83DB-D4118D6DD2BE": {
+      "index": 0,
+      "uid": "6071216A-1FAB-463D-83DB-D4118D6DD2BE",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "slave-0-eni0",
+      "serverGroupUid": "6071216A-1FAB-463D-83DB-D4118D6DD2BE",
+      "serverGroupName": "eni0",
+      "number": 2,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupName}",
+            "GroupId": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "2959F648-923C-4D05-8E15-3E0501EB74C1": {
+      "index": 1,
+      "uid": "2959F648-923C-4D05-8E15-3E0501EB74C1",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "slave-1-eni0",
+      "serverGroupUid": "6071216A-1FAB-463D-83DB-D4118D6DD2BE",
+      "serverGroupName": "eni0",
+      "number": 2,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.6",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupName}",
+            "GroupId": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{31EC27DB-A5A4-4E05-AE39-B6607B7803A6.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "44D12D96-C565-4820-B119-C5CB71E6FCB4": {
+      "name": "Internet-gateway",
+      "type": "AWS.VPC.InternetGateway",
+      "uid": "44D12D96-C565-4820-B119-C5CB71E6FCB4",
+      "resource": {
+        "InternetGatewayId": "",
+        "AttachmentSet": [
+          {
+            "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}"
+          }
+        ]
+      }
+    },
+    "E9FF999B-4900-49F3-9B48-27923896810A": {
+      "type": "AWS.EC2.Instance",
+      "uid": "E9FF999B-4900-49F3-9B48-27923896810A",
+      "name": "NAT",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "E9FF999B-4900-49F3-9B48-27923896810A",
+      "serverGroupName": "NAT",
+      "state": [
+        {
+          "parameter": {
+            "comment": "squid for transparent proxy"
+          },
+          "id": "state-CEA5295E-3149-4F3D-9AE6-48E13799BAD2",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "squid",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-CA7C03BE-F228-4CA2-B69B-C0D12F72AD57",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "content": "acl manager proto cache_object\nacl localhost src 127.0.0.1/32 ::1\nacl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1\nacl localnet src 10.0.0.0/8\t# RFC1918 possible internal network\nacl localnet src 172.16.0.0/12\t# RFC1918 possible internal network\nacl localnet src 192.168.0.0/16\t# RFC1918 possible internal network\nacl localnet src fc00::/7       # RFC 4193 local private network range\nacl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines\nacl SSL_ports port 443\nacl Safe_ports port 80\t\t# http\nacl Safe_ports port 21\t\t# ftp\nacl Safe_ports port 443\t\t# https\nacl Safe_ports port 70\t\t# gopher\nacl Safe_ports port 210\t\t# wais\nacl Safe_ports port 1025-65535\t# unregistered ports\nacl Safe_ports port 280\t\t# http-mgmt\nacl Safe_ports port 488\t\t# gss-http\nacl Safe_ports port 591\t\t# filemaker\nacl Safe_ports port 777\t\t# multiling http\nacl CONNECT method CONNECT\nhttp_access allow manager localhost\nhttp_access deny manager\nhttp_access deny !Safe_ports\nhttp_access deny CONNECT !SSL_ports\nhttp_access allow localnet\nhttp_access allow localhost\nhttp_access deny all\nhttp_port @{self.PrivateIpAddress}:3128 transparent\nhierarchy_stoplist cgi-bin ?\ncache_dir ufs /var/spool/squid 4096 16 256\ncoredump_dir /var/spool/squid\nrefresh_pattern ^ftp:\t\t1440\t20%\t10080\nrefresh_pattern ^gopher:\t1440\t0%\t1440\nrefresh_pattern -i (/cgi-bin/|\\?) 0\t0%\t0\nrefresh_pattern .\t\t0\t20%\t4320",
+            "path": "/etc/squid/squid.conf",
+            "group": "squid",
+            "mode": "640",
+            "user": "root"
+          },
+          "id": "state-72FC17DE-2EFD-4769-9C23-479B138346FF",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/squid/squid.conf"
+            ],
+            "name": [
+              "squid"
+            ]
+          },
+          "id": "state-DE4EC8DD-8CE7-4C8E-A1E3-F7BE894BA17C",
+          "module": "linux.service"
+        },
+        {
+          "parameter": {
+            "comment": "--- NAT ---"
+          },
+          "id": "state-A2128505-0A16-4446-ABD2-50BF9C229FD1",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "[ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ] || echo -n 1 > /proc/sys/net/ipv4/ip_forward"
+          },
+          "id": "state-52E85F44-18A0-43B3-A366-87E7CD62B55C",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "content": "*nat\n:PREROUTING ACCEPT\n-A PREROUTING -p tcp --dport 80 ! -s 10.0.0.0/8 -j DNAT --to-destination @{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.PrivateIpAddress}:8080\n-A PREROUTING -p tcp --dport 88 ! -s 10.0.0.0/8 -j DNAT --to-destination @{E0CD57DF-2B67-486A-88C7-32AABA4E1DD8.PrivateIpAddress}:8080\n-A PREROUTING -s 10.0.0.0/8 -p tcp --dport 80 -j REDIRECT --to-ports 3128\n:INPUT ACCEPT\n:OUTPUT ACCEPT\n:POSTROUTING ACCEPT\n-A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE\nCOMMIT\n# Completed\n",
+            "path": "/etc/sysconfig/iptables"
+          },
+          "id": "state-9413FF85-CC3C-4056-A95E-FAE48CCD57CB",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/sysconfig/iptables"
+            ],
+            "name": [
+              "iptables"
+            ]
+          },
+          "id": "state-219F0A3E-F68A-4A69-BF5C-8E6FFC2F1C60",
+          "module": "linux.service"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 10,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{B784143F-A6A2-4CF1-92A5-D92DDA0E54F1.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "1C0A4659-BDC4-41F8-BB00-7C90F6437C83": {
+      "index": 0,
+      "uid": "1C0A4659-BDC4-41F8-BB00-7C90F6437C83",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "NAT-eni0",
+      "serverGroupUid": "1C0A4659-BDC4-41F8-BB00-7C90F6437C83",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": false,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{B784143F-A6A2-4CF1-92A5-D92DDA0E54F1.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.1.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{F3F15607-C80A-49B5-8D93-1F0009B9683B.resource.GroupName}",
+            "GroupId": "@{F3F15607-C80A-49B5-8D93-1F0009B9683B.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{E9FF999B-4900-49F3-9B48-27923896810A.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7": {
+      "type": "AWS.EC2.Instance",
+      "uid": "5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7",
+      "name": "yamaster",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7",
+      "serverGroupName": "yamaster",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-A4F7FBF1-3202-4542-822D-02DF58344A41",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-220C3E02-8A3A-494E-BF71-4F34431C8237",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/spark"
+            ],
+            "recursive": true
+          },
+          "id": "state-79F6288D-8673-4C4E-B6B0-2F8C47E13FBE",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/spark",
+            "source": "http://www.apache.org/dist/incubator/spark/spark-0.9.0-incubating/spark-0.9.0-incubating-bin-hadoop1.tgz",
+            "checksum": "md5:90C80A14DDD81D4426784C10ADDAE02F"
+          },
+          "id": "state-8261372C-479A-4C54-9BF8-ED05C745095B",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- configuration files -----"
+          },
+          "id": "state-9EBC7BE2-3C8B-4D33-B436-3593378CD989",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "hostname yamaster"
+          },
+          "id": "state-8D7D8A54-178E-459C-85C2-4D1D2F533D16",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q yamaster /etc/host || echo \"@{self.PrivateIpAddress} yamaster\" >> /etc/hosts"
+          },
+          "id": "state-80BC85EC-3E00-425A-BAD3-7165555AC258",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "content": "#!/usr/bin/env bash\n\nexport SPARK_DAEMON_JAVA_OPTS=\"-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=@{8D734360-72AB-4651-ADEC-0EE1F540783B.PrivateIpAddress}:2181,@{7A8C7096-425A-4716-A67F-30DD28F42930.PrivateIpAddress}:2181,@{27F2B989-C36D-4A9D-BE01-15BD1752858A.PrivateIpAddress}:2181\"\nexport SPARK_WORKER_PORT=7177",
+            "path": "/opt/spark/spark-0.9.0-incubating-bin-hadoop1/conf/spark-env.sh",
+            "mode": "755"
+          },
+          "id": "state-207416EF-9930-4318-9DF2-4F3172CA38EB",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "----- start daemon -----"
+          },
+          "id": "state-C9F881DB-4001-459C-9A1D-7BF97B3821E7",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:spark]\ncommand=/opt/spark/spark-0.9.0-incubating-bin-hadoop1/bin/spark-class org.apache.spark.deploy.master.Master --ip yamaster --port 7077 --webui-port 8080\nredirect_stderr=true\nstdout_logfile=/opt/spark/spark.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-61554BD6-3F3F-4CE1-BFA9-EDD72E0657A0",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "spark"
+            ]
+          },
+          "id": "state-623CAE4E-5B7C-43E0-A148-0CC8BA560896",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{D47F8B99-186E-4D66-A7C8-56AA51FF2F09.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "C457A778-B608-4A43-AD9D-E479D83CFDDE": {
+      "index": 0,
+      "uid": "C457A778-B608-4A43-AD9D-E479D83CFDDE",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "yamaster-eni0",
+      "serverGroupUid": "C457A778-B608-4A43-AD9D-E479D83CFDDE",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{D47F8B99-186E-4D66-A7C8-56AA51FF2F09.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.4.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupName}",
+            "GroupId": "@{990900B8-EA68-4EC8-BF88-DDFD9A5F4035.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "32723427-EDF0-4F01-8532-DDFF0895F25D": {
+      "name": "NATKEY",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "32723427-EDF0-4F01-8532-DDFF0895F25D",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "NATKEY"
+      }
+    },
+    "8D734360-72AB-4651-ADEC-0EE1F540783B": {
+      "type": "AWS.EC2.Instance",
+      "uid": "8D734360-72AB-4651-ADEC-0EE1F540783B",
+      "name": "zk-1",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "8D734360-72AB-4651-ADEC-0EE1F540783B",
+      "serverGroupName": "zk-1",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-8A59E47B-705D-4858-B674-BE7121ABBDE1",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/zookeeper"
+            ],
+            "recursive": true
+          },
+          "id": "state-95CCF602-CADC-4BB9-8B3A-24CF1B9C3F17",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/var/lib/zookeeper"
+            ],
+            "recursive": true
+          },
+          "id": "state-6ABA57DB-43F8-42AB-BED4-8ACD6CBB248E",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "path": "/opt/zookeeper",
+            "source": "http://ftp.riken.jp/net/apache/zookeeper/stable/zookeeper-3.4.6.tar.gz",
+            "checksum": "md5:971c379ba65714fd25dc5fe8f14e9ad1"
+          },
+          "id": "state-9F1D4E5B-7FC4-4FFB-9B6F-0BB48FCBEFE8",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "content": "1",
+            "path": "/var/lib/zookeeper/myid"
+          },
+          "id": "state-E2E3F8C5-EAD5-4531-92AE-55D3619382BA",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "tickTime=2000\ninitLimit=10\nsyncLimit=5\ndataDir=/var/lib/zookeeper\nclientPort=2181\nserver.1=@{self.PrivateIpAddress}:2888:3888\nserver.2=@{7A8C7096-425A-4716-A67F-30DD28F42930.PrivateIpAddress}:2888:3888\nserver.3=@{27F2B989-C36D-4A9D-BE01-15BD1752858A.PrivateIpAddress}:2888:3888\n",
+            "path": "/opt/zookeeper/zookeeper-3.4.6/conf/zoo.cfg"
+          },
+          "id": "state-32BC2A2C-A37E-4438-AD09-AE50F89828FD",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:zookeeper]\ncommand=java -Dzookeeper.log.dir=/var/log -Dzookeeper.root.logger=INFO,CONSOLE -cp /opt/zookeeper/zookeeper-3.4.6/build/classes:/opt/zookeeper/zookeeper-3.4.6/build/lib/*.jar:/opt/zookeeper/zookeeper-3.4.6/lib/slf4j-log4j12-1.6.1.jar:/opt/zookeeper/zookeeper-3.4.6/lib/slf4j-api-1.6.1.jar:/opt/zookeeper/zookeeper-3.4.6/lib/netty-3.7.0.Final.jar:/opt/zookeeper/zookeeper-3.4.6/lib/log4j-1.2.16.jar:/opt/zookeeper/zookeeper-3.4.6/lib/jline-0.9.94.jar:/opt/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.jar:/opt/zookeeper/zookeeper-3.4.6/src/java/lib/*.jar:/opt/zookeeper/zookeeper-3.4.6/conf -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain /opt/zookeeper/zookeeper-3.4.6/conf/zoo.cfg\nredirect_stderr=true\nstdout_logfile=/opt/zookeeper/zookeeper.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-60CF235F-9781-4142-BB9A-2C5AE6A111B3",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "name": [
+              "zookeeper"
+            ]
+          },
+          "id": "state-D12E8BEA-E149-4C7A-B30E-5EDF06549990",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": "8",
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{15C2D06D-4960-44CC-8680-E84D1C0A4D6D.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "AED933CB-8832-48A6-805A-306E0A38621D": {
+      "index": 0,
+      "uid": "AED933CB-8832-48A6-805A-306E0A38621D",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "zk-1-eni0",
+      "serverGroupUid": "AED933CB-8832-48A6-805A-306E0A38621D",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}",
+        "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
+        "SubnetId": "@{15C2D06D-4960-44CC-8680-E84D1C0A4D6D.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.2.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupName}",
+            "GroupId": "@{47F8BD40-D07B-4833-991F-B421596C4C65.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupName}",
+            "GroupId": "@{CCC1E208-85C0-4158-920D-FD9B34388ED7.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{8D734360-72AB-4651-ADEC-0EE1F540783B.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    }
+  },
+  "layout": {
+    "E670050C-EEAC-4A08-BE3C-A0175F8D6B05": {
+      "coordinate": [
+        75,
+        6
+      ],
+      "uid": "E670050C-EEAC-4A08-BE3C-A0175F8D6B05",
+      "groupUId": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F"
+    },
+    "507508A9-CA2B-4598-B812-24415FFB5073": {
+      "coordinate": [
+        104,
+        48
+      ],
+      "uid": "507508A9-CA2B-4598-B812-24415FFB5073",
+      "groupUId": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F"
+    },
+    "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F": {
+      "coordinate": [
+        9,
+        4
+      ],
+      "uid": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F",
+      "size": [
+        111,
+        83
+      ]
+    },
+    "9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9": {
+      "coordinate": [
+        16,
+        54
+      ],
+      "uid": "9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9",
+      "groupUId": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F",
+      "size": [
+        82,
+        31
+      ]
+    },
+    "4C924DD9-7A1B-4FBC-BF61-C95760D71618": {
+      "coordinate": [
+        35,
+        56
+      ],
+      "uid": "4C924DD9-7A1B-4FBC-BF61-C95760D71618",
+      "groupUId": "9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9",
+      "size": [
+        38,
+        13
+      ]
+    },
+    "27F2B989-C36D-4A9D-BE01-15BD1752858A": {
+      "coordinate": [
+        39,
+        58
+      ],
+      "uid": "27F2B989-C36D-4A9D-BE01-15BD1752858A",
+      "groupUId": "4C924DD9-7A1B-4FBC-BF61-C95760D71618",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "27F2B989-C36D-4A9D-BE01-15BD1752858A"
+      ]
+    },
+    "78883775-5D36-4667-B866-91007D41E41A": {
+      "coordinate": [
+        16,
+        15
+      ],
+      "uid": "78883775-5D36-4667-B866-91007D41E41A",
+      "groupUId": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F",
+      "size": [
+        82,
+        35
+      ]
+    },
+    "B784143F-A6A2-4CF1-92A5-D92DDA0E54F1": {
+      "coordinate": [
+        81,
+        36
+      ],
+      "uid": "B784143F-A6A2-4CF1-92A5-D92DDA0E54F1",
+      "groupUId": "78883775-5D36-4667-B866-91007D41E41A",
+      "size": [
+        13,
+        12
+      ]
+    },
+    "A2F01C34-3FD7-497D-AA40-5DF6616C1C5A": {
+      "coordinate": [
+        18,
+        17
+      ],
+      "uid": "A2F01C34-3FD7-497D-AA40-5DF6616C1C5A",
+      "groupUId": "78883775-5D36-4667-B866-91007D41E41A",
+      "size": [
+        55,
+        13
+      ]
+    },
+    "15C2D06D-4960-44CC-8680-E84D1C0A4D6D": {
+      "coordinate": [
+        35,
+        33
+      ],
+      "uid": "15C2D06D-4960-44CC-8680-E84D1C0A4D6D",
+      "groupUId": "78883775-5D36-4667-B866-91007D41E41A",
+      "size": [
+        38,
+        13
+      ]
+    },
+    "D47F8B99-186E-4D66-A7C8-56AA51FF2F09": {
+      "coordinate": [
+        19,
+        71
+      ],
+      "uid": "D47F8B99-186E-4D66-A7C8-56AA51FF2F09",
+      "groupUId": "9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9",
+      "size": [
+        54,
+        12
+      ]
+    },
+    "7A8C7096-425A-4716-A67F-30DD28F42930": {
+      "coordinate": [
+        51,
+        35
+      ],
+      "uid": "7A8C7096-425A-4716-A67F-30DD28F42930",
+      "groupUId": "15C2D06D-4960-44CC-8680-E84D1C0A4D6D",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "7A8C7096-425A-4716-A67F-30DD28F42930"
+      ]
+    },
+    "E0CD57DF-2B67-486A-88C7-32AABA4E1DD8": {
+      "coordinate": [
+        21,
+        19
+      ],
+      "uid": "E0CD57DF-2B67-486A-88C7-32AABA4E1DD8",
+      "groupUId": "A2F01C34-3FD7-497D-AA40-5DF6616C1C5A",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "E0CD57DF-2B67-486A-88C7-32AABA4E1DD8"
+      ]
+    },
+    "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE": {
+      "coordinate": [
+        58,
+        19
+      ],
+      "uid": "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE",
+      "groupUId": "A2F01C34-3FD7-497D-AA40-5DF6616C1C5A",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "4CDCE398-DEE1-43A6-9A92-D62D8F97E3FE",
+        "31EC27DB-A5A4-4E05-AE39-B6607B7803A6"
+      ]
+    },
+    "44D12D96-C565-4820-B119-C5CB71E6FCB4": {
+      "coordinate": [
+        5,
+        48
+      ],
+      "uid": "44D12D96-C565-4820-B119-C5CB71E6FCB4",
+      "groupUId": "FB9502E4-2B96-4472-BB45-3B3FAEF77C8F"
+    },
+    "E9FF999B-4900-49F3-9B48-27923896810A": {
+      "coordinate": [
+        83,
+        38
+      ],
+      "uid": "E9FF999B-4900-49F3-9B48-27923896810A",
+      "groupUId": "B784143F-A6A2-4CF1-92A5-D92DDA0E54F1",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "E9FF999B-4900-49F3-9B48-27923896810A"
+      ]
+    },
+    "5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7": {
+      "coordinate": [
+        23,
+        73
+      ],
+      "uid": "5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7",
+      "groupUId": "D47F8B99-186E-4D66-A7C8-56AA51FF2F09",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "5CCFBF83-C3A2-437A-A4C2-57AF384A9CC7"
+      ]
+    },
+    "8D734360-72AB-4651-ADEC-0EE1F540783B": {
+      "coordinate": [
+        39,
+        35
+      ],
+      "uid": "8D734360-72AB-4651-ADEC-0EE1F540783B",
+      "groupUId": "15C2D06D-4960-44CC-8680-E84D1C0A4D6D",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "8D734360-72AB-4651-ADEC-0EE1F540783B"
+      ]
+    },
+    "size": [
+      240,
+      240
+    ]
+  },
+  "signature": "8de21fb12f2e0e0460090dc0dc7f80af"
+}

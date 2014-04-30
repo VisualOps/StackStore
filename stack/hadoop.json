@@ -1,0 +1,1956 @@
+{
+  "agent": {
+    "enabled": true,
+    "module": {
+      "repo": "https://github.com/MadeiraCloud/salt",
+      "tag": "v2014-04-15"
+    }
+  },
+  "name": "sample-apache-hadoop-v1",
+  "region": "us-east-1",
+  "platform": "ec2-vpc",
+  "version": "2014-02-17",
+  "component": {
+    "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73": {
+      "name": "vpc",
+      "type": "AWS.VPC.VPC",
+      "uid": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73",
+      "resource": {
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "EnableDnsHostnames": false,
+        "DhcpOptionsId": "",
+        "VpcId": "",
+        "CidrBlock": "10.0.0.0/16"
+      }
+    },
+    "637A9703-606E-48A8-868A-DA56DF4ABF6B": {
+      "name": "DefaultACL",
+      "type": "AWS.VPC.NetworkAcl",
+      "uid": "637A9703-606E-48A8-868A-DA56DF4ABF6B",
+      "resource": {
+        "AssociationSet": [
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{9D9763D3-E288-4D1A-8113-58BA4048DCAC.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{211C8156-63C1-414F-84B2-C4893A66E7E3.resource.SubnetId}"
+          }
+        ],
+        "Default": true,
+        "EntrySet": [
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          }
+        ],
+        "NetworkAclId": "",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}"
+      }
+    },
+    "E5370DA5-F225-4A31-A8EA-E00F1FDEB7F8": {
+      "name": "RT-1",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "E5370DA5-F225-4A31-A8EA-E00F1FDEB7F8",
+      "resource": {
+        "PropagatingVgwSet": [
+          
+        ],
+        "RouteTableId": "",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "SubnetId": "@{211C8156-63C1-414F-84B2-C4893A66E7E3.resource.SubnetId}",
+            "RouteTableAssociationId": "",
+            "Main": false
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "@{6A2F243A-527E-4121-9DA7-C75E2621FADD.resource.InternetGatewayId}"
+          }
+        ]
+      }
+    },
+    "81E36A06-2B11-4763-A73F-788C34DDC7BA": {
+      "name": "RT-0",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "81E36A06-2B11-4763-A73F-788C34DDC7BA",
+      "resource": {
+        "PropagatingVgwSet": [
+          
+        ],
+        "RouteTableId": "",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "Main": "true",
+            "RouteTableAssociationId": "",
+            "SubnetId": ""
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "@{EDF62577-4F5F-4188-95CD-075D3469BDB7.resource.NetworkInterfaceId}",
+            "GatewayId": ""
+          }
+        ]
+      }
+    },
+    "74F6BD2E-A269-48AB-ADB2-3778EB94BB0A": {
+      "uid": "74F6BD2E-A269-48AB-ADB2-3778EB94BB0A",
+      "name": "us-east-1d",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1d",
+        "RegionName": "us-east-1"
+      }
+    },
+    "9D9763D3-E288-4D1A-8113-58BA4048DCAC": {
+      "name": "subnet3",
+      "type": "AWS.VPC.Subnet",
+      "uid": "9D9763D3-E288-4D1A-8113-58BA4048DCAC",
+      "resource": {
+        "AvailabilityZone": "@{74F6BD2E-A269-48AB-ADB2-3778EB94BB0A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.3.0/24"
+      }
+    },
+    "10D10D8A-9B7E-4B51-8301-82CF1A93898A": {
+      "type": "AWS.EC2.Instance",
+      "uid": "10D10D8A-9B7E-4B51-8301-82CF1A93898A",
+      "name": "DataNode-Group-C",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "10D10D8A-9B7E-4B51-8301-82CF1A93898A",
+      "serverGroupName": "DataNode-Group-C",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-EF878C1B-E899-442A-A0BC-BDF8BA73CC54",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-96091473-B75D-4E2B-A862-557BC4C299DB",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/opt/hadoop/hadoop-1.2.1"
+            ],
+            "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
+            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "path": "/opt/hadoop"
+          },
+          "id": "state-622AF50A-3D8C-46B2-B8DC-9B493B28834F",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- Prepare Dirs -----"
+          },
+          "id": "state-E5210BB4-97A2-418A-8DA7-2B4910C4A97B",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/hadoop/name",
+              "/opt/hadoop/data",
+              "/opt/hadoop/mapred/mapredsystem",
+              "/opt/hadoop/mapred/local"
+            ]
+          },
+          "id": "state-C2FC6313-C404-45B2-ACC4-824847084251",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "----- Configuration Files -----"
+          },
+          "id": "state-C8C46C6E-80BC-4543-91D2-FC8C165CEE13",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>fs.default.name</name>\n    <value>hdfs://@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:8020</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml"
+          },
+          "id": "state-AAEA7DA8-9604-4E5B-9F93-2A399DD53921",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>dfs.name.dir</name>\n    <value>/opt/hadoop/name</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.data.dir</name>\n    <value>/opt/hadoop/data</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50070</value>\n    <final>true</final>\n  </property>\n  \n  <property>\n    <name>dfs.https.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50470</value>\n    <description>The https address where namenode binds</description>\n  </property>\n\n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+          },
+          "id": "state-E22F43F6-0ED3-4815-BFA7-A15A505F2E76",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>mapred.system.dir</name>\n    <value>/opt/hadoop/mapred/mapredsystem</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:9000</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50030</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.local.dir</name>\n    <value>/opt/hadoop/mapred/local</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/mapred-site.xml"
+          },
+          "id": "state-E57D56AB-2971-45ED-B509-95709F7A0A25",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+          },
+          "id": "state-7B1B27BB-7C20-4A64-9D28-5C2DE0A48E4B",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q namenode /etc/hosts || echo \"@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress} namenode\" >> /etc/hosts"
+          },
+          "id": "state-6AD85817-BD0B-4E9B-9AC3-2E2234C8075F",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "----- Start Daemon -----"
+          },
+          "id": "state-0E28B2F1-8553-4F3B-8113-69CB46F8FC52",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:datanode]\ncommand=/opt/hadoop/hadoop-1.2.1/bin/hadoop --config /opt/hadoop/hadoop-1.2.1/conf datanode\nenvironment=JAVA_HOME=/etc/alternatives/jre\nredirect_stderr=true\nstdout_logfile=/opt/hadoop/hadoop.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-5CC9F92B-D22C-458F-929C-122E790ED9D3",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "watch": [
+              "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml",
+              "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+            ],
+            "name": [
+              "datanode"
+            ]
+          },
+          "id": "state-91259427-145A-44A3-82F7-17C0ACEDF537",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{74F6BD2E-A269-48AB-ADB2-3778EB94BB0A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{9D9763D3-E288-4D1A-8113-58BA4048DCAC.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "C546584D-135F-4BB3-B8B7-27654A07FBD1": {
+      "index": 0,
+      "uid": "C546584D-135F-4BB3-B8B7-27654A07FBD1",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "DataNode-Group-C-eni0",
+      "serverGroupUid": "C546584D-135F-4BB3-B8B7-27654A07FBD1",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{74F6BD2E-A269-48AB-ADB2-3778EB94BB0A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{9D9763D3-E288-4D1A-8113-58BA4048DCAC.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.3.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupName}",
+            "GroupId": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupName}",
+            "GroupId": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{10D10D8A-9B7E-4B51-8301-82CF1A93898A.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "B0F6F9E1-33EB-4740-BB17-A436CA7D32FB": {
+      "name": "DefaultKP",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "B0F6F9E1-33EB-4740-BB17-A436CA7D32FB",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "DefaultKP"
+      }
+    },
+    "32F1911B-150C-4852-BD29-AD9B65244765": {
+      "uid": "32F1911B-150C-4852-BD29-AD9B65244765",
+      "name": "us-east-1b",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1b",
+        "RegionName": "us-east-1"
+      }
+    },
+    "5240ACC1-F4DC-465A-BEC6-74D2D48ADE29": {
+      "name": "subnet1",
+      "type": "AWS.VPC.Subnet",
+      "uid": "5240ACC1-F4DC-465A-BEC6-74D2D48ADE29",
+      "resource": {
+        "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.1.0/24"
+      }
+    },
+    "8D59390F-F5EB-4967-AA9C-2686EDFFC705": {
+      "type": "AWS.EC2.Instance",
+      "uid": "8D59390F-F5EB-4967-AA9C-2686EDFFC705",
+      "name": "SecondaryNameNode",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "8D59390F-F5EB-4967-AA9C-2686EDFFC705",
+      "serverGroupName": "SecondaryNameNode",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-9EC1DE06-355B-4D51-AF57-B12F22EDD97C",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-8570D375-E364-4617-B673-BE33C68910C6",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/opt/hadoop/hadoop-1.2.1"
+            ],
+            "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
+            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "path": "/opt/hadoop"
+          },
+          "id": "state-ED6A8DED-E483-4F91-9E7D-21763DA55643",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- Prepare Dirs -----"
+          },
+          "id": "state-2821C8AB-C1A1-4C51-A720-16411F69A77B",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/hadoop/name",
+              "/opt/hadoop/data",
+              "/opt/hadoop/mapred/mapredsystem",
+              "/opt/hadoop/mapred/local"
+            ]
+          },
+          "id": "state-B514C02F-A1B7-4D24-A412-1E53D6CCB9C7",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "----- Configuration Files -----"
+          },
+          "id": "state-BFF06073-68B6-4041-9E46-53CC4E9331BB",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>fs.default.name</name>\n    <value>hdfs://@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:8020</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml"
+          },
+          "id": "state-6588CB97-E75C-44D6-B96D-D30650149AC1",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>dfs.name.dir</name>\n    <value>/opt/hadoop/name</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.data.dir</name>\n    <value>/opt/hadoop/data</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50070</value>\n    <final>true</final>\n  </property>\n  \n  <property>\n    <name>dfs.https.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50470</value>\n    <description>The https address where namenode binds</description>\n  </property>\n\n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+          },
+          "id": "state-B856C104-6AD7-4C18-AC77-9A81254AF1CD",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>mapred.system.dir</name>\n    <value>/opt/hadoop/mapred/mapredsystem</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:9000</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50030</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.local.dir</name>\n    <value>/opt/hadoop/mapred/local</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/mapred-site.xml"
+          },
+          "id": "state-1620E1CC-A271-4008-BCD8-5A3244A4ABB0",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "hostname secondary"
+          },
+          "id": "state-B1E9D0A2-23CF-43BB-BD4B-A6BD811D374E",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q secondary /etc/hosts || echo \"@{self.PrivateIpAddress} secondary\" >> /etc/hosts"
+          },
+          "id": "state-F9E2231D-DC09-4579-833F-E0490C82240F",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q namenode /etc/hosts || echo \"@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress} namenode\" >> /etc/hosts"
+          },
+          "id": "state-6FA55B10-C8E6-4592-855A-FFA39498A696",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "----- Start Daemon -----"
+          },
+          "id": "state-F896F622-3F43-45C8-978F-BF1CF02CD8E2",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:secondarynn]\ncommand=/opt/hadoop/hadoop-1.2.1/bin/hadoop --config /opt/hadoop/hadoop-1.2.1/conf secondarynamenode\nenvironment=JAVA_HOME=/etc/alternatives/jre\nredirect_stderr=true\nstdout_logfile=/opt/hadoop/hadoop.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-A00928BB-1F0E-46A9-8092-6ACABFA42118",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "watch": [
+              "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml",
+              "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+            ],
+            "name": [
+              "secondarynn"
+            ]
+          },
+          "id": "state-CEBD9B67-123B-48F3-B947-B4B4FBE165CA",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "0EAEAF7A-E85F-4DE3-A0AE-4F31E94EF245": {
+      "index": 0,
+      "uid": "0EAEAF7A-E85F-4DE3-A0AE-4F31E94EF245",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "SecondaryNameNode-eni0",
+      "serverGroupUid": "0EAEAF7A-E85F-4DE3-A0AE-4F31E94EF245",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.1.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupName}",
+            "GroupId": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupName}",
+            "GroupId": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{8D59390F-F5EB-4967-AA9C-2686EDFFC705.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "3FEEC81E-C64F-4DFC-A223-A195C6CF0474": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "3FEEC81E-C64F-4DFC-A223-A195C6CF0474",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "50070",
+            "ToPort": "50070",
+            "IpRanges": "@{17B56179-7271-4035-8AE6-99F216F8589B.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{17B56179-7271-4035-8AE6-99F216F8589B.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "17B56179-7271-4035-8AE6-99F216F8589B": {
+      "name": "relay",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "17B56179-7271-4035-8AE6-99F216F8589B",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "relay",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "50070",
+            "ToPort": "50070",
+            "IpRanges": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C": {
+      "name": "hmasters",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "hmasters",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "8020",
+            "ToPort": "8020",
+            "IpRanges": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "9000",
+            "ToPort": "9000",
+            "IpRanges": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "9000",
+            "ToPort": "9000",
+            "IpRanges": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "8020",
+            "ToPort": "8020",
+            "IpRanges": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "8020",
+            "ToPort": "8020",
+            "IpRanges": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "9000",
+            "ToPort": "9000",
+            "IpRanges": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "248CD2A5-73ED-45A9-BA31-C2962D2EAC1A": {
+      "name": "datanode",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "248CD2A5-73ED-45A9-BA31-C2962D2EAC1A",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "datanode",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "50010",
+            "ToPort": "50010",
+            "IpRanges": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "50020",
+            "ToPort": "50020",
+            "IpRanges": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "50010",
+            "ToPort": "50010",
+            "IpRanges": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "50020",
+            "ToPort": "50020",
+            "IpRanges": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "9000",
+            "ToPort": "9000",
+            "IpRanges": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "8020",
+            "ToPort": "8020",
+            "IpRanges": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "470F66FD-B867-4D2A-B06E-D13743FD766A": {
+      "uid": "470F66FD-B867-4D2A-B06E-D13743FD766A",
+      "name": "us-east-1a",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1a",
+        "RegionName": "us-east-1"
+      }
+    },
+    "44710308-A7EB-4EE6-812D-522115513335": {
+      "name": "subnet0",
+      "type": "AWS.VPC.Subnet",
+      "uid": "44710308-A7EB-4EE6-812D-522115513335",
+      "resource": {
+        "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
+      }
+    },
+    "4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806": {
+      "type": "AWS.EC2.Instance",
+      "uid": "4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806",
+      "name": "NameNode",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806",
+      "serverGroupName": "NameNode",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-1709AFD6-76E8-477C-916E-606D9624FAD0",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-412FD79A-EAF2-4524-B31E-7096B9CF333F",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/opt/hadoop/hadoop-1.2.1"
+            ],
+            "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
+            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "path": "/opt/hadoop"
+          },
+          "id": "state-61A3E593-9F91-42F0-886E-30EC4443D289",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- Prepare Dirs -----"
+          },
+          "id": "state-E5E9E4DF-BD39-4434-8BAC-BA6E673DC93B",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/hadoop/name",
+              "/opt/hadoop/data",
+              "/opt/hadoop/mapred/mapredsystem",
+              "/opt/hadoop/mapred/local"
+            ]
+          },
+          "id": "state-5DEC4211-1B6E-460D-8A2F-CAC3F0CB26B3",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "----- Configuration Files -----"
+          },
+          "id": "state-678421D2-193E-4F8B-86F0-7B06768017C0",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>fs.default.name</name>\n    <value>hdfs://@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:8020</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml"
+          },
+          "id": "state-F98AA063-961C-4636-BEF2-8CA53329A1BA",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>dfs.name.dir</name>\n    <value>/opt/hadoop/name</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.data.dir</name>\n    <value>/opt/hadoop/data</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50070</value>\n    <final>true</final>\n  </property>\n  \n  <property>\n    <name>dfs.https.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50470</value>\n    <description>The https address where namenode binds</description>\n  </property>\n\n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+          },
+          "id": "state-0E89EB32-9B7D-4471-9394-DC587C14A117",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>mapred.system.dir</name>\n    <value>/opt/hadoop/mapred/mapredsystem</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:9000</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50030</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.local.dir</name>\n    <value>/opt/hadoop/mapred/local</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/mapred-site.xml"
+          },
+          "id": "state-D3D60A09-9C03-4044-9ECC-F239F0B17F98",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "hostname namenode"
+          },
+          "id": "state-D9EAB919-A27D-4859-8D10-F36F698F5595",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q namenode /etc/hosts || echo \"@{self.PrivateIpAddress} namenode\" >> /etc/hosts"
+          },
+          "id": "state-0ACBBF37-EF9E-4853-8F4C-9B8D9CFAC6AA",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "----- Format HDFS for First Run -----"
+          },
+          "id": "state-11EC9458-F82A-47FD-BADB-A364FAC8F5D0",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/opt/hadoop/name/current"
+            ],
+            "cmd": "yes Y | bin/hadoop --config conf/ namenode -format -f",
+            "cwd": "/opt/hadoop/hadoop-1.2.1",
+            "env": [
+              {
+                "key": "JAVA_HOME",
+                "value": "/etc/alternatives/jre"
+              }
+            ]
+          },
+          "id": "state-396C964D-87FF-4347-A58D-E1D6E5F85C94",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "----- Start Daemon -----"
+          },
+          "id": "state-6E6368C7-6BE8-4C07-9C78-F954439F337C",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:namenode]\ncommand=/opt/hadoop/hadoop-1.2.1/bin/hadoop --config /opt/hadoop/hadoop-1.2.1/conf namenode\nenvironment=JAVA_HOME=/etc/alternatives/jre\nredirect_stderr=true\nstdout_logfile=/opt/hadoop/hadoop.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-437BC436-2425-4A39-9CA9-F1FA7776C7AB",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "watch": [
+              "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml",
+              "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+            ],
+            "name": [
+              "namenode"
+            ]
+          },
+          "id": "state-3E6C2F1F-2A9F-4ABF-9F21-27E1FD5A1441",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "FC91D3A9-5592-4317-8B52-C68C2F03C53C": {
+      "index": 0,
+      "uid": "FC91D3A9-5592-4317-8B52-C68C2F03C53C",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "NameNode-eni0",
+      "serverGroupUid": "FC91D3A9-5592-4317-8B52-C68C2F03C53C",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupName}",
+            "GroupId": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupName}",
+            "GroupId": "@{679C4AB0-130C-4D4D-93A9-E85EAFC0EA7C.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "6A2F243A-527E-4121-9DA7-C75E2621FADD": {
+      "name": "Internet-gateway",
+      "type": "AWS.VPC.InternetGateway",
+      "uid": "6A2F243A-527E-4121-9DA7-C75E2621FADD",
+      "resource": {
+        "InternetGatewayId": "",
+        "AttachmentSet": [
+          {
+            "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}"
+          }
+        ]
+      }
+    },
+    "BAA50965-76C7-479D-ABA7-FF1FCA467468": {
+      "type": "AWS.EC2.Instance",
+      "uid": "BAA50965-76C7-479D-ABA7-FF1FCA467468",
+      "name": "DataNode-Group-B",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "BAA50965-76C7-479D-ABA7-FF1FCA467468",
+      "serverGroupName": "DataNode-Group-B",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-A5E12947-F351-47BB-AAEB-2561BECCFBE5",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-36E2D9FB-BA4C-4418-96F8-EF561DB200E9",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/opt/hadoop/hadoop-1.2.1"
+            ],
+            "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
+            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "path": "/opt/hadoop"
+          },
+          "id": "state-3C67B973-9158-421C-9C75-B9A105221A07",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- Prepare Dirs -----"
+          },
+          "id": "state-B08BDE15-3628-4CE6-91D0-B27059DAB51A",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/hadoop/name",
+              "/opt/hadoop/data",
+              "/opt/hadoop/mapred/mapredsystem",
+              "/opt/hadoop/mapred/local"
+            ]
+          },
+          "id": "state-F6990361-A26D-4581-95BC-A7FEE1BC22A3",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "----- Configuration Files -----"
+          },
+          "id": "state-F3EF9BE5-0121-4095-B867-757CB953B3FA",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>fs.default.name</name>\n    <value>hdfs://@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:8020</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml"
+          },
+          "id": "state-4A062732-C251-42B8-9ADC-ECA89E5DE80A",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>dfs.name.dir</name>\n    <value>/opt/hadoop/name</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.data.dir</name>\n    <value>/opt/hadoop/data</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50070</value>\n    <final>true</final>\n  </property>\n  \n  <property>\n    <name>dfs.https.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50470</value>\n    <description>The https address where namenode binds</description>\n  </property>\n\n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+          },
+          "id": "state-F95FA646-FDF6-4C05-80BC-9290C19A0F67",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>mapred.system.dir</name>\n    <value>/opt/hadoop/mapred/mapredsystem</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:9000</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50030</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.local.dir</name>\n    <value>/opt/hadoop/mapred/local</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/mapred-site.xml"
+          },
+          "id": "state-D49CF320-3116-44E3-AF54-F76DF863EE9B",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+          },
+          "id": "state-269BE758-0763-415A-87F4-1222EAACD11D",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q namenode /etc/hosts || echo \"@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress} namenode\" >> /etc/hosts"
+          },
+          "id": "state-838838A6-A6B2-4971-AD01-F621609E15EF",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "----- Start Daemon -----"
+          },
+          "id": "state-3BEFD1FC-6D37-47B8-B977-E2FA5E60F292",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:datanode]\ncommand=/opt/hadoop/hadoop-1.2.1/bin/hadoop --config /opt/hadoop/hadoop-1.2.1/conf datanode\nenvironment=JAVA_HOME=/etc/alternatives/jre\nredirect_stderr=true\nstdout_logfile=/opt/hadoop/hadoop.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-6B94660D-618F-49FD-BAC2-EAE2EF175088",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "watch": [
+              "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml",
+              "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+            ],
+            "name": [
+              "datanode"
+            ]
+          },
+          "id": "state-B5826189-39A6-4735-80FA-2D865FDF2C1A",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "0D6C8195-7940-4D61-91FD-A6257B43C1EF": {
+      "index": 0,
+      "uid": "0D6C8195-7940-4D61-91FD-A6257B43C1EF",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "DataNode-Group-B-eni0",
+      "serverGroupUid": "0D6C8195-7940-4D61-91FD-A6257B43C1EF",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.1.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupName}",
+            "GroupId": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupName}",
+            "GroupId": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{BAA50965-76C7-479D-ABA7-FF1FCA467468.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "211C8156-63C1-414F-84B2-C4893A66E7E3": {
+      "name": "subnet2",
+      "type": "AWS.VPC.Subnet",
+      "uid": "211C8156-63C1-414F-84B2-C4893A66E7E3",
+      "resource": {
+        "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.2.0/24"
+      }
+    },
+    "1780E23D-EB67-46AA-8F6F-50BB956FDA29": {
+      "type": "AWS.EC2.Instance",
+      "uid": "1780E23D-EB67-46AA-8F6F-50BB956FDA29",
+      "name": "NAT",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "1780E23D-EB67-46AA-8F6F-50BB956FDA29",
+      "serverGroupName": "NAT",
+      "state": [
+        {
+          "parameter": {
+            "comment": "squid for transparent proxy"
+          },
+          "id": "state-F30EE407-4102-4703-9D43-9E56406B0D62",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "squid",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-309070C2-B292-44E7-B08A-14B9EB3839AC",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "content": "acl manager proto cache_object\nacl localhost src 127.0.0.1/32 ::1\nacl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1\nacl localnet src 10.0.0.0/8\t# RFC1918 possible internal network\nacl localnet src 172.16.0.0/12\t# RFC1918 possible internal network\nacl localnet src 192.168.0.0/16\t# RFC1918 possible internal network\nacl localnet src fc00::/7       # RFC 4193 local private network range\nacl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines\nacl SSL_ports port 443\nacl Safe_ports port 80\t\t# http\nacl Safe_ports port 21\t\t# ftp\nacl Safe_ports port 443\t\t# https\nacl Safe_ports port 70\t\t# gopher\nacl Safe_ports port 210\t\t# wais\nacl Safe_ports port 1025-65535\t# unregistered ports\nacl Safe_ports port 280\t\t# http-mgmt\nacl Safe_ports port 488\t\t# gss-http\nacl Safe_ports port 591\t\t# filemaker\nacl Safe_ports port 777\t\t# multiling http\nacl CONNECT method CONNECT\nhttp_access allow manager localhost\nhttp_access deny manager\nhttp_access deny !Safe_ports\nhttp_access deny CONNECT !SSL_ports\nhttp_access allow localnet\nhttp_access allow localhost\nhttp_access deny all\nhttp_port @{self.PrivateIpAddress}:3128 transparent\nhierarchy_stoplist cgi-bin ?\ncache_dir ufs /var/spool/squid 4096 16 256\ncoredump_dir /var/spool/squid\nrefresh_pattern ^ftp:\t\t1440\t20%\t10080\nrefresh_pattern ^gopher:\t1440\t0%\t1440\nrefresh_pattern -i (/cgi-bin/|\\?) 0\t0%\t0\nrefresh_pattern .\t\t0\t20%\t4320",
+            "path": "/etc/squid/squid.conf",
+            "group": "squid",
+            "mode": "640",
+            "user": "root"
+          },
+          "id": "state-9CB1DA75-DFE9-4345-9063-B4B5F8F87427",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/squid/squid.conf"
+            ],
+            "name": [
+              "squid"
+            ]
+          },
+          "id": "state-6659F314-6F8F-425C-ADDF-E068FE22C4D3",
+          "module": "linux.service"
+        },
+        {
+          "parameter": {
+            "comment": "--- NAT ---"
+          },
+          "id": "state-9E808C5C-976F-4177-9BCE-A29B1611FD94",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "[ $(cat /proc/sys/net/ipv4/ip_forward) -eq 1 ] || echo -n 1 > /proc/sys/net/ipv4/ip_forward"
+          },
+          "id": "state-29B0528F-F467-47F4-A2F4-ABE717EF8CBE",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "content": "*nat\n:PREROUTING ACCEPT\n:INPUT ACCEPT\n:OUTPUT ACCEPT\n:POSTROUTING ACCEPT\n-A PREROUTING -p tcp --dport 80 ! -s 10.0.0.0/8 -j DNAT --to-destination @{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50070\n-A PREROUTING -s 10.0.0.0/8 -p tcp --dport 80 -j REDIRECT --to-ports 3128\n-A POSTROUTING -s 10.0.0.0/8 -o eth0 -j MASQUERADE\nCOMMIT\n# Completed\n",
+            "path": "/etc/sysconfig/iptables"
+          },
+          "id": "state-5B454F62-D6FB-4EFA-ABA8-5FB36F98BB0B",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/sysconfig/iptables"
+            ],
+            "name": [
+              "iptables"
+            ]
+          },
+          "id": "state-04E59A9A-2AD3-4B5E-800B-09EF20C48EFC",
+          "module": "linux.service"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{211C8156-63C1-414F-84B2-C4893A66E7E3.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "EDF62577-4F5F-4188-95CD-075D3469BDB7": {
+      "index": 0,
+      "uid": "EDF62577-4F5F-4188-95CD-075D3469BDB7",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "NAT-eni0",
+      "serverGroupUid": "EDF62577-4F5F-4188-95CD-075D3469BDB7",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": false,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{211C8156-63C1-414F-84B2-C4893A66E7E3.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.2.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{17B56179-7271-4035-8AE6-99F216F8589B.resource.GroupName}",
+            "GroupId": "@{17B56179-7271-4035-8AE6-99F216F8589B.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{1780E23D-EB67-46AA-8F6F-50BB956FDA29.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359": {
+      "type": "AWS.EC2.Instance",
+      "uid": "1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359",
+      "name": "DataNode-Group-A",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359",
+      "serverGroupName": "DataNode-Group-A",
+      "state": [
+        {
+          "parameter": {
+            "comment": "----- Packages -----"
+          },
+          "id": "state-8E71783D-F996-4129-80CD-64797B7CE049",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "java-1.7.0-openjdk",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-5761D38E-972A-441C-857A-14240EA2605A",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/opt/hadoop/hadoop-1.2.1"
+            ],
+            "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
+            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "path": "/opt/hadoop"
+          },
+          "id": "state-A15F141D-2558-4F35-AC85-4B07823E1567",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "comment": "----- Prepare Dirs -----"
+          },
+          "id": "state-E84ED402-3284-4435-A8BC-5E05E09081F8",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "path": [
+              "/opt/hadoop/name",
+              "/opt/hadoop/data",
+              "/opt/hadoop/mapred/mapredsystem",
+              "/opt/hadoop/mapred/local"
+            ]
+          },
+          "id": "state-8E999CCB-2275-42C5-8E19-D08482DCA74B",
+          "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "----- Configuration Files -----"
+          },
+          "id": "state-B10FED54-9058-4073-B8C8-A5730439F9EA",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>fs.default.name</name>\n    <value>hdfs://@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:8020</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml"
+          },
+          "id": "state-24F8F722-1003-4138-8642-28E4AA980B1B",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>dfs.name.dir</name>\n    <value>/opt/hadoop/name</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.data.dir</name>\n    <value>/opt/hadoop/data</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>dfs.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50070</value>\n    <final>true</final>\n  </property>\n  \n  <property>\n    <name>dfs.https.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50470</value>\n    <description>The https address where namenode binds</description>\n  </property>\n\n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+          },
+          "id": "state-1079251D-1DF9-44B6-A0D1-DADA5B2A9637",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "<?xml version=\"1.0\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"configuration.xsl\"?>\n\n<!-- Put site-specific property overrides in this file. -->\n\n<configuration>\n\n  <property>\n    <name>mapred.system.dir</name>\n    <value>/opt/hadoop/mapred/mapredsystem</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:9000</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.job.tracker.http.address</name>\n    <value>@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress}:50030</value>\n    <final>true</final>\n  </property>\n\n  <property>\n    <name>mapred.local.dir</name>\n    <value>/opt/hadoop/mapred/local</value>\n    <final>true</final>\n  </property>\n  \n</configuration>",
+            "path": "/opt/hadoop/hadoop-1.2.1/conf/mapred-site.xml"
+          },
+          "id": "state-1F73AE88-567C-4C19-A7F8-7D9FAB6F33C2",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+          },
+          "id": "state-018E6E58-3A48-4D46-9E15-4579A0C387D6",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "grep -q namenode /etc/hosts || echo \"@{4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806.PrivateIpAddress} namenode\" >> /etc/hosts"
+          },
+          "id": "state-43AA9BAF-1BBA-445C-9E46-66C98E1C8369",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "----- Start Daemon -----"
+          },
+          "id": "state-A49E62BB-17FC-42C9-9966-1D8918053527",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n[program:datanode]\ncommand=/opt/hadoop/hadoop-1.2.1/bin/hadoop --config /opt/hadoop/hadoop-1.2.1/conf datanode\nenvironment=JAVA_HOME=/etc/alternatives/jre\nredirect_stderr=true\nstdout_logfile=/opt/hadoop/hadoop.log\n",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-B126EC59-E6EB-4437-938B-D8BA1CB87E0A",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "watch": [
+              "/opt/hadoop/hadoop-1.2.1/conf/core-site.xml",
+              "/opt/hadoop/hadoop-1.2.1/conf/hdfs-site.xml"
+            ],
+            "name": [
+              "datanode"
+            ]
+          },
+          "id": "state-BCA19C4E-0019-4DFB-BBF6-75A883219F33",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b4ef17a9",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-bba18dd2",
+        "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ],
+        "PrivateIpAddress": ""
+      }
+    },
+    "A1E781FB-E255-4059-B6B6-8DC55954E921": {
+      "index": 0,
+      "uid": "A1E781FB-E255-4059-B6B6-8DC55954E921",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "DataNode-Group-A-eni0",
+      "serverGroupUid": "A1E781FB-E255-4059-B6B6-8DC55954E921",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}",
+        "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
+        "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupName}",
+            "GroupId": "@{3FEEC81E-C64F-4DFC-A223-A195C6CF0474.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupName}",
+            "GroupId": "@{248CD2A5-73ED-45A9-BA31-C2962D2EAC1A.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    }
+  },
+  "layout": {
+    "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73": {
+      "coordinate": [
+        5,
+        3
+      ],
+      "uid": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73",
+      "size": [
+        90,
+        78
+      ]
+    },
+    "E5370DA5-F225-4A31-A8EA-E00F1FDEB7F8": {
+      "coordinate": [
+        74,
+        71
+      ],
+      "uid": "E5370DA5-F225-4A31-A8EA-E00F1FDEB7F8",
+      "groupUId": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73"
+    },
+    "81E36A06-2B11-4763-A73F-788C34DDC7BA": {
+      "coordinate": [
+        85,
+        4
+      ],
+      "uid": "81E36A06-2B11-4763-A73F-788C34DDC7BA",
+      "groupUId": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73"
+    },
+    "74F6BD2E-A269-48AB-ADB2-3778EB94BB0A": {
+      "coordinate": [
+        55,
+        43
+      ],
+      "uid": "74F6BD2E-A269-48AB-ADB2-3778EB94BB0A",
+      "groupUId": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73",
+      "size": [
+        20,
+        23
+      ]
+    },
+    "9D9763D3-E288-4D1A-8113-58BA4048DCAC": {
+      "coordinate": [
+        59,
+        45
+      ],
+      "uid": "9D9763D3-E288-4D1A-8113-58BA4048DCAC",
+      "groupUId": "74F6BD2E-A269-48AB-ADB2-3778EB94BB0A",
+      "size": [
+        12,
+        17
+      ]
+    },
+    "10D10D8A-9B7E-4B51-8301-82CF1A93898A": {
+      "coordinate": [
+        60,
+        50
+      ],
+      "uid": "10D10D8A-9B7E-4B51-8301-82CF1A93898A",
+      "groupUId": "9D9763D3-E288-4D1A-8113-58BA4048DCAC",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "10D10D8A-9B7E-4B51-8301-82CF1A93898A"
+      ]
+    },
+    "32F1911B-150C-4852-BD29-AD9B65244765": {
+      "coordinate": [
+        11,
+        43
+      ],
+      "uid": "32F1911B-150C-4852-BD29-AD9B65244765",
+      "groupUId": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73",
+      "size": [
+        43,
+        23
+      ]
+    },
+    "5240ACC1-F4DC-465A-BEC6-74D2D48ADE29": {
+      "coordinate": [
+        16,
+        45
+      ],
+      "uid": "5240ACC1-F4DC-465A-BEC6-74D2D48ADE29",
+      "groupUId": "32F1911B-150C-4852-BD29-AD9B65244765",
+      "size": [
+        35,
+        17
+      ]
+    },
+    "8D59390F-F5EB-4967-AA9C-2686EDFFC705": {
+      "coordinate": [
+        21,
+        50
+      ],
+      "uid": "8D59390F-F5EB-4967-AA9C-2686EDFFC705",
+      "groupUId": "5240ACC1-F4DC-465A-BEC6-74D2D48ADE29",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "8D59390F-F5EB-4967-AA9C-2686EDFFC705"
+      ]
+    },
+    "470F66FD-B867-4D2A-B06E-D13743FD766A": {
+      "coordinate": [
+        11,
+        10
+      ],
+      "uid": "470F66FD-B867-4D2A-B06E-D13743FD766A",
+      "groupUId": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73",
+      "size": [
+        64,
+        28
+      ]
+    },
+    "44710308-A7EB-4EE6-812D-522115513335": {
+      "coordinate": [
+        15,
+        12
+      ],
+      "uid": "44710308-A7EB-4EE6-812D-522115513335",
+      "groupUId": "470F66FD-B867-4D2A-B06E-D13743FD766A",
+      "size": [
+        36,
+        17
+      ]
+    },
+    "4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806": {
+      "coordinate": [
+        20,
+        16
+      ],
+      "uid": "4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806",
+      "groupUId": "44710308-A7EB-4EE6-812D-522115513335",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "4B95A9C3-D0DD-4BB5-8A9E-3051D29A5806"
+      ]
+    },
+    "6A2F243A-527E-4121-9DA7-C75E2621FADD": {
+      "coordinate": [
+        1,
+        71
+      ],
+      "uid": "6A2F243A-527E-4121-9DA7-C75E2621FADD",
+      "groupUId": "216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73"
+    },
+    "BAA50965-76C7-479D-ABA7-FF1FCA467468": {
+      "coordinate": [
+        39,
+        50
+      ],
+      "uid": "BAA50965-76C7-479D-ABA7-FF1FCA467468",
+      "groupUId": "5240ACC1-F4DC-465A-BEC6-74D2D48ADE29",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "BAA50965-76C7-479D-ABA7-FF1FCA467468"
+      ]
+    },
+    "211C8156-63C1-414F-84B2-C4893A66E7E3": {
+      "coordinate": [
+        59,
+        23
+      ],
+      "uid": "211C8156-63C1-414F-84B2-C4893A66E7E3",
+      "groupUId": "470F66FD-B867-4D2A-B06E-D13743FD766A",
+      "size": [
+        12,
+        13
+      ]
+    },
+    "1780E23D-EB67-46AA-8F6F-50BB956FDA29": {
+      "coordinate": [
+        61,
+        26
+      ],
+      "uid": "1780E23D-EB67-46AA-8F6F-50BB956FDA29",
+      "groupUId": "211C8156-63C1-414F-84B2-C4893A66E7E3",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "1780E23D-EB67-46AA-8F6F-50BB956FDA29"
+      ]
+    },
+    "1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359": {
+      "coordinate": [
+        39,
+        16
+      ],
+      "uid": "1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359",
+      "groupUId": "44710308-A7EB-4EE6-812D-522115513335",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "1E51FB7C-EA62-4BF3-ABFF-B1EFD9A88359"
+      ]
+    },
+    "size": [
+      240,
+      240
+    ]
+  },
+  "signature": "b81627eb97f0bc363c42f61871062c65"
+}
