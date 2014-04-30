@@ -1,0 +1,1147 @@
+{
+  "agent": {
+    "enabled": true,
+    "module": {
+      "repo": "https://github.com/MadeiraCloud/salt.git",
+      "tag": "v2014-04-15"
+    }
+  },
+  "name": "sample-vpc-with-public-subnet-only",
+  "region": "us-east-1",
+  "owner": "c29uZw==",
+  "platform": "ec2-vpc",
+  "tag": "",
+  "version": "2014-02-17",
+  "usage": "",
+  "component": {
+    "3986D3CF-2D7D-4A0E-B7BF-9ED8C71F61E0": {
+      "name": "PrivateRT",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "3986D3CF-2D7D-4A0E-B7BF-9ED8C71F61E0",
+      "resource": {
+        "PropagatingVgwSet": [],
+        "RouteTableId": "",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "Main": "true",
+            "RouteTableAssociationId": "",
+            "SubnetId": ""
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "@{7B43202E-ED24-4A5C-9C60-CCA79AE41EAC.resource.NetworkInterfaceId}",
+            "GatewayId": ""
+          }
+        ]
+      }
+    },
+    "F5263ABC-D028-43F8-8907-B2F83CA9D624": {
+      "name": "DefaultACL",
+      "type": "AWS.VPC.NetworkAcl",
+      "uid": "F5263ABC-D028-43F8-8907-B2F83CA9D624",
+      "resource": {
+        "AssociationSet": [
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}"
+          }
+        ],
+        "Default": true,
+        "EntrySet": [
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          }
+        ],
+        "NetworkAclId": "",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}"
+      }
+    },
+    "0515EB3D-DA58-459D-8262-EF76A6127E10": {
+      "name": "vpc",
+      "type": "AWS.VPC.VPC",
+      "uid": "0515EB3D-DA58-459D-8262-EF76A6127E10",
+      "resource": {
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "EnableDnsHostnames": false,
+        "DhcpOptionsId": "",
+        "VpcId": "",
+        "CidrBlock": "10.0.0.0/16"
+      }
+    },
+    "ECBEEA72-3907-4489-8736-2C9DAA46A75F": {
+      "name": "RT-1",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "ECBEEA72-3907-4489-8736-2C9DAA46A75F",
+      "resource": {
+        "PropagatingVgwSet": [],
+        "RouteTableId": "",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+            "RouteTableAssociationId": "",
+            "Main": false
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "@{9EF29947-13EB-452B-B97A-C7D7543B653E.resource.InternetGatewayId}"
+          }
+        ]
+      }
+    },
+    "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75": {
+      "uid": "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75",
+      "name": "us-east-1a",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1a",
+        "RegionName": "us-east-1"
+      }
+    },
+    "780B2D5D-27EB-4793-B4DB-614A3C47A9A8": {
+      "name": "private-subnet-1a",
+      "type": "AWS.VPC.Subnet",
+      "uid": "780B2D5D-27EB-4793-B4DB-614A3C47A9A8",
+      "resource": {
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.1.0/24"
+      }
+    },
+    "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39": {
+      "type": "AWS.EC2.Instance",
+      "uid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
+      "name": "dbserver-0",
+      "index": 0,
+      "number": 3,
+      "serverGroupUid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
+      "serverGroupName": "dbserver",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-495fcc0e",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-3275ee5b",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "4E9B2CE9-84D6-40A1-A9DF-00FA3DA2134F": {
+      "type": "AWS.EC2.Instance",
+      "uid": "4E9B2CE9-84D6-40A1-A9DF-00FA3DA2134F",
+      "name": "dbserver-1",
+      "index": 1,
+      "number": 3,
+      "serverGroupUid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
+      "serverGroupName": "dbserver",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-495fcc0e",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-3275ee5b",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "1D19F56E-2807-4328-88C6-FD8D24085209": {
+      "type": "AWS.EC2.Instance",
+      "uid": "1D19F56E-2807-4328-88C6-FD8D24085209",
+      "name": "dbserver-2",
+      "index": 2,
+      "number": 3,
+      "serverGroupUid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
+      "serverGroupName": "dbserver",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-495fcc0e",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-3275ee5b",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "4FA841DD-6368-407A-86A2-D67936B7E617": {
+      "index": 0,
+      "uid": "4FA841DD-6368-407A-86A2-D67936B7E617",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "dbserver-0-eni0",
+      "serverGroupUid": "4FA841DD-6368-407A-86A2-D67936B7E617",
+      "serverGroupName": "eni0",
+      "number": 3,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.1.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupName}",
+            "GroupId": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{FDC78C6C-C722-4ABE-B7E9-5D16494B4C39.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "33E1789B-4745-4F39-B53C-B4401E627550": {
+      "index": 1,
+      "uid": "33E1789B-4745-4F39-B53C-B4401E627550",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "dbserver-1-eni0",
+      "serverGroupUid": "4FA841DD-6368-407A-86A2-D67936B7E617",
+      "serverGroupName": "eni0",
+      "number": 3,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.1.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupName}",
+            "GroupId": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{4E9B2CE9-84D6-40A1-A9DF-00FA3DA2134F.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "EEE0016B-2425-4BC9-B25E-17B9E305CE59": {
+      "index": 2,
+      "uid": "EEE0016B-2425-4BC9-B25E-17B9E305CE59",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "dbserver-2-eni0",
+      "serverGroupUid": "4FA841DD-6368-407A-86A2-D67936B7E617",
+      "serverGroupName": "eni0",
+      "number": 3,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.1.6",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupName}",
+            "GroupId": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{1D19F56E-2807-4328-88C6-FD8D24085209.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02": {
+      "name": "DefaultKP",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "DefaultKP"
+      }
+    },
+    "8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Stack Default Security Group",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": []
+      }
+    },
+    "EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA": {
+      "name": "DBServerSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "DBServerSG",
+        "GroupDescription": "DB Server Security Group",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "1433",
+            "ToPort": "1433",
+            "IpRanges": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "3306",
+            "ToPort": "3306",
+            "IpRanges": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "443",
+            "ToPort": "443",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "81E2C3C2-C43E-4D55-96BB-602E82E607E0": {
+      "name": "WebServerSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "81E2C3C2-C43E-4D55-96BB-602E82E607E0",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "WebServerSG",
+        "GroupDescription": "Web Server Security Group",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "443",
+            "ToPort": "443",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "192.0.2.0/24",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "3389",
+            "ToPort": "3389",
+            "IpRanges": "192.0.2.0/24",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "1433",
+            "ToPort": "1433",
+            "IpRanges": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "3306",
+            "ToPort": "3306",
+            "IpRanges": "@{EE2B228D-6A57-48C9-B1B1-3FE5BE0822EA.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "25DDE456-2F4E-489D-AB81-ECAADB3E3963": {
+      "name": "public-subnet-1a",
+      "type": "AWS.VPC.Subnet",
+      "uid": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
+      "resource": {
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
+      }
+    },
+    "44B38845-0A41-4D88-8BAB-134B2C18B478": {
+      "type": "AWS.EC2.Instance",
+      "uid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
+      "name": "webserver-0",
+      "index": 0,
+      "number": 3,
+      "serverGroupUid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
+      "serverGroupName": "webserver",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-495fcc0e",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-3275ee5b",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "BC6E9285-3A5E-4A4E-8400-D8FA605F059C": {
+      "type": "AWS.EC2.Instance",
+      "uid": "BC6E9285-3A5E-4A4E-8400-D8FA605F059C",
+      "name": "webserver-1",
+      "index": 1,
+      "number": 3,
+      "serverGroupUid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
+      "serverGroupName": "webserver",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-495fcc0e",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-3275ee5b",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "FF01716B-D85D-4AB2-89AF-F70C826A940B": {
+      "type": "AWS.EC2.Instance",
+      "uid": "FF01716B-D85D-4AB2-89AF-F70C826A940B",
+      "name": "webserver-2",
+      "index": 2,
+      "number": 3,
+      "serverGroupUid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
+      "serverGroupName": "webserver",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-495fcc0e",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-3275ee5b",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "B64CC36F-75D7-44A6-9338-5925CE9A71E1": {
+      "index": 0,
+      "uid": "B64CC36F-75D7-44A6-9338-5925CE9A71E1",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "webserver-0-eni0",
+      "serverGroupUid": "B64CC36F-75D7-44A6-9338-5925CE9A71E1",
+      "serverGroupName": "eni0",
+      "number": 3,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupName}",
+            "GroupId": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{44B38845-0A41-4D88-8BAB-134B2C18B478.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "FC5F3CF6-26EB-4AB7-886A-B82D78EE7B90": {
+      "uid": "FC5F3CF6-26EB-4AB7-886A-B82D78EE7B90",
+      "type": "AWS.EC2.EIP",
+      "name": "EIP",
+      "index": 0,
+      "resource": {
+        "Domain": "vpc",
+        "InstanceId": "",
+        "AllocationId": "",
+        "NetworkInterfaceId": "@{B64CC36F-75D7-44A6-9338-5925CE9A71E1.resource.NetworkInterfaceId}",
+        "PrivateIpAddress": "@{B64CC36F-75D7-44A6-9338-5925CE9A71E1.resource.PrivateIpAddressSet.0.PrivateIpAddress}",
+        "PublicIp": ""
+      }
+    },
+    "88F69DF4-569B-49FD-B572-8AAE14A9433D": {
+      "index": 1,
+      "uid": "88F69DF4-569B-49FD-B572-8AAE14A9433D",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "webserver-1-eni0",
+      "serverGroupUid": "B64CC36F-75D7-44A6-9338-5925CE9A71E1",
+      "serverGroupName": "eni0",
+      "number": 3,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.6",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupName}",
+            "GroupId": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{BC6E9285-3A5E-4A4E-8400-D8FA605F059C.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "22C45E93-40F9-4193-8926-BEDCE15857CE": {
+      "uid": "22C45E93-40F9-4193-8926-BEDCE15857CE",
+      "type": "AWS.EC2.EIP",
+      "name": "EIP",
+      "index": 1,
+      "resource": {
+        "Domain": "vpc",
+        "InstanceId": "",
+        "AllocationId": "",
+        "NetworkInterfaceId": "@{88F69DF4-569B-49FD-B572-8AAE14A9433D.resource.NetworkInterfaceId}",
+        "PrivateIpAddress": "@{88F69DF4-569B-49FD-B572-8AAE14A9433D.resource.PrivateIpAddressSet.0.PrivateIpAddress}",
+        "PublicIp": ""
+      }
+    },
+    "10DEBC6D-1BB7-4259-B11E-07583863FA30": {
+      "index": 2,
+      "uid": "10DEBC6D-1BB7-4259-B11E-07583863FA30",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "webserver-2-eni0",
+      "serverGroupUid": "B64CC36F-75D7-44A6-9338-5925CE9A71E1",
+      "serverGroupName": "eni0",
+      "number": 3,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.7",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupName}",
+            "GroupId": "@{81E2C3C2-C43E-4D55-96BB-602E82E607E0.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{FF01716B-D85D-4AB2-89AF-F70C826A940B.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "D825E66B-E07E-4F42-81A3-36B149E5A010": {
+      "uid": "D825E66B-E07E-4F42-81A3-36B149E5A010",
+      "type": "AWS.EC2.EIP",
+      "name": "EIP",
+      "index": 2,
+      "resource": {
+        "Domain": "vpc",
+        "InstanceId": "",
+        "AllocationId": "",
+        "NetworkInterfaceId": "@{10DEBC6D-1BB7-4259-B11E-07583863FA30.resource.NetworkInterfaceId}",
+        "PrivateIpAddress": "@{10DEBC6D-1BB7-4259-B11E-07583863FA30.resource.PrivateIpAddressSet.0.PrivateIpAddress}",
+        "PublicIp": ""
+      }
+    },
+    "9EF29947-13EB-452B-B97A-C7D7543B653E": {
+      "name": "Internet-gateway",
+      "type": "AWS.VPC.InternetGateway",
+      "uid": "9EF29947-13EB-452B-B97A-C7D7543B653E",
+      "resource": {
+        "InternetGatewayId": "",
+        "AttachmentSet": [
+          {
+            "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}"
+          }
+        ]
+      }
+    },
+    "5853C1EE-7B6D-4218-BA6D-B738D781E1BA": {
+      "type": "AWS.EC2.Instance",
+      "uid": "5853C1EE-7B6D-4218-BA6D-B738D781E1BA",
+      "name": "NAT",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "5853C1EE-7B6D-4218-BA6D-B738D781E1BA",
+      "serverGroupName": "NAT",
+      "state": "",
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-14b4e469",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-f619c29f",
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
+        "PrivateIpAddress": ""
+      }
+    },
+    "7B43202E-ED24-4A5C-9C60-CCA79AE41EAC": {
+      "index": 0,
+      "uid": "7B43202E-ED24-4A5C-9C60-CCA79AE41EAC",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "NAT-eni0",
+      "serverGroupUid": "7B43202E-ED24-4A5C-9C60-CCA79AE41EAC",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": false,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
+        "AssociatePublicIpAddress": false,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupName}",
+            "GroupId": "@{8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{C2510235-7E0F-43F2-935C-3DA91998CCEB.resource.GroupName}",
+            "GroupId": "@{C2510235-7E0F-43F2-935C-3DA91998CCEB.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{5853C1EE-7B6D-4218-BA6D-B738D781E1BA.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "4C86DD63-BFD2-4937-8D40-53E6F09C4CFC": {
+      "uid": "4C86DD63-BFD2-4937-8D40-53E6F09C4CFC",
+      "type": "AWS.EC2.EIP",
+      "name": "EIP",
+      "index": 0,
+      "resource": {
+        "Domain": "vpc",
+        "InstanceId": "",
+        "AllocationId": "",
+        "NetworkInterfaceId": "@{7B43202E-ED24-4A5C-9C60-CCA79AE41EAC.resource.NetworkInterfaceId}",
+        "PrivateIpAddress": "@{7B43202E-ED24-4A5C-9C60-CCA79AE41EAC.resource.PrivateIpAddressSet.0.PrivateIpAddress}",
+        "PublicIp": ""
+      }
+    },
+    "C2510235-7E0F-43F2-935C-3DA91998CCEB": {
+      "name": "NatSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "C2510235-7E0F-43F2-935C-3DA91998CCEB",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "NatSG",
+        "GroupDescription": "NAT Security Group",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "10.0.1.0/24",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "443",
+            "ToPort": "443",
+            "IpRanges": "10.0.1.0/24",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "192.0.2.0/24",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "443",
+            "ToPort": "443",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    }
+  },
+  "layout": {
+    "3986D3CF-2D7D-4A0E-B7BF-9ED8C71F61E0": {
+      "coordinate": [
+        82,
+        28
+      ],
+      "uid": "3986D3CF-2D7D-4A0E-B7BF-9ED8C71F61E0",
+      "groupUId": "0515EB3D-DA58-459D-8262-EF76A6127E10"
+    },
+    "0515EB3D-DA58-459D-8262-EF76A6127E10": {
+      "coordinate": [
+        5,
+        3
+      ],
+      "uid": "0515EB3D-DA58-459D-8262-EF76A6127E10",
+      "size": [
+        88,
+        58
+      ]
+    },
+    "ECBEEA72-3907-4489-8736-2C9DAA46A75F": {
+      "coordinate": [
+        81,
+        4
+      ],
+      "uid": "ECBEEA72-3907-4489-8736-2C9DAA46A75F",
+      "groupUId": "0515EB3D-DA58-459D-8262-EF76A6127E10"
+    },
+    "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75": {
+      "coordinate": [
+        12,
+        13
+      ],
+      "uid": "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75",
+      "groupUId": "0515EB3D-DA58-459D-8262-EF76A6127E10",
+      "size": [
+        68,
+        40
+      ]
+    },
+    "780B2D5D-27EB-4793-B4DB-614A3C47A9A8": {
+      "coordinate": [
+        14,
+        34
+      ],
+      "uid": "780B2D5D-27EB-4793-B4DB-614A3C47A9A8",
+      "groupUId": "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75",
+      "size": [
+        64,
+        17
+      ]
+    },
+    "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39": {
+      "coordinate": [
+        41,
+        37
+      ],
+      "uid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
+      "groupUId": "780B2D5D-27EB-4793-B4DB-614A3C47A9A8",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
+        "4E9B2CE9-84D6-40A1-A9DF-00FA3DA2134F",
+        "1D19F56E-2807-4328-88C6-FD8D24085209"
+      ]
+    },
+    "25DDE456-2F4E-489D-AB81-ECAADB3E3963": {
+      "coordinate": [
+        14,
+        15
+      ],
+      "uid": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
+      "groupUId": "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75",
+      "size": [
+        64,
+        17
+      ]
+    },
+    "44B38845-0A41-4D88-8BAB-134B2C18B478": {
+      "coordinate": [
+        18,
+        19
+      ],
+      "uid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
+      "groupUId": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "44B38845-0A41-4D88-8BAB-134B2C18B478",
+        "BC6E9285-3A5E-4A4E-8400-D8FA605F059C",
+        "FF01716B-D85D-4AB2-89AF-F70C826A940B"
+      ]
+    },
+    "9EF29947-13EB-452B-B97A-C7D7543B653E": {
+      "coordinate": [
+        1,
+        18
+      ],
+      "uid": "9EF29947-13EB-452B-B97A-C7D7543B653E",
+      "groupUId": "0515EB3D-DA58-459D-8262-EF76A6127E10"
+    },
+    "5853C1EE-7B6D-4218-BA6D-B738D781E1BA": {
+      "coordinate": [
+        65,
+        19
+      ],
+      "uid": "5853C1EE-7B6D-4218-BA6D-B738D781E1BA",
+      "groupUId": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "5853C1EE-7B6D-4218-BA6D-B738D781E1BA"
+      ]
+    },
+    "size": [
+      240,
+      240
+    ]
+  },
+  "signature": "36532e909a8209e94d1e6b9c60065891"
+}

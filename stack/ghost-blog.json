@@ -2,27 +2,37 @@
   "agent": {
     "enabled": true,
     "module": {
-      "repo": "https://github.com/MadeiraCloud/salt",
+      "repo": "https://github.com/MadeiraCloud/salt.git",
       "tag": "v2014-04-15"
     }
   },
   "name": "sample-ghost-blog",
-  "stack_id": "stack-2628a8ed",
   "region": "us-east-1",
-  "owner": "dGhpYmF1bHQ=",
   "platform": "ec2-vpc",
   "version": "2014-02-17",
-  "usage": "testing",
   "component": {
-    "218B6721-7840-4DF1-A3E9-70B1F051E5FF": {
+    "B6DE64FE-02E6-4034-9436-E9EC0979B857": {
+      "name": "vpc",
+      "type": "AWS.VPC.VPC",
+      "uid": "B6DE64FE-02E6-4034-9436-E9EC0979B857",
+      "resource": {
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "EnableDnsHostnames": false,
+        "DhcpOptionsId": "",
+        "VpcId": "",
+        "CidrBlock": "10.0.0.0/16"
+      }
+    },
+    "9F4AA89E-0C41-483D-B303-7703040BB83F": {
       "name": "DefaultACL",
       "type": "AWS.VPC.NetworkAcl",
-      "uid": "218B6721-7840-4DF1-A3E9-70B1F051E5FF",
+      "uid": "9F4AA89E-0C41-483D-B303-7703040BB83F",
       "resource": {
         "AssociationSet": [
           {
             "NetworkAclAssociationId": "",
-            "SubnetId": "@{839E46FD-6DC8-4F88-B8CC-4120C7608FAC.resource.SubnetId}"
+            "SubnetId": "@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}"
           }
         ],
         "Default": true,
@@ -89,19 +99,17 @@
           }
         ],
         "NetworkAclId": "",
-        "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}"
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}"
       }
     },
-    "29129889-FD4A-496D-A4C1-A81E7247365B": {
+    "2A3A8171-3F42-400C-A819-7A968F4899A3": {
       "name": "RT-0",
       "type": "AWS.VPC.RouteTable",
-      "uid": "29129889-FD4A-496D-A4C1-A81E7247365B",
+      "uid": "2A3A8171-3F42-400C-A819-7A968F4899A3",
       "resource": {
-        "PropagatingVgwSet": [
-          
-        ],
+        "PropagatingVgwSet": [],
         "RouteTableId": "",
-        "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
         "AssociationSet": [
           {
             "Main": "true",
@@ -122,72 +130,59 @@
             "Origin": "",
             "InstanceId": "",
             "NetworkInterfaceId": "",
-            "GatewayId": "@{74EE1CB3-D1F6-4152-A85E-1A3C027BDFC8.resource.InternetGatewayId}"
+            "GatewayId": "@{49A88A46-62D2-48F8-B962-2890F84E833E.resource.InternetGatewayId}"
           }
         ]
       }
     },
-    "2B2905C6-BE11-4918-8E70-C4DF746AB2AD": {
-      "name": "vpc",
-      "type": "AWS.VPC.VPC",
-      "uid": "2B2905C6-BE11-4918-8E70-C4DF746AB2AD",
-      "resource": {
-        "EnableDnsSupport": true,
-        "InstanceTenancy": "default",
-        "EnableDnsHostnames": false,
-        "DhcpOptionsId": "",
-        "VpcId": "",
-        "CidrBlock": "10.0.0.0/16"
-      }
-    },
-    "AE5867ED-5508-45F1-9754-D4E04BF2D4B0": {
-      "uid": "AE5867ED-5508-45F1-9754-D4E04BF2D4B0",
-      "name": "us-east-1b",
+    "7D2A6D22-FD01-4162-99B7-13458C6D61AF": {
+      "uid": "7D2A6D22-FD01-4162-99B7-13458C6D61AF",
+      "name": "us-east-1a",
       "type": "AWS.EC2.AvailabilityZone",
       "resource": {
-        "ZoneName": "us-east-1b",
+        "ZoneName": "us-east-1a",
         "RegionName": "us-east-1"
       }
     },
-    "839E46FD-6DC8-4F88-B8CC-4120C7608FAC": {
-      "name": "subnet1",
+    "F0C9E792-BD2F-4F5E-84A0-791568A38102": {
+      "name": "subnet0",
       "type": "AWS.VPC.Subnet",
-      "uid": "839E46FD-6DC8-4F88-B8CC-4120C7608FAC",
+      "uid": "F0C9E792-BD2F-4F5E-84A0-791568A38102",
       "resource": {
-        "AvailabilityZone": "@{AE5867ED-5508-45F1-9754-D4E04BF2D4B0.resource.ZoneName}",
-        "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}",
+        "AvailabilityZone": "@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
         "SubnetId": "",
-        "CidrBlock": "10.0.1.0/24"
+        "CidrBlock": "10.0.0.0/24"
       }
     },
-    "9FE753BA-AE3A-4753-9A40-BD86F8D0C333": {
+    "66CAA3C4-F299-427E-8961-19E04B3B7A88": {
       "type": "AWS.EC2.Instance",
-      "uid": "9FE753BA-AE3A-4753-9A40-BD86F8D0C333",
+      "uid": "66CAA3C4-F299-427E-8961-19E04B3B7A88",
       "name": "ghost",
       "index": 0,
       "number": 1,
-      "serverGroupUid": "9FE753BA-AE3A-4753-9A40-BD86F8D0C333",
+      "serverGroupUid": "66CAA3C4-F299-427E-8961-19E04B3B7A88",
       "serverGroupName": "ghost",
       "state": [
         {
           "parameter": {
-            "comment": "Add custom nodejs repo"
+            "comment": "Add nodejs custom APT repo"
           },
-          "id": "state-CE475E6E-D853-4EBB-BC11-91D298ED3137",
+          "id": "state-F038306C-1457-4BF7-9214-F3EE2D5E810A",
           "module": "meta.comment"
         },
         {
           "parameter": {
             "name": "chris-lea/node.js"
           },
-          "id": "state-17E5DE83-50B8-4F0F-A8C8-8A5A2DE89BA3",
+          "id": "state-7335827D-6DBD-4F1B-8075-6A47624180E3",
           "module": "linux.apt.ppa"
         },
         {
           "parameter": {
-            "comment": "Install required packages"
+            "comment": " Setup required APT packages"
           },
-          "id": "state-51725795-03EC-4D6E-9C08-820BE1C01654",
+          "id": "state-45369393-87A7-4A68-8E24-64BBB6124104",
           "module": "meta.comment"
         },
         {
@@ -219,22 +214,22 @@
               }
             ]
           },
-          "id": "state-CEB2E386-BAE5-4EB3-9586-87367F999432",
+          "id": "state-7402659A-3849-4528-A814-D92A716C2BE8",
           "module": "linux.apt.package"
         },
         {
           "parameter": {
             "comment": "Setup MySQL"
           },
-          "id": "state-B61E187F-DCD2-4F79-A899-B3FDD2499745",
+          "id": "state-213B9625-DA1F-49AD-90A4-F93E319C1B05",
           "module": "meta.comment"
         },
         {
           "parameter": {
-            "content": "create database ghostdev;\ncreate database ghost;\ncreate user 'ghost'@'localhost' identified by 'your-password';\ngrant all privileges on ghost. to 'ghost'@'localhost';\ngrant all privileges on ghostdev. to 'ghost'@'localhost';\nflush privileges;\nquit",
+            "content": " create database ghostdev;\n create database ghost;\n create user 'ghost'@'localhost' identified by 'your-password';\n grant all privileges on ghost.* to 'ghost'@'localhost';\n grant all privileges on ghostdev.* to 'ghost'@'localhost';\n flush privileges;\n quit",
             "path": "/bootstrap/ghost_init.sql"
           },
-          "id": "state-EC4FD344-3373-4C0B-B196-0337285D2889",
+          "id": "state-C0B6AF83-3635-4951-9DFC-49EED1D19EAA",
           "module": "linux.file"
         },
         {
@@ -244,46 +239,42 @@
             ],
             "cmd": "mysql -f -u root < /bootstrap/ghost_init.sql && touch /bootstrap/ghost_init.sql.done"
           },
-          "id": "state-8E6D8646-47B9-45A7-B1E3-306710633335",
+          "id": "state-FEBBA993-C90D-4C45-ACC7-F62E82F1767B",
           "module": "linux.cmd"
         },
         {
           "parameter": {
-            "comment": "Setup Nginx"
+            "comment": "Ensure presence of required directories"
           },
-          "id": "state-A4E47028-8434-49AE-99EA-8F3C0B84EA7D",
+          "id": "state-DDAFFAA1-38D8-44A3-BBFD-E57EA4523004",
           "module": "meta.comment"
         },
         {
           "parameter": {
             "path": [
-              "/var/cache/nginx"
-            ],
-            "group": "www-data",
-            "recursive": true,
-            "user": "www-data"
-          },
-          "id": "state-9E2E73CF-A929-48F1-8148-3AE73FF3CAC6",
-          "module": "linux.dir"
-        },
-        {
-          "parameter": {
-            "path": [
+              "/var/cache/nginx",
               "/var/www"
             ],
             "group": "www-data",
             "recursive": true,
             "user": "www-data"
           },
-          "id": "state-AD12F0B9-C803-470D-B0C2-09B85B9FE648",
+          "id": "state-49B4BDF3-A7E6-4659-B5CF-C185A1D95809",
           "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "Configure Nginx"
+          },
+          "id": "state-6D6191FA-E719-4B43-A899-2ACC0392C491",
+          "module": "meta.comment"
         },
         {
           "parameter": {
             "content": "server {\n     listen 80;\n     server_name @{self.PublicIp};\n\n     location / {\n         proxy_set_header   X-Real-IP $remote_addr;\n         proxy_set_header   Host      $http_host;\n         proxy_pass         http://127.0.0.1:2368;\n     }\n }",
             "path": "/etc/nginx/sites-available/ghost.conf"
           },
-          "id": "state-D444F054-8FEE-4741-84CD-2FF9297BDB37",
+          "id": "state-00CDA1FB-2AD0-430E-9014-60B3265C35DD",
           "module": "linux.file"
         },
         {
@@ -291,23 +282,33 @@
             "source": "/etc/nginx/sites-available/ghost.conf",
             "target": "/etc/nginx/sites-enabled/ghost.conf"
           },
-          "id": "state-83942DFE-48B1-4C76-8027-593ADD821737",
+          "id": "state-88FFA64A-9B61-40D6-9377-8926B9B21355",
           "module": "linux.symlink"
         },
         {
           "parameter": {
-            "comment": "Install ghost"
+            "comment": "Setup Ghost"
           },
-          "id": "state-255B5BA7-A232-435B-BC97-41357F71A4AC",
+          "id": "state-9E4C616B-060E-42E3-A17B-731C91995DF0",
           "module": "meta.comment"
         },
         {
           "parameter": {
             "path": "/var/www",
-            "source": "https://ghost.org/zip/ghost-latest.zip"
+            "source": "https://ghost.org/zip/ghost-latest.zip",
+            "if-path-absent": [
+              "/bootstrap/ghost_archive.done"
+            ]
           },
-          "id": "state-3B72C4DC-7560-47AC-AACF-308FA9C8714B",
+          "id": "state-5C9C3181-17B3-4275-8DB6-23C4107DF949",
           "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "path": "/bootstrap/ghost_archive.done"
+          },
+          "id": "state-0BD673E3-5B89-4F0D-8C50-7AD790D2CD2D",
+          "module": "linux.file"
         },
         {
           "parameter": {
@@ -317,15 +318,8 @@
             "cmd": "npm install --production && touch /bootstrap/ghost_setup.done",
             "cwd": "/var/www"
           },
-          "id": "state-2A2400AF-234C-4867-AE63-1188FE8E942F",
+          "id": "state-AA75B788-5AA4-42F6-940F-E5C343F14309",
           "module": "linux.cmd"
-        },
-        {
-          "parameter": {
-            "comment": "Install NPM dependencies"
-          },
-          "id": "state-7B0F6A01-787E-41F7-A760-DC423F35061B",
-          "module": "meta.comment"
         },
         {
           "parameter": {
@@ -340,24 +334,31 @@
               }
             ]
           },
-          "id": "state-07034602-7BD5-45C5-BB83-7AA3A75BA7E3",
+          "id": "state-1AB4F8C2-7350-4851-B11C-DDBCDD4376E8",
           "module": "common.npm.package"
         },
         {
           "parameter": {
-            "comment": "Create bootstrap script and start services"
+            "comment": "Setup startup script"
           },
-          "id": "state-85835532-1A3D-452B-A7B0-992D0880CD76",
+          "id": "state-C2CA7B18-D334-463E-AD93-039E3678D65F",
           "module": "meta.comment"
         },
         {
           "parameter": {
-            "content": "if [ $(ps aux | grep node | grep -v grep | wc -l | tr -s \"\\n\") -eq 0 ]\nthen\n export PATH=/usr/local/bin:$PATH\n export NODE_ENV=production\n NODE_ENV=production forever start --sourceDir /var/www index.js >> /var/log/nodelog.txt 2>&1\nfi",
+            "content": " if [ $(ps aux | grep node | grep -v grep | wc -l | tr -s \"\\n\") -eq 0 ]\n then\n     export PATH=/usr/local/bin:$PATH\n     export NODE_ENV=production\n     NODE_ENV=production forever start --sourceDir /var/www index.js >> /var/log/nodelog.txt 2>&1\n fi",
             "path": "/var/www/starter.sh",
             "mode": "0755"
           },
-          "id": "state-0532964D-58DE-434D-ACA7-CF8E029AF74C",
+          "id": "state-5DDD4DA8-59A8-4B62-AE91-4A54970208C1",
           "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "Ensure the ownership of the sources"
+          },
+          "id": "state-C3E46862-AD2C-4D04-B529-3F2F829B7D48",
+          "module": "meta.comment"
         },
         {
           "parameter": {
@@ -368,8 +369,15 @@
             "recursive": true,
             "user": "www-data"
           },
-          "id": "state-59D19AAF-9D5E-49BA-8B58-B695AB577F10",
+          "id": "state-E480BFD4-B585-4896-94D2-34905956257A",
           "module": "linux.dir"
+        },
+        {
+          "parameter": {
+            "comment": "Setup startup services"
+          },
+          "id": "state-F681B045-9311-4CBD-8A1C-6529F8B147AE",
+          "module": "meta.comment"
         },
         {
           "parameter": {
@@ -381,18 +389,25 @@
               "nginx"
             ]
           },
-          "id": "state-4D9757D8-0E0A-427D-9526-9B8C792DE387",
+          "id": "state-BEBD595A-D5F7-4EA0-AEA0-3F92B441532E",
           "module": "linux.service"
+        },
+        {
+          "parameter": {
+            "comment": "Setup starter script using tmpfs for reboot trigger"
+          },
+          "id": "state-EA39F6DE-FF38-446C-8CC7-9279461C1031",
+          "module": "meta.comment"
         },
         {
           "parameter": {
             "if-path-absent": [
               "/dev/shm/ghost_starter.done"
             ],
-            "cmd": "bash /var/www/starter.sh && touch /dev/shm/ghost_starter.done",
+            "cmd": "bash starter.sh && touch /dev/shm/ghost_starter.done",
             "cwd": "/var/www"
           },
-          "id": "state-C995DA58-2E4F-4398-A02B-23818715243B",
+          "id": "state-732E8E29-7F2D-4A01-9EDE-CE019F711A65",
           "module": "linux.cmd"
         }
       ],
@@ -413,85 +428,121 @@
         ],
         "Placement": {
           "Tenancy": "",
-          "AvailabilityZone": "@{AE5867ED-5508-45F1-9754-D4E04BF2D4B0.resource.ZoneName}"
+          "AvailabilityZone": "@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}"
         },
         "InstanceId": "",
         "ImageId": "ami-35dbde5c",
-        "KeyName": "@{F164E5AF-CD21-4229-8452-90747AFFA52B.resource.KeyName}",
+        "KeyName": "@{234AB9E7-B23B-4426-8FD5-25C80C117075.resource.KeyName}",
         "EbsOptimized": false,
-        "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}",
-        "SubnetId": "@{839E46FD-6DC8-4F88-B8CC-4120C7608FAC.resource.SubnetId}",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+        "SubnetId": "@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
-        "InstanceType": "t1.micro",
+        "NetworkInterface": [],
+        "InstanceType": "m1.small",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
-    "C2330267-0532-43D8-AF8A-670D14B85394": {
+    "6F436202-9EEC-44EB-9530-FCD4BA5B1541": {
       "index": 0,
-      "uid": "C2330267-0532-43D8-AF8A-670D14B85394",
+      "uid": "6F436202-9EEC-44EB-9530-FCD4BA5B1541",
       "type": "AWS.VPC.NetworkInterface",
       "name": "ghost-eni0",
-      "serverGroupUid": "C2330267-0532-43D8-AF8A-670D14B85394",
+      "serverGroupUid": "6F436202-9EEC-44EB-9530-FCD4BA5B1541",
       "serverGroupName": "eni0",
       "number": 1,
       "resource": {
         "SourceDestCheck": true,
         "Description": "",
         "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{AE5867ED-5508-45F1-9754-D4E04BF2D4B0.resource.ZoneName}",
-        "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}",
-        "SubnetId": "@{839E46FD-6DC8-4F88-B8CC-4120C7608FAC.resource.SubnetId}",
+        "AvailabilityZone": "@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+        "SubnetId": "@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}",
         "AssociatePublicIpAddress": true,
         "PrivateIpAddressSet": [
           {
-            "PrivateIpAddress": "10.0.1.4",
+            "PrivateIpAddress": "10.0.0.4",
             "AutoAssign": true,
             "Primary": true
           }
         ],
         "GroupSet": [
           {
-            "GroupName": "@{C496E770-494F-4F2A-BE47-F141E42EDD86.resource.GroupName}",
-            "GroupId": "@{C496E770-494F-4F2A-BE47-F141E42EDD86.resource.GroupId}"
+            "GroupName": "@{C8E05581-6007-4B46-B6B3-4A624AE7CE1F.resource.GroupName}",
+            "GroupId": "@{C8E05581-6007-4B46-B6B3-4A624AE7CE1F.resource.GroupId}"
           }
         ],
         "Attachment": {
-          "InstanceId": "@{9FE753BA-AE3A-4753-9A40-BD86F8D0C333.resource.InstanceId}",
+          "InstanceId": "@{66CAA3C4-F299-427E-8961-19E04B3B7A88.resource.InstanceId}",
           "DeviceIndex": "0",
           "AttachmentId": ""
         }
       }
     },
-    "F164E5AF-CD21-4229-8452-90747AFFA52B": {
+    "65883662-3441-4F34-AB16-875AD2E2B79E": {
+      "uid": "65883662-3441-4F34-AB16-875AD2E2B79E",
+      "type": "AWS.EC2.EIP",
+      "name": "EIP",
+      "index": 0,
+      "resource": {
+        "Domain": "vpc",
+        "InstanceId": "",
+        "AllocationId": "",
+        "NetworkInterfaceId": "@{6F436202-9EEC-44EB-9530-FCD4BA5B1541.resource.NetworkInterfaceId}",
+        "PrivateIpAddress": "@{6F436202-9EEC-44EB-9530-FCD4BA5B1541.resource.PrivateIpAddressSet.0.PrivateIpAddress}",
+        "PublicIp": ""
+      }
+    },
+    "234AB9E7-B23B-4426-8FD5-25C80C117075": {
       "name": "DefaultKP",
       "type": "AWS.EC2.KeyPair",
-      "uid": "F164E5AF-CD21-4229-8452-90747AFFA52B",
+      "uid": "234AB9E7-B23B-4426-8FD5-25C80C117075",
       "resource": {
         "KeyFingerprint": "",
         "KeyName": "DefaultKP"
       }
     },
-    "C496E770-494F-4F2A-BE47-F141E42EDD86": {
+    "D10A3771-DF5B-4146-97B4-73243B510C60": {
       "name": "DefaultSG",
       "type": "AWS.EC2.SecurityGroup",
-      "uid": "C496E770-494F-4F2A-BE47-F141E42EDD86",
+      "uid": "D10A3771-DF5B-4146-97B4-73243B510C60",
       "resource": {
         "Default": true,
         "GroupId": "",
         "GroupName": "DefaultSG",
         "GroupDescription": "Default Security Group",
-        "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "C8E05581-6007-4B46-B6B3-4A624AE7CE1F": {
+      "name": "front",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "C8E05581-6007-4B46-B6B3-4A624AE7CE1F",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "front",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
         "IpPermissions": [
           {
             "FromPort": "22",
@@ -522,90 +573,90 @@
         ]
       }
     },
-    "74EE1CB3-D1F6-4152-A85E-1A3C027BDFC8": {
+    "49A88A46-62D2-48F8-B962-2890F84E833E": {
       "name": "Internet-gateway",
       "type": "AWS.VPC.InternetGateway",
-      "uid": "74EE1CB3-D1F6-4152-A85E-1A3C027BDFC8",
+      "uid": "49A88A46-62D2-48F8-B962-2890F84E833E",
       "resource": {
         "InternetGatewayId": "",
         "AttachmentSet": [
           {
-            "VpcId": "@{2B2905C6-BE11-4918-8E70-C4DF746AB2AD.resource.VpcId}"
+            "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}"
           }
         ]
       }
     }
   },
   "layout": {
-    "29129889-FD4A-496D-A4C1-A81E7247365B": {
+    "B6DE64FE-02E6-4034-9436-E9EC0979B857": {
       "coordinate": [
-        51,
-        5
-      ],
-      "uid": "29129889-FD4A-496D-A4C1-A81E7247365B",
-      "groupUId": "2B2905C6-BE11-4918-8E70-C4DF746AB2AD"
-    },
-    "2B2905C6-BE11-4918-8E70-C4DF746AB2AD": {
-      "coordinate": [
-        6,
+        5,
         3
       ],
-      "uid": "2B2905C6-BE11-4918-8E70-C4DF746AB2AD",
+      "uid": "B6DE64FE-02E6-4034-9436-E9EC0979B857",
       "size": [
-        57,
-        40
+        60,
+        60
       ]
     },
-    "AE5867ED-5508-45F1-9754-D4E04BF2D4B0": {
+    "2A3A8171-3F42-400C-A819-7A968F4899A3": {
       "coordinate": [
-        21,
-        14
+        50,
+        5
       ],
-      "uid": "AE5867ED-5508-45F1-9754-D4E04BF2D4B0",
-      "groupUId": "2B2905C6-BE11-4918-8E70-C4DF746AB2AD",
+      "uid": "2A3A8171-3F42-400C-A819-7A968F4899A3",
+      "groupUId": "B6DE64FE-02E6-4034-9436-E9EC0979B857"
+    },
+    "7D2A6D22-FD01-4162-99B7-13458C6D61AF": {
+      "coordinate": [
+        20,
+        16
+      ],
+      "uid": "7D2A6D22-FD01-4162-99B7-13458C6D61AF",
+      "groupUId": "B6DE64FE-02E6-4034-9436-E9EC0979B857",
       "size": [
         21,
         21
       ]
     },
-    "839E46FD-6DC8-4F88-B8CC-4120C7608FAC": {
+    "F0C9E792-BD2F-4F5E-84A0-791568A38102": {
       "coordinate": [
-        23,
-        16
+        22,
+        18
       ],
-      "uid": "839E46FD-6DC8-4F88-B8CC-4120C7608FAC",
-      "groupUId": "AE5867ED-5508-45F1-9754-D4E04BF2D4B0",
+      "uid": "F0C9E792-BD2F-4F5E-84A0-791568A38102",
+      "groupUId": "7D2A6D22-FD01-4162-99B7-13458C6D61AF",
       "size": [
         17,
         17
       ]
     },
-    "9FE753BA-AE3A-4753-9A40-BD86F8D0C333": {
+    "66CAA3C4-F299-427E-8961-19E04B3B7A88": {
       "coordinate": [
-        27,
-        20
+        26,
+        22
       ],
-      "uid": "9FE753BA-AE3A-4753-9A40-BD86F8D0C333",
-      "groupUId": "839E46FD-6DC8-4F88-B8CC-4120C7608FAC",
+      "uid": "66CAA3C4-F299-427E-8961-19E04B3B7A88",
+      "groupUId": "F0C9E792-BD2F-4F5E-84A0-791568A38102",
       "osType": "ubuntu",
       "architecture": "x86_64",
       "rootDeviceType": "ebs",
       "instanceList": [
-        "9FE753BA-AE3A-4753-9A40-BD86F8D0C333"
+        "66CAA3C4-F299-427E-8961-19E04B3B7A88"
       ]
     },
-    "74EE1CB3-D1F6-4152-A85E-1A3C027BDFC8": {
+    "49A88A46-62D2-48F8-B962-2890F84E833E": {
       "coordinate": [
-        2,
+        1,
         5
       ],
-      "uid": "74EE1CB3-D1F6-4152-A85E-1A3C027BDFC8",
-      "groupUId": "2B2905C6-BE11-4918-8E70-C4DF746AB2AD"
+      "uid": "49A88A46-62D2-48F8-B962-2890F84E833E",
+      "groupUId": "B6DE64FE-02E6-4034-9436-E9EC0979B857"
     },
     "size": [
       240,
       240
     ]
   },
-  "signature": "ef217cc2d55bcb691f7f00a96a076be6"
+  "signature": "ea8c9417e49868d75f838205f469d2ad"
 }

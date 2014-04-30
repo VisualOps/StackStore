@@ -119,9 +119,7 @@
       "type": "AWS.VPC.RouteTable",
       "uid": "E5370DA5-F225-4A31-A8EA-E00F1FDEB7F8",
       "resource": {
-        "PropagatingVgwSet": [
-          
-        ],
+        "PropagatingVgwSet": [],
         "RouteTableId": "",
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "AssociationSet": [
@@ -154,9 +152,7 @@
       "type": "AWS.VPC.RouteTable",
       "uid": "81E36A06-2B11-4763-A73F-788C34DDC7BA",
       "resource": {
-        "PropagatingVgwSet": [
-          
-        ],
+        "PropagatingVgwSet": [],
         "RouteTableId": "",
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "AssociationSet": [
@@ -364,18 +360,12 @@
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "SubnetId": "@{9D9763D3-E288-4D1A-8113-58BA4048DCAC.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
@@ -615,18 +605,12 @@
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
@@ -1070,18 +1054,12 @@
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
@@ -1298,18 +1276,12 @@
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "SubnetId": "@{5240ACC1-F4DC-465A-BEC6-74D2D48ADE29.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
@@ -1476,18 +1448,12 @@
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "SubnetId": "@{211C8156-63C1-414F-84B2-C4893A66E7E3.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
@@ -1687,18 +1653,12 @@
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
         "SubnetId": "@{44710308-A7EB-4EE6-812D-522115513335.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ],
+        "SecurityGroup": [],
+        "SecurityGroupId": [],
         "PrivateIpAddress": ""
       }
     },
