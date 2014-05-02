@@ -19,30 +19,26 @@ All the stacks present here can be used in VisualOps using the import function (
 
 Apache Hadoop
 -------------
-Find the detailed description [here]().
+This stack is a template for an [Apache Hadoop](http://hadoop.apache.org/) v1 with Secondary NameNode setup.
+![](http://visualops.files.wordpress.com/2014/05/hadoop-v1.png "Hadoop v1 with Secondary NameNode")
 
-This stack is a template for an [Apache Hadoop](http://hadoop.apache.org/) cluster data mangement solution.
 
 Ghost
 -----
-Find the detailed description [here]().
-
 This stack is a template for deploying a blogging web application, using [Ghost](http://ghost.org/) platform.
+![](http://visualops.files.wordpress.com/2014/05/ghost.png "Ghost blog")
 
 Nginx
 -----
-Find the detailed description [here]().
-
 This stack is a template for deploying a web application, using [Nginx](http://nginx.org/) as web server and load-balancer.
+![](http://visualops.files.wordpress.com/2014/05/nginx-upstream.png "Nginx")
 
 Spark
 -----
-Find the detailed description [here]().
-
 This stack is a template for deploying a [Spark](http://spark.apache.org/) solution with [ZooKeeper](http://zookeeper.apache.org/).
+![](http://visualops.files.wordpress.com/2014/05/spark-with-zk.png "Spark with Zookeeper"))
 
 VPC with public subnet
 ----------------------
-Find the detailed description [here]().
-
 This stack is a template of a very simple [VPC](http://aws.amazon.com/vpc/) solution, with no specific instance state. Use it to learn how to configure your first VPC.
+![](http://visualops.files.wordpress.com/2014/05/vpc-with-public-subnet.png "VPC with public subnet")
