@@ -14,3 +14,7 @@ Get more details about VisualOps [here](http://www.visualops.io).
 Import
 ------
 All the stacks present here can be used in VisualOps using the import function (see the [documentation](http://docs.visualops.io/source/reference/ide.html) section 4.1 for more details).
+
+Stack List
+------
+You can read [here](./stack/README.md)
