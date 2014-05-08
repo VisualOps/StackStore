@@ -17,4 +17,4 @@ All the stacks present here can be used in VisualOps using the import function (
 
 Stack List
 ------
-You can read [here](./stack/README.md)
+You can read [here](./stack/)
