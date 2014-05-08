@@ -6,7 +6,7 @@
       "tag": "v2014-04-15"
     }
   },
-  "name": "mongo-cluster",
+  "name": "mongo-cluster-1",
   "region": "us-east-1",
   "platform": "ec2-vpc",
   "version": "2014-02-17",
@@ -886,7 +886,7 @@
           "id": "state-82EEDEEF-44B1-44EF-85B2-ADB91A66E5FF",
           "module": "linux.cmd",
           "parameter": {
-            "cmd": "if [ `echo 'rs.initiate({\"_id\":\"rs0\",\"members\":[{\"_id\":1,\"host\":\"10.0.0.5:27017\"},{\"_id\":2,\"host\":\"10.0.1.5:27017\"},{\"_id\":3,\"host\":\"10.0.2.5:27017\"}]})' | mongo | grep '\"ok\" : 1' | wc -l` -ne 1 ]; then exit 1; else touch /madeira/lock/rsinitiate; fi",
+            "cmd": "if [ `echo 'rs.initiate({\"_id\":\"rs0\",\"members\":[{\"_id\":1,\"host\":\"@{256587F8-0BFA-40A9-8F47-5B997C27452C.PrivateIpAddress}:27017\"},{\"_id\":2,\"host\":\"@{F732583A-83F7-48E2-B340-4E2737B0E809.PrivateIpAddress}:27017\"},{\"_id\":3,\"host\":\"@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.PrivateIpAddress}:27017\"}]})' | mongo | grep '\"ok\" : 1' | wc -l` -ne 1 ]; then exit 1; else touch /madeira/lock/rsinitiate; fi",
             "if-path-absent": [
               "/madeira/lock/rsinitiate"
             ]
@@ -1564,7 +1564,7 @@
     },
     "179CDD7A-6BE8-4D77-8307-4BE2B977438E": {
       "coordinate": [
-        19,
+        31,
         62
       ],
       "uid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
@@ -1648,7 +1648,7 @@
     },
     "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6": {
       "coordinate": [
-        19,
+        31,
         17
       ],
       "uid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
@@ -1673,5 +1673,5 @@
       240
     ]
   },
-  "signature": "efdb65629d725ab92fd3d462e938f19d"
+  "signature": "e591639e52e89ce83fecc9bce0ecffd0"
 }

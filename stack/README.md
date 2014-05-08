@@ -28,15 +28,17 @@ This stack is a template of a very simple [VPC](http://aws.amazon.com/vpc/) solu
 
 Apache Cassandra
 -------------
-This stack is a template for an [Apache Cassandra](http://cassandra.apache.org/) cluster setup
+This stack is a a 4-node [Cassandra](http://cassandra.apache.org/) cluster setup, with 2 seed nodes. Since Cassandra has a symmetric architecture, the nodes in this stack share the similar states, except that a daemon in the first seed node will be started before others.
+
 ![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/910x854/24963e500c7d110db6038f2a8ce32d48/cassandra.png)
 
 MongoDB Cluster
 -------------
-This stack is a template for an [MongoDB](http://www.mongodb.org/) cluster setup
-![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/750x874/16b2e8bfa007094900b04acea162cd13/mongo-cluster.png)
+This stack is a template for an [MongoDB](http://www.mongodb.org/) cluster setup. The stack includes a production-level 3-nodes setup of Mongo Config Server, a 3-nodes replication set, and a single mongos node that initializes the sharding setup upon launching. You can add more replication sets to the cluster, or remove the mongos node and initialize the sharding on your client side.
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/750x874/7962f1dcdf976a75101679ccde205a49/mongo-cluster.png)
 
 Redis Cluster
 -------------
-This stack is a template for an [Redis Cluster](http://redis.io/topics/cluster-tutorial/) setup
+This stack is a 6 nodes [Redis Cluster]( http://redis.io/topics/cluster-tutorial/) setup. The six nodes are split into 3 masters/slaves groups, on which each group contains exactly one master and one slave. 
+The data sharding is done among the three master nodes. All nodes share the same states, except "host-0", which contains the cluster creation and initialization instructions.
 ![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1030x764/76e628906a363bdeb21f26f6d00ab9f7/redis-cluster.png)

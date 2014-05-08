@@ -6,7 +6,7 @@
       "tag": "v2014-04-15"
     }
   },
-  "name": "cassandra",
+  "name": "Cassandra",
   "region": "us-east-1",
   "platform": "ec2-vpc",
   "version": "2014-02-17",
@@ -161,6 +161,26 @@
         "CidrBlock": "10.0.0.0/24"
       }
     },
+    "C165BE2E-B67C-4ECF-8524-61FF97683477": {
+      "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
+      "name": "us-east-1b",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1b",
+        "RegionName": "us-east-1"
+      }
+    },
+    "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
+      "name": "subnet1",
+      "type": "AWS.VPC.Subnet",
+      "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
+      "resource": {
+        "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
+        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.1.0/24"
+      }
+    },
     "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344": {
       "type": "AWS.EC2.Instance",
       "uid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
@@ -278,7 +298,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-75e2e69a",
+              "SnapshotId": "snap-b047276d",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -357,6 +377,80 @@
       "resource": {
         "KeyFingerprint": "",
         "KeyName": "DefaultKP"
+      }
+    },
+    "4D6A270F-041F-4829-BCE2-EF9311AD139B": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "4D6A270F-041F-4829-BCE2-EF9311AD139B",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "443",
+            "ToPort": "443",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "8963",
+            "ToPort": "8963",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "BC9203EA-4C72-4555-8396-A4F7119FCBED": {
+      "name": "cassandra",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "BC9203EA-4C72-4555-8396-A4F7119FCBED",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "cassandra",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "8888",
+            "ToPort": "8888",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "1024",
+            "ToPort": "65535",
+            "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "1024",
+            "ToPort": "65535",
+            "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
       }
     },
     "08B261D4-6086-481E-BE95-24EAB3E5FBC6": {
@@ -463,7 +557,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-75e2e69a",
+              "SnapshotId": "snap-b047276d",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -533,26 +627,6 @@
           "DeviceIndex": "0",
           "AttachmentId": ""
         }
-      }
-    },
-    "C165BE2E-B67C-4ECF-8524-61FF97683477": {
-      "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
-      "name": "us-east-1b",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1b",
-        "RegionName": "us-east-1"
-      }
-    },
-    "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
-      "name": "subnet1",
-      "type": "AWS.VPC.Subnet",
-      "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
-      "resource": {
-        "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.1.0/24"
       }
     },
     "44B590C5-2A33-4620-8E3B-BCB42F944CAE": {
@@ -659,7 +733,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-75e2e69a",
+              "SnapshotId": "snap-b047276d",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -740,80 +814,6 @@
         "AttachmentSet": [
           {
             "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}"
-          }
-        ]
-      }
-    },
-    "4D6A270F-041F-4829-BCE2-EF9311AD139B": {
-      "name": "DefaultSG",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "4D6A270F-041F-4829-BCE2-EF9311AD139B",
-      "resource": {
-        "Default": true,
-        "GroupId": "",
-        "GroupName": "DefaultSG",
-        "GroupDescription": "Default Security Group",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "22",
-            "ToPort": "22",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "80",
-            "ToPort": "80",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "443",
-            "ToPort": "443",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "8963",
-            "ToPort": "8963",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ]
-      }
-    },
-    "BC9203EA-4C72-4555-8396-A4F7119FCBED": {
-      "name": "cassandra",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "BC9203EA-4C72-4555-8396-A4F7119FCBED",
-      "resource": {
-        "Default": false,
-        "GroupId": "",
-        "GroupName": "cassandra",
-        "GroupDescription": "Custom Security Group",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "8888",
-            "ToPort": "8888",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "1024",
-            "ToPort": "65535",
-            "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "1024",
-            "ToPort": "65535",
-            "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
-            "IpProtocol": "tcp"
           }
         ]
       }
@@ -922,7 +922,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-75e2e69a",
+              "SnapshotId": "snap-b047276d",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -1039,6 +1039,30 @@
         17
       ]
     },
+    "C165BE2E-B67C-4ECF-8524-61FF97683477": {
+      "coordinate": [
+        15,
+        37
+      ],
+      "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
+      "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
+      "size": [
+        48,
+        21
+      ]
+    },
+    "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
+      "coordinate": [
+        17,
+        39
+      ],
+      "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
+      "groupUId": "C165BE2E-B67C-4ECF-8524-61FF97683477",
+      "size": [
+        41,
+        17
+      ]
+    },
     "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344": {
       "coordinate": [
         19,
@@ -1065,30 +1089,6 @@
       "rootDeviceType": "ebs",
       "instanceList": [
         "08B261D4-6086-481E-BE95-24EAB3E5FBC6"
-      ]
-    },
-    "C165BE2E-B67C-4ECF-8524-61FF97683477": {
-      "coordinate": [
-        15,
-        37
-      ],
-      "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
-      "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
-      "size": [
-        48,
-        21
-      ]
-    },
-    "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
-      "coordinate": [
-        17,
-        39
-      ],
-      "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
-      "groupUId": "C165BE2E-B67C-4ECF-8524-61FF97683477",
-      "size": [
-        41,
-        17
       ]
     },
     "44B590C5-2A33-4620-8E3B-BCB42F944CAE": {
@@ -1132,5 +1132,5 @@
       240
     ]
   },
-  "signature": "4ecfb3bc2a8b9e4fb0a36dee0530a0e7"
+  "signature": "4e01b2001ab6b4ad1e19bd48b033fd50"
 }
