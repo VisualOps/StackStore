@@ -6,6 +6,11 @@ Apache Hadoop
 This stack is a template for an [Apache Hadoop](http://hadoop.apache.org/) v1 with Secondary NameNode setup.
 ![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1000x894/762f2e7fae4e955e05b7f7c9b202625a/hadoop.png "Hadoop v1 with Secondary NameNode")
 
+WordPress
+-----
+This stack is a template using the latest WordPress release. It uses ELB+AutoScaling for HA and load balancing.
+![]("https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1310x884/4b48654eaa020d1a7704ad0fa2707875/wordpress.png")
+
 Ghost
 -----
 This stack is a template for deploying a blogging web application, using [Ghost](http://ghost.org/) platform.
@@ -42,3 +47,8 @@ Redis Cluster
 This stack is a 6 nodes [Redis Cluster]( http://redis.io/topics/cluster-tutorial/) setup. The six nodes are split into 3 masters/slaves groups, on which each group contains exactly one master and one slave. 
 The data sharding is done among the three master nodes. All nodes share the same states, except "host-0", which contains the cluster creation and initialization instructions.
 ![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1030x764/76e628906a363bdeb21f26f6d00ab9f7/redis-cluster.png)
+
+RabbitMQ HA
+-------------
+This stack is a sample setup of [RabbitMQ](https://www.rabbitmq.com/), using [HAProxy](haproxy.1wt.eu/) for HA. It also contains a message producer and consumer, for demostration.
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1010x764/1a830debe39bdd77138eb89a4ad56db6/rabbitmq-ha.png)
