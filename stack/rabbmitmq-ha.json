@@ -1,0 +1,1383 @@
+{
+  "agent": {
+    "enabled": true,
+    "module": {
+      "repo": "https://github.com/MadeiraCloud/salt",
+      "tag": "v2014-04-15"
+    }
+  },
+  "name": "RabbitMQ-HA-1",
+  "region": "us-east-1",
+  "platform": "ec2-vpc",
+  "version": "2014-02-17",
+  "component": {
+    "167459E0-8744-4AA5-9B4D-80C6F6EDA899": {
+      "name": "vpc",
+      "type": "AWS.VPC.VPC",
+      "uid": "167459E0-8744-4AA5-9B4D-80C6F6EDA899",
+      "resource": {
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "EnableDnsHostnames": false,
+        "DhcpOptionsId": "",
+        "VpcId": "",
+        "CidrBlock": "10.0.0.0/16"
+      }
+    },
+    "767C3337-FF94-4C0B-8690-F9D47F570882": {
+      "name": "DefaultACL",
+      "type": "AWS.VPC.NetworkAcl",
+      "uid": "767C3337-FF94-4C0B-8690-F9D47F570882",
+      "resource": {
+        "AssociationSet": [
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}"
+          }
+        ],
+        "Default": true,
+        "EntrySet": [
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          }
+        ],
+        "NetworkAclId": "",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}"
+      }
+    },
+    "D748AB07-E695-4189-9D1C-5D311936E20D": {
+      "name": "RT-0",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "D748AB07-E695-4189-9D1C-5D311936E20D",
+      "resource": {
+        "PropagatingVgwSet": [
+          
+        ],
+        "RouteTableId": "",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "Main": "true",
+            "RouteTableAssociationId": "",
+            "SubnetId": ""
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "@{47B6C5FE-EE83-4C0A-8F2E-EE8319FE0D8E.resource.InternetGatewayId}"
+          }
+        ]
+      }
+    },
+    "86449A47-06DD-42CC-B9A4-328A5C58DB1F": {
+      "name": "node-sg",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "86449A47-06DD-42CC-B9A4-328A5C58DB1F",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "node-sg",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupId}",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "C1031C16-8290-4511-A66D-D9E057194380": {
+      "name": "haproxy-sg",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "C1031C16-8290-4511-A66D-D9E057194380",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "haproxy-sg",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{031BD771-89EB-46C5-BF99-14567A902C74.resource.GroupId}",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{13F84693-DDE8-4789-9C4D-5CD43455E561.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{031BD771-89EB-46C5-BF99-14567A902C74.resource.GroupId}",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{13F84693-DDE8-4789-9C4D-5CD43455E561.resource.GroupId}",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "031BD771-89EB-46C5-BF99-14567A902C74": {
+      "name": "producer-sg",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "031BD771-89EB-46C5-BF99-14567A902C74",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "producer-sg",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupId}",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "13F84693-DDE8-4789-9C4D-5CD43455E561": {
+      "name": "consumer-sg",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "13F84693-DDE8-4789-9C4D-5CD43455E561",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "consumer-sg",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupId}",
+            "IpProtocol": "-1"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupId}",
+            "IpProtocol": "-1"
+          },
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE": {
+      "uid": "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE",
+      "name": "us-east-1a",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1a",
+        "RegionName": "us-east-1"
+      }
+    },
+    "249FC96B-369E-4386-A521-E809AA574FD1": {
+      "name": "subnet0",
+      "type": "AWS.VPC.Subnet",
+      "uid": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "resource": {
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
+      }
+    },
+    "984232EB-AE6D-45F7-BBCC-0012C235D951": {
+      "type": "AWS.EC2.Instance",
+      "uid": "984232EB-AE6D-45F7-BBCC-0012C235D951",
+      "name": "haproxy",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "984232EB-AE6D-45F7-BBCC-0012C235D951",
+      "serverGroupName": "haproxy",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "haproxy",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-8E42AA9D-0A8F-4CC3-8184-CD07D1FA8E48",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "state": [
+              "@{9B48AA03-4B5B-4219-8332-ECB36229A054.state.state-DD4C0E22-8A54-4C66-8595-F0E04DF08DD5}"
+            ]
+          },
+          "id": "state-7FD9B784-B0C8-47B0-A331-42306DDF1E81",
+          "module": "meta.wait"
+        },
+        {
+          "parameter": {
+            "state": [
+              "@{C0D40A3D-C45C-4C70-9560-D86082FE28FB.state.state-50C4B792-5D59-4E8A-9EF8-80577EDA06D3}"
+            ]
+          },
+          "id": "state-C3A43940-EBEC-4611-9E0D-314520425125",
+          "module": "meta.wait"
+        },
+        {
+          "parameter": {
+            "content": "global\n       log 127.0.0.1      local0 info\n       maxconn 1024\n       user haproxy\n       group haproxy\n       daemon\n \ndefaults\n       log  global\n       mode    tcp\n       option   tcplog\n       option   dontlognull\n       retries   3\n       option redispatch\n       maxconn     1024\n       contimeout  5000\n       clitimeout    50000\n       srvtimeout  50000\n \nlisten rabbitmq_cluster 0.0.0.0:5672\n       mode tcp\n       balance roundrobin\n       server   rabbit65 @{9B48AA03-4B5B-4219-8332-ECB36229A054.PrivateIpAddress}:5672 check inter 2000 rise 2 fall 3\n       server   rabbit66 @{C0D40A3D-C45C-4C70-9560-D86082FE28FB.PrivateIpAddress}:5672 check inter 2000 rise 2 fall 3",
+            "path": "/etc/haproxy/haproxy.cfg"
+          },
+          "id": "state-5C2C00DD-2DF6-4EA7-9556-2456F95A244E",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/haproxy/haproxy.cfg"
+            ],
+            "name": [
+              "haproxy"
+            ]
+          },
+          "id": "state-EFB530A2-0D8E-4260-99B5-125CC1AEC706",
+          "module": "linux.service"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-fb8e9292",
+        "KeyName": "@{75931CD8-B07C-4B23-BDE5-00403FCF032D.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ]
+      }
+    },
+    "70EA284C-77C0-49DD-8C80-B355CA059E6E": {
+      "index": 0,
+      "uid": "70EA284C-77C0-49DD-8C80-B355CA059E6E",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "haproxy-eni0",
+      "serverGroupUid": "70EA284C-77C0-49DD-8C80-B355CA059E6E",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.5",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupName}",
+            "GroupId": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupName}",
+            "GroupId": "@{C1031C16-8290-4511-A66D-D9E057194380.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{984232EB-AE6D-45F7-BBCC-0012C235D951.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "75931CD8-B07C-4B23-BDE5-00403FCF032D": {
+      "name": "DefaultKP",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "75931CD8-B07C-4B23-BDE5-00403FCF032D",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "DefaultKP"
+      }
+    },
+    "662CD631-26B8-4740-AE66-58066DB861F7": {
+      "type": "AWS.EC2.Instance",
+      "uid": "662CD631-26B8-4740-AE66-58066DB861F7",
+      "name": "producer",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "662CD631-26B8-4740-AE66-58066DB861F7",
+      "serverGroupName": "producer",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "pika",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-950AB6DA-2C01-47A2-BF24-A3E48489348F",
+          "module": "common.pip.package"
+        },
+        {
+          "parameter": {
+            "content": "#!/usr/bin/env python\nimport pika\nimport logging\n\nlogging.basicConfig()\n\nconnection = pika.BlockingConnection(pika.ConnectionParameters(\n        host='@{984232EB-AE6D-45F7-BBCC-0012C235D951.PrivateIpAddress}'))\nchannel = connection.channel()\n\nchannel.queue_declare(queue='hello')\n\nchannel.basic_publish(exchange='',\n                      routing_key='hello',\n                      body='Hello World!')\nprint \" [x] Sent 'Hello World!'\"",
+            "path": "/root/send.py"
+          },
+          "id": "state-8E020378-ACC6-4D89-A12F-DD0AB3A3E12E",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "state": [
+              "@{E1C76384-9EC7-41D1-8A87-2A5252378C82.state.state-4984BEF1-0770-4779-8040-AD7107153F72}"
+            ]
+          },
+          "id": "state-914EF67F-FA1E-474D-B84F-DE5A9A7953BA",
+          "module": "meta.wait"
+        },
+        {
+          "parameter": {
+            "cmd": "python send.py",
+            "cwd": "/root/"
+          },
+          "id": "state-5340D2F7-A113-4548-AFC5-4DF1B205977F",
+          "module": "linux.cmd"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-fb8e9292",
+        "KeyName": "@{75931CD8-B07C-4B23-BDE5-00403FCF032D.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ]
+      }
+    },
+    "F905DF7E-5992-4435-A62F-CE4C8E087E8B": {
+      "index": 0,
+      "uid": "F905DF7E-5992-4435-A62F-CE4C8E087E8B",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "producer-eni0",
+      "serverGroupUid": "F905DF7E-5992-4435-A62F-CE4C8E087E8B",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.8",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupName}",
+            "GroupId": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{031BD771-89EB-46C5-BF99-14567A902C74.resource.GroupName}",
+            "GroupId": "@{031BD771-89EB-46C5-BF99-14567A902C74.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{662CD631-26B8-4740-AE66-58066DB861F7.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "23603236-5111-4C61-9A42-48ADA7A01C2A": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "23603236-5111-4C61-9A42-48ADA7A01C2A",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "9B48AA03-4B5B-4219-8332-ECB36229A054": {
+      "type": "AWS.EC2.Instance",
+      "uid": "9B48AA03-4B5B-4219-8332-ECB36229A054",
+      "name": "node1",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "9B48AA03-4B5B-4219-8332-ECB36229A054",
+      "serverGroupName": "node1",
+      "state": [
+        {
+          "parameter": {
+            "comment": "set hostname"
+          },
+          "id": "state-4845CAC5-BECD-40B9-B47F-C16CFCC93BED",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "127.0.0.1   localhost localhost.localdomain\n\n@{9B48AA03-4B5B-4219-8332-ECB36229A054.PrivateIpAddress} node1\n@{C0D40A3D-C45C-4C70-9560-D86082FE28FB.PrivateIpAddress} node2",
+            "path": "/etc/hosts",
+            "mode": "644"
+          },
+          "id": "state-256E5CBD-BE54-4497-930A-8A5F3DD01339",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "hostname node1"
+          },
+          "id": "state-DDDC139A-C7BF-42AF-B074-B8A045528E16",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "install rabbitmq"
+          },
+          "id": "state-A0926301-49D3-4F58-9A3D-8B2DD8B3F887",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.2.4/rabbitmq-server-3.2.4-1.noarch.rpm",
+            "cwd": "/root/"
+          },
+          "id": "state-FE14C6AF-6075-42A3-B61C-7623CB86703B",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/usr/sbin/rabbitmq-server"
+            ],
+            "cmd": "yum install -y rabbitmq-server-3.2.4-1.noarch.rpm",
+            "cwd": "/root/"
+          },
+          "id": "state-7718A875-1431-4CD3-B9E2-099B7A31DDC9",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "rabbitmq-plugins enable rabbitmq_management",
+            "cwd": "/root/",
+            "env": [
+              {
+                "key": "HOME",
+                "value": "/root/"
+              }
+            ]
+          },
+          "id": "state-DB95D765-DC45-45F1-B043-4BFA1632D37C",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "set erlang cookie"
+          },
+          "id": "state-53BE3E9B-E8E2-4960-873F-838B811B324F",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "rabbitmq_cookie",
+            "path": "/var/lib/rabbitmq/.erlang.cookie",
+            "group": "rabbitmq",
+            "mode": "400",
+            "user": "rabbitmq"
+          },
+          "id": "state-3D0D6E5B-BC62-470F-99C2-93DC495E280B",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "start rabbitmq server"
+          },
+          "id": "state-F5227FEB-06A2-44E5-87E6-85A8B4B5AC79",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/var/lib/rabbitmq/.erlang.cookie"
+            ],
+            "name": [
+              "rabbitmq-server"
+            ]
+          },
+          "id": "state-7B6788FA-ED1E-459D-8F2A-09D7BFB71557",
+          "module": "linux.service"
+        },
+        {
+          "parameter": {
+            "state": [
+              "@{C0D40A3D-C45C-4C70-9560-D86082FE28FB.state.state-C1FA400D-00DB-473B-8260-C8BE9D17FD2C}"
+            ]
+          },
+          "id": "state-3C0C1693-A71C-41DC-8724-D1175FA5E050",
+          "module": "meta.wait"
+        },
+        {
+          "parameter": {
+            "comment": "view cluster status"
+          },
+          "id": "state-14A3C2E1-2A5A-481D-B981-38402E3BC9DF",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "rabbitmqctl cluster_status"
+          },
+          "id": "state-DD4C0E22-8A54-4C66-8595-F0E04DF08DD5",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "open http://@{self.PublicIp}:15672/ to enter RabbitMQ Management"
+          },
+          "id": "state-05B2BBBE-BB8F-4F47-B1DD-089BCF8B513C",
+          "module": "meta.comment"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-fb8e9292",
+        "KeyName": "@{75931CD8-B07C-4B23-BDE5-00403FCF032D.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ]
+      }
+    },
+    "AC622570-F41E-4C9C-A29A-63386B7B3BA4": {
+      "index": 0,
+      "uid": "AC622570-F41E-4C9C-A29A-63386B7B3BA4",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "node1-eni0",
+      "serverGroupUid": "AC622570-F41E-4C9C-A29A-63386B7B3BA4",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.6",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupName}",
+            "GroupId": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupName}",
+            "GroupId": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{9B48AA03-4B5B-4219-8332-ECB36229A054.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "E1C76384-9EC7-41D1-8A87-2A5252378C82": {
+      "type": "AWS.EC2.Instance",
+      "uid": "E1C76384-9EC7-41D1-8A87-2A5252378C82",
+      "name": "consumer",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "E1C76384-9EC7-41D1-8A87-2A5252378C82",
+      "serverGroupName": "consumer",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "pika",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-B8F5E5FB-C9DA-4D11-A728-867ED2DA1816",
+          "module": "common.pip.package"
+        },
+        {
+          "parameter": {
+            "content": "#!/usr/bin/env python\nimport pika\n\nconnection = pika.BlockingConnection(pika.ConnectionParameters(\n        host='@{984232EB-AE6D-45F7-BBCC-0012C235D951.PrivateIpAddress}'))\nchannel = connection.channel()\n\nchannel.queue_declare(queue='hello')\n\nprint ' [*] Waiting for messages. To exit press CTRL+C'\n\ndef callback(ch, method, properties, body):\n    print \" [x] Received %r\" % (body,)\n\nchannel.basic_consume(callback,\n                      queue='hello',\n                      no_ack=True)\n\nchannel.start_consuming()",
+            "path": "/root/receive.py"
+          },
+          "id": "state-6FFEA395-15C0-4B13-AC82-7F73896FE8A3",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "content": "; Sample supervisor config file.\n;\n; For more information on the config file, please see:\n; http://supervisord.org/configuration.html\n;\n; Note: shell expansion (\"~\" or \"$HOME\") is not supported.  Environment\n; variables can be expanded using this syntax: \"%(ENV_HOME)s\".\n\n[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n;chmod=0700                 ; socket file mode (default 0700)\n;chown=nobody:nogroup       ; socket file uid:gid owner\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n;[inet_http_server]         ; inet (TCP) server disabled by default\n;port=127.0.0.1:9001        ; (ip_address:port specifier, *:port for all iface)\n;username=user              ; (default is no username (open server))\n;password=123               ; (default is no password (open server))\n\n[supervisord]\nlogfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=50MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=10           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=1024                  ; (min. avail startup file descriptors;default 1024)\nminprocs=200                 ; (min. avail process descriptors;default 200)\n;umask=022                   ; (process file creation umask;default 022)\n;user=chrism                 ; (default is current user, required if root)\n;identifier=supervisor       ; (supervisord identifier, default is 'supervisor')\n;directory=/tmp              ; (default is not to cd during start)\n;nocleanup=true              ; (don't clean up tempfiles at start;default false)\n;childlogdir=/tmp            ; ('AUTO' child log dir, default $TEMP)\n;environment=KEY=\"value\"     ; (key value pairs to add to environment)\n;strip_ansi=false            ; (strip ansi escape codes in logs; def. false)\n\n; the below section must remain in the config file for RPC\n; (supervisorctl/web interface) to work, additional interfaces may be\n; added by defining them in separate rpcinterface: sections\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n;serverurl=http://127.0.0.1:9001 ; use an http:// url to specify an inet socket\n;username=chris              ; should be same as http_username if set\n;password=123                ; should be same as http_password if set\n;prompt=mysupervisor         ; cmd line prompt (default \"supervisor\")\n;history_file=~/.sc_history  ; use readline history if available\n\n; The below sample program section shows all possible program subsection values,\n; create one or more 'real' program: sections to be able to control them under\n; supervisor.\n\n;[program:theprogramname]\n;command=/bin/cat              ; the program (relative uses PATH, can take args)\n;process_name=%(program_name)s ; process_name expr (default %(program_name)s)\n;numprocs=1                    ; number of processes copies to start (def 1)\n;directory=/tmp                ; directory to cwd to before exec (def no cwd)\n;umask=022                     ; umask for process (default None)\n;priority=999                  ; the relative start priority (default 999)\n;autostart=true                ; start at supervisord start (default: true)\n;autorestart=unexpected        ; whether/when to restart (default: unexpected)\n;startsecs=1                   ; number of secs prog must stay running (def. 1)\n;startretries=3                ; max # of serial start failures (default 3)\n;exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)\n;stopsignal=QUIT               ; signal used to kill process (default TERM)\n;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)\n;stopasgroup=false             ; send stop signal to the UNIX process group (default false)\n;killasgroup=false             ; SIGKILL the UNIX process group (def false)\n;user=chrism                   ; setuid to this UNIX account to run the program\n;redirect_stderr=true          ; redirect proc stderr to stdout (default false)\n;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO\n;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)\n;stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)\n;stdout_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)\n;stdout_events_enabled=false   ; emit events on stdout writes (default false)\n;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO\n;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)\n;stderr_logfile_backups=10     ; # of stderr logfile backups (default 10)\n;stderr_capture_maxbytes=1MB   ; number of bytes in 'capturemode' (default 0)\n;stderr_events_enabled=false   ; emit events on stderr writes (default false)\n;environment=A=\"1\",B=\"2\"       ; process environment additions (def no adds)\n;serverurl=AUTO                ; override serverurl computation (childutils)\n\n; The below sample eventlistener section shows all possible\n; eventlistener subsection values, create one or more 'real'\n; eventlistener: sections to be able to handle event notifications\n; sent by supervisor.\n\n;[eventlistener:theeventlistenername]\n;command=/bin/eventlistener    ; the program (relative uses PATH, can take args)\n;process_name=%(program_name)s ; process_name expr (default %(program_name)s)\n;numprocs=1                    ; number of processes copies to start (def 1)\n;events=EVENT                  ; event notif. types to subscribe to (req'd)\n;buffer_size=10                ; event buffer queue size (default 10)\n;directory=/tmp                ; directory to cwd to before exec (def no cwd)\n;umask=022                     ; umask for process (default None)\n;priority=-1                   ; the relative start priority (default -1)\n;autostart=true                ; start at supervisord start (default: true)\n;autorestart=unexpected        ; whether/when to restart (default: unexpected)\n;startsecs=1                   ; number of secs prog must stay running (def. 1)\n;startretries=3                ; max # of serial start failures (default 3)\n;exitcodes=0,2                 ; 'expected' exit codes for process (default 0,2)\n;stopsignal=QUIT               ; signal used to kill process (default TERM)\n;stopwaitsecs=10               ; max num secs to wait b4 SIGKILL (default 10)\n;stopasgroup=false             ; send stop signal to the UNIX process group (default false)\n;killasgroup=false             ; SIGKILL the UNIX process group (def false)\n;user=chrism                   ; setuid to this UNIX account to run the program\n;redirect_stderr=true          ; redirect proc stderr to stdout (default false)\n;stdout_logfile=/a/path        ; stdout log path, NONE for none; default AUTO\n;stdout_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)\n;stdout_logfile_backups=10     ; # of stdout logfile backups (default 10)\n;stdout_events_enabled=false   ; emit events on stdout writes (default false)\n;stderr_logfile=/a/path        ; stderr log path, NONE for none; default AUTO\n;stderr_logfile_maxbytes=1MB   ; max # logfile bytes b4 rotation (default 50MB)\n;stderr_logfile_backups        ; # of stderr logfile backups (default 10)\n;stderr_events_enabled=false   ; emit events on stderr writes (default false)\n;environment=A=\"1\",B=\"2\"       ; process environment additions\n;serverurl=AUTO                ; override serverurl computation (childutils)\n\n; The below sample group section shows all possible group values,\n; create one or more 'real' group: sections to create \"heterogeneous\"\n; process groups.\n\n;[group:thegroupname]\n;programs=progname1,progname2  ; each refers to 'x' in [program:x] definitions\n;priority=999                  ; the relative start priority (default 999)\n\n; The [include] section can just contain the \"files\" setting.  This\n; setting can list multiple files (separated by whitespace or\n; newlines).  It can also contain wildcards.  The filenames are\n; interpreted as relative to this file.  Included files *cannot*\n; include files themselves.\n\n;[include]\n;files = relative/directory/*.ini\n\n[program:receive]\ncommand=python receive.py\ndirectory=/root/\nautorestart=true",
+            "path": "/etc/supervisord.conf"
+          },
+          "id": "state-B70868F6-042B-4730-A16C-0CB3388C0151",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "state": [
+              "@{984232EB-AE6D-45F7-BBCC-0012C235D951.state.state-EFB530A2-0D8E-4260-99B5-125CC1AEC706}"
+            ]
+          },
+          "id": "state-12BB6E7E-1FE2-4589-A2F3-E615009A903A",
+          "module": "meta.wait"
+        },
+        {
+          "parameter": {
+            "config": "/etc/supervisord.conf",
+            "watch": [
+              "/root/receive.py"
+            ],
+            "name": [
+              "receive"
+            ]
+          },
+          "id": "state-4984BEF1-0770-4779-8040-AD7107153F72",
+          "module": "linux.supervisord"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-fb8e9292",
+        "KeyName": "@{75931CD8-B07C-4B23-BDE5-00403FCF032D.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ]
+      }
+    },
+    "86A38498-CF41-4B58-888A-4B54E664FD31": {
+      "index": 0,
+      "uid": "86A38498-CF41-4B58-888A-4B54E664FD31",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "consumer-eni0",
+      "serverGroupUid": "86A38498-CF41-4B58-888A-4B54E664FD31",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.4",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupName}",
+            "GroupId": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{13F84693-DDE8-4789-9C4D-5CD43455E561.resource.GroupName}",
+            "GroupId": "@{13F84693-DDE8-4789-9C4D-5CD43455E561.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{E1C76384-9EC7-41D1-8A87-2A5252378C82.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    },
+    "47B6C5FE-EE83-4C0A-8F2E-EE8319FE0D8E": {
+      "name": "Internet-gateway",
+      "type": "AWS.VPC.InternetGateway",
+      "uid": "47B6C5FE-EE83-4C0A-8F2E-EE8319FE0D8E",
+      "resource": {
+        "InternetGatewayId": "",
+        "AttachmentSet": [
+          {
+            "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}"
+          }
+        ]
+      }
+    },
+    "C0D40A3D-C45C-4C70-9560-D86082FE28FB": {
+      "type": "AWS.EC2.Instance",
+      "uid": "C0D40A3D-C45C-4C70-9560-D86082FE28FB",
+      "name": "node2",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "C0D40A3D-C45C-4C70-9560-D86082FE28FB",
+      "serverGroupName": "node2",
+      "state": [
+        {
+          "parameter": {
+            "comment": "set hostname"
+          },
+          "id": "state-82BC424F-9A91-4F64-A6F7-F13726BC4D6C",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "127.0.0.1   localhost localhost.localdomain\n\n@{9B48AA03-4B5B-4219-8332-ECB36229A054.PrivateIpAddress} node1\n@{C0D40A3D-C45C-4C70-9560-D86082FE28FB.PrivateIpAddress} node2",
+            "path": "/etc/hosts",
+            "mode": "644"
+          },
+          "id": "state-B9C920C6-86E2-4177-863A-F7A54CE4B860",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "cmd": "hostname node2"
+          },
+          "id": "state-B1F9F76F-A9F3-4D58-BDA5-A01D2790157A",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "install rabbitmq"
+          },
+          "id": "state-CACF168A-9506-4D9E-93A5-4822A740CD1A",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "wget https://www.rabbitmq.com/releases/rabbitmq-server/v3.2.4/rabbitmq-server-3.2.4-1.noarch.rpm",
+            "cwd": "/root/"
+          },
+          "id": "state-9C954928-FC67-4AA9-B02E-797D46474B4F",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/usr/sbin/rabbitmq-server"
+            ],
+            "cmd": "yum install -y rabbitmq-server-3.2.4-1.noarch.rpm",
+            "cwd": "/root/"
+          },
+          "id": "state-C470150F-42D0-46BB-8C81-6366775102A8",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "cmd": "rabbitmq-plugins enable rabbitmq_management",
+            "cwd": "/root/",
+            "env": [
+              {
+                "key": "HOME",
+                "value": "/root/"
+              }
+            ]
+          },
+          "id": "state-78C70A39-9E51-4567-B107-B8F8744B6EBE",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "set erlang cookie"
+          },
+          "id": "state-AC5287A8-235B-4487-B5FC-4AD5C674A859",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "content": "rabbitmq_cookie",
+            "path": "/var/lib/rabbitmq/.erlang.cookie",
+            "group": "rabbitmq",
+            "mode": "400",
+            "user": "rabbitmq"
+          },
+          "id": "state-82E70BA2-0E78-4E3C-9D82-DA74458557F6",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "comment": "start rabbitmq server"
+          },
+          "id": "state-DA08C7A6-8F6E-4640-AF53-FB078744E43B",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/var/lib/rabbitmq/.erlang.cookie"
+            ],
+            "name": [
+              "rabbitmq-server"
+            ]
+          },
+          "id": "state-FD031F2D-EEFA-4FF8-81C4-05D35349AE57",
+          "module": "linux.service"
+        },
+        {
+          "parameter": {
+            "comment": "join cluster"
+          },
+          "id": "state-1E3D3305-E189-43CA-96DF-915EE3AE9A19",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "state": [
+              "@{9B48AA03-4B5B-4219-8332-ECB36229A054.state.state-7B6788FA-ED1E-459D-8F2A-09D7BFB71557}"
+            ]
+          },
+          "id": "state-79C4A565-5A86-4681-B031-042C2B29033A",
+          "module": "meta.wait"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/root/only_one_run_cluster"
+            ],
+            "cmd": "rabbitmqctl stop_app;rabbitmqctl join_cluster rabbit@node1;rabbitmqctl start_app;touch /root/only_one_run_cluster"
+          },
+          "id": "state-C1FA400D-00DB-473B-8260-C8BE9D17FD2C",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "view cluster status"
+          },
+          "id": "state-88C767A4-D3A0-4AC9-B413-50ECF7787FEC",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "rabbitmqctl cluster_status"
+          },
+          "id": "state-8A7F9597-855D-4D79-9C22-4E7FB42AF5D2",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "set mirror queue"
+          },
+          "id": "state-40631604-7E98-4E0B-BB0D-96769F4A4440",
+          "module": "meta.comment"
+        },
+        {
+          "parameter": {
+            "cmd": "rabbitmqctl set_policy ha-all \"^\" '{\"ha-mode\":\"all\"}'"
+          },
+          "id": "state-50C4B792-5D59-4E8A-9EF8-80577EDA06D3",
+          "module": "linux.cmd"
+        },
+        {
+          "parameter": {
+            "comment": "open http://@{self.PublicIp}:15672/ to enter RabbitMQ Management"
+          },
+          "id": "state-57998E11-3999-4BD7-B486-BFC6C43ABA6C",
+          "module": "meta.comment"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-fb8e9292",
+        "KeyName": "@{75931CD8-B07C-4B23-BDE5-00403FCF032D.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ]
+      }
+    },
+    "4EAF2308-A42B-48BA-816F-47F4DDAFAE88": {
+      "index": 0,
+      "uid": "4EAF2308-A42B-48BA-816F-47F4DDAFAE88",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "node2-eni0",
+      "serverGroupUid": "4EAF2308-A42B-48BA-816F-47F4DDAFAE88",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.0.7",
+            "AutoAssign": true,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupName}",
+            "GroupId": "@{23603236-5111-4C61-9A42-48ADA7A01C2A.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupName}",
+            "GroupId": "@{86449A47-06DD-42CC-B9A4-328A5C58DB1F.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{C0D40A3D-C45C-4C70-9560-D86082FE28FB.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    }
+  },
+  "layout": {
+    "167459E0-8744-4AA5-9B4D-80C6F6EDA899": {
+      "coordinate": [
+        5,
+        3
+      ],
+      "uid": "167459E0-8744-4AA5-9B4D-80C6F6EDA899",
+      "size": [
+        91,
+        65
+      ]
+    },
+    "D748AB07-E695-4189-9D1C-5D311936E20D": {
+      "coordinate": [
+        50,
+        5
+      ],
+      "uid": "D748AB07-E695-4189-9D1C-5D311936E20D",
+      "groupUId": "167459E0-8744-4AA5-9B4D-80C6F6EDA899"
+    },
+    "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE": {
+      "coordinate": [
+        14,
+        18
+      ],
+      "uid": "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE",
+      "groupUId": "167459E0-8744-4AA5-9B4D-80C6F6EDA899",
+      "size": [
+        72,
+        40
+      ]
+    },
+    "249FC96B-369E-4386-A521-E809AA574FD1": {
+      "coordinate": [
+        16,
+        20
+      ],
+      "uid": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "groupUId": "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE",
+      "size": [
+        68,
+        36
+      ]
+    },
+    "984232EB-AE6D-45F7-BBCC-0012C235D951": {
+      "coordinate": [
+        42,
+        33
+      ],
+      "uid": "984232EB-AE6D-45F7-BBCC-0012C235D951",
+      "groupUId": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "984232EB-AE6D-45F7-BBCC-0012C235D951"
+      ]
+    },
+    "662CD631-26B8-4740-AE66-58066DB861F7": {
+      "coordinate": [
+        27,
+        33
+      ],
+      "uid": "662CD631-26B8-4740-AE66-58066DB861F7",
+      "groupUId": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "662CD631-26B8-4740-AE66-58066DB861F7"
+      ]
+    },
+    "9B48AA03-4B5B-4219-8332-ECB36229A054": {
+      "coordinate": [
+        54,
+        22
+      ],
+      "uid": "9B48AA03-4B5B-4219-8332-ECB36229A054",
+      "groupUId": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "9B48AA03-4B5B-4219-8332-ECB36229A054"
+      ]
+    },
+    "E1C76384-9EC7-41D1-8A87-2A5252378C82": {
+      "coordinate": [
+        67,
+        33
+      ],
+      "uid": "E1C76384-9EC7-41D1-8A87-2A5252378C82",
+      "groupUId": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "E1C76384-9EC7-41D1-8A87-2A5252378C82"
+      ]
+    },
+    "47B6C5FE-EE83-4C0A-8F2E-EE8319FE0D8E": {
+      "coordinate": [
+        1,
+        24
+      ],
+      "uid": "47B6C5FE-EE83-4C0A-8F2E-EE8319FE0D8E",
+      "groupUId": "167459E0-8744-4AA5-9B4D-80C6F6EDA899"
+    },
+    "C0D40A3D-C45C-4C70-9560-D86082FE28FB": {
+      "coordinate": [
+        54,
+        44
+      ],
+      "uid": "C0D40A3D-C45C-4C70-9560-D86082FE28FB",
+      "groupUId": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "C0D40A3D-C45C-4C70-9560-D86082FE28FB"
+      ]
+    },
+    "size": [
+      240,
+      240
+    ]
+  },
+  "signature": "0e805117ed3023d6f535473cba792eb0"
+}

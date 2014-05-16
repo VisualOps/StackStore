@@ -1,0 +1,833 @@
+{
+  "agent": {
+    "enabled": true,
+    "module": {
+      "repo": "https://github.com/MadeiraCloud/salt.git",
+      "tag": "v2014-04-15"
+    }
+  },
+  "name": "wordpress2",
+  "region": "us-east-1",
+  "owner": "",
+  "platform": "ec2-vpc",
+  "version": "2014-02-17",
+  "usage": "",
+  "component": {
+    "83316624-D74F-4A43-8DD3-481C497621BE": {
+      "name": "RT-0",
+      "type": "AWS.VPC.RouteTable",
+      "uid": "83316624-D74F-4A43-8DD3-481C497621BE",
+      "resource": {
+        "PropagatingVgwSet": [
+          
+        ],
+        "RouteTableId": "",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "AssociationSet": [
+          {
+            "Main": "true",
+            "RouteTableAssociationId": "",
+            "SubnetId": ""
+          }
+        ],
+        "RouteSet": [
+          {
+            "Origin": "CreateRouteTable",
+            "DestinationCidrBlock": "10.0.0.0/16",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "local"
+          },
+          {
+            "DestinationCidrBlock": "0.0.0.0/0",
+            "Origin": "",
+            "InstanceId": "",
+            "NetworkInterfaceId": "",
+            "GatewayId": "@{995FF33D-8D24-45C0-AB8C-AFDB85EACDEB.resource.InternetGatewayId}"
+          }
+        ]
+      }
+    },
+    "0D990850-2ADF-468D-B502-984F8678D8FD": {
+      "name": "vpc",
+      "type": "AWS.VPC.VPC",
+      "uid": "0D990850-2ADF-468D-B502-984F8678D8FD",
+      "resource": {
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "EnableDnsHostnames": false,
+        "DhcpOptionsId": "",
+        "VpcId": "",
+        "CidrBlock": "10.0.0.0/16"
+      }
+    },
+    "9CAD652D-EFBD-468C-96F4-9C9F48DEA67D": {
+      "name": "DefaultACL",
+      "type": "AWS.VPC.NetworkAcl",
+      "uid": "9CAD652D-EFBD-468C-96F4-9C9F48DEA67D",
+      "resource": {
+        "AssociationSet": [
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId}"
+          },
+          {
+            "NetworkAclAssociationId": "",
+            "SubnetId": "@{2472F79B-C009-4047-8630-BBC09A217A40.resource.SubnetId}"
+          }
+        ],
+        "Default": true,
+        "EntrySet": [
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "deny",
+            "RuleNumber": 32767,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          }
+        ],
+        "NetworkAclId": "",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}"
+      }
+    },
+    "600636C8-26E8-46EB-8C83-6EB6F86F5D5C": {
+      "name": "sg-visualops",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "600636C8-26E8-46EB-8C83-6EB6F86F5D5C",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "sg-visualops",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "IpPermissions": [
+          
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "7864E2FF-53C0-4690-904B-1DED4ECC5312": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "7864E2FF-53C0-4690-904B-1DED4ECC5312",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          
+        ]
+      }
+    },
+    "DD6B62ED-0F1A-46A1-9219-BEAB69368E45": {
+      "type": "AWS.AutoScaling.LaunchConfiguration",
+      "uid": "DD6B62ED-0F1A-46A1-9219-BEAB69368E45",
+      "name": "web",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "key": "httpd",
+                "value": ""
+              },
+              {
+                "key": "php",
+                "value": ""
+              },
+              {
+                "key": "php-fpm",
+                "value": ""
+              },
+              {
+                "key": "php-mysql",
+                "value": ""
+              }
+            ]
+          },
+          "id": "state-6D078583-F240-48EA-A974-41E9433D8311",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "path": "/var/www/html/",
+            "source": "http://wordpress.org/latest.zip",
+            "if-path-absent": [
+              "/var/www/html/wordpress/"
+            ]
+          },
+          "id": "state-C6432A5C-55E3-4947-8879-BF75B741EFF2",
+          "module": "common.archive"
+        },
+        {
+          "parameter": {
+            "content": "<?php\n/**\n * The base configurations of the WordPress.\n *\n * This file has the following configurations: MySQL settings, Table Prefix,\n * Secret Keys, WordPress Language, and ABSPATH. You can find more information\n * by visiting {@link http://codex.wordpress.org/Editing_wp-config.php Editing\n * wp-config.php} Codex page. You can get the MySQL settings from your web host.\n *\n * This file is used by the wp-config.php creation script during the\n * installation. You don't have to use the web site, you can just copy this file\n * to \"wp-config.php\" and fill in the values.\n *\n * @package WordPress\n */\n\n// ** MySQL settings - You can get this info from your web host ** //\n/** The name of the database for WordPress */\ndefine('DB_NAME', 'mysite');\n\n/** MySQL database username */\ndefine('DB_USER', 'wp-user');\n\n/** MySQL database password */\ndefine('DB_PASSWORD', '123456');\n\n/** MySQL hostname */\ndefine('DB_HOST', '@{7EE6D426-7F98-4018-85C9-93C792BC75EC.PrivateIpAddress}');\n\n/** Database Charset to use in creating database tables. */\ndefine('DB_CHARSET', 'utf8');\n\n/** The Database Collate type. Don't change this if in doubt. */\ndefine('DB_COLLATE', '');\n\n/**#@+\n * Authentication Unique Keys and Salts.\n *\n * Change these to different unique phrases!\n * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}\n * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.\n *\n * @since 2.6.0\n */\ndefine('AUTH_KEY',         'put your unique phrase here');\ndefine('SECURE_AUTH_KEY',  'put your unique phrase here');\ndefine('LOGGED_IN_KEY',    'put your unique phrase here');\ndefine('NONCE_KEY',        'put your unique phrase here');\ndefine('AUTH_SALT',        'put your unique phrase here');\ndefine('SECURE_AUTH_SALT', 'put your unique phrase here');\ndefine('LOGGED_IN_SALT',   'put your unique phrase here');\ndefine('NONCE_SALT',       'put your unique phrase here');\n\n/**#@-*/\n\n/**\n * WordPress Database Table prefix.\n *\n * You can have multiple installations in one database if you give each a unique\n * prefix. Only numbers, letters, and underscores please!\n */\n$table_prefix  = 'wp_';\n\n/**\n * WordPress Localized Language, defaults to English.\n *\n * Change this to localize WordPress. A corresponding MO file for the chosen\n * language must be installed to wp-content/languages. For example, install\n * de_DE.mo to wp-content/languages and set WPLANG to 'de_DE' to enable German\n * language support.\n */\ndefine('WPLANG', '');\n\n/**\n * For developers: WordPress debugging mode.\n *\n * Change this to true to enable the display of notices during development.\n * It is strongly recommended that plugin and theme developers use WP_DEBUG\n * in their development environments.\n */\ndefine('WP_DEBUG', false);\n\n/* That's all, stop editing! Happy blogging. */\n\n/** Absolute path to the WordPress directory. */\nif ( !defined('ABSPATH') )\n        define('ABSPATH', dirname(__FILE__) . '/');\n\n/** Sets up WordPress vars and included files. */\nrequire_once(ABSPATH . 'wp-settings.php');\n",
+            "path": "/var/www/html/wordpress/wp-config.php"
+          },
+          "id": "state-FB467BE1-31C4-47D3-9AD3-13573C2B8BB4",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/httpd/conf/httpd.conf"
+            ],
+            "name": [
+              "httpd"
+            ]
+          },
+          "id": "state-2F4AF545-65A2-4DCF-ADA4-AE2525B408B4",
+          "module": "linux.service"
+        }
+      ],
+      "resource": {
+        "UserData": "",
+        "LaunchConfigurationARN": "",
+        "InstanceMonitoring": false,
+        "ImageId": "ami-fb8e9292",
+        "EbsOptimized": false,
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
+        "SecurityGroups": [
+          "@{7864E2FF-53C0-4690-904B-1DED4ECC5312.resource.GroupId}",
+          "@{600636C8-26E8-46EB-8C83-6EB6F86F5D5C.resource.GroupId}",
+          "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}"
+        ],
+        "LaunchConfigurationName": "web",
+        "InstanceType": "m1.small",
+        "AssociatePublicIpAddress": true
+      }
+    },
+    "70940F85-26F9-4EB2-98FC-668042FBF949": {
+      "name": "sg-web",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "70940F85-26F9-4EB2-98FC-668042FBF949",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "sg-web",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "@{261924F9-7A20-470B-9903-EFA4C511A1A4.resource.GroupId}",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "3306",
+            "ToPort": "3306",
+            "IpRanges": "@{6F4F675E-CADD-4C72-A611-780AD0C2833F.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "261924F9-7A20-470B-9903-EFA4C511A1A4": {
+      "name": "elbsg-elb-public",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "261924F9-7A20-470B-9903-EFA4C511A1A4",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "elbsg-elb-public",
+        "GroupDescription": "Automatically created SG for load-balancer",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          },
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "80",
+            "ToPort": "80",
+            "IpRanges": "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ]
+      }
+    },
+    "6F4F675E-CADD-4C72-A611-780AD0C2833F": {
+      "name": "sg-db",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "6F4F675E-CADD-4C72-A611-780AD0C2833F",
+      "resource": {
+        "Default": false,
+        "GroupId": "",
+        "GroupName": "sg-db",
+        "GroupDescription": "Custom Security Group",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "3306",
+            "ToPort": "3306",
+            "IpRanges": "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          
+        ]
+      }
+    },
+    "717E8F9C-DDD5-443B-9FA5-A32A8DFB7443": {
+      "name": "DefaultKP",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "717E8F9C-DDD5-443B-9FA5-A32A8DFB7443",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "DefaultKP"
+      }
+    },
+    "999C4AB3-4E50-41BD-9514-A15F5FC27823": {
+      "uid": "999C4AB3-4E50-41BD-9514-A15F5FC27823",
+      "name": "us-east-1b",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1b",
+        "RegionName": "us-east-1"
+      }
+    },
+    "52D2EDD8-017A-418A-9A03-F11849AA35E1": {
+      "name": "subnet-web-1b",
+      "type": "AWS.VPC.Subnet",
+      "uid": "52D2EDD8-017A-418A-9A03-F11849AA35E1",
+      "resource": {
+        "AvailabilityZone": "@{999C4AB3-4E50-41BD-9514-A15F5FC27823.resource.ZoneName}",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.1.0/24"
+      }
+    },
+    "B2C0FA3C-E890-4315-B044-1B2AFC81A130": {
+      "uid": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+      "name": "us-east-1a",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1a",
+        "RegionName": "us-east-1"
+      }
+    },
+    "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB": {
+      "name": "Internet-gateway",
+      "type": "AWS.VPC.InternetGateway",
+      "uid": "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB",
+      "resource": {
+        "InternetGatewayId": "",
+        "AttachmentSet": [
+          {
+            "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}"
+          }
+        ]
+      }
+    },
+    "D4A43D25-5364-48AD-9781-E5EE7C71AC9E": {
+      "name": "subnet-web-1a",
+      "type": "AWS.VPC.Subnet",
+      "uid": "D4A43D25-5364-48AD-9781-E5EE7C71AC9E",
+      "resource": {
+        "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
+      }
+    },
+    "42554355-7ABB-489E-A074-D04C2BB3E7A8": {
+      "uid": "42554355-7ABB-489E-A074-D04C2BB3E7A8",
+      "name": "asg-web",
+      "type": "AWS.AutoScaling.Group",
+      "resource": {
+        "AvailabilityZones": [
+          "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}",
+          "@{999C4AB3-4E50-41BD-9514-A15F5FC27823.resource.ZoneName}"
+        ],
+        "VPCZoneIdentifier": "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId} , @{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}",
+        "LoadBalancerNames": [
+          "@{18A77F9A-CF87-4274-AB5D-F4165D714830.resource.LoadBalancerName}"
+        ],
+        "AutoScalingGroupARN": "",
+        "DefaultCooldown": 300,
+        "MinSize": "1",
+        "MaxSize": "1",
+        "HealthCheckType": "EC2",
+        "HealthCheckGracePeriod": 300,
+        "TerminationPolicies": [
+          "Default"
+        ],
+        "AutoScalingGroupName": "asg-web",
+        "DesiredCapacity": "1",
+        "LaunchConfigurationName": "@{DD6B62ED-0F1A-46A1-9219-BEAB69368E45.resource.LaunchConfigurationName}"
+      }
+    },
+    "18A77F9A-CF87-4274-AB5D-F4165D714830": {
+      "type": "AWS.ELB",
+      "uid": "18A77F9A-CF87-4274-AB5D-F4165D714830",
+      "name": "elb-public",
+      "resource": {
+        "AvailabilityZones": [
+          
+        ],
+        "Subnets": [
+          "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId}",
+          "@{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}"
+        ],
+        "Instances": [
+          
+        ],
+        "CrossZoneLoadBalancing": true,
+        "ConnectionDraining": {
+          "Enabled": true,
+          "Timeout": 300
+        },
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "LoadBalancerName": "elb-public",
+        "SecurityGroups": [
+          "@{261924F9-7A20-470B-9903-EFA4C511A1A4.resource.GroupId}"
+        ],
+        "Scheme": "internet-facing",
+        "ListenerDescriptions": [
+          {
+            "PolicyNames": "",
+            "Listener": {
+              "LoadBalancerPort": "80",
+              "Protocol": "HTTP",
+              "InstanceProtocol": "HTTP",
+              "InstancePort": "80",
+              "SSLCertificateId": ""
+            }
+          }
+        ],
+        "HealthCheck": {
+          "Interval": "30",
+          "Target": "HTTP:80/wordpress/wp-admin/install.php",
+          "Timeout": "5",
+          "HealthyThreshold": 5,
+          "UnhealthyThreshold": "4"
+        },
+        "DNSName": "",
+        "Policies": {
+          "LBCookieStickinessPolicies": [
+            {
+              "PolicyName": "",
+              "CookieExpirationPeriod": ""
+            }
+          ],
+          "AppCookieStickinessPolicies": [
+            {
+              "PolicyName": "",
+              "CookieName": ""
+            }
+          ],
+          "OtherPolicies": [
+            
+          ]
+        },
+        "BackendServerDescriptions": [
+          {
+            "InstantPort": "",
+            "PoliciyNames": ""
+          }
+        ]
+      }
+    },
+    "2472F79B-C009-4047-8630-BBC09A217A40": {
+      "name": "subne-db-1a",
+      "type": "AWS.VPC.Subnet",
+      "uid": "2472F79B-C009-4047-8630-BBC09A217A40",
+      "resource": {
+        "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.2.0/24"
+      }
+    },
+    "7EE6D426-7F98-4018-85C9-93C792BC75EC": {
+      "type": "AWS.EC2.Instance",
+      "uid": "7EE6D426-7F98-4018-85C9-93C792BC75EC",
+      "name": "db",
+      "index": 0,
+      "number": 1,
+      "serverGroupUid": "7EE6D426-7F98-4018-85C9-93C792BC75EC",
+      "serverGroupName": "db",
+      "state": [
+        {
+          "parameter": {
+            "name": [
+              {
+                "value": "",
+                "key": "mysql55-server"
+              }
+            ]
+          },
+          "id": "state-7E100F25-D4E3-444D-AB4C-CAE65764F3B9",
+          "module": "linux.yum.package"
+        },
+        {
+          "parameter": {
+            "watch": [
+              "/etc/my.cnf"
+            ],
+            "name": [
+              "mysqld"
+            ]
+          },
+          "id": "state-2CD9E5FB-C999-4B97-920D-A5E889CA5E19",
+          "module": "linux.service"
+        },
+        {
+          "parameter": {
+            "content": "CREATE DATABASE mysite;\nGRANT ALL PRIVILEGES ON mysite.* TO \"wp-user\"@\"10.0.0.%\" IDENTIFIED BY \"123456\";\nGRANT ALL PRIVILEGES ON mysite.* TO \"wp-user\"@\"10.0.1.%\" IDENTIFIED BY \"123456\";\nFLUSH PRIVILEGES;",
+            "path": "/tmp/mysql.sh",
+            "mode": "644"
+          },
+          "id": "state-906A5AFF-42BD-47CA-A601-348D2962A1EA",
+          "module": "linux.file"
+        },
+        {
+          "parameter": {
+            "if-path-absent": [
+              "/tmp/done"
+            ],
+            "cmd": "mysql -uroot < /tmp/mysql.sh; touch /tmp/done"
+          },
+          "id": "state-05AA7A86-E6A5-4604-8E13-435C077D27D7",
+          "module": "linux.cmd"
+        }
+      ],
+      "resource": {
+        "UserData": {
+          "Base64Encoded": false,
+          "Data": ""
+        },
+        "BlockDeviceMapping": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "SnapshotId": "snap-b047276d",
+              "VolumeSize": 8,
+              "VolumeType": "standard"
+            }
+          }
+        ],
+        "Placement": {
+          "Tenancy": "",
+          "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}"
+        },
+        "InstanceId": "",
+        "ImageId": "ami-fb8e9292",
+        "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
+        "EbsOptimized": false,
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "SubnetId": "@{2472F79B-C009-4047-8630-BBC09A217A40.resource.SubnetId}",
+        "Monitoring": "disabled",
+        "NetworkInterface": [
+          
+        ],
+        "InstanceType": "t1.micro",
+        "DisableApiTermination": false,
+        "ShutdownBehavior": "terminate",
+        "SecurityGroup": [
+          
+        ],
+        "SecurityGroupId": [
+          
+        ]
+      }
+    },
+    "8D3014C7-FE30-4A5D-940A-2E9E192EE4E3": {
+      "index": 0,
+      "uid": "8D3014C7-FE30-4A5D-940A-2E9E192EE4E3",
+      "type": "AWS.VPC.NetworkInterface",
+      "name": "db-eni0",
+      "serverGroupUid": "8D3014C7-FE30-4A5D-940A-2E9E192EE4E3",
+      "serverGroupName": "eni0",
+      "number": 1,
+      "resource": {
+        "SourceDestCheck": true,
+        "Description": "",
+        "NetworkInterfaceId": "",
+        "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}",
+        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+        "SubnetId": "@{2472F79B-C009-4047-8630-BBC09A217A40.resource.SubnetId}",
+        "AssociatePublicIpAddress": true,
+        "PrivateIpAddressSet": [
+          {
+            "PrivateIpAddress": "10.0.2.4",
+            "AutoAssign": false,
+            "Primary": true
+          }
+        ],
+        "GroupSet": [
+          {
+            "GroupName": "@{7864E2FF-53C0-4690-904B-1DED4ECC5312.resource.GroupName}",
+            "GroupId": "@{7864E2FF-53C0-4690-904B-1DED4ECC5312.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{6F4F675E-CADD-4C72-A611-780AD0C2833F.resource.GroupName}",
+            "GroupId": "@{6F4F675E-CADD-4C72-A611-780AD0C2833F.resource.GroupId}"
+          },
+          {
+            "GroupName": "@{600636C8-26E8-46EB-8C83-6EB6F86F5D5C.resource.GroupName}",
+            "GroupId": "@{600636C8-26E8-46EB-8C83-6EB6F86F5D5C.resource.GroupId}"
+          }
+        ],
+        "Attachment": {
+          "InstanceId": "@{7EE6D426-7F98-4018-85C9-93C792BC75EC.resource.InstanceId}",
+          "DeviceIndex": "0",
+          "AttachmentId": ""
+        }
+      }
+    }
+  },
+  "layout": {
+    "83316624-D74F-4A43-8DD3-481C497621BE": {
+      "coordinate": [
+        115,
+        5
+      ],
+      "uid": "83316624-D74F-4A43-8DD3-481C497621BE",
+      "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD"
+    },
+    "0D990850-2ADF-468D-B502-984F8678D8FD": {
+      "coordinate": [
+        5,
+        3
+      ],
+      "uid": "0D990850-2ADF-468D-B502-984F8678D8FD",
+      "size": [
+        121,
+        77
+      ]
+    },
+    "DD6B62ED-0F1A-46A1-9219-BEAB69368E45": {
+      "coordinate": [
+        33,
+        24
+      ],
+      "uid": "DD6B62ED-0F1A-46A1-9219-BEAB69368E45",
+      "groupUId": "42554355-7ABB-489E-A074-D04C2BB3E7A8",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs"
+    },
+    "999C4AB3-4E50-41BD-9514-A15F5FC27823": {
+      "coordinate": [
+        27,
+        44
+      ],
+      "uid": "999C4AB3-4E50-41BD-9514-A15F5FC27823",
+      "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD",
+      "size": [
+        21,
+        21
+      ]
+    },
+    "52D2EDD8-017A-418A-9A03-F11849AA35E1": {
+      "coordinate": [
+        29,
+        46
+      ],
+      "uid": "52D2EDD8-017A-418A-9A03-F11849AA35E1",
+      "groupUId": "999C4AB3-4E50-41BD-9514-A15F5FC27823",
+      "size": [
+        17,
+        17
+      ]
+    },
+    "B2C0FA3C-E890-4315-B044-1B2AFC81A130": {
+      "coordinate": [
+        27,
+        17
+      ],
+      "uid": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+      "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD",
+      "size": [
+        53,
+        21
+      ]
+    },
+    "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB": {
+      "coordinate": [
+        1,
+        5
+      ],
+      "uid": "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB",
+      "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD"
+    },
+    "D4A43D25-5364-48AD-9781-E5EE7C71AC9E": {
+      "coordinate": [
+        29,
+        19
+      ],
+      "uid": "D4A43D25-5364-48AD-9781-E5EE7C71AC9E",
+      "groupUId": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+      "size": [
+        17,
+        17
+      ]
+    },
+    "42554355-7ABB-489E-A074-D04C2BB3E7A8": {
+      "coordinate": [
+        31,
+        21
+      ],
+      "uid": "42554355-7ABB-489E-A074-D04C2BB3E7A8",
+      "groupUId": "D4A43D25-5364-48AD-9781-E5EE7C71AC9E",
+      "size": [
+        13,
+        13
+      ]
+    },
+    "18A77F9A-CF87-4274-AB5D-F4165D714830": {
+      "coordinate": [
+        12,
+        38
+      ],
+      "uid": "18A77F9A-CF87-4274-AB5D-F4165D714830",
+      "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD"
+    },
+    "2472F79B-C009-4047-8630-BBC09A217A40": {
+      "coordinate": [
+        53,
+        19
+      ],
+      "uid": "2472F79B-C009-4047-8630-BBC09A217A40",
+      "groupUId": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+      "size": [
+        17,
+        17
+      ]
+    },
+    "7EE6D426-7F98-4018-85C9-93C792BC75EC": {
+      "coordinate": [
+        59,
+        24
+      ],
+      "uid": "7EE6D426-7F98-4018-85C9-93C792BC75EC",
+      "groupUId": "2472F79B-C009-4047-8630-BBC09A217A40",
+      "osType": "amazon",
+      "architecture": "x86_64",
+      "rootDeviceType": "ebs",
+      "instanceList": [
+        "7EE6D426-7F98-4018-85C9-93C792BC75EC"
+      ]
+    },
+    "23EF0014-D356-4708-BD25-9CC2B5DC5D15": {
+      "coordinate": [
+        31,
+        48
+      ],
+      "uid": "23EF0014-D356-4708-BD25-9CC2B5DC5D15",
+      "groupUId": "52D2EDD8-017A-418A-9A03-F11849AA35E1",
+      "type": "ExpandedAsg",
+      "originalId": "42554355-7ABB-489E-A074-D04C2BB3E7A8"
+    },
+    "size": [
+      240,
+      240
+    ]
+  },
+  "signature": "d631a092684cefcda8635669f8f4ce71"
+}
