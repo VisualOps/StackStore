@@ -2,13 +2,13 @@
     {
         "id": "redis-cluster",
         "name": "Redis Cluster",
-        "author": "MadeiraCloud",
+        "author": "VisualOps",
         "icon": "http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png"
     },
     {
         "id": "apache-hadoop",
         "name": "Apache Hadoop",
-        "author": "MadeiraCloud",
+        "author": "VisualOps",
         "icon": "http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png"
     }
 ]
