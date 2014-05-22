@@ -1,6 +1,7 @@
 [
     {
         "id": "redis-cluster",
-        "name": "Redis Cluster"
+        "name": "Redis Cluster",
+        "icon": "http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png"
     }
 ]
