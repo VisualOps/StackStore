@@ -1,62 +1,6 @@
 [
     {
-        "id": "apache-hadoop",
-        "name": "Apache Hadoop",
-        "description": "This stack is a template for an Apache Hadoop v1 with Secondary NameNode setup.",
-        "introduce": "![](https://camo.githubusercontent.com/db2893148936862981d613dbe86ac6da35183e0c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303030783839342f37363266326537666165346539353565303562376637633962323032363235612f6861646f6f702e706e67)"
-    },
-    {
-        "id": "cassandra",
-        "name": "Apache Cassandra",
-        "description": "This stack is a a 4-node Cassandra cluster setup, with 2 seed nodes. Since Cassandra has a symmetric architecture, the nodes in this stack share the similar states, except that a daemon in the first seed node will be started before others.",
-        "introduce": "![](https://camo.githubusercontent.com/f4a4f42a029940bde2fb62c4fb8e2d67d4299b03/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f393130783835342f32343936336535303063376431313064623630333866326138636533326434382f63617373616e6472612e706e67)"
-    },
-    {
-        "id": "ghost-blog",
-        "name": "Ghost",
-        "description": "This stack is a template for deploying a blogging web application, using Ghost platform.",
-        "introduce": "![](https://camo.githubusercontent.com/d1bcdd2362369350362395b8b5ef8a9367105533/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f363730783531342f35363865333963653265376530643630356336653863623039353530653536382f67686f73742e706e67)"
-    },
-    {
-        "id": "mongo-cluster",
-        "name": "MongoDB Cluster",
-        "description": "This stack is a template for an MongoDB cluster setup. The stack includes a production-level 3-nodes setup of Mongo Config Server, a 3-nodes replication set, and a single mongos node that initializes the sharding setup upon launching. You can add more replication sets to the cluster, or remove the mongos node and initialize the sharding on your client side.",
-        "introduce": "![](https://camo.githubusercontent.com/3384e43f44d2b22e9bfcf649270d45e59c6b6d8f/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f373530783837342f37393632663164636466393736613735313031363739636364653230356134392f6d6f6e676f2d636c75737465722e706e67)"
-    },
-    {
-        "id": "nginx-upstream",
-        "name": "Nginx",
-        "description": "This stack is a template for deploying a web application, using Nginx as web server and load-balancer.",
-        "introduce": "![](https://camo.githubusercontent.com/626a7bd2b53747a9c9dd1a5ceb7040b82091de72/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f393330783831342f33646563353932323932306462346666316435653937336661653833326461312f6e67696e782e706e67)"
-    },
-    {
-        "id": "rabbmitmq-ha",
-        "name": "RabbitMQ HA",
-        "description": "This stack is a sample setup of RabbitMQ, using HAProxy for HA. It also contains a message producer and consumer, for demostration.",
-        "introduce": "![](https://camo.githubusercontent.com/5bf28dc1dea2d2a4da73fc7e02abf2e7fdc07c5c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303130783736342f31613833306465626533396264643737313338656238396134616435366462362f7261626269746d712d68612e706e67)"
-    },
-    {
         "id": "redis-cluster",
-        "name": "Redis Cluster",
-        "description": "This stack is a 6 nodes Redis Cluster setup. The six nodes are split into 3 masters/slaves groups, on which each group contains exactly one master and one slave. The data sharding is done among the three master nodes. All nodes share the same states, except \"host-0\", which contains the cluster creation and initialization instructions. ",
-        "introduce": "![](https://camo.githubusercontent.com/fad89a620056184f395e48886d7e4169b92a2beb/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303330783736342f37366536323839303661333633626465623231663236663664303061623966372f72656469732d636c75737465722e706e67)"
-    },
-    {
-        "id": "spark-standalone-with-zookeeper",
-        "name": "Spark",
-        "description": "This stack is a template for deploying a Spark solution with ZooKeeper.",
-        "introduce": "![](https://camo.githubusercontent.com/283a2be982207624de01d8790d8921880045500e/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31323130783934342f36613136643736666463356362656338666534666461353661373234303066382f737061726b2e706e67)"
-    },
-    {
-        "id": "vpc-with-public-subnet-only",
-        "name": "VPC with public subnet",
-        "description": "This stack is a template of a very simple VPC solution, with no specific instance state. Use it to learn how to configure your first VPC. ",
-        "introduce": "![](https://camo.githubusercontent.com/b159924ce360a45da457a4623532de1eeb324c7c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f393830783639342f65343735386265613462386464303563393236613462386636323964393638362f7670632e706e67)"
-    },
-    {
-        "id": "wordpress",
-        "name": "WordPress",
-        "description": "This stack is a template using the latest WordPress release. It uses ELB+AutoScaling for HA and load balancing.",
-        "introduce": "![](https://camo.githubusercontent.com/d60aa5529438c0dbce5be3d57bb17104a083388b/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31333130783838342f34623438363534656161303230643161373730346164306661323730373837352f776f726470726573732e706e67)"
+        "name": "Redis Cluster"
     }
 ]
