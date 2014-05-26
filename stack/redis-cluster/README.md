@@ -1,3 +1,8 @@
-![](https://camo.githubusercontent.com/fad89a620056184f395e48886d7e4169b92a2beb/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303330783736342f37366536323839303661333633626465623231663236663664303061623966372f72656469732d636c75737465722e706e67)
+## Redis
+Redis is an open-source, networked, in-memory, key-value data store with optional durability.
 
-This stack is a 6 nodes Redis Cluster setup. The six nodes are split into 3 masters/slaves groups, on which each group contains exactly one master and one slave. The data sharding is done among the three master nodes. All nodes share the same states, except "host-0", which contains the cluster creation and initialization instructions.
+## Stack
+This stack is a 6 nodes [Redis Cluster]( http://redis.io/topics/cluster-tutorial/) setup. The six nodes are split into 3 masters/slaves groups, on which each group contains exactly one master and one slave. 
+The data sharding is done among the three master nodes. All nodes share the same states, except "host-0", which contains the cluster creation and initialization instructions.
+
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1030x764/76e628906a363bdeb21f26f6d00ab9f7/redis-cluster.png)
