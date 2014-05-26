@@ -1,3 +1,7 @@
-![](https://camo.githubusercontent.com/db2893148936862981d613dbe86ac6da35183e0c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303030783839342f37363266326537666165346539353565303562376637633962323032363235612f6861646f6f702e706e67)
+## WordPress
+WordPress is a free and open source blogging tool and a content management system (CMS) based on PHP and MySQL, which runs on a web hosting service. Features include a plugin architecture and a template system.
 
-This stack is a template for an Apache Hadoop v1 with Secondary NameNode setup.
+## Stack
+This stack is a template using the latest WordPress release. It uses ELB+AutoScaling for HA and load balancing.
+
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1310x884/4b48654eaa020d1a7704ad0fa2707875/wordpress.png)

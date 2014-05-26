@@ -1,3 +1,7 @@
-![](https://camo.githubusercontent.com/db2893148936862981d613dbe86ac6da35183e0c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303030783839342f37363266326537666165346539353565303562376637633962323032363235612f6861646f6f702e706e67)
+## MongoDB
+MongoDB is a cross-platform document-oriented database. Classified as a NoSQL database, MongoDB eschews the traditional table-based relational database structure in favor of JSON-like documents with dynamic schemas (MongoDB calls the format BSON), making the integration of data in certain types of applications easier and faster. Released under a combination of the GNU Affero General Public License and the Apache License, MongoDB is free and open-source software.
 
-This stack is a template for an Apache Hadoop v1 with Secondary NameNode setup.
+## Stack
+This stack is a template for an [MongoDB](http://www.mongodb.org/) cluster setup. The stack includes a production-level 3-nodes setup of Mongo Config Server, a 3-nodes replication set, and a single mongos node that initializes the sharding setup upon launching. You can add more replication sets to the cluster, or remove the mongos node and initialize the sharding on your client side.
+
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/750x874/7962f1dcdf976a75101679ccde205a49/mongo-cluster.png)

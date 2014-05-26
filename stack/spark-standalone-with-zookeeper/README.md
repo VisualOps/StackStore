@@ -1,3 +1,7 @@
-![](https://camo.githubusercontent.com/db2893148936862981d613dbe86ac6da35183e0c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303030783839342f37363266326537666165346539353565303562376637633962323032363235612f6861646f6f702e706e67)
+## Spark
+Apache Spark is an open-source data analytics cluster computing framework originally developed in the AMPLab at UC Berkeley. Spark fits into the Hadoop open-source community, building on top of the Hadoop Distributed File System (HDFS). However, Spark is not tied to the two-stage MapReduce paradigm, and promises performance up to 100 times faster than Hadoop MapReduce, for certain applications. Spark provides primitives for in-memory cluster computing that allows user programs to load data into a cluster's memory and query it repeatedly, making it well suited to machine learning algorithms.
 
-This stack is a template for an Apache Hadoop v1 with Secondary NameNode setup.
+## Stack
+This stack is a template for deploying a [Spark](http://spark.apache.org/) solution with [ZooKeeper](http://zookeeper.apache.org/).
+
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1210x944/6a16d76fdc5cbec8fe4fda56a72400f8/spark.png "Spark with Zookeeper"))

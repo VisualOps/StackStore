@@ -1,3 +1,6 @@
-![](https://camo.githubusercontent.com/db2893148936862981d613dbe86ac6da35183e0c/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3533363961646439313861313565383434313034643065662f3533366234643965346139643639623231623563326163312f31303030783839342f37363266326537666165346539353565303562376637633962323032363235612f6861646f6f702e706e67)
+## Hadoop
+The Apache Hadoop software library is a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models. It is designed to scale up from single servers to thousands of machines, each offering local computation and storage. Rather than rely on hardware to deliver high-availability, the library itself is designed to detect and handle failures at the application layer, so delivering a highly-available service on top of a cluster of computers, each of which may be prone to failures.
 
-This stack is a template for an Apache Hadoop v1 with Secondary NameNode setup.
+## Stack
+This stack is a template for an [Apache Hadoop](http://hadoop.apache.org/) v1 with Secondary NameNode setup.
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1000x894/762f2e7fae4e955e05b7f7c9b202625a/hadoop.png "Hadoop v1 with Secondary NameNode")
