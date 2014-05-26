@@ -4,4 +4,4 @@ Apache Spark is an open-source data analytics cluster computing framework origin
 ## Stack
 This stack is a template for deploying a [Spark](http://spark.apache.org/) solution with [ZooKeeper](http://zookeeper.apache.org/).
 
-![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1210x944/6a16d76fdc5cbec8fe4fda56a72400f8/spark.png "Spark with Zookeeper"))
+![](https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/536b4d9e4a9d69b21b5c2ac1/1210x944/6a16d76fdc5cbec8fe4fda56a72400f8/spark.png "Spark with Zookeeper")
