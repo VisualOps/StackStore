@@ -442,8 +442,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "6F436202-9EEC-44EB-9530-FCD4BA5B1541": {
@@ -485,7 +484,7 @@
     "65883662-3441-4F34-AB16-875AD2E2B79E": {
       "uid": "65883662-3441-4F34-AB16-875AD2E2B79E",
       "type": "AWS.EC2.EIP",
-      "name": "EIP",
+      "name": "ghost-eni0-eip0",
       "index": 0,
       "resource": {
         "Domain": "vpc",
@@ -503,34 +502,6 @@
       "resource": {
         "KeyFingerprint": "",
         "KeyName": "DefaultKP"
-      }
-    },
-    "D10A3771-DF5B-4146-97B4-73243B510C60": {
-      "name": "DefaultSG",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "D10A3771-DF5B-4146-97B4-73243B510C60",
-      "resource": {
-        "Default": true,
-        "GroupId": "",
-        "GroupName": "DefaultSG",
-        "GroupDescription": "Default Security Group",
-        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "22",
-            "ToPort": "22",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "0",
-            "ToPort": "65535",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "-1"
-          }
-        ]
       }
     },
     "C8E05581-6007-4B46-B6B3-4A624AE7CE1F": {
@@ -559,6 +530,34 @@
           {
             "FromPort": "443",
             "ToPort": "443",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
+      }
+    },
+    "D10A3771-DF5B-4146-97B4-73243B510C60": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "D10A3771-DF5B-4146-97B4-73243B510C60",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
             "IpRanges": "0.0.0.0/0",
             "IpProtocol": "tcp"
           }
@@ -658,5 +657,5 @@
       240
     ]
   },
-  "signature": "ea8c9417e49868d75f838205f469d2ad"
+  "signature": "22c63304b398a35ba5e77f498e3d9e0f"
 }
