@@ -1,4 +1,7 @@
 {
+  "name": "sample-vpc-with-public-subnet-only",
+  "region": "us-east-1",
+  "owner": "c29uZw==",
   "agent": {
     "enabled": true,
     "module": {
@@ -6,9 +9,6 @@
       "tag": "v2014-04-15"
     }
   },
-  "name": "sample-vpc-with-public-subnet-only",
-  "region": "us-east-1",
-  "owner": "c29uZw==",
   "platform": "ec2-vpc",
   "tag": "",
   "version": "2014-02-17",
@@ -64,6 +64,36 @@
         ],
         "Default": true,
         "EntrySet": [
+          {
+            "Egress": true,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
+          {
+            "Egress": false,
+            "Protocol": -1,
+            "RuleAction": "allow",
+            "RuleNumber": 100,
+            "CidrBlock": "0.0.0.0/0",
+            "IcmpTypeCode": {
+              "Code": "",
+              "Type": ""
+            },
+            "PortRange": {
+              "From": "",
+              "To": ""
+            }
+          },
           {
             "Egress": true,
             "Protocol": -1,
@@ -165,6 +195,17 @@
         "CidrBlock": "10.0.1.0/24"
       }
     },
+    "25DDE456-2F4E-489D-AB81-ECAADB3E3963": {
+      "name": "public-subnet-1a",
+      "type": "AWS.VPC.Subnet",
+      "uid": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
+      "resource": {
+        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
+        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
+      }
+    },
     "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39": {
       "type": "AWS.EC2.Instance",
       "uid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
@@ -173,7 +214,7 @@
       "number": 3,
       "serverGroupUid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
       "serverGroupName": "dbserver",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -205,8 +246,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "4E9B2CE9-84D6-40A1-A9DF-00FA3DA2134F": {
@@ -217,7 +257,7 @@
       "number": 3,
       "serverGroupUid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
       "serverGroupName": "dbserver",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -239,7 +279,6 @@
         },
         "InstanceId": "",
         "ImageId": "ami-3275ee5b",
-        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
@@ -250,7 +289,7 @@
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
         "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}"
       }
     },
     "1D19F56E-2807-4328-88C6-FD8D24085209": {
@@ -261,7 +300,7 @@
       "number": 3,
       "serverGroupUid": "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
       "serverGroupName": "dbserver",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -283,7 +322,6 @@
         },
         "InstanceId": "",
         "ImageId": "ami-3275ee5b",
-        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
@@ -294,7 +332,7 @@
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
         "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}"
       }
     },
     "4FA841DD-6368-407A-86A2-D67936B7E617": {
@@ -423,7 +461,7 @@
       "uid": "E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02",
       "resource": {
         "KeyFingerprint": "",
-        "KeyName": "DefaultKP"
+        "KeyName": ""
       }
     },
     "8A9E31CF-2CFF-4408-BCA8-CC7D5DCAAC46": {
@@ -434,7 +472,7 @@
         "Default": true,
         "GroupId": "",
         "GroupName": "DefaultSG",
-        "GroupDescription": "Stack Default Security Group",
+        "GroupDescription": "default VPC security group",
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "IpPermissions": [
           {
@@ -551,17 +589,6 @@
         ]
       }
     },
-    "25DDE456-2F4E-489D-AB81-ECAADB3E3963": {
-      "name": "public-subnet-1a",
-      "type": "AWS.VPC.Subnet",
-      "uid": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
-      "resource": {
-        "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}",
-        "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
     "44B38845-0A41-4D88-8BAB-134B2C18B478": {
       "type": "AWS.EC2.Instance",
       "uid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
@@ -570,7 +597,7 @@
       "number": 3,
       "serverGroupUid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
       "serverGroupName": "webserver",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -602,8 +629,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "BC6E9285-3A5E-4A4E-8400-D8FA605F059C": {
@@ -614,7 +640,7 @@
       "number": 3,
       "serverGroupUid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
       "serverGroupName": "webserver",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -636,7 +662,6 @@
         },
         "InstanceId": "",
         "ImageId": "ami-3275ee5b",
-        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
@@ -647,7 +672,7 @@
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
         "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}"
       }
     },
     "FF01716B-D85D-4AB2-89AF-F70C826A940B": {
@@ -658,7 +683,7 @@
       "number": 3,
       "serverGroupUid": "44B38845-0A41-4D88-8BAB-134B2C18B478",
       "serverGroupName": "webserver",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -680,7 +705,6 @@
         },
         "InstanceId": "",
         "ImageId": "ami-3275ee5b",
-        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
@@ -691,7 +715,7 @@
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
         "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}"
       }
     },
     "B64CC36F-75D7-44A6-9338-5925CE9A71E1": {
@@ -737,7 +761,7 @@
     "FC5F3CF6-26EB-4AB7-886A-B82D78EE7B90": {
       "uid": "FC5F3CF6-26EB-4AB7-886A-B82D78EE7B90",
       "type": "AWS.EC2.EIP",
-      "name": "EIP",
+      "name": "webserver-0-eni0-eip0",
       "index": 0,
       "resource": {
         "Domain": "vpc",
@@ -791,7 +815,7 @@
     "22C45E93-40F9-4193-8926-BEDCE15857CE": {
       "uid": "22C45E93-40F9-4193-8926-BEDCE15857CE",
       "type": "AWS.EC2.EIP",
-      "name": "EIP",
+      "name": "webserver-1-eni0-eip0",
       "index": 1,
       "resource": {
         "Domain": "vpc",
@@ -845,7 +869,7 @@
     "D825E66B-E07E-4F42-81A3-36B149E5A010": {
       "uid": "D825E66B-E07E-4F42-81A3-36B149E5A010",
       "type": "AWS.EC2.EIP",
-      "name": "EIP",
+      "name": "webserver-2-eni0-eip0",
       "index": 2,
       "resource": {
         "Domain": "vpc",
@@ -877,7 +901,7 @@
       "number": 1,
       "serverGroupUid": "5853C1EE-7B6D-4218-BA6D-B738D781E1BA",
       "serverGroupName": "NAT",
-      "state": "",
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -909,8 +933,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "7B43202E-ED24-4A5C-9C60-CCA79AE41EAC": {
@@ -956,7 +979,7 @@
     "4C86DD63-BFD2-4937-8D40-53E6F09C4CFC": {
       "uid": "4C86DD63-BFD2-4937-8D40-53E6F09C4CFC",
       "type": "AWS.EC2.EIP",
-      "name": "EIP",
+      "name": "NAT-eni0-eip0",
       "index": 0,
       "resource": {
         "Domain": "vpc",
@@ -1072,6 +1095,18 @@
         17
       ]
     },
+    "25DDE456-2F4E-489D-AB81-ECAADB3E3963": {
+      "coordinate": [
+        14,
+        15
+      ],
+      "uid": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
+      "groupUId": "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75",
+      "size": [
+        64,
+        17
+      ]
+    },
     "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39": {
       "coordinate": [
         41,
@@ -1086,18 +1121,6 @@
         "FDC78C6C-C722-4ABE-B7E9-5D16494B4C39",
         "4E9B2CE9-84D6-40A1-A9DF-00FA3DA2134F",
         "1D19F56E-2807-4328-88C6-FD8D24085209"
-      ]
-    },
-    "25DDE456-2F4E-489D-AB81-ECAADB3E3963": {
-      "coordinate": [
-        14,
-        15
-      ],
-      "uid": "25DDE456-2F4E-489D-AB81-ECAADB3E3963",
-      "groupUId": "C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75",
-      "size": [
-        64,
-        17
       ]
     },
     "44B38845-0A41-4D88-8BAB-134B2C18B478": {
@@ -1143,5 +1166,5 @@
       240
     ]
   },
-  "signature": "36532e909a8209e94d1e6b9c60065891"
+  "signature": "a32edc928c6c060d00f3d78690c31acc"
 }

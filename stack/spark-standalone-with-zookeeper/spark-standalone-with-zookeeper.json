@@ -6,7 +6,7 @@
       "tag": "v2014-04-15"
     }
   },
-  "name": "sapmle-spark-standalone-with-zookeeper-1",
+  "name": "sapmle-spark-standalone-with-zookeeper",
   "region": "us-east-1",
   "platform": "ec2-vpc",
   "version": "2014-02-17",
@@ -2040,5 +2040,5 @@
       240
     ]
   },
-  "signature": "d329531b3146548998c03654fc19af22"
+  "signature": "9f1d872a3df26d2a8713563c743f593c"
 }
