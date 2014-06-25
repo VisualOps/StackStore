@@ -6,7 +6,7 @@
       "tag": "v2014-04-15"
     }
   },
-  "name": "RabbitMQ-HA-1",
+  "name": "RabbitMQ-HA",
   "region": "us-east-1",
   "platform": "ec2-vpc",
   "version": "2014-02-17",
@@ -107,9 +107,7 @@
       "type": "AWS.VPC.RouteTable",
       "uid": "D748AB07-E695-4189-9D1C-5D311936E20D",
       "resource": {
-        "PropagatingVgwSet": [
-          
-        ],
+        "PropagatingVgwSet": [],
         "RouteTableId": "",
         "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
         "AssociationSet": [
@@ -135,6 +133,26 @@
             "GatewayId": "@{47B6C5FE-EE83-4C0A-8F2E-EE8319FE0D8E.resource.InternetGatewayId}"
           }
         ]
+      }
+    },
+    "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE": {
+      "uid": "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE",
+      "name": "us-east-1a",
+      "type": "AWS.EC2.AvailabilityZone",
+      "resource": {
+        "ZoneName": "us-east-1a",
+        "RegionName": "us-east-1"
+      }
+    },
+    "249FC96B-369E-4386-A521-E809AA574FD1": {
+      "name": "subnet0",
+      "type": "AWS.VPC.Subnet",
+      "uid": "249FC96B-369E-4386-A521-E809AA574FD1",
+      "resource": {
+        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.0.0/24"
       }
     },
     "86449A47-06DD-42CC-B9A4-328A5C58DB1F": {
@@ -303,26 +321,6 @@
         ]
       }
     },
-    "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE": {
-      "uid": "9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE",
-      "name": "us-east-1a",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1a",
-        "RegionName": "us-east-1"
-      }
-    },
-    "249FC96B-369E-4386-A521-E809AA574FD1": {
-      "name": "subnet0",
-      "type": "AWS.VPC.Subnet",
-      "uid": "249FC96B-369E-4386-A521-E809AA574FD1",
-      "resource": {
-        "AvailabilityZone": "@{9DCDB7F6-5450-4FC3-A5AC-6CD3FC079CCE.resource.ZoneName}",
-        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
     "984232EB-AE6D-45F7-BBCC-0012C235D951": {
       "type": "AWS.EC2.Instance",
       "uid": "984232EB-AE6D-45F7-BBCC-0012C235D951",
@@ -409,18 +407,12 @@
         "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
         "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ]
+        "SecurityGroup": [],
+        "SecurityGroupId": []
       }
     },
     "70EA284C-77C0-49DD-8C80-B355CA059E6E": {
@@ -470,6 +462,34 @@
       "resource": {
         "KeyFingerprint": "",
         "KeyName": "DefaultKP"
+      }
+    },
+    "23603236-5111-4C61-9A42-48ADA7A01C2A": {
+      "name": "DefaultSG",
+      "type": "AWS.EC2.SecurityGroup",
+      "uid": "23603236-5111-4C61-9A42-48ADA7A01C2A",
+      "resource": {
+        "Default": true,
+        "GroupId": "",
+        "GroupName": "DefaultSG",
+        "GroupDescription": "Default Security Group",
+        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
+        "IpPermissions": [
+          {
+            "FromPort": "22",
+            "ToPort": "22",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "tcp"
+          }
+        ],
+        "IpPermissionsEgress": [
+          {
+            "FromPort": "0",
+            "ToPort": "65535",
+            "IpRanges": "0.0.0.0/0",
+            "IpProtocol": "-1"
+          }
+        ]
       }
     },
     "662CD631-26B8-4740-AE66-58066DB861F7": {
@@ -545,18 +565,12 @@
         "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
         "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ]
+        "SecurityGroup": [],
+        "SecurityGroupId": []
       }
     },
     "F905DF7E-5992-4435-A62F-CE4C8E087E8B": {
@@ -597,34 +611,6 @@
           "DeviceIndex": "0",
           "AttachmentId": ""
         }
-      }
-    },
-    "23603236-5111-4C61-9A42-48ADA7A01C2A": {
-      "name": "DefaultSG",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "23603236-5111-4C61-9A42-48ADA7A01C2A",
-      "resource": {
-        "Default": true,
-        "GroupId": "",
-        "GroupName": "DefaultSG",
-        "GroupDescription": "Default Security Group",
-        "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "22",
-            "ToPort": "22",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "0",
-            "ToPort": "65535",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "-1"
-          }
-        ]
       }
     },
     "9B48AA03-4B5B-4219-8332-ECB36229A054": {
@@ -793,18 +779,12 @@
         "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
         "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ]
+        "SecurityGroup": [],
+        "SecurityGroupId": []
       }
     },
     "AC622570-F41E-4C9C-A29A-63386B7B3BA4": {
@@ -933,18 +913,12 @@
         "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
         "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ]
+        "SecurityGroup": [],
+        "SecurityGroupId": []
       }
     },
     "86A38498-CF41-4B58-888A-4B54E664FD31": {
@@ -1197,18 +1171,12 @@
         "VpcId": "@{167459E0-8744-4AA5-9B4D-80C6F6EDA899.resource.VpcId}",
         "SubnetId": "@{249FC96B-369E-4386-A521-E809AA574FD1.resource.SubnetId}",
         "Monitoring": "disabled",
-        "NetworkInterface": [
-          
-        ],
+        "NetworkInterface": [],
         "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
-        "SecurityGroup": [
-          
-        ],
-        "SecurityGroupId": [
-          
-        ]
+        "SecurityGroup": [],
+        "SecurityGroupId": []
       }
     },
     "4EAF2308-A42B-48BA-816F-47F4DDAFAE88": {
@@ -1379,5 +1347,5 @@
       240
     ]
   },
-  "signature": "0e805117ed3023d6f535473cba792eb0"
+  "signature": "b4462ede27b68763540894a80a9ea4b6"
 }

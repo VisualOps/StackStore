@@ -201,15 +201,6 @@
         "CidrBlock": "10.0.0.0/24"
       }
     },
-    "6CDF5614-604F-48AE-82CA-D18990344094": {
-      "name": "DefaultKP",
-      "type": "AWS.EC2.KeyPair",
-      "uid": "6CDF5614-604F-48AE-82CA-D18990344094",
-      "resource": {
-        "KeyFingerprint": "",
-        "KeyName": "DefaultKP"
-      }
-    },
     "8368C84A-0BFB-48F9-BC05-1039A263D6B3": {
       "uid": "8368C84A-0BFB-48F9-BC05-1039A263D6B3",
       "name": "us-east-1b",
@@ -228,6 +219,26 @@
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
         "SubnetId": "",
         "CidrBlock": "10.0.1.0/24"
+      }
+    },
+    "780428AD-F656-417C-A32A-1D1D072B6AC3": {
+      "name": "subnet3",
+      "type": "AWS.VPC.Subnet",
+      "uid": "780428AD-F656-417C-A32A-1D1D072B6AC3",
+      "resource": {
+        "AvailabilityZone": "@{7626422E-996B-4D8E-A792-EAB6FFCD7D9C.resource.ZoneName}",
+        "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
+        "SubnetId": "",
+        "CidrBlock": "10.0.3.0/24"
+      }
+    },
+    "6CDF5614-604F-48AE-82CA-D18990344094": {
+      "name": "DefaultKP",
+      "type": "AWS.EC2.KeyPair",
+      "uid": "6CDF5614-604F-48AE-82CA-D18990344094",
+      "resource": {
+        "KeyFingerprint": "",
+        "KeyName": "DefaultKP"
       }
     },
     "837060FB-E6BD-437F-BA41-A02B55CEFFAE": {
@@ -318,8 +329,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "E58BE65A-3128-4140-AACB-851E3FF228DD": {
@@ -506,8 +516,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "B1376B01-87A8-4EAA-8F6C-8684798AE35A": {
@@ -678,8 +687,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "31C8A8A1-B378-4D0D-B2D5-A5EA32EDA41A": {
@@ -718,17 +726,6 @@
         }
       }
     },
-    "780428AD-F656-417C-A32A-1D1D072B6AC3": {
-      "name": "subnet3",
-      "type": "AWS.VPC.Subnet",
-      "uid": "780428AD-F656-417C-A32A-1D1D072B6AC3",
-      "resource": {
-        "AvailabilityZone": "@{7626422E-996B-4D8E-A792-EAB6FFCD7D9C.resource.ZoneName}",
-        "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.3.0/24"
-      }
-    },
     "4860E107-3EBB-47D1-8377-60C124D993DC": {
       "type": "AWS.EC2.Instance",
       "uid": "4860E107-3EBB-47D1-8377-60C124D993DC",
@@ -737,7 +734,7 @@
       "number": 1,
       "serverGroupUid": "4860E107-3EBB-47D1-8377-60C124D993DC",
       "serverGroupName": "NAT",
-      "state": [],
+      "state": null,
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -769,8 +766,7 @@
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
-        "SecurityGroupId": [],
-        "PrivateIpAddress": ""
+        "SecurityGroupId": []
       }
     },
     "A0F3DB81-D585-4193-A012-6150579B4B92": {
@@ -886,6 +882,18 @@
         17
       ]
     },
+    "780428AD-F656-417C-A32A-1D1D072B6AC3": {
+      "coordinate": [
+        38,
+        14
+      ],
+      "uid": "780428AD-F656-417C-A32A-1D1D072B6AC3",
+      "groupUId": "7626422E-996B-4D8E-A792-EAB6FFCD7D9C",
+      "size": [
+        17,
+        17
+      ]
+    },
     "837060FB-E6BD-437F-BA41-A02B55CEFFAE": {
       "coordinate": [
         20,
@@ -936,18 +944,6 @@
         "8AB6090C-84D4-4E98-A5F2-B443AFD10F4D"
       ]
     },
-    "780428AD-F656-417C-A32A-1D1D072B6AC3": {
-      "coordinate": [
-        38,
-        14
-      ],
-      "uid": "780428AD-F656-417C-A32A-1D1D072B6AC3",
-      "groupUId": "7626422E-996B-4D8E-A792-EAB6FFCD7D9C",
-      "size": [
-        17,
-        17
-      ]
-    },
     "4860E107-3EBB-47D1-8377-60C124D993DC": {
       "coordinate": [
         42,
@@ -967,5 +963,5 @@
       240
     ]
   },
-  "signature": "61f5e467dc8c711435b882268d0809e2"
+  "signature": "cc600f6929aeb060b189fc5be009d26e"
 }
