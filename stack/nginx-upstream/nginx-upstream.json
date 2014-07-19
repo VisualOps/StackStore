@@ -3,7 +3,7 @@
     "enabled": true,
     "module": {
       "repo": "https://github.com/MadeiraCloud/salt.git",
-      "tag": "v2014-04-15"
+      "tag": "v2014-07-18"
     }
   },
   "name": "sample-nginx-upstream",
