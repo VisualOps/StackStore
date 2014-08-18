@@ -58,7 +58,7 @@
         "name": "WordPress with MySQL",
         "author": "VisualOps",
         "icon": "https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/537f16e292fb6d4cbd12d703/140x140/ea9b8abc6752bde7320f6c630565acb8/wordpress.png"
-    }
+    },
     {
         "id": "wordpress-rds",
         "name": "WordPress with RDS",
