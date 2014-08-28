@@ -1,4 +1,4 @@
-## WordPress
+## WordPress (us-east-1)
 WordPress is a free and open source blogging tool and a content management system (CMS) based on PHP and MySQL, which runs on a web hosting service. Features include a plugin architecture and a template system.
 
 ## Stack
