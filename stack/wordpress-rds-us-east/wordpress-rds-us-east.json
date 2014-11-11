@@ -105,7 +105,7 @@
                     "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}"
                 ],
                 "LaunchConfigurationName": "web",
-                "InstanceType": "m1.small",
+                "InstanceType": "t2.micro",
                 "AssociatePublicIpAddress": true
             }
         },
