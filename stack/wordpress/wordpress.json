@@ -218,7 +218,7 @@
         "UserData": "",
         "LaunchConfigurationARN": "",
         "InstanceMonitoring": false,
-        "ImageId": "ami-fb8e9292",
+        "ImageId": "ami-7efc7616",
         "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
         "EbsOptimized": false,
         "BlockDeviceMapping": [
@@ -610,7 +610,7 @@
           "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-fb8e9292",
+        "ImageId": "ami-7efc7616",
         "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",

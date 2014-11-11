@@ -318,7 +318,7 @@
           "AvailabilityZone": "@{8368C84A-0BFB-48F9-BC05-1039A263D6B3.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-45a4a22c",
+        "ImageId": "ami-60f37908",
         "KeyName": "@{6CDF5614-604F-48AE-82CA-D18990344094.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
@@ -505,7 +505,7 @@
           "AvailabilityZone": "@{7626422E-996B-4D8E-A792-EAB6FFCD7D9C.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-45a4a22c",
+        "ImageId": "ami-60f37908",
         "KeyName": "@{6CDF5614-604F-48AE-82CA-D18990344094.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
@@ -676,7 +676,7 @@
           "AvailabilityZone": "@{8368C84A-0BFB-48F9-BC05-1039A263D6B3.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-45a4a22c",
+        "ImageId": "ami-60f37908",
         "KeyName": "@{6CDF5614-604F-48AE-82CA-D18990344094.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
