@@ -929,7 +929,7 @@
         "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
         "Monitoring": "disabled",
         "NetworkInterface": [],
-        "InstanceType": "t2.micro",
+        "InstanceType": "t1.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
