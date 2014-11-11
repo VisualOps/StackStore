@@ -218,7 +218,7 @@
         "UserData": "",
         "LaunchConfigurationARN": "",
         "InstanceMonitoring": false,
-        "ImageId": "ami-fb8e9292",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
         "EbsOptimized": false,
         "BlockDeviceMapping": [
@@ -237,7 +237,7 @@
           "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}"
         ],
         "LaunchConfigurationName": "web",
-        "InstanceType": "m1.small",
+        "InstanceType": "t2.micro",
         "AssociatePublicIpAddress": true
       }
     },
@@ -610,14 +610,14 @@
           "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-fb8e9292",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
         "SubnetId": "@{2472F79B-C009-4047-8630-BBC09A217A40.resource.SubnetId}",
         "Monitoring": "disabled",
         "NetworkInterface": [],
-        "InstanceType": "t1.micro",
+        "InstanceType": "t2.micro",
         "DisableApiTermination": false,
         "ShutdownBehavior": "terminate",
         "SecurityGroup": [],
