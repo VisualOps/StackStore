@@ -235,7 +235,7 @@
           "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
@@ -278,7 +278,7 @@
           "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
@@ -321,7 +321,7 @@
           "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{780B2D5D-27EB-4793-B4DB-614A3C47A9A8.resource.SubnetId}",
@@ -618,7 +618,7 @@
           "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{E06F1BE0-7EE3-4C10-90A3-7E3CCE72DD02.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
@@ -661,7 +661,7 @@
           "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",
@@ -704,7 +704,7 @@
           "AvailabilityZone": "@{C1DF9DE4-6BC1-4709-9B02-0E2CC989BE75.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "EbsOptimized": false,
         "VpcId": "@{0515EB3D-DA58-459D-8262-EF76A6127E10.resource.VpcId}",
         "SubnetId": "@{25DDE456-2F4E-489D-AB81-ECAADB3E3963.resource.SubnetId}",

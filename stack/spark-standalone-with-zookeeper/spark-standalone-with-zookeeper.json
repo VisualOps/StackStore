@@ -448,7 +448,7 @@
           "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
@@ -702,7 +702,7 @@
           "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
@@ -879,7 +879,7 @@
           "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
@@ -1063,7 +1063,7 @@
           "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
@@ -1207,7 +1207,7 @@
           "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
         "SubnetId": "@{A2F01C34-3FD7-497D-AA40-5DF6616C1C5A.resource.SubnetId}",
@@ -1420,7 +1420,7 @@
           "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
@@ -1593,7 +1593,7 @@
           "AvailabilityZone": "@{9A595E8B-4BF2-4E9E-AB9F-FC572D4902A9.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",
@@ -1761,7 +1761,7 @@
           "AvailabilityZone": "@{78883775-5D36-4667-B866-91007D41E41A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{8DF20988-9AB9-42B4-B596-7E19628A21EE.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{FB9502E4-2B96-4472-BB45-3B3FAEF77C8F.resource.VpcId}",

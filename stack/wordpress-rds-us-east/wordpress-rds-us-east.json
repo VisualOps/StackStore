@@ -86,7 +86,7 @@
                 "UserData": "",
                 "LaunchConfigurationARN": "",
                 "InstanceMonitoring": false,
-                "ImageId": "ami-7efc7616",
+                "ImageId": "ami-acfb71c4",
                 "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
                 "EbsOptimized": false,
                 "BlockDeviceMapping": [

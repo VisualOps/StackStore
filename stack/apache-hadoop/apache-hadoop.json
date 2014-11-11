@@ -405,7 +405,7 @@
           "AvailabilityZone": "@{74F6BD2E-A269-48AB-ADB2-3778EB94BB0A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
@@ -825,7 +825,7 @@
           "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
@@ -1057,7 +1057,7 @@
           "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
@@ -1278,7 +1278,7 @@
           "AvailabilityZone": "@{32F1911B-150C-4852-BD29-AD9B65244765.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
@@ -1438,7 +1438,7 @@
           "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
@@ -1642,7 +1642,7 @@
           "AvailabilityZone": "@{470F66FD-B867-4D2A-B06E-D13743FD766A.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-7efc7616",
+        "ImageId": "ami-acfb71c4",
         "KeyName": "@{B0F6F9E1-33EB-4740-BB17-A436CA7D32FB.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{216C2D2C-F9D6-4BCE-B56B-0A983F9ADB73.resource.VpcId}",
