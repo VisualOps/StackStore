@@ -1,0 +1,729 @@
+{
+    "name": "Wordpress-RDS",
+    "region": "us-east-1",
+    "owner": "",
+    "agent": {
+        "enabled": true,
+        "module": {
+            "repo": "https://github.com/MadeiraCloud/salt.git",
+            "tag": "v2014-07-18"
+        }
+    },
+    "platform": "ec2-vpc",
+    "version": "2014-02-17",
+    "usage": "",
+    "component": {
+        "DD6B62ED-0F1A-46A1-9219-BEAB69368E45": {
+            "type": "AWS.AutoScaling.LaunchConfiguration",
+            "uid": "DD6B62ED-0F1A-46A1-9219-BEAB69368E45",
+            "name": "web",
+            "state": [
+                {
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "httpd",
+                                "value": ""
+                            },
+                            {
+                                "key": "php",
+                                "value": ""
+                            },
+                            {
+                                "key": "php-fpm",
+                                "value": ""
+                            },
+                            {
+                                "key": "php-mysql",
+                                "value": ""
+                            }
+                        ]
+                    },
+                    "id": "state-6D078583-F240-48EA-A974-41E9433D8311",
+                    "module": "linux.yum.package"
+                },
+                {
+                    "parameter": {
+                        "path": "/var/www/html/",
+                        "source": "http://wordpress.org/latest.zip",
+                        "if-path-absent": [
+                            "/var/www/html/wordpress/"
+                        ]
+                    },
+                    "id": "state-C6432A5C-55E3-4947-8879-BF75B741EFF2",
+                    "module": "common.archive"
+                },
+                {
+                    "parameter": {
+                        "content": "<?php\n/**\n * The base configurations of the WordPress.\n *\n * This file has the following configurations: MySQL settings, Table Prefix,\n * Secret Keys, WordPress Language, and ABSPATH. You can find more information\n * by visiting {@link http://codex.wordpress.org/Editing_wp-config.php Editing\n * wp-config.php} Codex page. You can get the MySQL settings from your web host.\n *\n * This file is used by the wp-config.php creation script during the\n * installation. You don't have to use the web site, you can just copy this file\n * to \"wp-config.php\" and fill in the values.\n *\n * @package WordPress\n */\n\n// ** MySQL settings - You can get this info from your web host ** //\n/** The name of the database for WordPress */\ndefine('DB_NAME', 'mysite');\n\n/** MySQL database username */\ndefine('DB_USER', 'root');\n\n/** MySQL database password */\ndefine('DB_PASSWORD', '12345678');\n\n/** MySQL hostname */\ndefine('DB_HOST', '@{52E667BA-4677-47F4-8765-CC65C290ABBA.Address}');\n\n/** Database Charset to use in creating database tables. */\ndefine('DB_CHARSET', 'utf8');\n\n/** The Database Collate type. Don't change this if in doubt. */\ndefine('DB_COLLATE', '');\n\n/**#@+\n * Authentication Unique Keys and Salts.\n *\n * Change these to different unique phrases!\n * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}\n * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.\n *\n * @since 2.6.0\n */\ndefine('AUTH_KEY',         'put your unique phrase here');\ndefine('SECURE_AUTH_KEY',  'put your unique phrase here');\ndefine('LOGGED_IN_KEY',    'put your unique phrase here');\ndefine('NONCE_KEY',        'put your unique phrase here');\ndefine('AUTH_SALT',        'put your unique phrase here');\ndefine('SECURE_AUTH_SALT', 'put your unique phrase here');\ndefine('LOGGED_IN_SALT',   'put your unique phrase here');\ndefine('NONCE_SALT',       'put your unique phrase here');\n\n/**#@-*/\n\n/**\n * WordPress Database Table prefix.\n *\n * You can have multiple installations in one database if you give each a unique\n * prefix. Only numbers, letters, and underscores please!\n */\n$table_prefix  = 'wp_';\n\n/**\n * WordPress Localized Language, defaults to English.\n *\n * Change this to localize WordPress. A corresponding MO file for the chosen\n * language must be installed to wp-content/languages. For example, install\n * de_DE.mo to wp-content/languages and set WPLANG to 'de_DE' to enable German\n * language support.\n */\ndefine('WPLANG', '');\n\n/**\n * For developers: WordPress debugging mode.\n *\n * Change this to true to enable the display of notices during development.\n * It is strongly recommended that plugin and theme developers use WP_DEBUG\n * in their development environments.\n */\ndefine('WP_DEBUG', false);\n\n/* That's all, stop editing! Happy blogging. */\n\n/** Absolute path to the WordPress directory. */\nif ( !defined('ABSPATH') )\n        define('ABSPATH', dirname(__FILE__) . '/');\n\n/** Sets up WordPress vars and included files. */\nrequire_once(ABSPATH . 'wp-settings.php');\n",
+                        "path": "/var/www/html/wordpress/wp-config.php"
+                    },
+                    "id": "state-FB467BE1-31C4-47D3-9AD3-13573C2B8BB4",
+                    "module": "linux.file"
+                },
+                {
+                    "parameter": {
+                        "content": "#\n# This is the main Apache server configuration file.  It contains the\n# configuration directives that give the server its instructions.\n# See <URL:http://httpd.apache.org/docs/2.2/> for detailed information.\n# In particular, see\n# <URL:http://httpd.apache.org/docs/2.2/mod/directives.html>\n# for a discussion of each configuration directive.\n#\n#\n# Do NOT simply read the instructions in here without understanding\n# what they do.  They're here only as hints or reminders.  If you are unsure\n# consult the online docs. You have been warned.  \n#\n# The configuration directives are grouped into three basic sections:\n#  1. Directives that control the operation of the Apache server process as a\n#     whole (the 'global environment').\n#  2. Directives that define the parameters of the 'main' or 'default' server,\n#     which responds to requests that aren't handled by a virtual host.\n#     These directives also provide default values for the settings\n#     of all virtual hosts.\n#  3. Settings for virtual hosts, which allow Web requests to be sent to\n#     different IP addresses or hostnames and have them handled by the\n#     same Apache server process.\n#\n# Configuration and logfile names: If the filenames you specify for many\n# of the server's control files begin with \"/\" (or \"drive:/\" for Win32), the\n# server will use that explicit path.  If the filenames do *not* begin\n# with \"/\", the value of ServerRoot is prepended -- so \"logs/foo.log\"\n# with ServerRoot set to \"/etc/httpd\" will be interpreted by the\n# server as \"/etc/httpd/logs/foo.log\".\n#\n### Section 1: Global Environment\n#\n# The directives in this section affect the overall operation of Apache,\n# such as the number of concurrent requests it can handle or where it\n# can find its configuration files.\n#\n#\n# Don't give away too much information about all the subcomponents\n# we are running.  Comment out this line if you don't mind remote sites\n# finding out what major optional modules you are running\nServerTokens OS\n#\n# ServerRoot: The top of the directory tree under which the server's\n# configuration, error, and log files are kept.\n#\n# NOTE!  If you intend to place this on an NFS (or otherwise network)\n# mounted filesystem then please read the LockFile documentation\n# (available at <URL:http://httpd.apache.org/docs/2.2/mod/mpm_common.html#lockfile>);\n# you will save yourself a lot of trouble.\n#\n# Do NOT add a slash at the end of the directory path.\n#\nServerRoot \"/etc/httpd\"\n#\n# PidFile: The file in which the server should record its process\n# identification number when it starts.  Note the PIDFILE variable in\n# /etc/sysconfig/httpd must be set appropriately if this location is\n# changed.\n#\nPidFile run/httpd.pid\n#\n# Timeout: The number of seconds before receives and sends time out.\n#\nTimeout 60\n#\n# KeepAlive: Whether or not to allow persistent connections (more than\n# one request per connection). Set to \"Off\" to deactivate.\n#\nKeepAlive Off\n#\n# MaxKeepAliveRequests: The maximum number of requests to allow\n# during a persistent connection. Set to 0 to allow an unlimited amount.\n# We recommend you leave this number high, for maximum performance.\n#\nMaxKeepAliveRequests 100\n#\n# KeepAliveTimeout: Number of seconds to wait for the next request from the\n# same client on the same connection.\n#\nKeepAliveTimeout 15\n##\n## Server-Pool Size Regulation (MPM specific)\n## \n# prefork MPM\n# StartServers: number of server processes to start\n# MinSpareServers: minimum number of server processes which are kept spare\n# MaxSpareServers: maximum number of server processes which are kept spare\n# ServerLimit: maximum value for MaxClients for the lifetime of the server\n# MaxClients: maximum number of server processes allowed to start\n# MaxRequestsPerChild: maximum number of requests a server process serves\n<IfModule prefork.c>\nStartServers       8\nMinSpareServers    5\nMaxSpareServers   20\nServerLimit      256\nMaxClients       256\nMaxRequestsPerChild  4000\n</IfModule>\n# worker MPM\n# StartServers: initial number of server processes to start\n# MaxClients: maximum number of simultaneous client connections\n# MinSpareThreads: minimum number of worker threads which are kept spare\n# MaxSpareThreads: maximum number of worker threads which are kept spare\n# ThreadsPerChild: constant number of worker threads in each server process\n# MaxRequestsPerChild: maximum number of requests a server process serves\n<IfModule worker.c>\nStartServers         4\nMaxClients         300\nMinSpareThreads     25\nMaxSpareThreads     75 \nThreadsPerChild     25\nMaxRequestsPerChild  0\n</IfModule>\n#\n# Listen: Allows you to bind Apache to specific IP addresses and/or\n# ports, in addition to the default. See also the <VirtualHost>\n# directive.\n#\n# Change this to Listen on specific IP addresses as shown below to \n# prevent Apache from glomming onto all bound IP addresses (0.0.0.0)\n#\n#Listen 12.34.56.78:80\nListen 80\n#\n# Dynamic Shared Object (DSO) Support\n#\n# To be able to use the functionality of a module which was built as a DSO you\n# have to place corresponding `LoadModule' lines at this location so the\n# directives contained in it are actually available _before_ they are used.\n# Statically compiled modules (those listed by `httpd -l') do not need\n# to be loaded here.\n#\n# Example:\n# LoadModule foo_module modules/mod_foo.so\n#\nLoadModule auth_basic_module modules/mod_auth_basic.so\nLoadModule auth_digest_module modules/mod_auth_digest.so\nLoadModule authn_file_module modules/mod_authn_file.so\nLoadModule authn_alias_module modules/mod_authn_alias.so\nLoadModule authn_anon_module modules/mod_authn_anon.so\nLoadModule authn_dbm_module modules/mod_authn_dbm.so\nLoadModule authn_default_module modules/mod_authn_default.so\nLoadModule authz_host_module modules/mod_authz_host.so\nLoadModule authz_user_module modules/mod_authz_user.so\nLoadModule authz_owner_module modules/mod_authz_owner.so\nLoadModule authz_groupfile_module modules/mod_authz_groupfile.so\nLoadModule authz_dbm_module modules/mod_authz_dbm.so\nLoadModule authz_default_module modules/mod_authz_default.so\nLoadModule ldap_module modules/mod_ldap.so\nLoadModule authnz_ldap_module modules/mod_authnz_ldap.so\nLoadModule include_module modules/mod_include.so\nLoadModule log_config_module modules/mod_log_config.so\nLoadModule logio_module modules/mod_logio.so\nLoadModule env_module modules/mod_env.so\nLoadModule ext_filter_module modules/mod_ext_filter.so\nLoadModule mime_magic_module modules/mod_mime_magic.so\nLoadModule expires_module modules/mod_expires.so\nLoadModule deflate_module modules/mod_deflate.so\nLoadModule headers_module modules/mod_headers.so\nLoadModule usertrack_module modules/mod_usertrack.so\nLoadModule setenvif_module modules/mod_setenvif.so\nLoadModule mime_module modules/mod_mime.so\nLoadModule dav_module modules/mod_dav.so\nLoadModule status_module modules/mod_status.so\nLoadModule autoindex_module modules/mod_autoindex.so\nLoadModule info_module modules/mod_info.so\nLoadModule dav_fs_module modules/mod_dav_fs.so\nLoadModule vhost_alias_module modules/mod_vhost_alias.so\nLoadModule negotiation_module modules/mod_negotiation.so\nLoadModule dir_module modules/mod_dir.so\nLoadModule actions_module modules/mod_actions.so\nLoadModule speling_module modules/mod_speling.so\nLoadModule userdir_module modules/mod_userdir.so\nLoadModule alias_module modules/mod_alias.so\nLoadModule substitute_module modules/mod_substitute.so\nLoadModule rewrite_module modules/mod_rewrite.so\nLoadModule proxy_module modules/mod_proxy.so\nLoadModule proxy_balancer_module modules/mod_proxy_balancer.so\nLoadModule proxy_ftp_module modules/mod_proxy_ftp.so\nLoadModule proxy_http_module modules/mod_proxy_http.so\nLoadModule proxy_ajp_module modules/mod_proxy_ajp.so\nLoadModule proxy_connect_module modules/mod_proxy_connect.so\nLoadModule cache_module modules/mod_cache.so\nLoadModule suexec_module modules/mod_suexec.so\nLoadModule disk_cache_module modules/mod_disk_cache.so\nLoadModule cgi_module modules/mod_cgi.so\nLoadModule version_module modules/mod_version.so\n#\n# The following modules are not loaded by default:\n#\n#LoadModule asis_module modules/mod_asis.so\n#LoadModule authn_dbd_module modules/mod_authn_dbd.so\n#LoadModule cern_meta_module modules/mod_cern_meta.so\n#LoadModule cgid_module modules/mod_cgid.so\n#LoadModule dbd_module modules/mod_dbd.so\n#LoadModule dumpio_module modules/mod_dumpio.so\n#LoadModule filter_module modules/mod_filter.so\n#LoadModule ident_module modules/mod_ident.so\n#LoadModule log_forensic_module modules/mod_log_forensic.so\n#LoadModule unique_id_module modules/mod_unique_id.so\n#LoadModule file_cache_module modules/mod_file_cache.so\n#\n#\n# Load config files from the config directory \"/etc/httpd/conf.d\".\n#\nInclude conf.d/*.conf\n#\n# ExtendedStatus controls whether Apache will generate \"full\" status\n# information (ExtendedStatus On) or just basic information (ExtendedStatus\n# Off) when the \"server-status\" handler is called. The default is Off.\n#\n#ExtendedStatus On\n#\n# If you wish httpd to run as a different user or group, you must run\n# httpd as root initially and it will switch.  \n#\n# User/Group: The name (or #number) of the user/group to run httpd as.\n#  . On SCO (ODT 3) use \"User nouser\" and \"Group nogroup\".\n#  . On HPUX you may not be able to use shared memory as nobody, and the\n#    suggested workaround is to create a user www and use that user.\n#  NOTE that some kernels refuse to setgid(Group) or semctl(IPC_SET)\n#  when the value of (unsigned)Group is above 60000; \n#  don't use Group #-1 on these systems!\n#\nUser apache\nGroup apache\n### Section 2: 'Main' server configuration\n#\n# The directives in this section set up the values used by the 'main'\n# server, which responds to any requests that aren't handled by a\n# <VirtualHost> definition.  These values also provide defaults for\n# any <VirtualHost> containers you may define later in the file.\n#\n# All of these directives may appear inside <VirtualHost> containers,\n# in which case these default settings will be overridden for the\n# virtual host being defined.\n#\n#\n# ServerAdmin: Your address, where problems with the server should be\n# e-mailed.  This address appears on some server-generated pages, such\n# as error documents.  e.g. admin@your-domain.com\n#\nServerAdmin root@localhost\n#\n# ServerName gives the name and port that the server uses to identify itself.\n# This can often be determined automatically, but we recommend you specify\n# it explicitly to prevent problems during startup.\n#\n# If this is not set to valid DNS name for your host, server-generated\n# redirections will not work.  See also the UseCanonicalName directive.\n#\n# If your host doesn't have a registered DNS name, enter its IP address here.\n# You will have to access it by its address anyway, and this will make \n# redirections work in a sensible way.\n#\n#ServerName www.example.com:80\n#\n# UseCanonicalName: Determines how Apache constructs self-referencing \n# URLs and the SERVER_NAME and SERVER_PORT variables.\n# When set \"Off\", Apache will use the Hostname and Port supplied\n# by the client.  When set \"On\", Apache will use the value of the\n# ServerName directive.\n#\nUseCanonicalName Off\n#\n# DocumentRoot: The directory out of which you will serve your\n# documents. By default, all requests are taken from this directory, but\n# symbolic links and aliases may be used to point to other locations.\n#\nDocumentRoot \"/var/www/html/wordpress\"\n#\n# Each directory to which Apache has access can be configured with respect\n# to which services and features are allowed and/or disabled in that\n# directory (and its subdirectories). \n#\n# First, we configure the \"default\" to be a very restrictive set of \n# features.  \n#\n<Directory />\n    Options FollowSymLinks\n    AllowOverride None\n</Directory>\n#\n# Note that from this point forward you must specifically allow\n# particular features to be enabled - so if something's not working as\n# you might expect, make sure that you have specifically enabled it\n# below.\n#\n#\n# This should be changed to whatever you set DocumentRoot to.\n#\n<Directory \"/var/www/html/wordpress\">\n#\n# Possible values for the Options directive are \"None\", \"All\",\n# or any combination of:\n#   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews\n#\n# Note that \"MultiViews\" must be named *explicitly* --- \"Options All\"\n# doesn't give it to you.\n#\n# The Options directive is both complicated and important.  Please see\n# http://httpd.apache.org/docs/2.2/mod/core.html#options\n# for more information.\n#\n    Options Indexes FollowSymLinks\n#\n# AllowOverride controls what directives may be placed in .htaccess files.\n# It can be \"All\", \"None\", or any combination of the keywords:\n#   Options FileInfo AuthConfig Limit\n#\n    AllowOverride None\n#\n# Controls who can get stuff from this server.\n#\n    Order allow,deny\n    Allow from all\n</Directory>\n#\n# UserDir: The name of the directory that is appended onto a user's home\n# directory if a ~user request is received.\n#\n# The path to the end user account 'public_html' directory must be\n# accessible to the webserver userid.  This usually means that ~userid\n# must have permissions of 711, ~userid/public_html must have permissions\n# of 755, and documents contained therein must be world-readable.\n# Otherwise, the client will only receive a \"403 Forbidden\" message.\n#\n# See also: http://httpd.apache.org/docs/misc/FAQ.html#forbidden\n#\n<IfModule mod_userdir.c>\n    #\n    # UserDir is disabled by default since it can confirm the presence\n    # of a username on the system (depending on home directory\n    # permissions).\n    #\n    UserDir disabled\n    #\n    # To enable requests to /~user/ to serve the user's public_html\n    # directory, remove the \"UserDir disabled\" line above, and uncomment\n    # the following line instead:\n    # \n    #UserDir public_html\n</IfModule>\n#\n# Control access to UserDir directories.  The following is an example\n# for a site where these directories are restricted to read-only.\n#\n#<Directory /home/*/public_html>\n#    AllowOverride FileInfo AuthConfig Limit\n#    Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec\n#    <Limit GET POST OPTIONS>\n#        Order allow,deny\n#        Allow from all\n#    </Limit>\n#    <LimitExcept GET POST OPTIONS>\n#        Order deny,allow\n#        Deny from all\n#    </LimitExcept>\n#</Directory>\n#\n# DirectoryIndex: sets the file that Apache will serve if a directory\n# is requested.\n#\n# The index.html.var file (a type-map) is used to deliver content-\n# negotiated documents.  The MultiViews Option can be used for the \n# same purpose, but it is much slower.\n#\nDirectoryIndex index.html index.html.var\n#\n# AccessFileName: The name of the file to look for in each directory\n# for additional configuration directives.  See also the AllowOverride\n# directive.\n#\nAccessFileName .htaccess\n#\n# The following lines prevent .htaccess and .htpasswd files from being \n# viewed by Web clients. \n#\n<Files ~ \"^\\.ht\">\n    Order allow,deny\n    Deny from all\n    Satisfy All\n</Files>\n#\n# TypesConfig describes where the mime.types file (or equivalent) is\n# to be found.\n#\nTypesConfig /etc/mime.types\n#\n# DefaultType is the default MIME type the server will use for a document\n# if it cannot otherwise determine one, such as from filename extensions.\n# If your server contains mostly text or HTML documents, \"text/plain\" is\n# a good value.  If most of your content is binary, such as applications\n# or images, you may want to use \"application/octet-stream\" instead to\n# keep browsers from trying to display binary files as though they are\n# text.\n#\nDefaultType text/plain\n#\n# The mod_mime_magic module allows the server to use various hints from the\n# contents of the file itself to determine its type.  The MIMEMagicFile\n# directive tells the module where the hint definitions are located.\n#\n<IfModule mod_mime_magic.c>\n#   MIMEMagicFile /usr/share/magic.mime\n    MIMEMagicFile conf/magic\n</IfModule>\n#\n# HostnameLookups: Log the names of clients or just their IP addresses\n# e.g., www.apache.org (on) or 204.62.129.132 (off).\n# The default is off because it'd be overall better for the net if people\n# had to knowingly turn this feature on, since enabling it means that\n# each client request will result in AT LEAST one lookup request to the\n# nameserver.\n#\nHostnameLookups Off\n#\n# EnableMMAP: Control whether memory-mapping is used to deliver\n# files (assuming that the underlying OS supports it).\n# The default is on; turn this off if you serve from NFS-mounted \n# filesystems.  On some systems, turning it off (regardless of\n# filesystem) can improve performance; for details, please see\n# http://httpd.apache.org/docs/2.2/mod/core.html#enablemmap\n#\n#EnableMMAP off\n#\n# EnableSendfile: Control whether the sendfile kernel support is \n# used to deliver files (assuming that the OS supports it). \n# The default is on; turn this off if you serve from NFS-mounted \n# filesystems.  Please see\n# http://httpd.apache.org/docs/2.2/mod/core.html#enablesendfile\n#\n#EnableSendfile off\n#\n# ErrorLog: The location of the error log file.\n# If you do not specify an ErrorLog directive within a <VirtualHost>\n# container, error messages relating to that virtual host will be\n# logged here.  If you *do* define an error logfile for a <VirtualHost>\n# container, that host's errors will be logged there and not here.\n#\nErrorLog logs/error_log\n#\n# LogLevel: Control the number of messages logged to the error_log.\n# Possible values include: debug, info, notice, warn, error, crit,\n# alert, emerg.\n#\nLogLevel warn\n#\n# The following directives define some format nicknames for use with\n# a CustomLog directive (see below).\n#\nLogFormat \"%h %l %u %t \\\"%r\\\" %>s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\" combined\nLogFormat \"%h %l %u %t \\\"%r\\\" %>s %b\" common\nLogFormat \"%{Referer}i -> %U\" referer\nLogFormat \"%{User-agent}i\" agent\n# \"combinedio\" includes actual counts of actual bytes received (%I) and sent (%O); this\n# requires the mod_logio module to be loaded.\n#LogFormat \"%h %l %u %t \\\"%r\\\" %>s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\" %I %O\" combinedio\n#\n# The location and format of the access logfile (Common Logfile Format).\n# If you do not define any access logfiles within a <VirtualHost>\n# container, they will be logged here.  Contrariwise, if you *do*\n# define per-<VirtualHost> access logfiles, transactions will be\n# logged therein and *not* in this file.\n#\n#CustomLog logs/access_log common\n#\n# If you would like to have separate agent and referer logfiles, uncomment\n# the following directives.\n#\n#CustomLog logs/referer_log referer\n#CustomLog logs/agent_log agent\n#\n# For a single logfile with access, agent, and referer information\n# (Combined Logfile Format), use the following directive:\n#\nCustomLog logs/access_log combined\n#\n# Optionally add a line containing the server version and virtual host\n# name to server-generated pages (internal error documents, FTP directory\n# listings, mod_status and mod_info output etc., but not CGI generated\n# documents or custom error documents).\n# Set to \"EMail\" to also include a mailto: link to the ServerAdmin.\n# Set to one of:  On | Off | EMail\n#\nServerSignature On\n#\n# Aliases: Add here as many aliases as you need (with no limit). The format is \n# Alias fakename realname\n#\n# Note that if you include a trailing / on fakename then the server will\n# require it to be present in the URL.  So \"/icons\" isn't aliased in this\n# example, only \"/icons/\".  If the fakename is slash-terminated, then the \n# realname must also be slash terminated, and if the fakename omits the \n# trailing slash, the realname must also omit it.\n#\n# We include the /icons/ alias for FancyIndexed directory listings.  If you\n# do not use FancyIndexing, you may comment this out.\n#\nAlias /icons/ \"/var/www/icons/\"\n<Directory \"/var/www/icons\">\n    Options Indexes MultiViews FollowSymLinks\n    AllowOverride None\n    Order allow,deny\n    Allow from all\n</Directory>\n#\n# WebDAV module configuration section.\n# \n<IfModule mod_dav_fs.c>\n    # Location of the WebDAV lock database.\n    DAVLockDB /var/lib/dav/lockdb\n</IfModule>\n#\n# ScriptAlias: This controls which directories contain server scripts.\n# ScriptAliases are essentially the same as Aliases, except that\n# documents in the realname directory are treated as applications and\n# run by the server when requested rather than as documents sent to the client.\n# The same rules about trailing \"/\" apply to ScriptAlias directives as to\n# Alias.\n#\nScriptAlias /cgi-bin/ \"/var/www/cgi-bin/\"\n#\n# \"/var/www/cgi-bin\" should be changed to whatever your ScriptAliased\n# CGI directory exists, if you have that configured.\n#\n<Directory \"/var/www/cgi-bin\">\n    AllowOverride None\n    Options None\n    Order allow,deny\n    Allow from all\n</Directory>\n#\n# Redirect allows you to tell clients about documents which used to exist in\n# your server's namespace, but do not anymore. This allows you to tell the\n# clients where to look for the relocated document.\n# Example:\n# Redirect permanent /foo http://www.example.com/bar\n#\n# Directives controlling the display of server-generated directory listings.\n#\n#\n# IndexOptions: Controls the appearance of server-generated directory\n# listings.\n#\nIndexOptions FancyIndexing VersionSort NameWidth=* HTMLTable Charset=UTF-8\n#\n# AddIcon* directives tell the server which icon to show for different\n# files or filename extensions.  These are only displayed for\n# FancyIndexed directories.\n#\nAddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip\nAddIconByType (TXT,/icons/text.gif) text/*\nAddIconByType (IMG,/icons/image2.gif) image/*\nAddIconByType (SND,/icons/sound2.gif) audio/*\nAddIconByType (VID,/icons/movie.gif) video/*\nAddIcon /icons/binary.gif .bin .exe\nAddIcon /icons/binhex.gif .hqx\nAddIcon /icons/tar.gif .tar\nAddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv\nAddIcon /icons/compressed.gif .Z .z .tgz .gz .zip\nAddIcon /icons/a.gif .ps .ai .eps\nAddIcon /icons/layout.gif .html .shtml .htm .pdf\nAddIcon /icons/text.gif .txt\nAddIcon /icons/c.gif .c\nAddIcon /icons/p.gif .pl .py\nAddIcon /icons/f.gif .for\nAddIcon /icons/dvi.gif .dvi\nAddIcon /icons/uuencoded.gif .uu\nAddIcon /icons/script.gif .conf .sh .shar .csh .ksh .tcl\nAddIcon /icons/tex.gif .tex\nAddIcon /icons/bomb.gif core\nAddIcon /icons/back.gif ..\nAddIcon /icons/hand.right.gif README\nAddIcon /icons/folder.gif ^^DIRECTORY^^\nAddIcon /icons/blank.gif ^^BLANKICON^^\n#\n# DefaultIcon is which icon to show for files which do not have an icon\n# explicitly set.\n#\nDefaultIcon /icons/unknown.gif\n#\n# AddDescription allows you to place a short description after a file in\n# server-generated indexes.  These are only displayed for FancyIndexed\n# directories.\n# Format: AddDescription \"description\" filename\n#\n#AddDescription \"GZIP compressed document\" .gz\n#AddDescription \"tar archive\" .tar\n#AddDescription \"GZIP compressed tar archive\" .tgz\n#\n# ReadmeName is the name of the README file the server will look for by\n# default, and append to directory listings.\n#\n# HeaderName is the name of a file which should be prepended to\n# directory indexes. \nReadmeName README.html\nHeaderName HEADER.html\n#\n# IndexIgnore is a set of filenames which directory indexing should ignore\n# and not include in the listing.  Shell-style wildcarding is permitted.\n#\nIndexIgnore .??* *~ *# HEADER* README* RCS CVS *,v *,t\n#\n# DefaultLanguage and AddLanguage allows you to specify the language of \n# a document. You can then use content negotiation to give a browser a \n# file in a language the user can understand.\n#\n# Specify a default language. This means that all data\n# going out without a specific language tag (see below) will \n# be marked with this one. You probably do NOT want to set\n# this unless you are sure it is correct for all cases.\n#\n# * It is generally better to not mark a page as \n# * being a certain language than marking it with the wrong\n# * language!\n#\n# DefaultLanguage nl\n#\n# Note 1: The suffix does not have to be the same as the language\n# keyword --- those with documents in Polish (whose net-standard\n# language code is pl) may wish to use \"AddLanguage pl .po\" to\n# avoid the ambiguity with the common suffix for perl scripts.\n#\n# Note 2: The example entries below illustrate that in some cases \n# the two character 'Language' abbreviation is not identical to \n# the two character 'Country' code for its country,\n# E.g. 'Danmark/dk' versus 'Danish/da'.\n#\n# Note 3: In the case of 'ltz' we violate the RFC by using a three char\n# specifier. There is 'work in progress' to fix this and get\n# the reference data for rfc1766 cleaned up.\n#\n# Catalan (ca) - Croatian (hr) - Czech (cs) - Danish (da) - Dutch (nl)\n# English (en) - Esperanto (eo) - Estonian (et) - French (fr) - German (de)\n# Greek-Modern (el) - Hebrew (he) - Italian (it) - Japanese (ja)\n# Korean (ko) - Luxembourgeois* (ltz) - Norwegian Nynorsk (nn)\n# Norwegian (no) - Polish (pl) - Portugese (pt)\n# Brazilian Portuguese (pt-BR) - Russian (ru) - Swedish (sv)\n# Simplified Chinese (zh-CN) - Spanish (es) - Traditional Chinese (zh-TW)\n#\nAddLanguage ca .ca\nAddLanguage cs .cz .cs\nAddLanguage da .dk\nAddLanguage de .de\nAddLanguage el .el\nAddLanguage en .en\nAddLanguage eo .eo\nAddLanguage es .es\nAddLanguage et .et\nAddLanguage fr .fr\nAddLanguage he .he\nAddLanguage hr .hr\nAddLanguage it .it\nAddLanguage ja .ja\nAddLanguage ko .ko\nAddLanguage ltz .ltz\nAddLanguage nl .nl\nAddLanguage nn .nn\nAddLanguage no .no\nAddLanguage pl .po\nAddLanguage pt .pt\nAddLanguage pt-BR .pt-br\nAddLanguage ru .ru\nAddLanguage sv .sv\nAddLanguage zh-CN .zh-cn\nAddLanguage zh-TW .zh-tw\n#\n# LanguagePriority allows you to give precedence to some languages\n# in case of a tie during content negotiation.\n#\n# Just list the languages in decreasing order of preference. We have\n# more or less alphabetized them here. You probably want to change this.\n#\nLanguagePriority en ca cs da de el eo es et fr he hr it ja ko ltz nl nn no pl pt pt-BR ru sv zh-CN zh-TW\n#\n# ForceLanguagePriority allows you to serve a result page rather than\n# MULTIPLE CHOICES (Prefer) [in case of a tie] or NOT ACCEPTABLE (Fallback)\n# [in case no accepted languages matched the available variants]\n#\nForceLanguagePriority Prefer Fallback\n#\n# Specify a default charset for all content served; this enables\n# interpretation of all content as UTF-8 by default.  To use the \n# default browser choice (ISO-8859-1), or to allow the META tags\n# in HTML content to override this choice, comment out this\n# directive:\n#\nAddDefaultCharset UTF-8\n#\n# AddType allows you to add to or override the MIME configuration\n# file mime.types for specific file types.\n#\n#AddType application/x-tar .tgz\n#\n# AddEncoding allows you to have certain browsers uncompress\n# information on the fly. Note: Not all browsers support this.\n# Despite the name similarity, the following Add* directives have nothing\n# to do with the FancyIndexing customization directives above.\n#\n#AddEncoding x-compress .Z\n#AddEncoding x-gzip .gz .tgz\n# If the AddEncoding directives above are commented-out, then you\n# probably should define those extensions to indicate media types:\n#\nAddType application/x-compress .Z\nAddType application/x-gzip .gz .tgz\n#\n#   MIME-types for downloading Certificates and CRLs\n#\nAddType application/x-x509-ca-cert .crt\nAddType application/x-pkcs7-crl    .crl\n#\n# AddHandler allows you to map certain file extensions to \"handlers\":\n# actions unrelated to filetype. These can be either built into the server\n# or added with the Action directive (see below)\n#\n# To use CGI scripts outside of ScriptAliased directories:\n# (You will also need to add \"ExecCGI\" to the \"Options\" directive.)\n#\n#AddHandler cgi-script .cgi\n#\n# For files that include their own HTTP headers:\n#\n#AddHandler send-as-is asis\n#\n# For type maps (negotiated resources):\n# (This is enabled by default to allow the Apache \"It Worked\" page\n#  to be distributed in multiple languages.)\n#\nAddHandler type-map var\n#\n# Filters allow you to process content before it is sent to the client.\n#\n# To parse .shtml files for server-side includes (SSI):\n# (You will also need to add \"Includes\" to the \"Options\" directive.)\n#\nAddType text/html .shtml\nAddOutputFilter INCLUDES .shtml\n#\n# Action lets you define media types that will execute a script whenever\n# a matching file is called. This eliminates the need for repeated URL\n# pathnames for oft-used CGI file processors.\n# Format: Action media/type /cgi-script/location\n# Format: Action handler-name /cgi-script/location\n#\n#\n# Customizable error responses come in three flavors:\n# 1) plain text 2) local redirects 3) external redirects\n#\n# Some examples:\n#ErrorDocument 500 \"The server made a boo boo.\"\n#ErrorDocument 404 /missing.html\n#ErrorDocument 404 \"/cgi-bin/missing_handler.pl\"\n#ErrorDocument 402 http://www.example.com/subscription_info.html\n#\n#\n# Putting this all together, we can internationalize error responses.\n#\n# We use Alias to redirect any /error/HTTP_<error>.html.var response to\n# our collection of by-error message multi-language collections.  We use \n# includes to substitute the appropriate text.\n#\n# You can modify the messages' appearance without changing any of the\n# default HTTP_<error>.html.var files by adding the line:\n#\n#   Alias /error/include/ \"/your/include/path/\"\n#\n# which allows you to create your own set of files by starting with the\n# /var/www/error/include/ files and\n# copying them to /your/include/path/, even on a per-VirtualHost basis.\n#\nAlias /error/ \"/var/www/error/\"\n<IfModule mod_negotiation.c>\n<IfModule mod_include.c>\n    <Directory \"/var/www/error\">\n        AllowOverride None\n        Options IncludesNoExec\n        AddOutputFilter Includes html\n        AddHandler type-map var\n        Order allow,deny\n        Allow from all\n        LanguagePriority en es de fr\n        ForceLanguagePriority Prefer Fallback\n    </Directory>\n#    ErrorDocument 400 /error/HTTP_BAD_REQUEST.html.var\n#    ErrorDocument 401 /error/HTTP_UNAUTHORIZED.html.var\n#    ErrorDocument 403 /error/HTTP_FORBIDDEN.html.var\n#    ErrorDocument 404 /error/HTTP_NOT_FOUND.html.var\n#    ErrorDocument 405 /error/HTTP_METHOD_NOT_ALLOWED.html.var\n#    ErrorDocument 408 /error/HTTP_REQUEST_TIME_OUT.html.var\n#    ErrorDocument 410 /error/HTTP_GONE.html.var\n#    ErrorDocument 411 /error/HTTP_LENGTH_REQUIRED.html.var\n#    ErrorDocument 412 /error/HTTP_PRECONDITION_FAILED.html.var\n#    ErrorDocument 413 /error/HTTP_REQUEST_ENTITY_TOO_LARGE.html.var\n#    ErrorDocument 414 /error/HTTP_REQUEST_URI_TOO_LARGE.html.var\n#    ErrorDocument 415 /error/HTTP_UNSUPPORTED_MEDIA_TYPE.html.var\n#    ErrorDocument 500 /error/HTTP_INTERNAL_SERVER_ERROR.html.var\n#    ErrorDocument 501 /error/HTTP_NOT_IMPLEMENTED.html.var\n#    ErrorDocument 502 /error/HTTP_BAD_GATEWAY.html.var\n#    ErrorDocument 503 /error/HTTP_SERVICE_UNAVAILABLE.html.var\n#    ErrorDocument 506 /error/HTTP_VARIANT_ALSO_VARIES.html.var\n</IfModule>\n</IfModule>\n#\n# The following directives modify normal HTTP response behavior to\n# handle known problems with browser implementations.\n#\nBrowserMatch \"Mozilla/2\" nokeepalive\nBrowserMatch \"MSIE 4\\.0b2;\" nokeepalive downgrade-1.0 force-response-1.0\nBrowserMatch \"RealPlayer 4\\.0\" force-response-1.0\nBrowserMatch \"Java/1\\.0\" force-response-1.0\nBrowserMatch \"JDK/1\\.0\" force-response-1.0\n#\n# The following directive disables redirects on non-GET requests for\n# a directory that does not include the trailing slash.  This fixes a \n# problem with Microsoft WebFolders which does not appropriately handle \n# redirects for folders with DAV methods.\n# Same deal with Apple's DAV filesystem and Gnome VFS support for DAV.\n#\nBrowserMatch \"Microsoft Data Access Internet Publishing Provider\" redirect-carefully\nBrowserMatch \"MS FrontPage\" redirect-carefully\nBrowserMatch \"^WebDrive\" redirect-carefully\nBrowserMatch \"^WebDAVFS/1.[0123]\" redirect-carefully\nBrowserMatch \"^gnome-vfs/1.0\" redirect-carefully\nBrowserMatch \"^XML Spy\" redirect-carefully\nBrowserMatch \"^Dreamweaver-WebDAV-SCM1\" redirect-carefully\n#\n# Allow server status reports generated by mod_status,\n# with the URL of http://servername/server-status\n# Change the \".example.com\" to match your domain to enable.\n#\n#<Location /server-status>\n#    SetHandler server-status\n#    Order deny,allow\n#    Deny from all\n#    Allow from .example.com\n#</Location>\n#\n# Allow remote server configuration reports, with the URL of\n#  http://servername/server-info (requires that mod_info.c be loaded).\n# Change the \".example.com\" to match your domain to enable.\n#\n#<Location /server-info>\n#    SetHandler server-info\n#    Order deny,allow\n#    Deny from all\n#    Allow from .example.com\n#</Location>\n#\n# Proxy Server directives. Uncomment the following lines to\n# enable the proxy server:\n#\n#<IfModule mod_proxy.c>\n#ProxyRequests On\n#\n#<Proxy *>\n#    Order deny,allow\n#    Deny from all\n#    Allow from .example.com\n#</Proxy>\n#\n# Enable/disable the handling of HTTP/1.1 \"Via:\" headers.\n# (\"Full\" adds the server version; \"Block\" removes all outgoing Via: headers)\n# Set to one of: Off | On | Full | Block\n#\n#ProxyVia On\n#\n# To enable a cache of proxied content, uncomment the following lines.\n# See http://httpd.apache.org/docs/2.2/mod/mod_cache.html for more details.\n#\n#<IfModule mod_disk_cache.c>\n#   CacheEnable disk /\n#   CacheRoot \"/var/cache/mod_proxy\"\n#</IfModule>\n#\n#</IfModule>\n# End of proxy directives.\n### Section 3: Virtual Hosts\n#\n# VirtualHost: If you want to maintain multiple domains/hostnames on your\n# machine you can setup VirtualHost containers for them. Most configurations\n# use only name-based virtual hosts so the server doesn't need to worry about\n# IP addresses. This is indicated by the asterisks in the directives below.\n#\n# Please see the documentation at \n# <URL:http://httpd.apache.org/docs/2.2/vhosts/>\n# for further details before you try to setup virtual hosts.\n#\n# You may use the command line option '-S' to verify your virtual host\n# configuration.\n#\n# Use name-based virtual hosting.\n#\n#NameVirtualHost *:80\n#\n# NOTE: NameVirtualHost cannot be used without a port specifier \n# (e.g. :80) if mod_ssl is being used, due to the nature of the\n# SSL protocol.\n#\n#\n# VirtualHost example:\n# Almost any Apache directive may go into a VirtualHost container.\n# The first VirtualHost section is used for requests without a known\n# server name.\n#\n#<VirtualHost *:80>\n#    ServerAdmin webmaster@dummy-host.example.com\n#    DocumentRoot /www/docs/dummy-host.example.com\n#    ServerName dummy-host.example.com\n#    ErrorLog logs/dummy-host.example.com-error_log\n#    CustomLog logs/dummy-host.example.com-access_log common\n#</VirtualHost>",
+                        "path": "/etc/httpd/conf/httpd.conf"
+                    },
+                    "id": "state-1D950A07-5E8A-43ED-93D1-4A7FE535F355",
+                    "module": "linux.file"
+                },
+                {
+                    "parameter": {
+                        "watch": [
+                            "/etc/httpd/conf/httpd.conf"
+                        ],
+                        "name": [
+                            "httpd"
+                        ]
+                    },
+                    "id": "state-2F4AF545-65A2-4DCF-ADA4-AE2525B408B4",
+                    "module": "linux.service"
+                }
+            ],
+            "resource": {
+                "UserData": "",
+                "LaunchConfigurationARN": "",
+                "InstanceMonitoring": false,
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{717E8F9C-DDD5-443B-9FA5-A32A8DFB7443.resource.KeyName}",
+                "EbsOptimized": false,
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b047276d",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "SecurityGroups": [
+                    "@{7864E2FF-53C0-4690-904B-1DED4ECC5312.resource.GroupId}",
+                    "@{600636C8-26E8-46EB-8C83-6EB6F86F5D5C.resource.GroupId}",
+                    "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}"
+                ],
+                "LaunchConfigurationName": "web",
+                "InstanceType": "t2.micro",
+                "AssociatePublicIpAddress": true
+            }
+        },
+        "83316624-D74F-4A43-8DD3-481C497621BE": {
+            "name": "RT-0",
+            "type": "AWS.VPC.RouteTable",
+            "uid": "83316624-D74F-4A43-8DD3-481C497621BE",
+            "resource": {
+                "PropagatingVgwSet": [],
+                "RouteTableId": "",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "AssociationSet": [
+                    {
+                        "Main": "true",
+                        "RouteTableAssociationId": "",
+                        "SubnetId": ""
+                    }
+                ],
+                "RouteSet": [
+                    {
+                        "Origin": "CreateRouteTable",
+                        "DestinationCidrBlock": "10.0.0.0/16",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "local"
+                    },
+                    {
+                        "DestinationCidrBlock": "0.0.0.0/0",
+                        "Origin": "",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "@{995FF33D-8D24-45C0-AB8C-AFDB85EACDEB.resource.InternetGatewayId}"
+                    }
+                ]
+            }
+        },
+        "9CAD652D-EFBD-468C-96F4-9C9F48DEA67D": {
+            "name": "DefaultACL",
+            "type": "AWS.VPC.NetworkAcl",
+            "uid": "9CAD652D-EFBD-468C-96F4-9C9F48DEA67D",
+            "resource": {
+                "AssociationSet": [
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}"
+                    },
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId}"
+                    }
+                ],
+                "Default": true,
+                "EntrySet": [
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    }
+                ],
+                "NetworkAclId": "",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}"
+            }
+        },
+        "0D990850-2ADF-468D-B502-984F8678D8FD": {
+            "name": "vpc",
+            "type": "AWS.VPC.VPC",
+            "uid": "0D990850-2ADF-468D-B502-984F8678D8FD",
+            "resource": {
+                "EnableDnsSupport": true,
+                "InstanceTenancy": "default",
+                "EnableDnsHostnames": false,
+                "DhcpOptionsId": "",
+                "VpcId": "",
+                "CidrBlock": "10.0.0.0/16"
+            }
+        },
+        "600636C8-26E8-46EB-8C83-6EB6F86F5D5C": {
+            "name": "sg-visualops",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "600636C8-26E8-46EB-8C83-6EB6F86F5D5C",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "sg-visualops",
+                "GroupDescription": "Custom Security Group",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "IpPermissions": [],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ]
+            }
+        },
+        "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB": {
+            "name": "Internet-gateway",
+            "type": "AWS.VPC.InternetGateway",
+            "uid": "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB",
+            "resource": {
+                "InternetGatewayId": "",
+                "AttachmentSet": [
+                    {
+                        "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}"
+                    }
+                ]
+            }
+        },
+        "7864E2FF-53C0-4690-904B-1DED4ECC5312": {
+            "name": "DefaultSG",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "7864E2FF-53C0-4690-904B-1DED4ECC5312",
+            "resource": {
+                "Default": true,
+                "GroupId": "",
+                "GroupName": "DefaultSG",
+                "GroupDescription": "default VPC security group",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": []
+            }
+        },
+        "70940F85-26F9-4EB2-98FC-668042FBF949": {
+            "name": "sg-web",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "70940F85-26F9-4EB2-98FC-668042FBF949",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "sg-web",
+                "GroupDescription": "Custom Security Group",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "@{261924F9-7A20-470B-9903-EFA4C511A1A4.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "3306",
+                        "ToPort": "3306",
+                        "IpRanges": "@{6F4F675E-CADD-4C72-A611-780AD0C2833F.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    }
+                ]
+            }
+        },
+        "261924F9-7A20-470B-9903-EFA4C511A1A4": {
+            "name": "elbsg-elb-public",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "261924F9-7A20-470B-9903-EFA4C511A1A4",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "elbsg-elb-public",
+                "GroupDescription": "Automatically created SG for load-balancer",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    }
+                ]
+            }
+        },
+        "6F4F675E-CADD-4C72-A611-780AD0C2833F": {
+            "name": "sg-db",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "6F4F675E-CADD-4C72-A611-780AD0C2833F",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "sg-db",
+                "GroupDescription": "Custom Security Group",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "3306",
+                        "ToPort": "3306",
+                        "IpRanges": "@{70940F85-26F9-4EB2-98FC-668042FBF949.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": []
+            }
+        },
+        "717E8F9C-DDD5-443B-9FA5-A32A8DFB7443": {
+            "name": "DefaultKP",
+            "type": "AWS.EC2.KeyPair",
+            "uid": "717E8F9C-DDD5-443B-9FA5-A32A8DFB7443",
+            "resource": {
+                "KeyFingerprint": "22:2f:95:6c:0b:04:86:6d:a2:86:c7:01:de:1d:74:48:81:90:a4:cc",
+                "KeyName": "KeyPair2DefaultKP"
+            }
+        },
+        "999C4AB3-4E50-41BD-9514-A15F5FC27823": {
+            "uid": "999C4AB3-4E50-41BD-9514-A15F5FC27823",
+            "name": "us-east-1b",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1b",
+                "RegionName": "us-east-1"
+            }
+        },
+        "52D2EDD8-017A-418A-9A03-F11849AA35E1": {
+            "name": "subnet-web-1b",
+            "type": "AWS.VPC.Subnet",
+            "uid": "52D2EDD8-017A-418A-9A03-F11849AA35E1",
+            "resource": {
+                "AvailabilityZone": "@{999C4AB3-4E50-41BD-9514-A15F5FC27823.resource.ZoneName}",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.1.0/24"
+            }
+        },
+        "B2C0FA3C-E890-4315-B044-1B2AFC81A130": {
+            "uid": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+            "name": "us-east-1a",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1a",
+                "RegionName": "us-east-1"
+            }
+        },
+        "D4A43D25-5364-48AD-9781-E5EE7C71AC9E": {
+            "name": "subnet-web-1a",
+            "type": "AWS.VPC.Subnet",
+            "uid": "D4A43D25-5364-48AD-9781-E5EE7C71AC9E",
+            "resource": {
+                "AvailabilityZone": "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}",
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.0.0/24"
+            }
+        },
+        "42554355-7ABB-489E-A074-D04C2BB3E7A8": {
+            "uid": "42554355-7ABB-489E-A074-D04C2BB3E7A8",
+            "name": "asg-web",
+            "type": "AWS.AutoScaling.Group",
+            "resource": {
+                "AvailabilityZones": [
+                    "@{B2C0FA3C-E890-4315-B044-1B2AFC81A130.resource.ZoneName}",
+                    "@{999C4AB3-4E50-41BD-9514-A15F5FC27823.resource.ZoneName}"
+                ],
+                "VPCZoneIdentifier": "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId} , @{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}",
+                "LoadBalancerNames": [
+                    "@{18A77F9A-CF87-4274-AB5D-F4165D714830.resource.LoadBalancerName}"
+                ],
+                "AutoScalingGroupARN": "",
+                "DefaultCooldown": "300",
+                "MinSize": "1",
+                "MaxSize": "1",
+                "HealthCheckType": "EC2",
+                "HealthCheckGracePeriod": "300",
+                "TerminationPolicies": [
+                    "Default"
+                ],
+                "AutoScalingGroupName": "asg-web",
+                "DesiredCapacity": "1",
+                "LaunchConfigurationName": "@{DD6B62ED-0F1A-46A1-9219-BEAB69368E45.resource.LaunchConfigurationName}"
+            }
+        },
+        "18A77F9A-CF87-4274-AB5D-F4165D714830": {
+            "type": "AWS.ELB",
+            "uid": "18A77F9A-CF87-4274-AB5D-F4165D714830",
+            "name": "elb-public",
+            "resource": {
+                "AvailabilityZones": [],
+                "Subnets": [
+                    "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId}",
+                    "@{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}"
+                ],
+                "Instances": [],
+                "CrossZoneLoadBalancing": true,
+                "ConnectionDraining": {
+                    "Enabled": true,
+                    "Timeout": 300
+                },
+                "VpcId": "@{0D990850-2ADF-468D-B502-984F8678D8FD.resource.VpcId}",
+                "LoadBalancerName": "elb-public",
+                "SecurityGroups": [
+                    "@{261924F9-7A20-470B-9903-EFA4C511A1A4.resource.GroupId}"
+                ],
+                "Scheme": "internet-facing",
+                "ListenerDescriptions": [
+                    {
+                        "PolicyNames": "",
+                        "Listener": {
+                            "LoadBalancerPort": "80",
+                            "Protocol": "HTTP",
+                            "InstanceProtocol": "HTTP",
+                            "InstancePort": "80",
+                            "SSLCertificateId": ""
+                        }
+                    }
+                ],
+                "HealthCheck": {
+                    "Interval": "30",
+                    "Target": "HTTP:80/wp-admin/install.php",
+                    "Timeout": "5",
+                    "HealthyThreshold": "5",
+                    "UnhealthyThreshold": "4"
+                },
+                "DNSName": "",
+                "Policies": {
+                    "LBCookieStickinessPolicies": [
+                        {
+                            "PolicyName": "",
+                            "CookieExpirationPeriod": ""
+                        }
+                    ],
+                    "AppCookieStickinessPolicies": [
+                        {
+                            "PolicyName": "",
+                            "CookieName": ""
+                        }
+                    ],
+                    "OtherPolicies": []
+                },
+                "BackendServerDescriptions": [
+                    {
+                        "InstantPort": "",
+                        "PoliciyNames": ""
+                    }
+                ],
+                "ConnectionSettings": {
+                    "IdleTimeout": 60
+                }
+            }
+        },
+        "85EC3FC3-6F4C-4AAC-9C7C-10FBA63478F8": {
+            "name": "subnet-group0",
+            "type": "AWS.RDS.DBSubnetGroup",
+            "uid": "85EC3FC3-6F4C-4AAC-9C7C-10FBA63478F8",
+            "resource": {
+                "CreatedBy": "",
+                "DBSubnetGroupName": "",
+                "SubnetIds": [
+                    "@{52D2EDD8-017A-418A-9A03-F11849AA35E1.resource.SubnetId}",
+                    "@{D4A43D25-5364-48AD-9781-E5EE7C71AC9E.resource.SubnetId}"
+                ],
+                "DBSubnetGroupDescription": "subnet-group0 default description"
+            }
+        },
+        "52E667BA-4677-47F4-8765-CC65C290ABBA": {
+            "name": "db0",
+            "type": "AWS.RDS.DBInstance",
+            "uid": "52E667BA-4677-47F4-8765-CC65C290ABBA",
+            "resource": {
+                "CreatedBy": "",
+                "DBInstanceIdentifier": "",
+                "NewDBInstanceIdentifier": "",
+                "DBSnapshotIdentifier": "",
+                "AllocatedStorage": 5,
+                "AutoMinorVersionUpgrade": true,
+                "AllowMajorVersionUpgrade": "",
+                "AvailabilityZone": "",
+                "MultiAZ": true,
+                "Iops": 0,
+                "BackupRetentionPeriod": 1,
+                "CharacterSetName": "",
+                "DBInstanceClass": "db.t1.micro",
+                "DBName": "mysite",
+                "Endpoint": {
+                    "Port": 3306
+                },
+                "Engine": "mysql",
+                "EngineVersion": "5.6.17",
+                "LicenseModel": "general-public-license",
+                "MasterUsername": "root",
+                "MasterUserPassword": "12345678",
+                "OptionGroupMembership": {
+                    "OptionGroupName": "default:mysql-5-6"
+                },
+                "DBParameterGroups": {
+                    "DBParameterGroupName": "default.mysql5.6"
+                },
+                "ApplyImmediately": false,
+                "PendingModifiedValues": "",
+                "PreferredBackupWindow": "",
+                "PreferredMaintenanceWindow": "",
+                "PubliclyAccessible": false,
+                "DBSubnetGroup": {
+                    "DBSubnetGroupName": "@{85EC3FC3-6F4C-4AAC-9C7C-10FBA63478F8.resource.DBSubnetGroupName}"
+                },
+                "VpcSecurityGroupIds": [
+                    "@{7864E2FF-53C0-4690-904B-1DED4ECC5312.resource.GroupId}",
+                    "@{6F4F675E-CADD-4C72-A611-780AD0C2833F.resource.GroupId}"
+                ],
+                "ReadReplicaSourceDBInstanceIdentifier": ""
+            }
+        }
+    },
+    "layout": {
+        "DD6B62ED-0F1A-46A1-9219-BEAB69368E45": {
+            "coordinate": [
+                0,
+                0
+            ],
+            "uid": "DD6B62ED-0F1A-46A1-9219-BEAB69368E45",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs"
+        },
+        "83316624-D74F-4A43-8DD3-481C497621BE": {
+            "coordinate": [
+                40,
+                35
+            ],
+            "uid": "83316624-D74F-4A43-8DD3-481C497621BE",
+            "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD"
+        },
+        "0D990850-2ADF-468D-B502-984F8678D8FD": {
+            "coordinate": [
+                5,
+                3
+            ],
+            "uid": "0D990850-2ADF-468D-B502-984F8678D8FD",
+            "size": [
+                121,
+                77
+            ]
+        },
+        "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB": {
+            "coordinate": [
+                1,
+                5
+            ],
+            "uid": "995FF33D-8D24-45C0-AB8C-AFDB85EACDEB",
+            "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD"
+        },
+        "999C4AB3-4E50-41BD-9514-A15F5FC27823": {
+            "coordinate": [
+                21,
+                44
+            ],
+            "uid": "999C4AB3-4E50-41BD-9514-A15F5FC27823",
+            "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD",
+            "size": [
+                21,
+                21
+            ]
+        },
+        "52D2EDD8-017A-418A-9A03-F11849AA35E1": {
+            "coordinate": [
+                23,
+                46
+            ],
+            "uid": "52D2EDD8-017A-418A-9A03-F11849AA35E1",
+            "groupUId": "999C4AB3-4E50-41BD-9514-A15F5FC27823",
+            "size": [
+                17,
+                17
+            ]
+        },
+        "B2C0FA3C-E890-4315-B044-1B2AFC81A130": {
+            "coordinate": [
+                21,
+                13
+            ],
+            "uid": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+            "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD",
+            "size": [
+                21,
+                21
+            ]
+        },
+        "D4A43D25-5364-48AD-9781-E5EE7C71AC9E": {
+            "coordinate": [
+                23,
+                15
+            ],
+            "uid": "D4A43D25-5364-48AD-9781-E5EE7C71AC9E",
+            "groupUId": "B2C0FA3C-E890-4315-B044-1B2AFC81A130",
+            "size": [
+                17,
+                17
+            ]
+        },
+        "42554355-7ABB-489E-A074-D04C2BB3E7A8": {
+            "coordinate": [
+                25,
+                17
+            ],
+            "uid": "42554355-7ABB-489E-A074-D04C2BB3E7A8",
+            "groupUId": "D4A43D25-5364-48AD-9781-E5EE7C71AC9E"
+        },
+        "18A77F9A-CF87-4274-AB5D-F4165D714830": {
+            "coordinate": [
+                8,
+                40
+            ],
+            "uid": "18A77F9A-CF87-4274-AB5D-F4165D714830",
+            "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD"
+        },
+        "85EC3FC3-6F4C-4AAC-9C7C-10FBA63478F8": {
+            "coordinate": [
+                52,
+                31
+            ],
+            "uid": "85EC3FC3-6F4C-4AAC-9C7C-10FBA63478F8",
+            "groupUId": "0D990850-2ADF-468D-B502-984F8678D8FD",
+            "size": [
+                15,
+                16
+            ]
+        },
+        "52E667BA-4677-47F4-8765-CC65C290ABBA": {
+            "coordinate": [
+                55,
+                35
+            ],
+            "uid": "52E667BA-4677-47F4-8765-CC65C290ABBA",
+            "groupUId": "85EC3FC3-6F4C-4AAC-9C7C-10FBA63478F8"
+        },
+        "23EF0014-D356-4708-BD25-9CC2B5DC5D15": {
+            "coordinate": [
+                25,
+                48
+            ],
+            "uid": "23EF0014-D356-4708-BD25-9CC2B5DC5D15",
+            "groupUId": "52D2EDD8-017A-418A-9A03-F11849AA35E1",
+            "type": "ExpandedAsg",
+            "originalId": "42554355-7ABB-489E-A074-D04C2BB3E7A8"
+        },
+        "size": [
+            240,
+            240
+        ]
+    },
+    "signature": "696d06cecf26ebf2757be4724efb6706"
+}

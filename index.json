@@ -55,8 +55,26 @@
     },
     {
         "id": "wordpress",
-        "name": "WordPress",
+        "name": "WordPress with MySQL",
         "author": "VisualOps",
         "icon": "https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/537f16e292fb6d4cbd12d703/140x140/ea9b8abc6752bde7320f6c630565acb8/wordpress.png"
+    },
+    {
+        "id": "wordpress-rds-us-east",
+        "name": "WordPress with RDS (us-east)",
+        "author": "VisualOps",
+        "icon": "https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/537f16e292fb6d4cbd12d703/140x140/ea9b8abc6752bde7320f6c630565acb8/wordpress.png"
+    },
+    {
+        "id": "wordpress-rds-eu-west",
+        "name": "WordPress with RDS (eu-west)",
+        "author": "VisualOps",
+        "icon": "https://trello-attachments.s3.amazonaws.com/5369add918a15e844104d0ef/537f16e292fb6d4cbd12d703/140x140/ea9b8abc6752bde7320f6c630565acb8/wordpress.png"
+    },
+    {
+        "id": "docker-wordpress-us-east",
+        "name": "WordPress with MySQL in Docker (us-east)",
+        "author": "VisualOps",
+        "icon": "https://trello-attachments.s3.amazonaws.com/536b4d9e4a9d69b21b5c2ac1/805x644/f02d34a500c00a40e5df20d4d305a3c1/docker-wordpress-us-east.png"
     }
 ]
