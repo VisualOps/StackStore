@@ -799,7 +799,7 @@
           "module": "common.archive",
           "parameter": {
             "path": "/opt/spark",
-            "source": "http://www.us.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
+            "source": "http://archive.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
             "checksum": "md5:deedb47b548693fa28751f6ee162e120"
           }
         },
@@ -976,7 +976,7 @@
           "module": "common.archive",
           "parameter": {
             "path": "/opt/spark",
-            "source": "http://www.us.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
+            "source": "http://archive.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
             "checksum": "md5:deedb47b548693fa28751f6ee162e120"
           }
         },
@@ -1120,7 +1120,7 @@
           "module": "common.archive",
           "parameter": {
             "path": "/opt/spark",
-            "source": "http://www.us.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
+            "source": "http://archive.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
             "checksum": "md5:deedb47b548693fa28751f6ee162e120"
           }
         },
@@ -1513,7 +1513,7 @@
           "module": "common.archive",
           "parameter": {
             "path": "/opt/spark",
-            "source": "http://www.us.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
+            "source": "http://archive.apache.org/dist/spark/spark-1.0.0/spark-1.0.0-bin-hadoop1.tgz",
             "checksum": "md5:deedb47b548693fa28751f6ee162e120"
           }
         },
