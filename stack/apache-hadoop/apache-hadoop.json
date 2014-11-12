@@ -285,7 +285,7 @@
               "/opt/hadoop/hadoop-1.2.1"
             ],
             "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
-            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "source": "http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz",
             "path": "/opt/hadoop"
           },
           "id": "state-622AF50A-3D8C-46B2-B8DC-9B493B28834F",
@@ -698,7 +698,7 @@
               "/opt/hadoop/hadoop-1.2.1"
             ],
             "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
-            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "source": "http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz",
             "path": "/opt/hadoop"
           },
           "id": "state-ED6A8DED-E483-4F91-9E7D-21763DA55643",
@@ -913,7 +913,7 @@
               "/opt/hadoop/hadoop-1.2.1"
             ],
             "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
-            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "source": "http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz",
             "path": "/opt/hadoop"
           },
           "id": "state-61A3E593-9F91-42F0-886E-30EC4443D289",
@@ -1158,7 +1158,7 @@
               "/opt/hadoop/hadoop-1.2.1"
             ],
             "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
-            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "source": "http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz",
             "path": "/opt/hadoop"
           },
           "id": "state-3C67B973-9158-421C-9C75-B9A105221A07",
@@ -1522,7 +1522,7 @@
               "/opt/hadoop/hadoop-1.2.1"
             ],
             "checksum": "md5:D9D9E9A5343CB741D78A3D4C22D0BB0F",
-            "source": "http://ftp.tsukuba.wide.ad.jp/software/apache/hadoop/common/stable1/hadoop-1.2.1-bin.tar.gz",
+            "source": "http://archive.apache.org/dist/hadoop/core/hadoop-1.2.1/hadoop-1.2.1-bin.tar.gz",
             "path": "/opt/hadoop"
           },
           "id": "state-A15F141D-2558-4F35-AC85-4B07823E1567",
