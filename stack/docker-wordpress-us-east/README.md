@@ -4,4 +4,4 @@ WordPress is a free and open source blogging tool and a content management syste
 ## Stack
 This stack is a template using the latest WordPress release. It is built with Docker module.
 
-![](https://trello-attachments.s3.amazonaws.com/536b4d9e4a9d69b21b5c2ac1/805x644/f02d34a500c00a40e5df20d4d305a3c1/docker-wordpress-us-east.png)
+![](https://trello-attachments.s3.amazonaws.com/536b4d9e4a9d69b21b5c2ac1/895x664/7fb696013b19a8d8cffb273a4cb0f952/docker-wordpress-us-east.png)
