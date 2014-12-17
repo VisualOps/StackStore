@@ -1647,15 +1647,6 @@
         }
       }
     },
-    "32723427-EDF0-4F01-8532-DDFF0895F25D": {
-      "name": "NATKEY",
-      "type": "AWS.EC2.KeyPair",
-      "uid": "32723427-EDF0-4F01-8532-DDFF0895F25D",
-      "resource": {
-        "KeyFingerprint": "",
-        "KeyName": "NATKEY"
-      }
-    },
     "8D734360-72AB-4651-ADEC-0EE1F540783B": {
       "type": "AWS.EC2.Instance",
       "uid": "8D734360-72AB-4651-ADEC-0EE1F540783B",
