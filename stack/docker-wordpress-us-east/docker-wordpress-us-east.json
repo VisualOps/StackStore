@@ -5,7 +5,7 @@
         "enabled": true,
         "module": {
             "repo": "https://github.com/MadeiraCloud/salt.git",
-            "tag": "v2014-07-18"
+            "tag": "v2015-02-27"
         }
     },
     "platform": "ec2-vpc",

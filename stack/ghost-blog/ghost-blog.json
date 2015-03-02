@@ -1,1 +1,669 @@
-{"agent":{"enabled":true,"module":{"repo":"https://github.com/MadeiraCloud/salt.git","tag":"v2014-07-18"}},"name":"sample-ghost-blog-v2","region":"us-east-1","platform":"ec2-vpc","version":"2014-02-17","component":{"B6DE64FE-02E6-4034-9436-E9EC0979B857":{"name":"vpc","type":"AWS.VPC.VPC","uid":"B6DE64FE-02E6-4034-9436-E9EC0979B857","resource":{"EnableDnsSupport":true,"InstanceTenancy":"default","EnableDnsHostnames":false,"DhcpOptionsId":"","VpcId":"","CidrBlock":"10.0.0.0/16"}},"9F4AA89E-0C41-483D-B303-7703040BB83F":{"name":"DefaultACL","type":"AWS.VPC.NetworkAcl","uid":"9F4AA89E-0C41-483D-B303-7703040BB83F","resource":{"AssociationSet":[{"NetworkAclAssociationId":"","SubnetId":"@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}"}],"Default":true,"EntrySet":[{"Egress":true,"Protocol":-1,"RuleAction":"allow","RuleNumber":100,"CidrBlock":"0.0.0.0/0","IcmpTypeCode":{"Code":"","Type":""},"PortRange":{"From":"","To":""}},{"Egress":true,"Protocol":-1,"RuleAction":"deny","RuleNumber":32767,"CidrBlock":"0.0.0.0/0","IcmpTypeCode":{"Code":"","Type":""},"PortRange":{"From":"","To":""}},{"Egress":false,"Protocol":-1,"RuleAction":"allow","RuleNumber":100,"CidrBlock":"0.0.0.0/0","IcmpTypeCode":{"Code":"","Type":""},"PortRange":{"From":"","To":""}},{"Egress":false,"Protocol":-1,"RuleAction":"deny","RuleNumber":32767,"CidrBlock":"0.0.0.0/0","IcmpTypeCode":{"Code":"","Type":""},"PortRange":{"From":"","To":""}}],"NetworkAclId":"","VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}"}},"2A3A8171-3F42-400C-A819-7A968F4899A3":{"name":"RT-0","type":"AWS.VPC.RouteTable","uid":"2A3A8171-3F42-400C-A819-7A968F4899A3","resource":{"PropagatingVgwSet":[],"RouteTableId":"","VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}","AssociationSet":[{"Main":"true","RouteTableAssociationId":"","SubnetId":""}],"RouteSet":[{"Origin":"CreateRouteTable","DestinationCidrBlock":"10.0.0.0/16","InstanceId":"","NetworkInterfaceId":"","GatewayId":"local"},{"DestinationCidrBlock":"0.0.0.0/0","Origin":"","InstanceId":"","NetworkInterfaceId":"","GatewayId":"@{49A88A46-62D2-48F8-B962-2890F84E833E.resource.InternetGatewayId}"}]}},"7D2A6D22-FD01-4162-99B7-13458C6D61AF":{"uid":"7D2A6D22-FD01-4162-99B7-13458C6D61AF","name":"us-east-1a","type":"AWS.EC2.AvailabilityZone","resource":{"ZoneName":"us-east-1a","RegionName":"us-east-1"}},"F0C9E792-BD2F-4F5E-84A0-791568A38102":{"name":"subnet0","type":"AWS.VPC.Subnet","uid":"F0C9E792-BD2F-4F5E-84A0-791568A38102","resource":{"AvailabilityZone":"@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}","VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}","SubnetId":"","CidrBlock":"10.0.0.0/24"}},"66CAA3C4-F299-427E-8961-19E04B3B7A88":{"type":"AWS.EC2.Instance","uid":"66CAA3C4-F299-427E-8961-19E04B3B7A88","name":"ghost","index":0,"number":1,"serverGroupUid":"66CAA3C4-F299-427E-8961-19E04B3B7A88","serverGroupName":"ghost","state":[{"id":"state-F038306C-1457-4BF7-9214-F3EE2D5E810A","module":"meta.comment","parameter":{"comment":"Add nodejs custom APT repo"}},{"id":"state-7335827D-6DBD-4F1B-8075-6A47624180E3","module":"linux.apt.ppa","parameter":{"name":"chris-lea/node.js"}},{"id":"state-45369393-87A7-4A68-8E24-64BBB6124104","module":"meta.comment","parameter":{"comment":" Setup required APT packages"}},{"id":"state-7402659A-3849-4528-A814-D92A716C2BE8","module":"linux.apt.package","parameter":{"name":[{"key":"python-software-properties","value":""},{"key":"mysql-client","value":""},{"key":"mysql-server","value":""},{"key":"nginx","value":""},{"key":"nodejs","value":""},{"key":"zip","value":""}]}},{"id":"state-213B9625-DA1F-49AD-90A4-F93E319C1B05","module":"meta.comment","parameter":{"comment":"Setup MySQL"}},{"id":"state-C0B6AF83-3635-4951-9DFC-49EED1D19EAA","module":"linux.file","parameter":{"path":"/bootstrap/ghost_init.sql","content":"create database ghosttest;\ncreate database ghostdev;\ncreate database ghost;\ncreate user 'ghost'@'localhost' identified by 'your-password';\ngrant all privileges on ghost.* to 'ghost'@'localhost';\ngrant all privileges on ghostdev.* to 'ghost'@'localhost';\ngrant all privileges on ghosttest.* to 'ghost'@'localhost';\nSET PASSWORD FOR 'root'@'localhost' = PASSWORD('your-root-password');\nSET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('your-root-password');\nSET PASSWORD FOR 'root'@'%' = PASSWORD('your-root-password');\nflush privileges;\nquit"}},{"id":"state-FEBBA993-C90D-4C45-ACC7-F62E82F1767B","module":"linux.cmd","parameter":{"cmd":"mysql -f -u root < /bootstrap/ghost_init.sql && touch /bootstrap/ghost_init.sql.done","if-path-absent":["/bootstrap/ghost_init.sql.done"]}},{"id":"state-DDAFFAA1-38D8-44A3-BBFD-E57EA4523004","module":"meta.comment","parameter":{"comment":"Ensure presence of required directories"}},{"id":"state-49B4BDF3-A7E6-4659-B5CF-C185A1D95809","module":"linux.dir","parameter":{"path":["/var/cache/nginx","/var/www"],"group":"www-data","recursive":true,"user":"www-data"}},{"id":"state-6D6191FA-E719-4B43-A899-2ACC0392C491","module":"meta.comment","parameter":{"comment":"Configure Nginx"}},{"id":"state-00CDA1FB-2AD0-430E-9014-60B3265C35DD","module":"linux.file","parameter":{"path":"/etc/nginx/sites-available/ghost.conf","content":"server {\n     listen 80;\n     server_name @{self.PublicIp};\n\n     location / {\n         proxy_set_header   X-Real-IP $remote_addr;\n         proxy_set_header   Host      $http_host;\n         proxy_pass         http://127.0.0.1:2368;\n     }\n }"}},{"id":"state-88FFA64A-9B61-40D6-9377-8926B9B21355","module":"linux.symlink","parameter":{"source":"/etc/nginx/sites-available/ghost.conf","target":"/etc/nginx/sites-enabled/ghost.conf"}},{"id":"state-9E4C616B-060E-42E3-A17B-731C91995DF0","module":"meta.comment","parameter":{"comment":"Setup Ghost"}},{"id":"state-5C9C3181-17B3-4275-8DB6-23C4107DF949","module":"common.archive","parameter":{"path":"/var/www","source":"https://ghost.org/zip/ghost-latest.zip","if-path-absent":["/bootstrap/ghost_archive.done"]}},{"id":"state-0BD673E3-5B89-4F0D-8C50-7AD790D2CD2D","module":"linux.file","parameter":{"path":"/bootstrap/ghost_archive.done"}},{"id":"state-AA75B788-5AA4-42F6-940F-E5C343F14309","module":"linux.cmd","parameter":{"cmd":"npm install --production && touch /bootstrap/ghost_setup.done","cwd":"/var/www","if-path-absent":["/bootstrap/ghost_setup.done"]}},{"id":"state-A6C51818-6E5D-4C66-9827-BB4E0C05E91D","module":"linux.file","parameter":{"path":"/var/www/config.js","content":"// # Ghost Configuration\n// Setup your Ghost install for various environments\n// Documentation can be found at http://support.ghost.org/config/\n\nvar path = require('path'),\n    config;\n\nconfig = {\n    // ### Development **(default)**\n    development: {\n        // The url to use when providing links to the site, E.g. in RSS and email.\n        url: 'http://@{self.PublicIp}',\n\n        // Example mail config\n        // Visit http://support.ghost.org/mail for instructions\n        // ```\n        //  mail: {\n        //      transport: 'SMTP',\n        //      options: {\n        //          service: 'Mailgun',\n        //          auth: {\n        //              user: '', // mailgun username\n        //              pass: ''  // mailgun password\n        //          }\n        //      }\n        //  },\n        // ```\n\n        database: {\n            client: 'mysql',\n            connection: {\n                host: '127.0.0.1',\n                user: 'ghost',\n                password: 'your-password',\n                database: 'ghostdev',\n                charset: 'utf8'\n            },\n            debug: false\n        },\n        server: {\n            // Host to be passed to node's `net.Server#listen()`\n            host: '127.0.0.1',\n            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`\n            port: '2368'\n        },\n        paths: {\n            contentPath: path.join(__dirname, '/content/')\n        }\n    },\n\n    // ### Production\n    // When running Ghost in the wild, use the production environment\n    // Configure your URL and mail settings here\n    production: {\n        url: 'http://@{self.PublicIp}',\n        mail: {},\n        database: {\n            client: 'mysql',\n            connection: {\n                host: '127.0.0.1',\n                user: 'ghost',\n                password: 'your-password',\n                database: 'ghost',\n                charset: 'utf8'\n            },\n            debug: false\n        },\n        server: {\n            // Host to be passed to node's `net.Server#listen()`\n            host: '127.0.0.1',\n            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`\n            port: '2368'\n        }\n    },\n\n    // **Developers only need to edit below here**\n\n    // ### Testing\n    // Used when developing Ghost to run tests and check the health of Ghost\n    // Uses a different port number\n    testing: {\n        url: 'http://127.0.0.1:2369',\n        database: {\n            client: 'sqlite3',\n            connection: {\n                filename: path.join(__dirname, '/content/data/ghost-test.db')\n            }\n        },\n        server: {\n            host: '127.0.0.1',\n            port: '2369'\n        },\n        logging: false\n    },\n\n    // ### Testing MySQL\n    // Used by Travis - Automated testing run through GitHub\n    'testing-mysql': {\n        url: 'http://127.0.0.1:2369',\n        database: {\n            client: 'mysql',\n            connection: {\n                host: '127.0.0.1',\n                user: 'ghost',\n                password: 'your-password',\n                database: 'ghost',\n                charset: 'utf8'\n            }\n        },\n        server: {\n            host: '127.0.0.1',\n            port: '2369'\n        },\n        logging: false\n    },\n\n    // ### Testing pg\n    // Used by Travis - Automated testing run through GitHub\n    'testing-pg': {\n        url: 'http://127.0.0.1:2369',\n        database: {\n            client: 'pg',\n            connection: {\n                host     : '127.0.0.1',\n                user     : 'postgres',\n                password : '',\n                database : 'ghost_testing',\n                charset  : 'utf8'\n            }\n        },\n        server: {\n            host: '127.0.0.1',\n            port: '2369'\n        },\n        logging: false\n    }\n};\n\n// Export config\nmodule.exports = config;"}},{"id":"state-1AB4F8C2-7350-4851-B11C-DDBCDD4376E8","module":"common.npm.package","parameter":{"name":[{"key":"mysql","value":""},{"key":"forever","value":""}]}},{"id":"state-C2CA7B18-D334-463E-AD93-039E3678D65F","module":"meta.comment","parameter":{"comment":"Setup startup script"}},{"id":"state-5DDD4DA8-59A8-4B62-AE91-4A54970208C1","module":"linux.file","parameter":{"path":"/var/www/starter.sh","content":" if [ $(ps aux | grep node | grep -v grep | wc -l | tr -s \"\\n\") -eq 0 ]\n then\n     export PATH=/usr/local/bin:$PATH\n     export NODE_ENV=production\n     NODE_ENV=production forever start --sourceDir /var/www index.js >> /var/log/nodelog.txt 2>&1\n fi","mode":"0755"}},{"id":"state-C3E46862-AD2C-4D04-B529-3F2F829B7D48","module":"meta.comment","parameter":{"comment":"Ensure the ownership of the sources"}},{"id":"state-E480BFD4-B585-4896-94D2-34905956257A","module":"linux.dir","parameter":{"path":["/var/www"],"group":"www-data","recursive":true,"user":"www-data"}},{"id":"state-F681B045-9311-4CBD-8A1C-6529F8B147AE","module":"meta.comment","parameter":{"comment":"Setup startup services"}},{"id":"state-BEBD595A-D5F7-4EA0-AEA0-3F92B441532E","module":"linux.service","parameter":{"name":["nginx"],"watch":["/etc/nginx.conf","/etc/nginx/sites-available/ghost.conf"]}},{"id":"state-EA39F6DE-FF38-446C-8CC7-9279461C1031","module":"meta.comment","parameter":{"comment":"Setup starter script using tmpfs for reboot trigger"}},{"id":"state-732E8E29-7F2D-4A01-9EDE-CE019F711A65","module":"linux.cmd","parameter":{"cmd":"bash starter.sh && touch /dev/shm/ghost_starter.done","cwd":"/var/www","if-path-absent":["/dev/shm/ghost_starter.done"]}}],"resource":{"UserData":{"Base64Encoded":false,"Data":""},"BlockDeviceMapping":[{"DeviceName":"/dev/sda1","Ebs":{"SnapshotId":"snap-ad5c736f","VolumeSize":8,"VolumeType":"standard"}}],"Placement":{"Tenancy":"","AvailabilityZone":"@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}"},"InstanceId":"","ImageId":"ami-60f37908","KeyName":"@{234AB9E7-B23B-4426-8FD5-25C80C117075.resource.KeyName}","EbsOptimized":false,"VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}","SubnetId":"@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}","Monitoring":"disabled","NetworkInterface":[],"InstanceType":"m1.small","DisableApiTermination":false,"ShutdownBehavior":"terminate","SecurityGroup":[],"SecurityGroupId":[]}},"6F436202-9EEC-44EB-9530-FCD4BA5B1541":{"index":0,"uid":"6F436202-9EEC-44EB-9530-FCD4BA5B1541","type":"AWS.VPC.NetworkInterface","name":"ghost-eni0","serverGroupUid":"6F436202-9EEC-44EB-9530-FCD4BA5B1541","serverGroupName":"eni0","number":1,"resource":{"SourceDestCheck":true,"Description":"","NetworkInterfaceId":"","AvailabilityZone":"@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}","VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}","SubnetId":"@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}","AssociatePublicIpAddress":true,"PrivateIpAddressSet":[{"PrivateIpAddress":"10.0.0.4","AutoAssign":true,"Primary":true}],"GroupSet":[{"GroupName":"@{C8E05581-6007-4B46-B6B3-4A624AE7CE1F.resource.GroupName}","GroupId":"@{C8E05581-6007-4B46-B6B3-4A624AE7CE1F.resource.GroupId}"}],"Attachment":{"InstanceId":"@{66CAA3C4-F299-427E-8961-19E04B3B7A88.resource.InstanceId}","DeviceIndex":"0","AttachmentId":""}}},"65883662-3441-4F34-AB16-875AD2E2B79E":{"uid":"65883662-3441-4F34-AB16-875AD2E2B79E","type":"AWS.EC2.EIP","name":"ghost-eni0-eip0","index":0,"resource":{"Domain":"vpc","InstanceId":"","AllocationId":"","NetworkInterfaceId":"@{6F436202-9EEC-44EB-9530-FCD4BA5B1541.resource.NetworkInterfaceId}","PrivateIpAddress":"@{6F436202-9EEC-44EB-9530-FCD4BA5B1541.resource.PrivateIpAddressSet.0.PrivateIpAddress}","PublicIp":""}},"234AB9E7-B23B-4426-8FD5-25C80C117075":{"name":"DefaultKP","type":"AWS.EC2.KeyPair","uid":"234AB9E7-B23B-4426-8FD5-25C80C117075","resource":{"KeyFingerprint":"7c:1b:e4:95:4d:5b:cf:21:13:d4:bc:fa:ec:4f:90:a1:69:60:b7:9e","KeyName":"docker"}},"C8E05581-6007-4B46-B6B3-4A624AE7CE1F":{"name":"front","type":"AWS.EC2.SecurityGroup","uid":"C8E05581-6007-4B46-B6B3-4A624AE7CE1F","resource":{"Default":false,"GroupId":"","GroupName":"front","GroupDescription":"Custom Security Group","VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}","IpPermissions":[{"FromPort":"22","ToPort":"22","IpRanges":"0.0.0.0/0","IpProtocol":"tcp"},{"FromPort":"80","ToPort":"80","IpRanges":"0.0.0.0/0","IpProtocol":"tcp"},{"FromPort":"443","ToPort":"443","IpRanges":"0.0.0.0/0","IpProtocol":"tcp"}],"IpPermissionsEgress":[{"FromPort":"0","ToPort":"65535","IpRanges":"0.0.0.0/0","IpProtocol":"-1"}]}},"D10A3771-DF5B-4146-97B4-73243B510C60":{"name":"DefaultSG","type":"AWS.EC2.SecurityGroup","uid":"D10A3771-DF5B-4146-97B4-73243B510C60","resource":{"Default":true,"GroupId":"","GroupName":"DefaultSG","GroupDescription":"Default Security Group","VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}","IpPermissions":[{"FromPort":"22","ToPort":"22","IpRanges":"0.0.0.0/0","IpProtocol":"tcp"}],"IpPermissionsEgress":[{"FromPort":"0","ToPort":"65535","IpRanges":"0.0.0.0/0","IpProtocol":"-1"}]}},"49A88A46-62D2-48F8-B962-2890F84E833E":{"name":"Internet-gateway","type":"AWS.VPC.InternetGateway","uid":"49A88A46-62D2-48F8-B962-2890F84E833E","resource":{"InternetGatewayId":"","AttachmentSet":[{"VpcId":"@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}"}]}}},"layout":{"B6DE64FE-02E6-4034-9436-E9EC0979B857":{"coordinate":[5,3],"uid":"B6DE64FE-02E6-4034-9436-E9EC0979B857","size":[60,60]},"2A3A8171-3F42-400C-A819-7A968F4899A3":{"coordinate":[50,5],"uid":"2A3A8171-3F42-400C-A819-7A968F4899A3","groupUId":"B6DE64FE-02E6-4034-9436-E9EC0979B857"},"7D2A6D22-FD01-4162-99B7-13458C6D61AF":{"coordinate":[20,16],"uid":"7D2A6D22-FD01-4162-99B7-13458C6D61AF","groupUId":"B6DE64FE-02E6-4034-9436-E9EC0979B857","size":[21,21]},"F0C9E792-BD2F-4F5E-84A0-791568A38102":{"coordinate":[22,18],"uid":"F0C9E792-BD2F-4F5E-84A0-791568A38102","groupUId":"7D2A6D22-FD01-4162-99B7-13458C6D61AF","size":[17,17]},"66CAA3C4-F299-427E-8961-19E04B3B7A88":{"coordinate":[26,22],"uid":"66CAA3C4-F299-427E-8961-19E04B3B7A88","groupUId":"F0C9E792-BD2F-4F5E-84A0-791568A38102","osType":"ubuntu","architecture":"x86_64","rootDeviceType":"ebs","instanceList":["66CAA3C4-F299-427E-8961-19E04B3B7A88"]},"49A88A46-62D2-48F8-B962-2890F84E833E":{"coordinate":[1,5],"uid":"49A88A46-62D2-48F8-B962-2890F84E833E","groupUId":"B6DE64FE-02E6-4034-9436-E9EC0979B857"},"size":[240,240]},"signature":"e7e03dcb51820f9c12798cba49c385ae"}
+{
+    "agent": {
+        "enabled": true,
+        "module": {
+            "repo": "https://github.com/MadeiraCloud/salt.git",
+            "tag": "v2015-02-27"
+        }
+    },
+    "name": "sample-ghost-blog-v2",
+    "region": "us-east-1",
+    "platform": "ec2-vpc",
+    "version": "2014-02-17",
+    "component": {
+        "B6DE64FE-02E6-4034-9436-E9EC0979B857": {
+            "name": "vpc",
+            "type": "AWS.VPC.VPC",
+            "uid": "B6DE64FE-02E6-4034-9436-E9EC0979B857",
+            "resource": {
+                "EnableDnsSupport": true,
+                "InstanceTenancy": "default",
+                "EnableDnsHostnames": false,
+                "DhcpOptionsId": "",
+                "VpcId": "",
+                "CidrBlock": "10.0.0.0/16"
+            }
+        },
+        "9F4AA89E-0C41-483D-B303-7703040BB83F": {
+            "name": "DefaultACL",
+            "type": "AWS.VPC.NetworkAcl",
+            "uid": "9F4AA89E-0C41-483D-B303-7703040BB83F",
+            "resource": {
+                "AssociationSet": [
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}"
+                    }
+                ],
+                "Default": true,
+                "EntrySet": [
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    }
+                ],
+                "NetworkAclId": "",
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}"
+            }
+        },
+        "2A3A8171-3F42-400C-A819-7A968F4899A3": {
+            "name": "RT-0",
+            "type": "AWS.VPC.RouteTable",
+            "uid": "2A3A8171-3F42-400C-A819-7A968F4899A3",
+            "resource": {
+                "PropagatingVgwSet": [],
+                "RouteTableId": "",
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+                "AssociationSet": [
+                    {
+                        "Main": "true",
+                        "RouteTableAssociationId": "",
+                        "SubnetId": ""
+                    }
+                ],
+                "RouteSet": [
+                    {
+                        "Origin": "CreateRouteTable",
+                        "DestinationCidrBlock": "10.0.0.0/16",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "local"
+                    },
+                    {
+                        "DestinationCidrBlock": "0.0.0.0/0",
+                        "Origin": "",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "@{49A88A46-62D2-48F8-B962-2890F84E833E.resource.InternetGatewayId}"
+                    }
+                ]
+            }
+        },
+        "7D2A6D22-FD01-4162-99B7-13458C6D61AF": {
+            "uid": "7D2A6D22-FD01-4162-99B7-13458C6D61AF",
+            "name": "us-east-1a",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1a",
+                "RegionName": "us-east-1"
+            }
+        },
+        "F0C9E792-BD2F-4F5E-84A0-791568A38102": {
+            "name": "subnet0",
+            "type": "AWS.VPC.Subnet",
+            "uid": "F0C9E792-BD2F-4F5E-84A0-791568A38102",
+            "resource": {
+                "AvailabilityZone": "@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}",
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.0.0/24"
+            }
+        },
+        "66CAA3C4-F299-427E-8961-19E04B3B7A88": {
+            "type": "AWS.EC2.Instance",
+            "uid": "66CAA3C4-F299-427E-8961-19E04B3B7A88",
+            "name": "ghost",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "66CAA3C4-F299-427E-8961-19E04B3B7A88",
+            "serverGroupName": "ghost",
+            "state": [
+                {
+                    "id": "state-F038306C-1457-4BF7-9214-F3EE2D5E810A",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Add nodejs custom APT repo"
+                    }
+                },
+                {
+                    "id": "state-7335827D-6DBD-4F1B-8075-6A47624180E3",
+                    "module": "linux.apt.ppa",
+                    "parameter": {
+                        "name": "chris-lea/node.js"
+                    }
+                },
+                {
+                    "id": "state-45369393-87A7-4A68-8E24-64BBB6124104",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": " Setup required APT packages"
+                    }
+                },
+                {
+                    "id": "state-7402659A-3849-4528-A814-D92A716C2BE8",
+                    "module": "linux.apt.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "python-software-properties",
+                                "value": ""
+                            },
+                            {
+                                "key": "mysql-client",
+                                "value": ""
+                            },
+                            {
+                                "key": "mysql-server",
+                                "value": ""
+                            },
+                            {
+                                "key": "nginx",
+                                "value": ""
+                            },
+                            {
+                                "key": "nodejs",
+                                "value": ""
+                            },
+                            {
+                                "key": "zip",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-213B9625-DA1F-49AD-90A4-F93E319C1B05",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup MySQL"
+                    }
+                },
+                {
+                    "id": "state-C0B6AF83-3635-4951-9DFC-49EED1D19EAA",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/ghost_init.sql",
+                        "content": "create database ghosttest;\ncreate database ghostdev;\ncreate database ghost;\ncreate user 'ghost'@'localhost' identified by 'your-password';\ngrant all privileges on ghost.* to 'ghost'@'localhost';\ngrant all privileges on ghostdev.* to 'ghost'@'localhost';\ngrant all privileges on ghosttest.* to 'ghost'@'localhost';\nSET PASSWORD FOR 'root'@'localhost' = PASSWORD('your-root-password');\nSET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('your-root-password');\nSET PASSWORD FOR 'root'@'%' = PASSWORD('your-root-password');\nflush privileges;\nquit"
+                    }
+                },
+                {
+                    "id": "state-FEBBA993-C90D-4C45-ACC7-F62E82F1767B",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "mysql -f -u root < /bootstrap/ghost_init.sql && touch /bootstrap/ghost_init.sql.done",
+                        "if-path-absent": [
+                            "/bootstrap/ghost_init.sql.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-DDAFFAA1-38D8-44A3-BBFD-E57EA4523004",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Ensure presence of required directories"
+                    }
+                },
+                {
+                    "id": "state-49B4BDF3-A7E6-4659-B5CF-C185A1D95809",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/cache/nginx",
+                            "/var/www"
+                        ],
+                        "group": "www-data",
+                        "recursive": true,
+                        "user": "www-data"
+                    }
+                },
+                {
+                    "id": "state-6D6191FA-E719-4B43-A899-2ACC0392C491",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Nginx"
+                    }
+                },
+                {
+                    "id": "state-00CDA1FB-2AD0-430E-9014-60B3265C35DD",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/nginx/sites-available/ghost.conf",
+                        "content": "server {\n     listen 80;\n     server_name @{self.PublicIp};\n\n     location / {\n         proxy_set_header   X-Real-IP $remote_addr;\n         proxy_set_header   Host      $http_host;\n         proxy_pass         http://127.0.0.1:2368;\n     }\n }"
+                    }
+                },
+                {
+                    "id": "state-88FFA64A-9B61-40D6-9377-8926B9B21355",
+                    "module": "linux.symlink",
+                    "parameter": {
+                        "source": "/etc/nginx/sites-available/ghost.conf",
+                        "target": "/etc/nginx/sites-enabled/ghost.conf"
+                    }
+                },
+                {
+                    "id": "state-9E4C616B-060E-42E3-A17B-731C91995DF0",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Ghost"
+                    }
+                },
+                {
+                    "id": "state-5C9C3181-17B3-4275-8DB6-23C4107DF949",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/var/www",
+                        "source": "https://ghost.org/zip/ghost-latest.zip",
+                        "if-path-absent": [
+                            "/bootstrap/ghost_archive.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-0BD673E3-5B89-4F0D-8C50-7AD790D2CD2D",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/ghost_archive.done"
+                    }
+                },
+                {
+                    "id": "state-AA75B788-5AA4-42F6-940F-E5C343F14309",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "npm install --production && touch /bootstrap/ghost_setup.done",
+                        "cwd": "/var/www",
+                        "if-path-absent": [
+                            "/bootstrap/ghost_setup.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-A6C51818-6E5D-4C66-9827-BB4E0C05E91D",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/var/www/config.js",
+                        "content": "// # Ghost Configuration\n// Setup your Ghost install for various environments\n// Documentation can be found at http://support.ghost.org/config/\n\nvar path = require('path'),\n    config;\n\nconfig = {\n    // ### Development **(default)**\n    development: {\n        // The url to use when providing links to the site, E.g. in RSS and email.\n        url: 'http://@{self.PublicIp}',\n\n        // Example mail config\n        // Visit http://support.ghost.org/mail for instructions\n        // ```\n        //  mail: {\n        //      transport: 'SMTP',\n        //      options: {\n        //          service: 'Mailgun',\n        //          auth: {\n        //              user: '', // mailgun username\n        //              pass: ''  // mailgun password\n        //          }\n        //      }\n        //  },\n        // ```\n\n        database: {\n            client: 'mysql',\n            connection: {\n                host: '127.0.0.1',\n                user: 'ghost',\n                password: 'your-password',\n                database: 'ghostdev',\n                charset: 'utf8'\n            },\n            debug: false\n        },\n        server: {\n            // Host to be passed to node's `net.Server#listen()`\n            host: '127.0.0.1',\n            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`\n            port: '2368'\n        },\n        paths: {\n            contentPath: path.join(__dirname, '/content/')\n        }\n    },\n\n    // ### Production\n    // When running Ghost in the wild, use the production environment\n    // Configure your URL and mail settings here\n    production: {\n        url: 'http://@{self.PublicIp}',\n        mail: {},\n        database: {\n            client: 'mysql',\n            connection: {\n                host: '127.0.0.1',\n                user: 'ghost',\n                password: 'your-password',\n                database: 'ghost',\n                charset: 'utf8'\n            },\n            debug: false\n        },\n        server: {\n            // Host to be passed to node's `net.Server#listen()`\n            host: '127.0.0.1',\n            // Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`\n            port: '2368'\n        }\n    },\n\n    // **Developers only need to edit below here**\n\n    // ### Testing\n    // Used when developing Ghost to run tests and check the health of Ghost\n    // Uses a different port number\n    testing: {\n        url: 'http://127.0.0.1:2369',\n        database: {\n            client: 'sqlite3',\n            connection: {\n                filename: path.join(__dirname, '/content/data/ghost-test.db')\n            }\n        },\n        server: {\n            host: '127.0.0.1',\n            port: '2369'\n        },\n        logging: false\n    },\n\n    // ### Testing MySQL\n    // Used by Travis - Automated testing run through GitHub\n    'testing-mysql': {\n        url: 'http://127.0.0.1:2369',\n        database: {\n            client: 'mysql',\n            connection: {\n                host: '127.0.0.1',\n                user: 'ghost',\n                password: 'your-password',\n                database: 'ghost',\n                charset: 'utf8'\n            }\n        },\n        server: {\n            host: '127.0.0.1',\n            port: '2369'\n        },\n        logging: false\n    },\n\n    // ### Testing pg\n    // Used by Travis - Automated testing run through GitHub\n    'testing-pg': {\n        url: 'http://127.0.0.1:2369',\n        database: {\n            client: 'pg',\n            connection: {\n                host     : '127.0.0.1',\n                user     : 'postgres',\n                password : '',\n                database : 'ghost_testing',\n                charset  : 'utf8'\n            }\n        },\n        server: {\n            host: '127.0.0.1',\n            port: '2369'\n        },\n        logging: false\n    }\n};\n\n// Export config\nmodule.exports = config;"
+                    }
+                },
+                {
+                    "id": "state-1AB4F8C2-7350-4851-B11C-DDBCDD4376E8",
+                    "module": "common.npm.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mysql",
+                                "value": ""
+                            },
+                            {
+                                "key": "forever",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-C2CA7B18-D334-463E-AD93-039E3678D65F",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup startup script"
+                    }
+                },
+                {
+                    "id": "state-5DDD4DA8-59A8-4B62-AE91-4A54970208C1",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/var/www/starter.sh",
+                        "content": " if [ $(ps aux | grep node | grep -v grep | wc -l | tr -s \"\\n\") -eq 0 ]\n then\n     export PATH=/usr/local/bin:$PATH\n     export NODE_ENV=production\n     NODE_ENV=production forever start --sourceDir /var/www index.js >> /var/log/nodelog.txt 2>&1\n fi",
+                        "mode": "0755"
+                    }
+                },
+                {
+                    "id": "state-C3E46862-AD2C-4D04-B529-3F2F829B7D48",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Ensure the ownership of the sources"
+                    }
+                },
+                {
+                    "id": "state-E480BFD4-B585-4896-94D2-34905956257A",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/www"
+                        ],
+                        "group": "www-data",
+                        "recursive": true,
+                        "user": "www-data"
+                    }
+                },
+                {
+                    "id": "state-F681B045-9311-4CBD-8A1C-6529F8B147AE",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup startup services"
+                    }
+                },
+                {
+                    "id": "state-BEBD595A-D5F7-4EA0-AEA0-3F92B441532E",
+                    "module": "linux.service",
+                    "parameter": {
+                        "name": [
+                            "nginx"
+                        ],
+                        "watch": [
+                            "/etc/nginx.conf",
+                            "/etc/nginx/sites-available/ghost.conf"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-EA39F6DE-FF38-446C-8CC7-9279461C1031",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup starter script using tmpfs for reboot trigger"
+                    }
+                },
+                {
+                    "id": "state-732E8E29-7F2D-4A01-9EDE-CE019F711A65",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash starter.sh && touch /dev/shm/ghost_starter.done",
+                        "cwd": "/var/www",
+                        "if-path-absent": [
+                            "/dev/shm/ghost_starter.done"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-ad5c736f",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-60f37908",
+                "KeyName": "@{234AB9E7-B23B-4426-8FD5-25C80C117075.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+                "SubnetId": "@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "m1.small",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "6F436202-9EEC-44EB-9530-FCD4BA5B1541": {
+            "index": 0,
+            "uid": "6F436202-9EEC-44EB-9530-FCD4BA5B1541",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "ghost-eni0",
+            "serverGroupUid": "6F436202-9EEC-44EB-9530-FCD4BA5B1541",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{7D2A6D22-FD01-4162-99B7-13458C6D61AF.resource.ZoneName}",
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+                "SubnetId": "@{F0C9E792-BD2F-4F5E-84A0-791568A38102.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{C8E05581-6007-4B46-B6B3-4A624AE7CE1F.resource.GroupName}",
+                        "GroupId": "@{C8E05581-6007-4B46-B6B3-4A624AE7CE1F.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{66CAA3C4-F299-427E-8961-19E04B3B7A88.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "65883662-3441-4F34-AB16-875AD2E2B79E": {
+            "uid": "65883662-3441-4F34-AB16-875AD2E2B79E",
+            "type": "AWS.EC2.EIP",
+            "name": "ghost-eni0-eip0",
+            "index": 0,
+            "resource": {
+                "Domain": "vpc",
+                "InstanceId": "",
+                "AllocationId": "",
+                "NetworkInterfaceId": "@{6F436202-9EEC-44EB-9530-FCD4BA5B1541.resource.NetworkInterfaceId}",
+                "PrivateIpAddress": "@{6F436202-9EEC-44EB-9530-FCD4BA5B1541.resource.PrivateIpAddressSet.0.PrivateIpAddress}",
+                "PublicIp": ""
+            }
+        },
+        "234AB9E7-B23B-4426-8FD5-25C80C117075": {
+            "name": "DefaultKP",
+            "type": "AWS.EC2.KeyPair",
+            "uid": "234AB9E7-B23B-4426-8FD5-25C80C117075",
+            "resource": {
+                "KeyFingerprint": "7c:1b:e4:95:4d:5b:cf:21:13:d4:bc:fa:ec:4f:90:a1:69:60:b7:9e",
+                "KeyName": "docker"
+            }
+        },
+        "C8E05581-6007-4B46-B6B3-4A624AE7CE1F": {
+            "name": "front",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "C8E05581-6007-4B46-B6B3-4A624AE7CE1F",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "front",
+                "GroupDescription": "Custom Security Group",
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ]
+            }
+        },
+        "D10A3771-DF5B-4146-97B4-73243B510C60": {
+            "name": "DefaultSG",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "D10A3771-DF5B-4146-97B4-73243B510C60",
+            "resource": {
+                "Default": true,
+                "GroupId": "",
+                "GroupName": "DefaultSG",
+                "GroupDescription": "Default Security Group",
+                "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ]
+            }
+        },
+        "49A88A46-62D2-48F8-B962-2890F84E833E": {
+            "name": "Internet-gateway",
+            "type": "AWS.VPC.InternetGateway",
+            "uid": "49A88A46-62D2-48F8-B962-2890F84E833E",
+            "resource": {
+                "InternetGatewayId": "",
+                "AttachmentSet": [
+                    {
+                        "VpcId": "@{B6DE64FE-02E6-4034-9436-E9EC0979B857.resource.VpcId}"
+                    }
+                ]
+            }
+        }
+    },
+    "layout": {
+        "B6DE64FE-02E6-4034-9436-E9EC0979B857": {
+            "coordinate": [
+                5,
+                3
+            ],
+            "uid": "B6DE64FE-02E6-4034-9436-E9EC0979B857",
+            "size": [
+                60,
+                60
+            ]
+        },
+        "2A3A8171-3F42-400C-A819-7A968F4899A3": {
+            "coordinate": [
+                50,
+                5
+            ],
+            "uid": "2A3A8171-3F42-400C-A819-7A968F4899A3",
+            "groupUId": "B6DE64FE-02E6-4034-9436-E9EC0979B857"
+        },
+        "7D2A6D22-FD01-4162-99B7-13458C6D61AF": {
+            "coordinate": [
+                20,
+                16
+            ],
+            "uid": "7D2A6D22-FD01-4162-99B7-13458C6D61AF",
+            "groupUId": "B6DE64FE-02E6-4034-9436-E9EC0979B857",
+            "size": [
+                21,
+                21
+            ]
+        },
+        "F0C9E792-BD2F-4F5E-84A0-791568A38102": {
+            "coordinate": [
+                22,
+                18
+            ],
+            "uid": "F0C9E792-BD2F-4F5E-84A0-791568A38102",
+            "groupUId": "7D2A6D22-FD01-4162-99B7-13458C6D61AF",
+            "size": [
+                17,
+                17
+            ]
+        },
+        "66CAA3C4-F299-427E-8961-19E04B3B7A88": {
+            "coordinate": [
+                26,
+                22
+            ],
+            "uid": "66CAA3C4-F299-427E-8961-19E04B3B7A88",
+            "groupUId": "F0C9E792-BD2F-4F5E-84A0-791568A38102",
+            "osType": "ubuntu",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "66CAA3C4-F299-427E-8961-19E04B3B7A88"
+            ]
+        },
+        "49A88A46-62D2-48F8-B962-2890F84E833E": {
+            "coordinate": [
+                1,
+                5
+            ],
+            "uid": "49A88A46-62D2-48F8-B962-2890F84E833E",
+            "groupUId": "B6DE64FE-02E6-4034-9436-E9EC0979B857"
+        },
+        "size": [
+            240,
+            240
+        ]
+    },
+    "signature": "e7e03dcb51820f9c12798cba49c385ae"
+}
