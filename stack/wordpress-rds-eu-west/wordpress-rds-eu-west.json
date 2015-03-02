@@ -73,9 +73,9 @@
                     "id": "state-2F4AF545-65A2-4DCF-ADA4-AE2525B408B4",
                     "module": "linux.service",
                     "parameter": {
-                        "name": [
-                            "httpd"
-                        ],
+                        "name": {
+                            "httpd": ""
+                        },
                         "watch": [
                             "/etc/httpd/conf/httpd.conf"
                         ]
