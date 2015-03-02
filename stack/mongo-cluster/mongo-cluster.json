@@ -1,1624 +1,1624 @@
 {
-  "agent": {
-    "enabled": true,
-    "module": {
-      "repo": "https://github.com/MadeiraCloud/salt",
-      "tag": "v2014-07-18"
-    }
-  },
-  "name": "mongo-cluster",
-  "region": "us-east-1",
-  "platform": "ec2-vpc",
-  "version": "2014-02-17",
-  "component": {
-    "8E8C9D8A-3F34-464E-B9EE-CCA8A3977589": {
-      "name": "DefaultACL",
-      "type": "AWS.VPC.NetworkAcl",
-      "uid": "8E8C9D8A-3F34-464E-B9EE-CCA8A3977589",
-      "resource": {
-        "AssociationSet": [
-          {
-            "NetworkAclAssociationId": "",
-            "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}"
-          },
-          {
-            "NetworkAclAssociationId": "",
-            "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}"
-          },
-          {
-            "NetworkAclAssociationId": "",
-            "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}"
-          }
-        ],
-        "Default": true,
-        "EntrySet": [
-          {
-            "Egress": true,
-            "Protocol": -1,
-            "RuleAction": "allow",
-            "RuleNumber": 100,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": true,
-            "Protocol": -1,
-            "RuleAction": "deny",
-            "RuleNumber": 32767,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": false,
-            "Protocol": -1,
-            "RuleAction": "allow",
-            "RuleNumber": 100,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": false,
-            "Protocol": -1,
-            "RuleAction": "deny",
-            "RuleNumber": 32767,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          }
-        ],
-        "NetworkAclId": "",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}"
-      }
-    },
-    "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8": {
-      "name": "RT-0",
-      "type": "AWS.VPC.RouteTable",
-      "uid": "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8",
-      "resource": {
-        "PropagatingVgwSet": [],
-        "RouteTableId": "",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "AssociationSet": [
-          {
-            "Main": "true",
-            "RouteTableAssociationId": "",
-            "SubnetId": ""
-          }
-        ],
-        "RouteSet": [
-          {
-            "Origin": "CreateRouteTable",
-            "DestinationCidrBlock": "10.0.0.0/16",
-            "InstanceId": "",
-            "NetworkInterfaceId": "",
-            "GatewayId": "local"
-          },
-          {
-            "DestinationCidrBlock": "0.0.0.0/0",
-            "Origin": "",
-            "InstanceId": "",
-            "NetworkInterfaceId": "",
-            "GatewayId": "@{6F26A9B3-F618-42CB-86AF-741C260BBCBE.resource.InternetGatewayId}"
-          }
-        ]
-      }
-    },
-    "F47573E7-7289-4C4B-BABC-DF765D36A60B": {
-      "name": "vpc",
-      "type": "AWS.VPC.VPC",
-      "uid": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
-      "resource": {
-        "EnableDnsSupport": true,
-        "InstanceTenancy": "default",
-        "EnableDnsHostnames": false,
-        "DhcpOptionsId": "",
-        "VpcId": "",
-        "CidrBlock": "10.0.0.0/16"
-      }
-    },
-    "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA": {
-      "uid": "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA",
-      "name": "us-east-1d",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1d",
-        "RegionName": "us-east-1"
-      }
-    },
-    "74754EB2-65EC-49A8-BC1A-9739634FFB82": {
-      "name": "subnet2",
-      "type": "AWS.VPC.Subnet",
-      "uid": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
-      "resource": {
-        "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.2.0/24"
-      }
-    },
-    "57DE3063-A823-43BB-862B-4E309F8344EE": {
-      "uid": "57DE3063-A823-43BB-862B-4E309F8344EE",
-      "name": "us-east-1b",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1b",
-        "RegionName": "us-east-1"
-      }
-    },
-    "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4": {
-      "name": "subnet1",
-      "type": "AWS.VPC.Subnet",
-      "uid": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
-      "resource": {
-        "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.1.0/24"
-      }
-    },
-    "D08739BA-A1FE-4B0C-8E4A-216A2EF51973": {
-      "uid": "D08739BA-A1FE-4B0C-8E4A-216A2EF51973",
-      "name": "us-east-1a",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1a",
-        "RegionName": "us-east-1"
-      }
-    },
-    "680A1E22-1867-45D3-8228-7B4FFC9ED112": {
-      "name": "subnet0",
-      "type": "AWS.VPC.Subnet",
-      "uid": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
-      "resource": {
-        "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
-    "17590283-0EE3-48D3-A5CA-4D7C5B3459D5": {
-      "name": "DefaultSG",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "17590283-0EE3-48D3-A5CA-4D7C5B3459D5",
-      "resource": {
-        "Default": true,
-        "GroupId": "",
-        "GroupName": "DefaultSG",
-        "GroupDescription": "Default Security Group",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "22",
-            "ToPort": "22",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "27017",
-            "ToPort": "27017",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": []
-      }
-    },
-    "179CDD7A-6BE8-4D77-8307-4BE2B977438E": {
-      "type": "AWS.EC2.Instance",
-      "uid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
-      "name": "mongo-config2",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
-      "serverGroupName": "mongo-config2",
-      "state": [
-        {
-          "id": "state-AD9632B2-21D9-41D5-BAE3-B4812DF3974D",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
-        },
-        {
-          "id": "state-A8714E77-9AF7-4FB6-923D-E8BC571D60BE",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
-            ],
-            "repo": "mongodb"
-          }
-        },
-        {
-          "id": "state-F2492849-A2FB-4C99-A0F2-827BE44D0BC9",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/db/mongodb/configdb/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-4EBD74D1-642C-4DC2-9C3E-AF62596BF55D",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-51E22F93-D218-41EC-AF9E-0EE73A358CD6",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongodb_config.conf",
-            "content": "port = 27019\ndbpath = /madeira/db/mongodb/configdb/\nconfigsvr = true\nlogpath = /madeira/log/mongodb_config.log\nlogappend = yes"
-          }
-        },
-        {
-          "id": "state-70A99FCB-411E-471B-A08B-86BCB75736EB",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongos.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongo]\ncommand=/usr/bin/mongod -f /etc/mongodb_config.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
-          }
-        },
-        {
-          "id": "state-EC546DD7-4B61-4494-990F-29AA685B4C6A",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongos.conf",
-            "name": [
-              "mongo"
-            ],
-            "watch": [
-              "/etc/mongodb_config.conf"
-            ]
-          }
+    "agent": {
+        "enabled": true,
+        "module": {
+            "repo": "https://github.com/MadeiraCloud/salt",
+            "tag": "v2015-02-27"
         }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+    },
+    "name": "mongo-cluster",
+    "region": "us-east-1",
+    "platform": "ec2-vpc",
+    "version": "2014-02-17",
+    "component": {
+        "8E8C9D8A-3F34-464E-B9EE-CCA8A3977589": {
+            "name": "DefaultACL",
+            "type": "AWS.VPC.NetworkAcl",
+            "uid": "8E8C9D8A-3F34-464E-B9EE-CCA8A3977589",
+            "resource": {
+                "AssociationSet": [
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}"
+                    },
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}"
+                    },
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}"
+                    }
+                ],
+                "Default": true,
+                "EntrySet": [
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    }
+                ],
+                "NetworkAclId": "",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}"
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "3645BFDD-6EA9-4BEF-8C80-58BB990974A8": {
-      "index": 0,
-      "uid": "3645BFDD-6EA9-4BEF-8C80-58BB990974A8",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongo-config2-eni0",
-      "serverGroupUid": "3645BFDD-6EA9-4BEF-8C80-58BB990974A8",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.2.4",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{179CDD7A-6BE8-4D77-8307-4BE2B977438E.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "D503D841-D54C-4129-9B87-8CFA4485DEA3": {
-      "name": "DefaultKP",
-      "type": "AWS.EC2.KeyPair",
-      "uid": "D503D841-D54C-4129-9B87-8CFA4485DEA3",
-      "resource": {
-        "KeyFingerprint": "",
-        "KeyName": "DefaultKP"
-      }
-    },
-    "0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB": {
-      "name": "mongodb",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB",
-      "resource": {
-        "Default": false,
-        "GroupId": "",
-        "GroupName": "mongodb",
-        "GroupDescription": "Custom Security Group",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "0",
-            "ToPort": "65535",
-            "IpRanges": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}",
-            "IpProtocol": "-1"
-          },
-          {
-            "FromPort": "27017",
-            "ToPort": "27017",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "0",
-            "ToPort": "65535",
-            "IpRanges": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}",
-            "IpProtocol": "-1"
-          },
-          {
-            "FromPort": "443",
-            "ToPort": "443",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "80",
-            "ToPort": "80",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ]
-      }
-    },
-    "E061A0EE-75CD-4598-A8D6-A89399A367D0": {
-      "type": "AWS.EC2.Instance",
-      "uid": "E061A0EE-75CD-4598-A8D6-A89399A367D0",
-      "name": "mongos",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "E061A0EE-75CD-4598-A8D6-A89399A367D0",
-      "serverGroupName": "mongos",
-      "state": [
-        {
-          "id": "state-B8777D28-0863-4A5C-AE5F-E3764292CD35",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
+        "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8": {
+            "name": "RT-0",
+            "type": "AWS.VPC.RouteTable",
+            "uid": "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8",
+            "resource": {
+                "PropagatingVgwSet": [],
+                "RouteTableId": "",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "AssociationSet": [
+                    {
+                        "Main": "true",
+                        "RouteTableAssociationId": "",
+                        "SubnetId": ""
+                    }
+                ],
+                "RouteSet": [
+                    {
+                        "Origin": "CreateRouteTable",
+                        "DestinationCidrBlock": "10.0.0.0/16",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "local"
+                    },
+                    {
+                        "DestinationCidrBlock": "0.0.0.0/0",
+                        "Origin": "",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "@{6F26A9B3-F618-42CB-86AF-741C260BBCBE.resource.InternetGatewayId}"
+                    }
+                ]
+            }
         },
-        {
-          "id": "state-26995849-1603-4332-B6C3-A0AB857C4042",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
-            ],
-            "repo": "mongodb"
-          }
+        "F47573E7-7289-4C4B-BABC-DF765D36A60B": {
+            "name": "vpc",
+            "type": "AWS.VPC.VPC",
+            "uid": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
+            "resource": {
+                "EnableDnsSupport": true,
+                "InstanceTenancy": "default",
+                "EnableDnsHostnames": false,
+                "DhcpOptionsId": "",
+                "VpcId": "",
+                "CidrBlock": "10.0.0.0/16"
+            }
         },
-        {
-          "id": "state-7F6C9432-1EDF-4D00-96DB-B3FDC4A4314C",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/"
-            ],
-            "recursive": true
-          }
+        "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA": {
+            "uid": "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA",
+            "name": "us-east-1d",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1d",
+                "RegionName": "us-east-1"
+            }
         },
-        {
-          "id": "state-6A7FAFC8-B0B4-484D-B504-23F7FB33FBCC",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
+        "74754EB2-65EC-49A8-BC1A-9739634FFB82": {
+            "name": "subnet2",
+            "type": "AWS.VPC.Subnet",
+            "uid": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
+            "resource": {
+                "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.2.0/24"
+            }
         },
-        {
-          "id": "state-DE908C93-63D3-4817-AC68-42882F937B19",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongos.conf",
-            "content": "port = 27017\nconfigdb = @{1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6.PrivateIpAddress}:27019,@{57CCCBEB-9519-4EE2-9ADE-50D36C88437D.PrivateIpAddress}:27019,@{179CDD7A-6BE8-4D77-8307-4BE2B977438E.PrivateIpAddress}:27019\nlogpath = /madeira/log/mongos.log\nlogappend = yes"
-          }
+        "57DE3063-A823-43BB-862B-4E309F8344EE": {
+            "uid": "57DE3063-A823-43BB-862B-4E309F8344EE",
+            "name": "us-east-1b",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1b",
+                "RegionName": "us-east-1"
+            }
         },
-        {
-          "id": "state-FD30E26A-35B5-450B-9194-03D952F58197",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongos.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongos]\ncommand=/usr/bin/mongos -f /etc/mongos.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n\n"
-          }
+        "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4": {
+            "name": "subnet1",
+            "type": "AWS.VPC.Subnet",
+            "uid": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
+            "resource": {
+                "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.1.0/24"
+            }
         },
-        {
-          "id": "state-D104AF89-D341-4465-AB4B-993A02A1C312",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongos.conf",
-            "name": [
-              "mongos"
-            ],
-            "watch": [
-              "/etc/mongos.conf"
-            ]
-          }
+        "D08739BA-A1FE-4B0C-8E4A-216A2EF51973": {
+            "uid": "D08739BA-A1FE-4B0C-8E4A-216A2EF51973",
+            "name": "us-east-1a",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1a",
+                "RegionName": "us-east-1"
+            }
         },
-        {
-          "id": "state-ABDC5726-8514-43E6-80AA-9CB95DE6BAFB",
-          "module": "meta.wait",
-          "parameter": {
+        "680A1E22-1867-45D3-8228-7B4FFC9ED112": {
+            "name": "subnet0",
+            "type": "AWS.VPC.Subnet",
+            "uid": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
+            "resource": {
+                "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.0.0/24"
+            }
+        },
+        "17590283-0EE3-48D3-A5CA-4D7C5B3459D5": {
+            "name": "DefaultSG",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "17590283-0EE3-48D3-A5CA-4D7C5B3459D5",
+            "resource": {
+                "Default": true,
+                "GroupId": "",
+                "GroupName": "DefaultSG",
+                "GroupDescription": "Default Security Group",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "27017",
+                        "ToPort": "27017",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": []
+            }
+        },
+        "179CDD7A-6BE8-4D77-8307-4BE2B977438E": {
+            "type": "AWS.EC2.Instance",
+            "uid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
+            "name": "mongo-config2",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
+            "serverGroupName": "mongo-config2",
             "state": [
-              "@{256587F8-0BFA-40A9-8F47-5B997C27452C.state.state-82EEDEEF-44B1-44EF-85B2-ADB91A66E5FF}"
-            ]
-          }
-        },
-        {
-          "id": "state-556B031C-BBDB-4F2E-93D7-A189E9EB5068",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "if [ `echo 'sh.addShard(\"rs0/@{F732583A-83F7-48E2-B340-4E2737B0E809.PrivateIpAddress}:27017,@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.PrivateIpAddress}:27017,@{256587F8-0BFA-40A9-8F47-5B997C27452C.PrivateIpAddress}:27017\")' | mongo -port 27017 | grep '\"ok\" : 1' | wc -l` -ne 1 ]; then exit 1; else touch /madeira/lock/addshard; fi",
-            "if-path-absent": [
-              "/madeira/lock/addshard"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+                {
+                    "id": "state-AD9632B2-21D9-41D5-BAE3-B4812DF3974D",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-A8714E77-9AF7-4FB6-923D-E8BC571D60BE",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-F2492849-A2FB-4C99-A0F2-827BE44D0BC9",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/db/mongodb/configdb/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-4EBD74D1-642C-4DC2-9C3E-AF62596BF55D",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-51E22F93-D218-41EC-AF9E-0EE73A358CD6",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongodb_config.conf",
+                        "content": "port = 27019\ndbpath = /madeira/db/mongodb/configdb/\nconfigsvr = true\nlogpath = /madeira/log/mongodb_config.log\nlogappend = yes"
+                    }
+                },
+                {
+                    "id": "state-70A99FCB-411E-471B-A08B-86BCB75736EB",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongos.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongo]\ncommand=/usr/bin/mongod -f /etc/mongodb_config.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
+                    }
+                },
+                {
+                    "id": "state-EC546DD7-4B61-4494-990F-29AA685B4C6A",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongos.conf",
+                        "name": [
+                            "mongo"
+                        ],
+                        "watch": [
+                            "/etc/mongodb_config.conf"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "ACE2E9F4-1A73-44EC-A00B-E2F7CE8B075E": {
-      "index": 0,
-      "uid": "ACE2E9F4-1A73-44EC-A00B-E2F7CE8B075E",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongos-eni0",
-      "serverGroupUid": "ACE2E9F4-1A73-44EC-A00B-E2F7CE8B075E",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.1.6",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{17590283-0EE3-48D3-A5CA-4D7C5B3459D5.resource.GroupName}",
-            "GroupId": "@{17590283-0EE3-48D3-A5CA-4D7C5B3459D5.resource.GroupId}"
-          },
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{E061A0EE-75CD-4598-A8D6-A89399A367D0.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "57CCCBEB-9519-4EE2-9ADE-50D36C88437D": {
-      "type": "AWS.EC2.Instance",
-      "uid": "57CCCBEB-9519-4EE2-9ADE-50D36C88437D",
-      "name": "mongo-config1",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "57CCCBEB-9519-4EE2-9ADE-50D36C88437D",
-      "serverGroupName": "mongo-config1",
-      "state": [
-        {
-          "id": "state-8B3FDF87-0D61-49D6-91D2-571F723F11F8",
-          "module": "linux.yum.repo",
-          "parameter": {
+        "3645BFDD-6EA9-4BEF-8C80-58BB990974A8": {
+            "index": 0,
+            "uid": "3645BFDD-6EA9-4BEF-8C80-58BB990974A8",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongo-config2-eni0",
+            "serverGroupUid": "3645BFDD-6EA9-4BEF-8C80-58BB990974A8",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.2.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{179CDD7A-6BE8-4D77-8307-4BE2B977438E.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "D503D841-D54C-4129-9B87-8CFA4485DEA3": {
+            "name": "DefaultKP",
+            "type": "AWS.EC2.KeyPair",
+            "uid": "D503D841-D54C-4129-9B87-8CFA4485DEA3",
+            "resource": {
+                "KeyFingerprint": "",
+                "KeyName": "DefaultKP"
+            }
+        },
+        "0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB": {
             "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
-        },
-        {
-          "id": "state-E7524B49-EBBA-44CC-899B-ACE6BDBE6372",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
-            ],
-            "repo": "mongodb"
-          }
-        },
-        {
-          "id": "state-5FAD74BB-DD94-422E-B643-C4DE08E0490B",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/db/mongodb/configdb/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-AEB58E49-6B4B-4BAB-A6B5-1CD8A0AC79AF",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-92C0E9FC-86BD-4063-AB1A-30A68402BD59",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongodb_config.conf",
-            "content": "port = 27019\ndbpath = /madeira/db/mongodb/configdb/\nconfigsvr = true\nlogpath = /madeira/log/mongodb_config.log\nlogappend = yes"
-          }
-        },
-        {
-          "id": "state-C43B3EA1-2653-46B0-93C1-B468A60F4722",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongos.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongo]\ncommand=/usr/bin/mongod -f /etc/mongodb_config.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
-          }
-        },
-        {
-          "id": "state-0729C30A-DE55-4E6D-8278-D595766045D2",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongos.conf",
-            "name": [
-              "mongo"
-            ],
-            "watch": [
-              "/etc/mongodb_config.conf"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "mongodb",
+                "GroupDescription": "Custom Security Group",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "IpRanges": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}",
+                        "IpProtocol": "-1"
+                    },
+                    {
+                        "FromPort": "27017",
+                        "ToPort": "27017",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "IpRanges": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}",
+                        "IpProtocol": "-1"
+                    },
+                    {
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ]
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "F44CEA42-5E56-48D8-92CE-054622C59548": {
-      "index": 0,
-      "uid": "F44CEA42-5E56-48D8-92CE-054622C59548",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongo-config1-eni0",
-      "serverGroupUid": "F44CEA42-5E56-48D8-92CE-054622C59548",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.1.4",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{57CCCBEB-9519-4EE2-9ADE-50D36C88437D.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "256587F8-0BFA-40A9-8F47-5B997C27452C": {
-      "type": "AWS.EC2.Instance",
-      "uid": "256587F8-0BFA-40A9-8F47-5B997C27452C",
-      "name": "mongod0",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "256587F8-0BFA-40A9-8F47-5B997C27452C",
-      "serverGroupName": "mongod0",
-      "state": [
-        {
-          "id": "state-26D16993-2FA8-4041-AF6A-2C6C5624403A",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
-        },
-        {
-          "id": "state-A55EF56D-A8BA-475A-808A-8858E844C3DC",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
+        "E061A0EE-75CD-4598-A8D6-A89399A367D0": {
+            "type": "AWS.EC2.Instance",
+            "uid": "E061A0EE-75CD-4598-A8D6-A89399A367D0",
+            "name": "mongos",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "E061A0EE-75CD-4598-A8D6-A89399A367D0",
+            "serverGroupName": "mongos",
+            "state": [
+                {
+                    "id": "state-B8777D28-0863-4A5C-AE5F-E3764292CD35",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-26995849-1603-4332-B6C3-A0AB857C4042",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-7F6C9432-1EDF-4D00-96DB-B3FDC4A4314C",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-6A7FAFC8-B0B4-484D-B504-23F7FB33FBCC",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-DE908C93-63D3-4817-AC68-42882F937B19",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongos.conf",
+                        "content": "port = 27017\nconfigdb = @{1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6.PrivateIpAddress}:27019,@{57CCCBEB-9519-4EE2-9ADE-50D36C88437D.PrivateIpAddress}:27019,@{179CDD7A-6BE8-4D77-8307-4BE2B977438E.PrivateIpAddress}:27019\nlogpath = /madeira/log/mongos.log\nlogappend = yes"
+                    }
+                },
+                {
+                    "id": "state-FD30E26A-35B5-450B-9194-03D952F58197",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongos.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongos]\ncommand=/usr/bin/mongos -f /etc/mongos.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n\n"
+                    }
+                },
+                {
+                    "id": "state-D104AF89-D341-4465-AB4B-993A02A1C312",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongos.conf",
+                        "name": [
+                            "mongos"
+                        ],
+                        "watch": [
+                            "/etc/mongos.conf"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-ABDC5726-8514-43E6-80AA-9CB95DE6BAFB",
+                    "module": "meta.wait",
+                    "parameter": {
+                        "state": [
+                            "@{256587F8-0BFA-40A9-8F47-5B997C27452C.state.state-82EEDEEF-44B1-44EF-85B2-ADB91A66E5FF}"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-556B031C-BBDB-4F2E-93D7-A189E9EB5068",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "if [ `echo 'sh.addShard(\"rs0/@{F732583A-83F7-48E2-B340-4E2737B0E809.PrivateIpAddress}:27017,@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.PrivateIpAddress}:27017,@{256587F8-0BFA-40A9-8F47-5B997C27452C.PrivateIpAddress}:27017\")' | mongo -port 27017 | grep '\"ok\" : 1' | wc -l` -ne 1 ]; then exit 1; else touch /madeira/lock/addshard; fi",
+                        "if-path-absent": [
+                            "/madeira/lock/addshard"
+                        ]
+                    }
+                }
             ],
-            "repo": "mongodb"
-          }
-        },
-        {
-          "id": "state-1FCD3808-79C4-427E-A568-32B6B9A41CDD",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/db/mongodb/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-7C72D5E9-B376-4BC5-A7E6-825DD377C8CE",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-FF8838C9-F1A7-465D-BC30-14A1BA7F3FC4",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongodb.conf",
-            "content": "# mongod server config file\nport = 27017\ndbpath = /madeira/db/mongodb/\nreplSet = rs0\nlogpath = /madeira/log/mongodb.log\nlogappend = yes\nshardsvr = true"
-          }
-        },
-        {
-          "id": "state-7201F277-B5BB-43A6-8E56-0F2BE32770D9",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongod.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongod]\ncommand=/usr/bin/mongod -f /etc/mongodb.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongod.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
-          }
-        },
-        {
-          "id": "state-C72306A3-5871-46A8-94F9-746648314518",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongod.conf",
-            "name": [
-              "mongod"
-            ],
-            "watch": [
-              "/etc/mongodb.conf"
-            ]
-          }
-        },
-        {
-          "id": "state-82EEDEEF-44B1-44EF-85B2-ADB91A66E5FF",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "if [ `echo 'rs.initiate({\"_id\":\"rs0\",\"members\":[{\"_id\":1,\"host\":\"@{256587F8-0BFA-40A9-8F47-5B997C27452C.PrivateIpAddress}:27017\"},{\"_id\":2,\"host\":\"@{F732583A-83F7-48E2-B340-4E2737B0E809.PrivateIpAddress}:27017\"},{\"_id\":3,\"host\":\"@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.PrivateIpAddress}:27017\"}]})' | mongo | grep '\"ok\" : 1' | wc -l` -ne 1 ]; then exit 1; else touch /madeira/lock/rsinitiate; fi",
-            "if-path-absent": [
-              "/madeira/lock/rsinitiate"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "656139BE-AB1A-472B-B057-C92D765B082C": {
-      "index": 0,
-      "uid": "656139BE-AB1A-472B-B057-C92D765B082C",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongod0-eni0",
-      "serverGroupUid": "656139BE-AB1A-472B-B057-C92D765B082C",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.5",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{256587F8-0BFA-40A9-8F47-5B997C27452C.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "D594D083-27D1-46B3-BEAC-14F3AC5A394E": {
-      "type": "AWS.EC2.Instance",
-      "uid": "D594D083-27D1-46B3-BEAC-14F3AC5A394E",
-      "name": "mongod2",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "D594D083-27D1-46B3-BEAC-14F3AC5A394E",
-      "serverGroupName": "mongod2",
-      "state": [
-        {
-          "id": "state-D3703942-A650-40BC-8F8A-F98B98B742D3",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
-        },
-        {
-          "id": "state-62222168-205C-4AB8-9693-40347B455A4E",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
-            ],
-            "repo": "mongodb"
-          }
-        },
-        {
-          "id": "state-0829287F-0799-45C0-B905-F29FF86F9420",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/db/mongodb/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-28745F35-3034-45C3-9FDA-64A9C05803E1",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-E5E3D181-01CC-4E35-8470-C4CCDB42F052",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongodb.conf",
-            "content": "# mongod server config file\nport = 27017\ndbpath = /madeira/db/mongodb/\nreplSet = rs0\nlogpath = /madeira/log/mongodb.log\nlogappend = yes\nshardsvr = true"
-          }
-        },
-        {
-          "id": "state-E2BCEB8D-33DB-4FE1-9286-63233F4797BF",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongod.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongod]\ncommand=/usr/bin/mongod -f /etc/mongodb.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongod.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
-          }
-        },
-        {
-          "id": "state-2FA17A3D-F540-4D85-BBB9-2130A16B5A31",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongod.conf",
-            "name": [
-              "mongod"
-            ],
-            "watch": [
-              "/etc/mongodb.conf"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+        "ACE2E9F4-1A73-44EC-A00B-E2F7CE8B075E": {
+            "index": 0,
+            "uid": "ACE2E9F4-1A73-44EC-A00B-E2F7CE8B075E",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongos-eni0",
+            "serverGroupUid": "ACE2E9F4-1A73-44EC-A00B-E2F7CE8B075E",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.1.6",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{17590283-0EE3-48D3-A5CA-4D7C5B3459D5.resource.GroupName}",
+                        "GroupId": "@{17590283-0EE3-48D3-A5CA-4D7C5B3459D5.resource.GroupId}"
+                    },
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{E061A0EE-75CD-4598-A8D6-A89399A367D0.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "D4B95CE7-0D80-4E1E-BC4F-34B438BB7A6C": {
-      "index": 0,
-      "uid": "D4B95CE7-0D80-4E1E-BC4F-34B438BB7A6C",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongod2-eni0",
-      "serverGroupUid": "D4B95CE7-0D80-4E1E-BC4F-34B438BB7A6C",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.2.5",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "F732583A-83F7-48E2-B340-4E2737B0E809": {
-      "type": "AWS.EC2.Instance",
-      "uid": "F732583A-83F7-48E2-B340-4E2737B0E809",
-      "name": "mongod1",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "F732583A-83F7-48E2-B340-4E2737B0E809",
-      "serverGroupName": "mongod1",
-      "state": [
-        {
-          "id": "state-0193C87A-B1FA-4D15-8B20-9DBF5AABF5E7",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
-        },
-        {
-          "id": "state-FD818AD1-5D54-4157-87A3-FB88F3595F87",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
+        "57CCCBEB-9519-4EE2-9ADE-50D36C88437D": {
+            "type": "AWS.EC2.Instance",
+            "uid": "57CCCBEB-9519-4EE2-9ADE-50D36C88437D",
+            "name": "mongo-config1",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "57CCCBEB-9519-4EE2-9ADE-50D36C88437D",
+            "serverGroupName": "mongo-config1",
+            "state": [
+                {
+                    "id": "state-8B3FDF87-0D61-49D6-91D2-571F723F11F8",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-E7524B49-EBBA-44CC-899B-ACE6BDBE6372",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-5FAD74BB-DD94-422E-B643-C4DE08E0490B",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/db/mongodb/configdb/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-AEB58E49-6B4B-4BAB-A6B5-1CD8A0AC79AF",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-92C0E9FC-86BD-4063-AB1A-30A68402BD59",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongodb_config.conf",
+                        "content": "port = 27019\ndbpath = /madeira/db/mongodb/configdb/\nconfigsvr = true\nlogpath = /madeira/log/mongodb_config.log\nlogappend = yes"
+                    }
+                },
+                {
+                    "id": "state-C43B3EA1-2653-46B0-93C1-B468A60F4722",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongos.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongo]\ncommand=/usr/bin/mongod -f /etc/mongodb_config.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
+                    }
+                },
+                {
+                    "id": "state-0729C30A-DE55-4E6D-8278-D595766045D2",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongos.conf",
+                        "name": [
+                            "mongo"
+                        ],
+                        "watch": [
+                            "/etc/mongodb_config.conf"
+                        ]
+                    }
+                }
             ],
-            "repo": "mongodb"
-          }
-        },
-        {
-          "id": "state-F6B3939B-0810-40D9-99D8-883E15CD52D2",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/db/mongodb/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-4A9036B4-DDF8-49D8-969C-BE0399651C07",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-B67F90E1-3813-45FB-9842-EFF2428561F4",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongodb.conf",
-            "content": "# mongod server config file\nport = 27017\ndbpath = /madeira/db/mongodb/\nreplSet = rs0\nlogpath = /madeira/log/mongodb.log\nlogappend = yes\nshardsvr = true"
-          }
-        },
-        {
-          "id": "state-32707C56-C27C-4162-BCBE-190C32CD93CB",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongod.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongod]\ncommand=/usr/bin/mongod -f /etc/mongodb.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongod.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
-          }
-        },
-        {
-          "id": "state-0FF7B2A7-F5E5-4093-B36E-E096CA4EB412",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongod.conf",
-            "name": [
-              "mongod"
-            ],
-            "watch": [
-              "/etc/mongodb.conf"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "B4039419-D85D-4AA3-8C00-2AB31C5FD094": {
-      "index": 0,
-      "uid": "B4039419-D85D-4AA3-8C00-2AB31C5FD094",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongod1-eni0",
-      "serverGroupUid": "B4039419-D85D-4AA3-8C00-2AB31C5FD094",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.1.5",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{F732583A-83F7-48E2-B340-4E2737B0E809.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6": {
-      "type": "AWS.EC2.Instance",
-      "uid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
-      "name": "mongo-config0",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
-      "serverGroupName": "mongo-config0",
-      "state": [
-        {
-          "id": "state-3A570F00-7B4E-4E95-BD03-A1391569229C",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "mongodb",
-            "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
-          }
-        },
-        {
-          "id": "state-5667BF08-7E1A-47D5-80CA-0442BF274273",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "mongodb-org",
-                "value": "2.6.1-1"
-              },
-              {
-                "key": "mongodb-org-server",
-                "value": "2.6.1-1"
-              }
-            ],
-            "repo": "mongodb"
-          }
-        },
-        {
-          "id": "state-7F905991-F53D-41B1-B2AF-F75CA767FAF0",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/db/mongodb/configdb/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-67361729-31E1-4973-B48A-A87672DC71CC",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/madeira/log/supervisord/",
-              "/madeira/lock/"
-            ],
-            "recursive": true
-          }
-        },
-        {
-          "id": "state-346F7EFA-F567-4C8C-A64A-BBD3CB13DAF1",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/mongodb_config.conf",
-            "content": "port = 27019\ndbpath = /madeira/db/mongodb/configdb/\nconfigsvr = true\nlogpath = /madeira/log/mongodb_config.log\nlogappend = yes"
-          }
-        },
-        {
-          "id": "state-D0B0DE1B-2F96-4864-B38A-4DAA84EC3306",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/madeira/conf/supervisord/mongos.conf",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongo]\ncommand=/usr/bin/mongod -f /etc/mongodb_config.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
-          }
-        },
-        {
-          "id": "state-2F735947-9585-4648-850F-0691A45EE969",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/madeira/conf/supervisord/mongos.conf",
-            "name": [
-              "mongo"
-            ],
-            "watch": [
-              "/etc/mongodb_config.conf"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+        "F44CEA42-5E56-48D8-92CE-054622C59548": {
+            "index": 0,
+            "uid": "F44CEA42-5E56-48D8-92CE-054622C59548",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongo-config1-eni0",
+            "serverGroupUid": "F44CEA42-5E56-48D8-92CE-054622C59548",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.1.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{57CCCBEB-9519-4EE2-9ADE-50D36C88437D.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "37255D39-156D-4944-8C4D-E9AF32474BD1": {
-      "index": 0,
-      "uid": "37255D39-156D-4944-8C4D-E9AF32474BD1",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "mongo-config0-eni0",
-      "serverGroupUid": "37255D39-156D-4944-8C4D-E9AF32474BD1",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}",
-        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
-        "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.4",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
-            "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
+        "256587F8-0BFA-40A9-8F47-5B997C27452C": {
+            "type": "AWS.EC2.Instance",
+            "uid": "256587F8-0BFA-40A9-8F47-5B997C27452C",
+            "name": "mongod0",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "256587F8-0BFA-40A9-8F47-5B997C27452C",
+            "serverGroupName": "mongod0",
+            "state": [
+                {
+                    "id": "state-26D16993-2FA8-4041-AF6A-2C6C5624403A",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-A55EF56D-A8BA-475A-808A-8858E844C3DC",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-1FCD3808-79C4-427E-A568-32B6B9A41CDD",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/db/mongodb/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-7C72D5E9-B376-4BC5-A7E6-825DD377C8CE",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-FF8838C9-F1A7-465D-BC30-14A1BA7F3FC4",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongodb.conf",
+                        "content": "# mongod server config file\nport = 27017\ndbpath = /madeira/db/mongodb/\nreplSet = rs0\nlogpath = /madeira/log/mongodb.log\nlogappend = yes\nshardsvr = true"
+                    }
+                },
+                {
+                    "id": "state-7201F277-B5BB-43A6-8E56-0F2BE32770D9",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongod.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongod]\ncommand=/usr/bin/mongod -f /etc/mongodb.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongod.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
+                    }
+                },
+                {
+                    "id": "state-C72306A3-5871-46A8-94F9-746648314518",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongod.conf",
+                        "name": [
+                            "mongod"
+                        ],
+                        "watch": [
+                            "/etc/mongodb.conf"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-82EEDEEF-44B1-44EF-85B2-ADB91A66E5FF",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "if [ `echo 'rs.initiate({\"_id\":\"rs0\",\"members\":[{\"_id\":1,\"host\":\"@{256587F8-0BFA-40A9-8F47-5B997C27452C.PrivateIpAddress}:27017\"},{\"_id\":2,\"host\":\"@{F732583A-83F7-48E2-B340-4E2737B0E809.PrivateIpAddress}:27017\"},{\"_id\":3,\"host\":\"@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.PrivateIpAddress}:27017\"}]})' | mongo | grep '\"ok\" : 1' | wc -l` -ne 1 ]; then exit 1; else touch /madeira/lock/rsinitiate; fi",
+                        "if-path-absent": [
+                            "/madeira/lock/rsinitiate"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "656139BE-AB1A-472B-B057-C92D765B082C": {
+            "index": 0,
+            "uid": "656139BE-AB1A-472B-B057-C92D765B082C",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongod0-eni0",
+            "serverGroupUid": "656139BE-AB1A-472B-B057-C92D765B082C",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.5",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{256587F8-0BFA-40A9-8F47-5B997C27452C.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "D594D083-27D1-46B3-BEAC-14F3AC5A394E": {
+            "type": "AWS.EC2.Instance",
+            "uid": "D594D083-27D1-46B3-BEAC-14F3AC5A394E",
+            "name": "mongod2",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "D594D083-27D1-46B3-BEAC-14F3AC5A394E",
+            "serverGroupName": "mongod2",
+            "state": [
+                {
+                    "id": "state-D3703942-A650-40BC-8F8A-F98B98B742D3",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-62222168-205C-4AB8-9693-40347B455A4E",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-0829287F-0799-45C0-B905-F29FF86F9420",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/db/mongodb/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-28745F35-3034-45C3-9FDA-64A9C05803E1",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-E5E3D181-01CC-4E35-8470-C4CCDB42F052",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongodb.conf",
+                        "content": "# mongod server config file\nport = 27017\ndbpath = /madeira/db/mongodb/\nreplSet = rs0\nlogpath = /madeira/log/mongodb.log\nlogappend = yes\nshardsvr = true"
+                    }
+                },
+                {
+                    "id": "state-E2BCEB8D-33DB-4FE1-9286-63233F4797BF",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongod.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongod]\ncommand=/usr/bin/mongod -f /etc/mongodb.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongod.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
+                    }
+                },
+                {
+                    "id": "state-2FA17A3D-F540-4D85-BBB9-2130A16B5A31",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongod.conf",
+                        "name": [
+                            "mongod"
+                        ],
+                        "watch": [
+                            "/etc/mongodb.conf"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "D4B95CE7-0D80-4E1E-BC4F-34B438BB7A6C": {
+            "index": 0,
+            "uid": "D4B95CE7-0D80-4E1E-BC4F-34B438BB7A6C",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongod2-eni0",
+            "serverGroupUid": "D4B95CE7-0D80-4E1E-BC4F-34B438BB7A6C",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{C3526C7E-DCE4-47A6-BF5B-9E5122F195EA.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{74754EB2-65EC-49A8-BC1A-9739634FFB82.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.2.5",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{D594D083-27D1-46B3-BEAC-14F3AC5A394E.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "F732583A-83F7-48E2-B340-4E2737B0E809": {
+            "type": "AWS.EC2.Instance",
+            "uid": "F732583A-83F7-48E2-B340-4E2737B0E809",
+            "name": "mongod1",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "F732583A-83F7-48E2-B340-4E2737B0E809",
+            "serverGroupName": "mongod1",
+            "state": [
+                {
+                    "id": "state-0193C87A-B1FA-4D15-8B20-9DBF5AABF5E7",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-FD818AD1-5D54-4157-87A3-FB88F3595F87",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-F6B3939B-0810-40D9-99D8-883E15CD52D2",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/db/mongodb/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-4A9036B4-DDF8-49D8-969C-BE0399651C07",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-B67F90E1-3813-45FB-9842-EFF2428561F4",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongodb.conf",
+                        "content": "# mongod server config file\nport = 27017\ndbpath = /madeira/db/mongodb/\nreplSet = rs0\nlogpath = /madeira/log/mongodb.log\nlogappend = yes\nshardsvr = true"
+                    }
+                },
+                {
+                    "id": "state-32707C56-C27C-4162-BCBE-190C32CD93CB",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongod.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongod]\ncommand=/usr/bin/mongod -f /etc/mongodb.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongod.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
+                    }
+                },
+                {
+                    "id": "state-0FF7B2A7-F5E5-4093-B36E-E096CA4EB412",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongod.conf",
+                        "name": [
+                            "mongod"
+                        ],
+                        "watch": [
+                            "/etc/mongodb.conf"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "B4039419-D85D-4AA3-8C00-2AB31C5FD094": {
+            "index": 0,
+            "uid": "B4039419-D85D-4AA3-8C00-2AB31C5FD094",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongod1-eni0",
+            "serverGroupUid": "B4039419-D85D-4AA3-8C00-2AB31C5FD094",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{57DE3063-A823-43BB-862B-4E309F8344EE.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.1.5",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{F732583A-83F7-48E2-B340-4E2737B0E809.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6": {
+            "type": "AWS.EC2.Instance",
+            "uid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
+            "name": "mongo-config0",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
+            "serverGroupName": "mongo-config0",
+            "state": [
+                {
+                    "id": "state-3A570F00-7B4E-4E95-BD03-A1391569229C",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "mongodb",
+                        "content": "[mongodb]\nname=MongoDB Repository\nbaseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/\ngpgcheck=0\nenabled=1"
+                    }
+                },
+                {
+                    "id": "state-5667BF08-7E1A-47D5-80CA-0442BF274273",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "mongodb-org",
+                                "value": "2.6.1-1"
+                            },
+                            {
+                                "key": "mongodb-org-server",
+                                "value": "2.6.1-1"
+                            }
+                        ],
+                        "repo": "mongodb"
+                    }
+                },
+                {
+                    "id": "state-7F905991-F53D-41B1-B2AF-F75CA767FAF0",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/db/mongodb/configdb/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-67361729-31E1-4973-B48A-A87672DC71CC",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/madeira/log/supervisord/",
+                            "/madeira/lock/"
+                        ],
+                        "recursive": true
+                    }
+                },
+                {
+                    "id": "state-346F7EFA-F567-4C8C-A64A-BBD3CB13DAF1",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/mongodb_config.conf",
+                        "content": "port = 27019\ndbpath = /madeira/db/mongodb/configdb/\nconfigsvr = true\nlogpath = /madeira/log/mongodb_config.log\nlogappend = yes"
+                    }
+                },
+                {
+                    "id": "state-D0B0DE1B-2F96-4864-B38A-4DAA84EC3306",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/madeira/conf/supervisord/mongos.conf",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock   ; (the path to the socket file)\n\n[supervisord]\nlogfile=/madeira/log/supervisord/supervisord.log ; (main log file;default $CWD/supervisord.log)\nlogfile_maxbytes=100MB        ; (max main logfile bytes b4 rotation;default 50MB)\nlogfile_backups=5           ; (num of main logfile rotation backups;default 10)\nloglevel=info                ; (log level;default info; others: debug,warn,trace)\npidfile=/madeira/lock/supervisord.pid ; (supervisord pidfile;default supervisord.pid)\nnodaemon=false               ; (start in foreground if true;default false)\nminfds=65535                 ; (min. avail startup file descriptors;default 1024)\nminprocs=32000               ; (min. avail process descriptors;default 200)\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket\n\n[program:mongo]\ncommand=/usr/bin/mongod -f /etc/mongodb_config.conf\nautostart=true\nautorestart=true\nstartsecs=3\nstartretries=3\nuser=root\nstdout_logfile=/madeira/log/supervisord/mongos.log\nstdout_logfile_maxbytes=100MB\nstdout_logfile_backups=5\nstdout_capture_maxbytes=1MB\nstdout_events_enabled=false\nredirect_stderr=true\n"
+                    }
+                },
+                {
+                    "id": "state-2F735947-9585-4648-850F-0691A45EE969",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/madeira/conf/supervisord/mongos.conf",
+                        "name": [
+                            "mongo"
+                        ],
+                        "watch": [
+                            "/etc/mongodb_config.conf"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{D503D841-D54C-4129-9B87-8CFA4485DEA3.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "37255D39-156D-4944-8C4D-E9AF32474BD1": {
+            "index": 0,
+            "uid": "37255D39-156D-4944-8C4D-E9AF32474BD1",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "mongo-config0-eni0",
+            "serverGroupUid": "37255D39-156D-4944-8C4D-E9AF32474BD1",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{D08739BA-A1FE-4B0C-8E4A-216A2EF51973.resource.ZoneName}",
+                "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}",
+                "SubnetId": "@{680A1E22-1867-45D3-8228-7B4FFC9ED112.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupName}",
+                        "GroupId": "@{0C35C5D4-9CF3-42CC-B704-2CA2AE294CDB.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "6F26A9B3-F618-42CB-86AF-741C260BBCBE": {
+            "name": "Internet-gateway",
+            "type": "AWS.VPC.InternetGateway",
+            "uid": "6F26A9B3-F618-42CB-86AF-741C260BBCBE",
+            "resource": {
+                "InternetGatewayId": "",
+                "AttachmentSet": [
+                    {
+                        "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}"
+                    }
+                ]
+            }
         }
-      }
     },
-    "6F26A9B3-F618-42CB-86AF-741C260BBCBE": {
-      "name": "Internet-gateway",
-      "type": "AWS.VPC.InternetGateway",
-      "uid": "6F26A9B3-F618-42CB-86AF-741C260BBCBE",
-      "resource": {
-        "InternetGatewayId": "",
-        "AttachmentSet": [
-          {
-            "VpcId": "@{F47573E7-7289-4C4B-BABC-DF765D36A60B.resource.VpcId}"
-          }
+    "layout": {
+        "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8": {
+            "coordinate": [
+                63,
+                4
+            ],
+            "uid": "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8",
+            "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B"
+        },
+        "F47573E7-7289-4C4B-BABC-DF765D36A60B": {
+            "coordinate": [
+                9,
+                3
+            ],
+            "uid": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
+            "size": [
+                65,
+                76
+            ]
+        },
+        "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA": {
+            "coordinate": [
+                16,
+                56
+            ],
+            "uid": "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA",
+            "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
+            "size": [
+                40,
+                20
+            ]
+        },
+        "74754EB2-65EC-49A8-BC1A-9739634FFB82": {
+            "coordinate": [
+                18,
+                60
+            ],
+            "uid": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
+            "groupUId": "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA",
+            "size": [
+                36,
+                13
+            ]
+        },
+        "57DE3063-A823-43BB-862B-4E309F8344EE": {
+            "coordinate": [
+                16,
+                33
+            ],
+            "uid": "57DE3063-A823-43BB-862B-4E309F8344EE",
+            "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
+            "size": [
+                40,
+                21
+            ]
+        },
+        "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4": {
+            "coordinate": [
+                18,
+                37
+            ],
+            "uid": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
+            "groupUId": "57DE3063-A823-43BB-862B-4E309F8344EE",
+            "size": [
+                36,
+                13
+            ]
+        },
+        "D08739BA-A1FE-4B0C-8E4A-216A2EF51973": {
+            "coordinate": [
+                16,
+                11
+            ],
+            "uid": "D08739BA-A1FE-4B0C-8E4A-216A2EF51973",
+            "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
+            "size": [
+                40,
+                20
+            ]
+        },
+        "680A1E22-1867-45D3-8228-7B4FFC9ED112": {
+            "coordinate": [
+                18,
+                15
+            ],
+            "uid": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
+            "groupUId": "D08739BA-A1FE-4B0C-8E4A-216A2EF51973",
+            "size": [
+                36,
+                13
+            ]
+        },
+        "179CDD7A-6BE8-4D77-8307-4BE2B977438E": {
+            "coordinate": [
+                31,
+                62
+            ],
+            "uid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
+            "groupUId": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "179CDD7A-6BE8-4D77-8307-4BE2B977438E"
+            ]
+        },
+        "E061A0EE-75CD-4598-A8D6-A89399A367D0": {
+            "coordinate": [
+                19,
+                39
+            ],
+            "uid": "E061A0EE-75CD-4598-A8D6-A89399A367D0",
+            "groupUId": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "E061A0EE-75CD-4598-A8D6-A89399A367D0"
+            ]
+        },
+        "57CCCBEB-9519-4EE2-9ADE-50D36C88437D": {
+            "coordinate": [
+                31,
+                39
+            ],
+            "uid": "57CCCBEB-9519-4EE2-9ADE-50D36C88437D",
+            "groupUId": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "57CCCBEB-9519-4EE2-9ADE-50D36C88437D"
+            ]
+        },
+        "256587F8-0BFA-40A9-8F47-5B997C27452C": {
+            "coordinate": [
+                43,
+                17
+            ],
+            "uid": "256587F8-0BFA-40A9-8F47-5B997C27452C",
+            "groupUId": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "256587F8-0BFA-40A9-8F47-5B997C27452C"
+            ]
+        },
+        "D594D083-27D1-46B3-BEAC-14F3AC5A394E": {
+            "coordinate": [
+                43,
+                62
+            ],
+            "uid": "D594D083-27D1-46B3-BEAC-14F3AC5A394E",
+            "groupUId": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "D594D083-27D1-46B3-BEAC-14F3AC5A394E"
+            ]
+        },
+        "F732583A-83F7-48E2-B340-4E2737B0E809": {
+            "coordinate": [
+                43,
+                39
+            ],
+            "uid": "F732583A-83F7-48E2-B340-4E2737B0E809",
+            "groupUId": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "F732583A-83F7-48E2-B340-4E2737B0E809"
+            ]
+        },
+        "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6": {
+            "coordinate": [
+                31,
+                17
+            ],
+            "uid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
+            "groupUId": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6"
+            ]
+        },
+        "6F26A9B3-F618-42CB-86AF-741C260BBCBE": {
+            "coordinate": [
+                5,
+                4
+            ],
+            "uid": "6F26A9B3-F618-42CB-86AF-741C260BBCBE",
+            "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B"
+        },
+        "size": [
+            240,
+            240
         ]
-      }
-    }
-  },
-  "layout": {
-    "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8": {
-      "coordinate": [
-        63,
-        4
-      ],
-      "uid": "B4F162A0-D8AB-4CA8-A0DD-CB2CD5FFFFD8",
-      "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B"
     },
-    "F47573E7-7289-4C4B-BABC-DF765D36A60B": {
-      "coordinate": [
-        9,
-        3
-      ],
-      "uid": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
-      "size": [
-        65,
-        76
-      ]
-    },
-    "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA": {
-      "coordinate": [
-        16,
-        56
-      ],
-      "uid": "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA",
-      "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
-      "size": [
-        40,
-        20
-      ]
-    },
-    "74754EB2-65EC-49A8-BC1A-9739634FFB82": {
-      "coordinate": [
-        18,
-        60
-      ],
-      "uid": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
-      "groupUId": "C3526C7E-DCE4-47A6-BF5B-9E5122F195EA",
-      "size": [
-        36,
-        13
-      ]
-    },
-    "57DE3063-A823-43BB-862B-4E309F8344EE": {
-      "coordinate": [
-        16,
-        33
-      ],
-      "uid": "57DE3063-A823-43BB-862B-4E309F8344EE",
-      "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
-      "size": [
-        40,
-        21
-      ]
-    },
-    "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4": {
-      "coordinate": [
-        18,
-        37
-      ],
-      "uid": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
-      "groupUId": "57DE3063-A823-43BB-862B-4E309F8344EE",
-      "size": [
-        36,
-        13
-      ]
-    },
-    "D08739BA-A1FE-4B0C-8E4A-216A2EF51973": {
-      "coordinate": [
-        16,
-        11
-      ],
-      "uid": "D08739BA-A1FE-4B0C-8E4A-216A2EF51973",
-      "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B",
-      "size": [
-        40,
-        20
-      ]
-    },
-    "680A1E22-1867-45D3-8228-7B4FFC9ED112": {
-      "coordinate": [
-        18,
-        15
-      ],
-      "uid": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
-      "groupUId": "D08739BA-A1FE-4B0C-8E4A-216A2EF51973",
-      "size": [
-        36,
-        13
-      ]
-    },
-    "179CDD7A-6BE8-4D77-8307-4BE2B977438E": {
-      "coordinate": [
-        31,
-        62
-      ],
-      "uid": "179CDD7A-6BE8-4D77-8307-4BE2B977438E",
-      "groupUId": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "179CDD7A-6BE8-4D77-8307-4BE2B977438E"
-      ]
-    },
-    "E061A0EE-75CD-4598-A8D6-A89399A367D0": {
-      "coordinate": [
-        19,
-        39
-      ],
-      "uid": "E061A0EE-75CD-4598-A8D6-A89399A367D0",
-      "groupUId": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "E061A0EE-75CD-4598-A8D6-A89399A367D0"
-      ]
-    },
-    "57CCCBEB-9519-4EE2-9ADE-50D36C88437D": {
-      "coordinate": [
-        31,
-        39
-      ],
-      "uid": "57CCCBEB-9519-4EE2-9ADE-50D36C88437D",
-      "groupUId": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "57CCCBEB-9519-4EE2-9ADE-50D36C88437D"
-      ]
-    },
-    "256587F8-0BFA-40A9-8F47-5B997C27452C": {
-      "coordinate": [
-        43,
-        17
-      ],
-      "uid": "256587F8-0BFA-40A9-8F47-5B997C27452C",
-      "groupUId": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "256587F8-0BFA-40A9-8F47-5B997C27452C"
-      ]
-    },
-    "D594D083-27D1-46B3-BEAC-14F3AC5A394E": {
-      "coordinate": [
-        43,
-        62
-      ],
-      "uid": "D594D083-27D1-46B3-BEAC-14F3AC5A394E",
-      "groupUId": "74754EB2-65EC-49A8-BC1A-9739634FFB82",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "D594D083-27D1-46B3-BEAC-14F3AC5A394E"
-      ]
-    },
-    "F732583A-83F7-48E2-B340-4E2737B0E809": {
-      "coordinate": [
-        43,
-        39
-      ],
-      "uid": "F732583A-83F7-48E2-B340-4E2737B0E809",
-      "groupUId": "2D0C06E7-99C1-4BEE-BA4E-C19C82398BD4",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "F732583A-83F7-48E2-B340-4E2737B0E809"
-      ]
-    },
-    "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6": {
-      "coordinate": [
-        31,
-        17
-      ],
-      "uid": "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6",
-      "groupUId": "680A1E22-1867-45D3-8228-7B4FFC9ED112",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "1618CB22-5EC0-46DF-9BAB-B4ADD03B86F6"
-      ]
-    },
-    "6F26A9B3-F618-42CB-86AF-741C260BBCBE": {
-      "coordinate": [
-        5,
-        4
-      ],
-      "uid": "6F26A9B3-F618-42CB-86AF-741C260BBCBE",
-      "groupUId": "F47573E7-7289-4C4B-BABC-DF765D36A60B"
-    },
-    "size": [
-      240,
-      240
-    ]
-  },
-  "signature": "cf60c76e33caf378441d0aff67c264f5"
+    "signature": "cf60c76e33caf378441d0aff67c264f5"
 }

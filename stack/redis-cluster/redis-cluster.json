@@ -1,1720 +1,1720 @@
 {
-  "agent": {
-    "enabled": true,
-    "module": {
-      "repo": "https://github.com/MadeiraCloud/salt.git",
-      "tag": "v2014-07-18"
-    }
-  },
-  "name": "Redis-Cluster",
-  "region": "us-east-1",
-  "platform": "ec2-vpc",
-  "version": "2014-02-17",
-  "component": {
-    "54466405-60F7-4957-89F9-3AA8E4285A3B": {
-      "name": "DefaultACL",
-      "type": "AWS.VPC.NetworkAcl",
-      "uid": "54466405-60F7-4957-89F9-3AA8E4285A3B",
-      "resource": {
-        "AssociationSet": [
-          {
-            "NetworkAclAssociationId": "",
-            "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}"
-          }
-        ],
-        "Default": true,
-        "EntrySet": [
-          {
-            "Egress": true,
-            "Protocol": -1,
-            "RuleAction": "allow",
-            "RuleNumber": 100,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": true,
-            "Protocol": -1,
-            "RuleAction": "deny",
-            "RuleNumber": 32767,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": false,
-            "Protocol": -1,
-            "RuleAction": "allow",
-            "RuleNumber": 100,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": false,
-            "Protocol": -1,
-            "RuleAction": "deny",
-            "RuleNumber": 32767,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          }
-        ],
-        "NetworkAclId": "",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}"
-      }
-    },
-    "9B3A921A-2890-41FE-8EDB-51C7A3970CEE": {
-      "name": "RT-0",
-      "type": "AWS.VPC.RouteTable",
-      "uid": "9B3A921A-2890-41FE-8EDB-51C7A3970CEE",
-      "resource": {
-        "PropagatingVgwSet": [],
-        "RouteTableId": "",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "AssociationSet": [
-          {
-            "Main": "true",
-            "RouteTableAssociationId": "",
-            "SubnetId": ""
-          }
-        ],
-        "RouteSet": [
-          {
-            "Origin": "CreateRouteTable",
-            "DestinationCidrBlock": "10.0.0.0/16",
-            "InstanceId": "",
-            "NetworkInterfaceId": "",
-            "GatewayId": "local"
-          },
-          {
-            "DestinationCidrBlock": "0.0.0.0/0",
-            "Origin": "",
-            "InstanceId": "",
-            "NetworkInterfaceId": "",
-            "GatewayId": "@{71F3D8A0-11EE-4884-9B2B-D231092D70B9.resource.InternetGatewayId}"
-          }
-        ]
-      }
-    },
-    "316614F6-6903-4128-B7A2-B941CBB18BC0": {
-      "name": "vpc",
-      "type": "AWS.VPC.VPC",
-      "uid": "316614F6-6903-4128-B7A2-B941CBB18BC0",
-      "resource": {
-        "EnableDnsSupport": true,
-        "InstanceTenancy": "default",
-        "EnableDnsHostnames": false,
-        "DhcpOptionsId": "",
-        "VpcId": "",
-        "CidrBlock": "10.0.0.0/16"
-      }
-    },
-    "DD0F05C5-F7FF-4E45-9A33-273794351BB2": {
-      "uid": "DD0F05C5-F7FF-4E45-9A33-273794351BB2",
-      "name": "us-east-1a",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1a",
-        "RegionName": "us-east-1"
-      }
-    },
-    "CC0D6C28-A099-47D4-A419-E73EB95E68EF": {
-      "name": "subnet0",
-      "type": "AWS.VPC.Subnet",
-      "uid": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "resource": {
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
-    "51FD7F17-636C-413A-BF85-94549584A6B0": {
-      "name": "DefaultSG",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "51FD7F17-636C-413A-BF85-94549584A6B0",
-      "resource": {
-        "Default": true,
-        "GroupId": "",
-        "GroupName": "DefaultSG",
-        "GroupDescription": "Default Security Group",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "22",
-            "ToPort": "22",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "6379",
-            "ToPort": "6379",
-            "IpRanges": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "0",
-            "ToPort": "65535",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "-1"
-          }
-        ]
-      }
-    },
-    "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3": {
-      "type": "AWS.EC2.Instance",
-      "uid": "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3",
-      "name": "host-4",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3",
-      "serverGroupName": "host-4",
-      "state": [
-        {
-          "id": "state-4919BAFE-12A2-4DD6-B693-71DA2C948F00",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Prepare directories"
-          }
-        },
-        {
-          "id": "state-85E6CD53-06C7-4D5F-8E10-F3C615DF4C27",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/redis/6379",
-              "/etc/redis"
-            ],
-            "group": "root",
-            "mode": "0755",
-            "recursive": true,
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-57CEC211-50F9-4406-858D-D04C3802F736",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Download Redis unstable version"
-          }
-        },
-        {
-          "id": "state-30B767D0-5A4B-4B6B-AF30-38154496B7B3",
-          "module": "common.archive",
-          "parameter": {
-            "path": "/bootstrap/redis",
-            "source": "https://github.com/antirez/redis/archive/unstable.zip"
-          }
-        },
-        {
-          "id": "state-11207ED1-1EC2-46A5-95B9-42927F6FDB07",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup required packages"
-          }
-        },
-        {
-          "id": "state-950DA755-65DC-48B6-802E-3A69AAB7EB4A",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "gcc",
-                "value": ""
-              },
-              {
-                "key": "ruby20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-A688B6DE-8BBA-4B1F-812A-2D947D2CC903",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup Redis"
-          }
-        },
-        {
-          "id": "state-A82B779C-6877-4F88-AF53-BE0E716D3877",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis-setup.sh",
-            "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-A84FB328-1E0E-41EB-895D-CCA7BEC81A1F",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
-            "if-path-absent": [
-              "/bootstrap/redis-setup.sh.done"
-            ]
-          }
-        },
-        {
-          "id": "state-5969C4E2-A4EF-4FFD-8574-5859233C6564",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Configure Redis and startup services"
-          }
-        },
-        {
-          "id": "state-34910437-F6A9-4554-B434-2F65AC579A2B",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/redis/redis.conf",
-            "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
-            "group": "root",
-            "mode": "0644",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-A156E732-A34B-4CA9-BD0B-8A6C324DACA5",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/supervisor.d/redis.ini",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
-          }
-        },
-        {
-          "id": "state-B41DD558-B669-4D20-BC41-3CF7F9B16E8A",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/log/redis"
-            ],
-            "group": "root",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-D9514B86-4B1D-47AF-829E-2C939653627E",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/etc/supervisor.d/redis.ini",
-            "name": [
-              "redis"
-            ],
-            "watch": [
-              "/etc/redis/redis.conf",
-              "/etc/supervisor.d/redis.ini"
-            ]
-          }
+    "agent": {
+        "enabled": true,
+        "module": {
+            "repo": "https://github.com/MadeiraCloud/salt.git",
+            "tag": "v2015-02-27"
         }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+    },
+    "name": "Redis-Cluster",
+    "region": "us-east-1",
+    "platform": "ec2-vpc",
+    "version": "2014-02-17",
+    "component": {
+        "54466405-60F7-4957-89F9-3AA8E4285A3B": {
+            "name": "DefaultACL",
+            "type": "AWS.VPC.NetworkAcl",
+            "uid": "54466405-60F7-4957-89F9-3AA8E4285A3B",
+            "resource": {
+                "AssociationSet": [
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}"
+                    }
+                ],
+                "Default": true,
+                "EntrySet": [
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    }
+                ],
+                "NetworkAclId": "",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}"
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "56829E29-CC26-4F63-BFA1-E1283B231922": {
-      "index": 0,
-      "uid": "56829E29-CC26-4F63-BFA1-E1283B231922",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-4-eni0",
-      "serverGroupUid": "56829E29-CC26-4F63-BFA1-E1283B231922",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.8",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
-            "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "1DDD788D-7F5B-4556-BFF6-179968BAF44C": {
-      "name": "DefaultKP",
-      "type": "AWS.EC2.KeyPair",
-      "uid": "1DDD788D-7F5B-4556-BFF6-179968BAF44C",
-      "resource": {
-        "KeyFingerprint": "",
-        "KeyName": "DefaultKP"
-      }
-    },
-    "B880A8CD-8DE4-4EE8-8305-7912749B1D9F": {
-      "type": "AWS.EC2.Instance",
-      "uid": "B880A8CD-8DE4-4EE8-8305-7912749B1D9F",
-      "name": "host-1",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "B880A8CD-8DE4-4EE8-8305-7912749B1D9F",
-      "serverGroupName": "host-1",
-      "state": [
-        {
-          "id": "state-C2B65E99-7BD4-41C8-AD8B-16570607F391",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Prepare directories"
-          }
-        },
-        {
-          "id": "state-3F8A4814-2E30-45AD-B2D0-DC728FF1F896",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/redis/6379",
-              "/etc/redis"
-            ],
-            "group": "root",
-            "mode": "0755",
-            "recursive": true,
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-1EDCC7E2-C5CB-4A47-8E8A-170043384596",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Download Redis unstable version"
-          }
-        },
-        {
-          "id": "state-4F265C07-A37A-4514-AC20-09B8FE7177B6",
-          "module": "common.archive",
-          "parameter": {
-            "path": "/bootstrap/redis",
-            "source": "https://github.com/antirez/redis/archive/unstable.zip"
-          }
-        },
-        {
-          "id": "state-9787054A-7083-448C-933D-4C4770787823",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup required packages"
-          }
-        },
-        {
-          "id": "state-2598B77D-8481-42A0-9CD8-27E4B4C602B0",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "gcc",
-                "value": ""
-              },
-              {
-                "key": "ruby20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-E91FF4F1-CFA0-433B-9635-6251AD7242F2",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup Redis"
-          }
-        },
-        {
-          "id": "state-D3F1B87E-9FA2-4A56-AEE9-FBC2FF5E9CEA",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis-setup.sh",
-            "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-FFDD1B13-5EE6-49A3-87A0-07D2C1152B81",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
-            "if-path-absent": [
-              "/bootstrap/redis-setup.sh.done"
-            ]
-          }
-        },
-        {
-          "id": "state-198428D4-C5CE-4C73-9228-A0353F5E4B6F",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Configure Redis and startup services"
-          }
-        },
-        {
-          "id": "state-5F56F261-F5B9-4EEE-B71B-87BFE25DE709",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/redis/redis.conf",
-            "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
-            "group": "root",
-            "mode": "0644",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-D871E11E-3B70-4467-9BD0-67881D7B0908",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/supervisor.d/redis.ini",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
-          }
-        },
-        {
-          "id": "state-6F0228DF-86F3-432E-91BB-C76D10F2AC7F",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/log/redis"
-            ],
-            "group": "root",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-85A52A62-6E29-4100-BDA2-FC92272C212D",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/etc/supervisor.d/redis.ini",
-            "name": [
-              "redis"
-            ],
-            "watch": [
-              "/etc/redis/redis.conf",
-              "/etc/supervisor.d/redis.ini"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+        "9B3A921A-2890-41FE-8EDB-51C7A3970CEE": {
+            "name": "RT-0",
+            "type": "AWS.VPC.RouteTable",
+            "uid": "9B3A921A-2890-41FE-8EDB-51C7A3970CEE",
+            "resource": {
+                "PropagatingVgwSet": [],
+                "RouteTableId": "",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "AssociationSet": [
+                    {
+                        "Main": "true",
+                        "RouteTableAssociationId": "",
+                        "SubnetId": ""
+                    }
+                ],
+                "RouteSet": [
+                    {
+                        "Origin": "CreateRouteTable",
+                        "DestinationCidrBlock": "10.0.0.0/16",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "local"
+                    },
+                    {
+                        "DestinationCidrBlock": "0.0.0.0/0",
+                        "Origin": "",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "@{71F3D8A0-11EE-4884-9B2B-D231092D70B9.resource.InternetGatewayId}"
+                    }
+                ]
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "472E750E-97BE-4614-8828-EC8D2916A32C": {
-      "index": 0,
-      "uid": "472E750E-97BE-4614-8828-EC8D2916A32C",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-1-eni0",
-      "serverGroupUid": "472E750E-97BE-4614-8828-EC8D2916A32C",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.5",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
-            "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{B880A8CD-8DE4-4EE8-8305-7912749B1D9F.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E": {
-      "type": "AWS.EC2.Instance",
-      "uid": "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E",
-      "name": "host-2",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E",
-      "serverGroupName": "host-2",
-      "state": [
-        {
-          "id": "state-5AB764C0-D42D-4E64-8A88-2F5A99C465BA",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Prepare directories"
-          }
-        },
-        {
-          "id": "state-F9B03A73-1A64-4F5F-9D2D-D9827A8192CB",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/redis/6379",
-              "/etc/redis"
-            ],
-            "group": "root",
-            "mode": "0755",
-            "recursive": true,
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-E8774C22-1309-4C09-9D69-0BB649D8AA6F",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Download Redis unstable version"
-          }
-        },
-        {
-          "id": "state-9F7B7744-1FD9-4882-9D92-4779FD93C271",
-          "module": "common.archive",
-          "parameter": {
-            "path": "/bootstrap/redis",
-            "source": "https://github.com/antirez/redis/archive/unstable.zip"
-          }
-        },
-        {
-          "id": "state-CD4F84B4-DA44-4E83-A6EF-79E3361685FE",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup required packages"
-          }
-        },
-        {
-          "id": "state-1DA5D445-7ECE-4EAB-8BB1-97EB1C7BED72",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "gcc",
-                "value": ""
-              },
-              {
-                "key": "ruby20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-4957487B-66E8-497F-82CA-4774387F757B",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup Redis"
-          }
-        },
-        {
-          "id": "state-52A20E03-524C-43EB-A11A-41083F3BF64A",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis-setup.sh",
-            "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-933931EF-F9FD-4F78-9303-0317925FD70C",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
-            "if-path-absent": [
-              "/bootstrap/redis-setup.sh.done"
-            ]
-          }
-        },
-        {
-          "id": "state-37935EB4-4CC8-4E78-9B77-8C5A5B06A9EB",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Configure Redis and startup services"
-          }
-        },
-        {
-          "id": "state-A10F597C-29C8-412D-8DF3-3B3196B1E8B6",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/redis/redis.conf",
-            "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
-            "group": "root",
-            "mode": "0644",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-43A8D00F-7315-40E5-80AF-873219C1330F",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/supervisor.d/redis.ini",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
-          }
-        },
-        {
-          "id": "state-4B0113EF-08FD-4A49-BAE7-545D4D797428",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/log/redis"
-            ],
-            "group": "root",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-2592DF0E-7567-48DC-8D5C-B70778EC801B",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/etc/supervisor.d/redis.ini",
-            "name": [
-              "redis"
-            ],
-            "watch": [
-              "/etc/redis/redis.conf",
-              "/etc/supervisor.d/redis.ini"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+        "316614F6-6903-4128-B7A2-B941CBB18BC0": {
+            "name": "vpc",
+            "type": "AWS.VPC.VPC",
+            "uid": "316614F6-6903-4128-B7A2-B941CBB18BC0",
+            "resource": {
+                "EnableDnsSupport": true,
+                "InstanceTenancy": "default",
+                "EnableDnsHostnames": false,
+                "DhcpOptionsId": "",
+                "VpcId": "",
+                "CidrBlock": "10.0.0.0/16"
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "B31C0773-C46F-4DD5-BAE0-E2ED0B11E31E": {
-      "index": 0,
-      "uid": "B31C0773-C46F-4DD5-BAE0-E2ED0B11E31E",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-2-eni0",
-      "serverGroupUid": "B31C0773-C46F-4DD5-BAE0-E2ED0B11E31E",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.6",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
-            "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2": {
-      "type": "AWS.EC2.Instance",
-      "uid": "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2",
-      "name": "host-5",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2",
-      "serverGroupName": "host-5",
-      "state": [
-        {
-          "id": "state-4987706D-CA19-421D-9D07-5085401A65FF",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Prepare directories"
-          }
-        },
-        {
-          "id": "state-C3252D8F-4917-4F23-836D-86996BA87949",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/redis/6379",
-              "/etc/redis"
-            ],
-            "group": "root",
-            "mode": "0755",
-            "recursive": true,
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-360179E4-E183-4D2E-ADA1-64982B5B39CB",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Download Redis unstable version"
-          }
-        },
-        {
-          "id": "state-EDC92D96-CDB2-4D78-AE2D-B0CF3361E08A",
-          "module": "common.archive",
-          "parameter": {
-            "path": "/bootstrap/redis",
-            "source": "https://github.com/antirez/redis/archive/unstable.zip"
-          }
-        },
-        {
-          "id": "state-4F8256F2-5123-468F-861C-D515D022A101",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup required packages"
-          }
-        },
-        {
-          "id": "state-E81A8FB6-5883-4B01-B777-077F863FA896",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "gcc",
-                "value": ""
-              },
-              {
-                "key": "ruby20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-A08C2C62-7A2C-442B-A88D-63CEF6B8B7F7",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup Redis"
-          }
-        },
-        {
-          "id": "state-DCE0B3DC-5AE4-42DF-92E1-27F02B6A2CCD",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis-setup.sh",
-            "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-A9932276-8B30-4AD5-8F38-6A9E3BCB87B0",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
-            "if-path-absent": [
-              "/bootstrap/redis-setup.sh.done"
-            ]
-          }
-        },
-        {
-          "id": "state-2526E145-BBC8-48D1-821E-D010F77E3941",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Configure Redis and startup services"
-          }
-        },
-        {
-          "id": "state-E5D7ACC1-8343-4F4C-AF68-3B4ABC71FA94",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/redis/redis.conf",
-            "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
-            "group": "root",
-            "mode": "0644",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-D4F47D70-2B28-42AD-A642-A6E16A72AE98",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/supervisor.d/redis.ini",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
-          }
-        },
-        {
-          "id": "state-F62BB693-38A5-47F4-BA5D-F051C3D15631",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/log/redis"
-            ],
-            "group": "root",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-C4D05C1E-4869-4362-9B97-66682FAB9DDC",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/etc/supervisor.d/redis.ini",
-            "name": [
-              "redis"
-            ],
-            "watch": [
-              "/etc/redis/redis.conf",
-              "/etc/supervisor.d/redis.ini"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+        "DD0F05C5-F7FF-4E45-9A33-273794351BB2": {
+            "uid": "DD0F05C5-F7FF-4E45-9A33-273794351BB2",
+            "name": "us-east-1a",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1a",
+                "RegionName": "us-east-1"
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "5720CF92-50B6-4D40-B29A-937C2E0805CD": {
-      "index": 0,
-      "uid": "5720CF92-50B6-4D40-B29A-937C2E0805CD",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-5-eni0",
-      "serverGroupUid": "5720CF92-50B6-4D40-B29A-937C2E0805CD",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.9",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
-            "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "A28D2F42-A974-46A3-BE4E-90636D827481": {
-      "type": "AWS.EC2.Instance",
-      "uid": "A28D2F42-A974-46A3-BE4E-90636D827481",
-      "name": "host-0",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "A28D2F42-A974-46A3-BE4E-90636D827481",
-      "serverGroupName": "host-0",
-      "state": [
-        {
-          "id": "state-6D6070EA-6442-4B2E-8160-7AA776BDF797",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Prepare directories"
-          }
+        "CC0D6C28-A099-47D4-A419-E73EB95E68EF": {
+            "name": "subnet0",
+            "type": "AWS.VPC.Subnet",
+            "uid": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "resource": {
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.0.0/24"
+            }
         },
-        {
-          "id": "state-A4D95E05-E1D0-4A99-A0FA-D8A892009EF1",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/redis/6379",
-              "/etc/redis"
-            ],
-            "group": "root",
-            "mode": "0755",
-            "recursive": true,
-            "user": "root"
-          }
+        "51FD7F17-636C-413A-BF85-94549584A6B0": {
+            "name": "DefaultSG",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "51FD7F17-636C-413A-BF85-94549584A6B0",
+            "resource": {
+                "Default": true,
+                "GroupId": "",
+                "GroupName": "DefaultSG",
+                "GroupDescription": "Default Security Group",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "6379",
+                        "ToPort": "6379",
+                        "IpRanges": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "0",
+                        "ToPort": "65535",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "-1"
+                    }
+                ]
+            }
         },
-        {
-          "id": "state-AA92A392-C9F3-46E9-B0D2-F86A59CA108A",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Download Redis unstable version"
-          }
-        },
-        {
-          "id": "state-AEDA861D-B7FF-49A3-9435-5A48DAF40130",
-          "module": "common.archive",
-          "parameter": {
-            "path": "/bootstrap/redis",
-            "source": "https://github.com/antirez/redis/archive/unstable.zip"
-          }
-        },
-        {
-          "id": "state-F9C49AFC-412F-4AA1-8C8D-AE6423FFA1C4",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup required packages"
-          }
-        },
-        {
-          "id": "state-D2E21D23-F316-47DB-B4BB-5FF36C35FFC9",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "gcc",
-                "value": ""
-              },
-              {
-                "key": "ruby20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-5E0AA179-E622-42D9-A184-58AB6742FD71",
-          "module": "common.gem.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "redis",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-9BA196B1-04D5-411A-9A66-A54BC7AF3A83",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup Redis"
-          }
-        },
-        {
-          "id": "state-2B206F6B-7F5C-43F6-888D-FC1182385E2E",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis-setup.sh",
-            "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-80BC12A2-69F4-41DB-986E-6107A24246CD",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
-            "if-path-absent": [
-              "/bootstrap/redis-setup.sh.done"
-            ]
-          }
-        },
-        {
-          "id": "state-402A8A00-54FB-49D1-8C50-11F8F96DF556",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Configure Redis and startup services"
-          }
-        },
-        {
-          "id": "state-9D3816CA-D82F-4890-8F0A-9B0123ADD9FA",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/redis/redis.conf",
-            "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
-            "group": "root",
-            "mode": "0644",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-90DDAEEE-9A27-460F-B445-C7C22DE01853",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/supervisor.d/redis.ini",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
-          }
-        },
-        {
-          "id": "state-BD1DD94A-E13C-42B2-9446-2B22516ED02D",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/log/redis"
-            ],
-            "group": "root",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-28E47535-E643-4865-815A-8B255161FE8F",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/etc/supervisor.d/redis.ini",
-            "name": [
-              "redis"
-            ],
-            "watch": [
-              "/etc/redis/redis.conf",
-              "/etc/supervisor.d/redis.ini"
-            ]
-          }
-        },
-        {
-          "id": "state-52B0890C-DA91-4A41-A9B6-D6928CB7E4EF",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Create Redis cluster"
-          }
-        },
-        {
-          "id": "state-F3C4240A-F170-4B62-8004-B5A5BA2C9533",
-          "module": "meta.wait",
-          "parameter": {
+        "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3": {
+            "type": "AWS.EC2.Instance",
+            "uid": "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3",
+            "name": "host-4",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3",
+            "serverGroupName": "host-4",
             "state": [
-              "@{B880A8CD-8DE4-4EE8-8305-7912749B1D9F.state.state-85A52A62-6E29-4100-BDA2-FC92272C212D}",
-              "@{2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E.state.state-2592DF0E-7567-48DC-8D5C-B70778EC801B}",
-              "@{E00C7F86-0DA4-40D4-A56D-449B2F53E2D9.state.state-260877F4-1089-4BB1-8DD6-E595CE242A5E}",
-              "@{BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3.state.state-D9514B86-4B1D-47AF-829E-2C939653627E}",
-              "@{20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2.state.state-C4D05C1E-4869-4362-9B97-66682FAB9DDC}"
-            ]
-          }
-        },
-        {
-          "id": "state-893EE6B3-244A-4FF9-ACF1-487CA8819C8B",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis/redis.exp",
-            "content": "#!/usr/bin/expect\nspawn ./redis-trib.rb {*}$argv\nexpect \"(type 'yes' to accept):\"\nsend \"yes\\r\"\ninteract\n",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-EA286FCB-4AD0-49BD-874B-A189572B1960",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "/bootstrap/redis/redis.exp create --replicas 1 @{A28D2F42-A974-46A3-BE4E-90636D827481.PrivateIpAddress}:6379 @{B880A8CD-8DE4-4EE8-8305-7912749B1D9F.PrivateIpAddress}:6379 @{2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E.PrivateIpAddress}:6379 @{E00C7F86-0DA4-40D4-A56D-449B2F53E2D9.PrivateIpAddress}:6379 @{BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3.PrivateIpAddress}:6379 @{20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2.PrivateIpAddress}:6379 && touch /bootstrap/redis.cluster.done",
-            "cwd": "/bootstrap/redis/redis-unstable/src",
-            "if-path-absent": [
-              "/bootstrap/redis.cluster.done"
+                {
+                    "id": "state-4919BAFE-12A2-4DD6-B693-71DA2C948F00",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Prepare directories"
+                    }
+                },
+                {
+                    "id": "state-85E6CD53-06C7-4D5F-8E10-F3C615DF4C27",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/redis/6379",
+                            "/etc/redis"
+                        ],
+                        "group": "root",
+                        "mode": "0755",
+                        "recursive": true,
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-57CEC211-50F9-4406-858D-D04C3802F736",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Download Redis unstable version"
+                    }
+                },
+                {
+                    "id": "state-30B767D0-5A4B-4B6B-AF30-38154496B7B3",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/bootstrap/redis",
+                        "source": "https://github.com/antirez/redis/archive/unstable.zip"
+                    }
+                },
+                {
+                    "id": "state-11207ED1-1EC2-46A5-95B9-42927F6FDB07",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup required packages"
+                    }
+                },
+                {
+                    "id": "state-950DA755-65DC-48B6-802E-3A69AAB7EB4A",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "gcc",
+                                "value": ""
+                            },
+                            {
+                                "key": "ruby20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-A688B6DE-8BBA-4B1F-812A-2D947D2CC903",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Redis"
+                    }
+                },
+                {
+                    "id": "state-A82B779C-6877-4F88-AF53-BE0E716D3877",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis-setup.sh",
+                        "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-A84FB328-1E0E-41EB-895D-CCA7BEC81A1F",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
+                        "if-path-absent": [
+                            "/bootstrap/redis-setup.sh.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-5969C4E2-A4EF-4FFD-8574-5859233C6564",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Redis and startup services"
+                    }
+                },
+                {
+                    "id": "state-34910437-F6A9-4554-B434-2F65AC579A2B",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/redis/redis.conf",
+                        "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
+                        "group": "root",
+                        "mode": "0644",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-A156E732-A34B-4CA9-BD0B-8A6C324DACA5",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/supervisor.d/redis.ini",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
+                    }
+                },
+                {
+                    "id": "state-B41DD558-B669-4D20-BC41-3CF7F9B16E8A",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/log/redis"
+                        ],
+                        "group": "root",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-D9514B86-4B1D-47AF-829E-2C939653627E",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/etc/supervisor.d/redis.ini",
+                        "name": [
+                            "redis"
+                        ],
+                        "watch": [
+                            "/etc/redis/redis.conf",
+                            "/etc/supervisor.d/redis.ini"
+                        ]
+                    }
+                }
             ],
-            "timeout": "0"
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "7CD95B53-F8B3-464E-AD83-0DE4949BD1C6": {
-      "index": 0,
-      "uid": "7CD95B53-F8B3-464E-AD83-0DE4949BD1C6",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-0-eni0",
-      "serverGroupUid": "7CD95B53-F8B3-464E-AD83-0DE4949BD1C6",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.4",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
-            "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{A28D2F42-A974-46A3-BE4E-90636D827481.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9": {
-      "type": "AWS.EC2.Instance",
-      "uid": "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9",
-      "name": "host-3",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9",
-      "serverGroupName": "host-3",
-      "state": [
-        {
-          "id": "state-E740FDEF-459B-4C68-8826-F2F3A4E550BD",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Prepare directories"
-          }
-        },
-        {
-          "id": "state-30428ADE-B18A-4C2B-861A-8F94846589AB",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/redis/6379",
-              "/etc/redis"
-            ],
-            "group": "root",
-            "mode": "0755",
-            "recursive": true,
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-D5DDACA8-3E6E-47FC-9910-E1967A1BE0C2",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Download Redis unstable version"
-          }
-        },
-        {
-          "id": "state-BAEA8790-43FC-4F9D-88A3-029BA84AD0DC",
-          "module": "common.archive",
-          "parameter": {
-            "path": "/bootstrap/redis",
-            "source": "https://github.com/antirez/redis/archive/unstable.zip"
-          }
-        },
-        {
-          "id": "state-E5693100-FDDB-469C-A8CE-6E7B65ABC713",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup required packages"
-          }
-        },
-        {
-          "id": "state-77D44CCF-D6AC-4341-A362-56A6FFE9A584",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "gcc",
-                "value": ""
-              },
-              {
-                "key": "ruby20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-F4334D57-373E-486C-9112-8D14239F2996",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Setup Redis"
-          }
-        },
-        {
-          "id": "state-DEB97A77-369C-49AF-8320-86BF9EAE5CD6",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/bootstrap/redis-setup.sh",
-            "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
-            "group": "root",
-            "mode": "0755",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-932FC7C3-2BB0-4028-974B-271688D3CECF",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
-            "if-path-absent": [
-              "/bootstrap/redis-setup.sh.done"
-            ]
-          }
-        },
-        {
-          "id": "state-093F6B9A-C1DB-436F-8519-165BF0550866",
-          "module": "meta.comment",
-          "parameter": {
-            "comment": "Configure Redis and startup services"
-          }
-        },
-        {
-          "id": "state-6DA32448-F43D-43E5-98DD-7BE29780E0F2",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/redis/redis.conf",
-            "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
-            "group": "root",
-            "mode": "0644",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-A9211D6D-EA09-40A2-A9B1-72E3930A6353",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/supervisor.d/redis.ini",
-            "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
-          }
-        },
-        {
-          "id": "state-249CA0D0-1BD4-42EC-A7F3-182C5076AD20",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/log/redis"
-            ],
-            "group": "root",
-            "user": "root"
-          }
-        },
-        {
-          "id": "state-260877F4-1089-4BB1-8DD6-E595CE242A5E",
-          "module": "linux.supervisord",
-          "parameter": {
-            "config": "/etc/supervisor.d/redis.ini",
-            "name": [
-              "redis"
-            ],
-            "watch": [
-              "/etc/redis/redis.conf",
-              "/etc/supervisor.d/redis.ini"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b4ef17a9",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+        "56829E29-CC26-4F63-BFA1-E1283B231922": {
+            "index": 0,
+            "uid": "56829E29-CC26-4F63-BFA1-E1283B231922",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-4-eni0",
+            "serverGroupUid": "56829E29-CC26-4F63-BFA1-E1283B231922",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.8",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
+                        "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "D1767B46-51FA-4BD0-B3DB-BC9F78789640": {
-      "index": 0,
-      "uid": "D1767B46-51FA-4BD0-B3DB-BC9F78789640",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-3-eni0",
-      "serverGroupUid": "D1767B46-51FA-4BD0-B3DB-BC9F78789640",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
-        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
-        "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.7",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
-            "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{E00C7F86-0DA4-40D4-A56D-449B2F53E2D9.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
+        "1DDD788D-7F5B-4556-BFF6-179968BAF44C": {
+            "name": "DefaultKP",
+            "type": "AWS.EC2.KeyPair",
+            "uid": "1DDD788D-7F5B-4556-BFF6-179968BAF44C",
+            "resource": {
+                "KeyFingerprint": "",
+                "KeyName": "DefaultKP"
+            }
+        },
+        "B880A8CD-8DE4-4EE8-8305-7912749B1D9F": {
+            "type": "AWS.EC2.Instance",
+            "uid": "B880A8CD-8DE4-4EE8-8305-7912749B1D9F",
+            "name": "host-1",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "B880A8CD-8DE4-4EE8-8305-7912749B1D9F",
+            "serverGroupName": "host-1",
+            "state": [
+                {
+                    "id": "state-C2B65E99-7BD4-41C8-AD8B-16570607F391",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Prepare directories"
+                    }
+                },
+                {
+                    "id": "state-3F8A4814-2E30-45AD-B2D0-DC728FF1F896",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/redis/6379",
+                            "/etc/redis"
+                        ],
+                        "group": "root",
+                        "mode": "0755",
+                        "recursive": true,
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-1EDCC7E2-C5CB-4A47-8E8A-170043384596",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Download Redis unstable version"
+                    }
+                },
+                {
+                    "id": "state-4F265C07-A37A-4514-AC20-09B8FE7177B6",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/bootstrap/redis",
+                        "source": "https://github.com/antirez/redis/archive/unstable.zip"
+                    }
+                },
+                {
+                    "id": "state-9787054A-7083-448C-933D-4C4770787823",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup required packages"
+                    }
+                },
+                {
+                    "id": "state-2598B77D-8481-42A0-9CD8-27E4B4C602B0",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "gcc",
+                                "value": ""
+                            },
+                            {
+                                "key": "ruby20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-E91FF4F1-CFA0-433B-9635-6251AD7242F2",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Redis"
+                    }
+                },
+                {
+                    "id": "state-D3F1B87E-9FA2-4A56-AEE9-FBC2FF5E9CEA",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis-setup.sh",
+                        "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-FFDD1B13-5EE6-49A3-87A0-07D2C1152B81",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
+                        "if-path-absent": [
+                            "/bootstrap/redis-setup.sh.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-198428D4-C5CE-4C73-9228-A0353F5E4B6F",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Redis and startup services"
+                    }
+                },
+                {
+                    "id": "state-5F56F261-F5B9-4EEE-B71B-87BFE25DE709",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/redis/redis.conf",
+                        "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
+                        "group": "root",
+                        "mode": "0644",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-D871E11E-3B70-4467-9BD0-67881D7B0908",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/supervisor.d/redis.ini",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
+                    }
+                },
+                {
+                    "id": "state-6F0228DF-86F3-432E-91BB-C76D10F2AC7F",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/log/redis"
+                        ],
+                        "group": "root",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-85A52A62-6E29-4100-BDA2-FC92272C212D",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/etc/supervisor.d/redis.ini",
+                        "name": [
+                            "redis"
+                        ],
+                        "watch": [
+                            "/etc/redis/redis.conf",
+                            "/etc/supervisor.d/redis.ini"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "472E750E-97BE-4614-8828-EC8D2916A32C": {
+            "index": 0,
+            "uid": "472E750E-97BE-4614-8828-EC8D2916A32C",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-1-eni0",
+            "serverGroupUid": "472E750E-97BE-4614-8828-EC8D2916A32C",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.5",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
+                        "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{B880A8CD-8DE4-4EE8-8305-7912749B1D9F.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E": {
+            "type": "AWS.EC2.Instance",
+            "uid": "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E",
+            "name": "host-2",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E",
+            "serverGroupName": "host-2",
+            "state": [
+                {
+                    "id": "state-5AB764C0-D42D-4E64-8A88-2F5A99C465BA",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Prepare directories"
+                    }
+                },
+                {
+                    "id": "state-F9B03A73-1A64-4F5F-9D2D-D9827A8192CB",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/redis/6379",
+                            "/etc/redis"
+                        ],
+                        "group": "root",
+                        "mode": "0755",
+                        "recursive": true,
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-E8774C22-1309-4C09-9D69-0BB649D8AA6F",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Download Redis unstable version"
+                    }
+                },
+                {
+                    "id": "state-9F7B7744-1FD9-4882-9D92-4779FD93C271",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/bootstrap/redis",
+                        "source": "https://github.com/antirez/redis/archive/unstable.zip"
+                    }
+                },
+                {
+                    "id": "state-CD4F84B4-DA44-4E83-A6EF-79E3361685FE",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup required packages"
+                    }
+                },
+                {
+                    "id": "state-1DA5D445-7ECE-4EAB-8BB1-97EB1C7BED72",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "gcc",
+                                "value": ""
+                            },
+                            {
+                                "key": "ruby20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-4957487B-66E8-497F-82CA-4774387F757B",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Redis"
+                    }
+                },
+                {
+                    "id": "state-52A20E03-524C-43EB-A11A-41083F3BF64A",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis-setup.sh",
+                        "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-933931EF-F9FD-4F78-9303-0317925FD70C",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
+                        "if-path-absent": [
+                            "/bootstrap/redis-setup.sh.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-37935EB4-4CC8-4E78-9B77-8C5A5B06A9EB",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Redis and startup services"
+                    }
+                },
+                {
+                    "id": "state-A10F597C-29C8-412D-8DF3-3B3196B1E8B6",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/redis/redis.conf",
+                        "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
+                        "group": "root",
+                        "mode": "0644",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-43A8D00F-7315-40E5-80AF-873219C1330F",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/supervisor.d/redis.ini",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
+                    }
+                },
+                {
+                    "id": "state-4B0113EF-08FD-4A49-BAE7-545D4D797428",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/log/redis"
+                        ],
+                        "group": "root",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-2592DF0E-7567-48DC-8D5C-B70778EC801B",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/etc/supervisor.d/redis.ini",
+                        "name": [
+                            "redis"
+                        ],
+                        "watch": [
+                            "/etc/redis/redis.conf",
+                            "/etc/supervisor.d/redis.ini"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "B31C0773-C46F-4DD5-BAE0-E2ED0B11E31E": {
+            "index": 0,
+            "uid": "B31C0773-C46F-4DD5-BAE0-E2ED0B11E31E",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-2-eni0",
+            "serverGroupUid": "B31C0773-C46F-4DD5-BAE0-E2ED0B11E31E",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.6",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
+                        "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2": {
+            "type": "AWS.EC2.Instance",
+            "uid": "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2",
+            "name": "host-5",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2",
+            "serverGroupName": "host-5",
+            "state": [
+                {
+                    "id": "state-4987706D-CA19-421D-9D07-5085401A65FF",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Prepare directories"
+                    }
+                },
+                {
+                    "id": "state-C3252D8F-4917-4F23-836D-86996BA87949",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/redis/6379",
+                            "/etc/redis"
+                        ],
+                        "group": "root",
+                        "mode": "0755",
+                        "recursive": true,
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-360179E4-E183-4D2E-ADA1-64982B5B39CB",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Download Redis unstable version"
+                    }
+                },
+                {
+                    "id": "state-EDC92D96-CDB2-4D78-AE2D-B0CF3361E08A",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/bootstrap/redis",
+                        "source": "https://github.com/antirez/redis/archive/unstable.zip"
+                    }
+                },
+                {
+                    "id": "state-4F8256F2-5123-468F-861C-D515D022A101",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup required packages"
+                    }
+                },
+                {
+                    "id": "state-E81A8FB6-5883-4B01-B777-077F863FA896",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "gcc",
+                                "value": ""
+                            },
+                            {
+                                "key": "ruby20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-A08C2C62-7A2C-442B-A88D-63CEF6B8B7F7",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Redis"
+                    }
+                },
+                {
+                    "id": "state-DCE0B3DC-5AE4-42DF-92E1-27F02B6A2CCD",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis-setup.sh",
+                        "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-A9932276-8B30-4AD5-8F38-6A9E3BCB87B0",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
+                        "if-path-absent": [
+                            "/bootstrap/redis-setup.sh.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-2526E145-BBC8-48D1-821E-D010F77E3941",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Redis and startup services"
+                    }
+                },
+                {
+                    "id": "state-E5D7ACC1-8343-4F4C-AF68-3B4ABC71FA94",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/redis/redis.conf",
+                        "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
+                        "group": "root",
+                        "mode": "0644",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-D4F47D70-2B28-42AD-A642-A6E16A72AE98",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/supervisor.d/redis.ini",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
+                    }
+                },
+                {
+                    "id": "state-F62BB693-38A5-47F4-BA5D-F051C3D15631",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/log/redis"
+                        ],
+                        "group": "root",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-C4D05C1E-4869-4362-9B97-66682FAB9DDC",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/etc/supervisor.d/redis.ini",
+                        "name": [
+                            "redis"
+                        ],
+                        "watch": [
+                            "/etc/redis/redis.conf",
+                            "/etc/supervisor.d/redis.ini"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "5720CF92-50B6-4D40-B29A-937C2E0805CD": {
+            "index": 0,
+            "uid": "5720CF92-50B6-4D40-B29A-937C2E0805CD",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-5-eni0",
+            "serverGroupUid": "5720CF92-50B6-4D40-B29A-937C2E0805CD",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.9",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
+                        "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "A28D2F42-A974-46A3-BE4E-90636D827481": {
+            "type": "AWS.EC2.Instance",
+            "uid": "A28D2F42-A974-46A3-BE4E-90636D827481",
+            "name": "host-0",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "A28D2F42-A974-46A3-BE4E-90636D827481",
+            "serverGroupName": "host-0",
+            "state": [
+                {
+                    "id": "state-6D6070EA-6442-4B2E-8160-7AA776BDF797",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Prepare directories"
+                    }
+                },
+                {
+                    "id": "state-A4D95E05-E1D0-4A99-A0FA-D8A892009EF1",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/redis/6379",
+                            "/etc/redis"
+                        ],
+                        "group": "root",
+                        "mode": "0755",
+                        "recursive": true,
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-AA92A392-C9F3-46E9-B0D2-F86A59CA108A",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Download Redis unstable version"
+                    }
+                },
+                {
+                    "id": "state-AEDA861D-B7FF-49A3-9435-5A48DAF40130",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/bootstrap/redis",
+                        "source": "https://github.com/antirez/redis/archive/unstable.zip"
+                    }
+                },
+                {
+                    "id": "state-F9C49AFC-412F-4AA1-8C8D-AE6423FFA1C4",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup required packages"
+                    }
+                },
+                {
+                    "id": "state-D2E21D23-F316-47DB-B4BB-5FF36C35FFC9",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "gcc",
+                                "value": ""
+                            },
+                            {
+                                "key": "ruby20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-5E0AA179-E622-42D9-A184-58AB6742FD71",
+                    "module": "common.gem.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "redis",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-9BA196B1-04D5-411A-9A66-A54BC7AF3A83",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Redis"
+                    }
+                },
+                {
+                    "id": "state-2B206F6B-7F5C-43F6-888D-FC1182385E2E",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis-setup.sh",
+                        "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-80BC12A2-69F4-41DB-986E-6107A24246CD",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
+                        "if-path-absent": [
+                            "/bootstrap/redis-setup.sh.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-402A8A00-54FB-49D1-8C50-11F8F96DF556",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Redis and startup services"
+                    }
+                },
+                {
+                    "id": "state-9D3816CA-D82F-4890-8F0A-9B0123ADD9FA",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/redis/redis.conf",
+                        "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
+                        "group": "root",
+                        "mode": "0644",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-90DDAEEE-9A27-460F-B445-C7C22DE01853",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/supervisor.d/redis.ini",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
+                    }
+                },
+                {
+                    "id": "state-BD1DD94A-E13C-42B2-9446-2B22516ED02D",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/log/redis"
+                        ],
+                        "group": "root",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-28E47535-E643-4865-815A-8B255161FE8F",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/etc/supervisor.d/redis.ini",
+                        "name": [
+                            "redis"
+                        ],
+                        "watch": [
+                            "/etc/redis/redis.conf",
+                            "/etc/supervisor.d/redis.ini"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-52B0890C-DA91-4A41-A9B6-D6928CB7E4EF",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Create Redis cluster"
+                    }
+                },
+                {
+                    "id": "state-F3C4240A-F170-4B62-8004-B5A5BA2C9533",
+                    "module": "meta.wait",
+                    "parameter": {
+                        "state": [
+                            "@{B880A8CD-8DE4-4EE8-8305-7912749B1D9F.state.state-85A52A62-6E29-4100-BDA2-FC92272C212D}",
+                            "@{2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E.state.state-2592DF0E-7567-48DC-8D5C-B70778EC801B}",
+                            "@{E00C7F86-0DA4-40D4-A56D-449B2F53E2D9.state.state-260877F4-1089-4BB1-8DD6-E595CE242A5E}",
+                            "@{BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3.state.state-D9514B86-4B1D-47AF-829E-2C939653627E}",
+                            "@{20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2.state.state-C4D05C1E-4869-4362-9B97-66682FAB9DDC}"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-893EE6B3-244A-4FF9-ACF1-487CA8819C8B",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis/redis.exp",
+                        "content": "#!/usr/bin/expect\nspawn ./redis-trib.rb {*}$argv\nexpect \"(type 'yes' to accept):\"\nsend \"yes\\r\"\ninteract\n",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-EA286FCB-4AD0-49BD-874B-A189572B1960",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "/bootstrap/redis/redis.exp create --replicas 1 @{A28D2F42-A974-46A3-BE4E-90636D827481.PrivateIpAddress}:6379 @{B880A8CD-8DE4-4EE8-8305-7912749B1D9F.PrivateIpAddress}:6379 @{2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E.PrivateIpAddress}:6379 @{E00C7F86-0DA4-40D4-A56D-449B2F53E2D9.PrivateIpAddress}:6379 @{BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3.PrivateIpAddress}:6379 @{20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2.PrivateIpAddress}:6379 && touch /bootstrap/redis.cluster.done",
+                        "cwd": "/bootstrap/redis/redis-unstable/src",
+                        "if-path-absent": [
+                            "/bootstrap/redis.cluster.done"
+                        ],
+                        "timeout": "0"
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "7CD95B53-F8B3-464E-AD83-0DE4949BD1C6": {
+            "index": 0,
+            "uid": "7CD95B53-F8B3-464E-AD83-0DE4949BD1C6",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-0-eni0",
+            "serverGroupUid": "7CD95B53-F8B3-464E-AD83-0DE4949BD1C6",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
+                        "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{A28D2F42-A974-46A3-BE4E-90636D827481.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9": {
+            "type": "AWS.EC2.Instance",
+            "uid": "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9",
+            "name": "host-3",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9",
+            "serverGroupName": "host-3",
+            "state": [
+                {
+                    "id": "state-E740FDEF-459B-4C68-8826-F2F3A4E550BD",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Prepare directories"
+                    }
+                },
+                {
+                    "id": "state-30428ADE-B18A-4C2B-861A-8F94846589AB",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/redis/6379",
+                            "/etc/redis"
+                        ],
+                        "group": "root",
+                        "mode": "0755",
+                        "recursive": true,
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-D5DDACA8-3E6E-47FC-9910-E1967A1BE0C2",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Download Redis unstable version"
+                    }
+                },
+                {
+                    "id": "state-BAEA8790-43FC-4F9D-88A3-029BA84AD0DC",
+                    "module": "common.archive",
+                    "parameter": {
+                        "path": "/bootstrap/redis",
+                        "source": "https://github.com/antirez/redis/archive/unstable.zip"
+                    }
+                },
+                {
+                    "id": "state-E5693100-FDDB-469C-A8CE-6E7B65ABC713",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup required packages"
+                    }
+                },
+                {
+                    "id": "state-77D44CCF-D6AC-4341-A362-56A6FFE9A584",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "gcc",
+                                "value": ""
+                            },
+                            {
+                                "key": "ruby20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-F4334D57-373E-486C-9112-8D14239F2996",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Setup Redis"
+                    }
+                },
+                {
+                    "id": "state-DEB97A77-369C-49AF-8320-86BF9EAE5CD6",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/bootstrap/redis-setup.sh",
+                        "content": "#!/bin/bash\ncd /bootstrap/redis/redis-unstable\ncd deps\nmake jemalloc\nmake hiredis\nmake linenoise\nmake lua\ncd ..\nmake\nmake install",
+                        "group": "root",
+                        "mode": "0755",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-932FC7C3-2BB0-4028-974B-271688D3CECF",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "bash /bootstrap/redis-setup.sh && touch /bootstrap/redis-setup.sh.done",
+                        "if-path-absent": [
+                            "/bootstrap/redis-setup.sh.done"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-093F6B9A-C1DB-436F-8519-165BF0550866",
+                    "module": "meta.comment",
+                    "parameter": {
+                        "comment": "Configure Redis and startup services"
+                    }
+                },
+                {
+                    "id": "state-6DA32448-F43D-43E5-98DD-7BE29780E0F2",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/redis/redis.conf",
+                        "content": "port 6379\ncluster-enabled yes\ncluster-config-file nodes.conf\ncluster-node-timeout 5000\nappendonly yes",
+                        "group": "root",
+                        "mode": "0644",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-A9211D6D-EA09-40A2-A9B1-72E3930A6353",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/supervisor.d/redis.ini",
+                        "content": "[unix_http_server]\nfile=/tmp/supervisor.sock\n\n[supervisord]\nlogfile=/var/log/supervisord.log\n\n[rpcinterface:supervisor]\nsupervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface\n\n[supervisorctl]\nserverurl=unix:///tmp/supervisor.sock\n\n[program:redis]\ncommand=/usr/local/bin/redis-server /etc/redis/redis.conf\nautostart=true\nautorestart=true\nuser=root\nstdout_logfile=/var/log/redis/stdout.log\nstderr_logfile=/var/log/redis/stderr.log"
+                    }
+                },
+                {
+                    "id": "state-249CA0D0-1BD4-42EC-A7F3-182C5076AD20",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/log/redis"
+                        ],
+                        "group": "root",
+                        "user": "root"
+                    }
+                },
+                {
+                    "id": "state-260877F4-1089-4BB1-8DD6-E595CE242A5E",
+                    "module": "linux.supervisord",
+                    "parameter": {
+                        "config": "/etc/supervisor.d/redis.ini",
+                        "name": [
+                            "redis"
+                        ],
+                        "watch": [
+                            "/etc/redis/redis.conf",
+                            "/etc/supervisor.d/redis.ini"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b4ef17a9",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{1DDD788D-7F5B-4556-BFF6-179968BAF44C.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "D1767B46-51FA-4BD0-B3DB-BC9F78789640": {
+            "index": 0,
+            "uid": "D1767B46-51FA-4BD0-B3DB-BC9F78789640",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-3-eni0",
+            "serverGroupUid": "D1767B46-51FA-4BD0-B3DB-BC9F78789640",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{DD0F05C5-F7FF-4E45-9A33-273794351BB2.resource.ZoneName}",
+                "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}",
+                "SubnetId": "@{CC0D6C28-A099-47D4-A419-E73EB95E68EF.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.7",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupName}",
+                        "GroupId": "@{51FD7F17-636C-413A-BF85-94549584A6B0.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{E00C7F86-0DA4-40D4-A56D-449B2F53E2D9.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "71F3D8A0-11EE-4884-9B2B-D231092D70B9": {
+            "name": "Internet-gateway",
+            "type": "AWS.VPC.InternetGateway",
+            "uid": "71F3D8A0-11EE-4884-9B2B-D231092D70B9",
+            "resource": {
+                "InternetGatewayId": "",
+                "AttachmentSet": [
+                    {
+                        "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}"
+                    }
+                ]
+            }
         }
-      }
     },
-    "71F3D8A0-11EE-4884-9B2B-D231092D70B9": {
-      "name": "Internet-gateway",
-      "type": "AWS.VPC.InternetGateway",
-      "uid": "71F3D8A0-11EE-4884-9B2B-D231092D70B9",
-      "resource": {
-        "InternetGatewayId": "",
-        "AttachmentSet": [
-          {
-            "VpcId": "@{316614F6-6903-4128-B7A2-B941CBB18BC0.resource.VpcId}"
-          }
+    "layout": {
+        "9B3A921A-2890-41FE-8EDB-51C7A3970CEE": {
+            "coordinate": [
+                92,
+                8
+            ],
+            "uid": "9B3A921A-2890-41FE-8EDB-51C7A3970CEE",
+            "groupUId": "316614F6-6903-4128-B7A2-B941CBB18BC0"
+        },
+        "316614F6-6903-4128-B7A2-B941CBB18BC0": {
+            "coordinate": [
+                10,
+                6
+            ],
+            "uid": "316614F6-6903-4128-B7A2-B941CBB18BC0",
+            "size": [
+                93,
+                65
+            ]
+        },
+        "DD0F05C5-F7FF-4E45-9A33-273794351BB2": {
+            "coordinate": [
+                18,
+                15
+            ],
+            "uid": "DD0F05C5-F7FF-4E45-9A33-273794351BB2",
+            "groupUId": "316614F6-6903-4128-B7A2-B941CBB18BC0",
+            "size": [
+                71,
+                50
+            ]
+        },
+        "CC0D6C28-A099-47D4-A419-E73EB95E68EF": {
+            "coordinate": [
+                20,
+                17
+            ],
+            "uid": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "groupUId": "DD0F05C5-F7FF-4E45-9A33-273794351BB2",
+            "size": [
+                67,
+                46
+            ]
+        },
+        "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3": {
+            "coordinate": [
+                47,
+                43
+            ],
+            "uid": "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3",
+            "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3"
+            ]
+        },
+        "B880A8CD-8DE4-4EE8-8305-7912749B1D9F": {
+            "coordinate": [
+                47,
+                24
+            ],
+            "uid": "B880A8CD-8DE4-4EE8-8305-7912749B1D9F",
+            "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "B880A8CD-8DE4-4EE8-8305-7912749B1D9F"
+            ]
+        },
+        "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E": {
+            "coordinate": [
+                66,
+                24
+            ],
+            "uid": "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E",
+            "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E"
+            ]
+        },
+        "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2": {
+            "coordinate": [
+                66,
+                43
+            ],
+            "uid": "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2",
+            "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2"
+            ]
+        },
+        "A28D2F42-A974-46A3-BE4E-90636D827481": {
+            "coordinate": [
+                29,
+                24
+            ],
+            "uid": "A28D2F42-A974-46A3-BE4E-90636D827481",
+            "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "A28D2F42-A974-46A3-BE4E-90636D827481"
+            ]
+        },
+        "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9": {
+            "coordinate": [
+                29,
+                43
+            ],
+            "uid": "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9",
+            "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9"
+            ]
+        },
+        "71F3D8A0-11EE-4884-9B2B-D231092D70B9": {
+            "coordinate": [
+                6,
+                8
+            ],
+            "uid": "71F3D8A0-11EE-4884-9B2B-D231092D70B9",
+            "groupUId": "316614F6-6903-4128-B7A2-B941CBB18BC0"
+        },
+        "size": [
+            240,
+            240
         ]
-      }
-    }
-  },
-  "layout": {
-    "9B3A921A-2890-41FE-8EDB-51C7A3970CEE": {
-      "coordinate": [
-        92,
-        8
-      ],
-      "uid": "9B3A921A-2890-41FE-8EDB-51C7A3970CEE",
-      "groupUId": "316614F6-6903-4128-B7A2-B941CBB18BC0"
     },
-    "316614F6-6903-4128-B7A2-B941CBB18BC0": {
-      "coordinate": [
-        10,
-        6
-      ],
-      "uid": "316614F6-6903-4128-B7A2-B941CBB18BC0",
-      "size": [
-        93,
-        65
-      ]
-    },
-    "DD0F05C5-F7FF-4E45-9A33-273794351BB2": {
-      "coordinate": [
-        18,
-        15
-      ],
-      "uid": "DD0F05C5-F7FF-4E45-9A33-273794351BB2",
-      "groupUId": "316614F6-6903-4128-B7A2-B941CBB18BC0",
-      "size": [
-        71,
-        50
-      ]
-    },
-    "CC0D6C28-A099-47D4-A419-E73EB95E68EF": {
-      "coordinate": [
-        20,
-        17
-      ],
-      "uid": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "groupUId": "DD0F05C5-F7FF-4E45-9A33-273794351BB2",
-      "size": [
-        67,
-        46
-      ]
-    },
-    "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3": {
-      "coordinate": [
-        47,
-        43
-      ],
-      "uid": "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3",
-      "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "BC38BBCB-B850-4F23-A637-8CDEB8D0FEB3"
-      ]
-    },
-    "B880A8CD-8DE4-4EE8-8305-7912749B1D9F": {
-      "coordinate": [
-        47,
-        24
-      ],
-      "uid": "B880A8CD-8DE4-4EE8-8305-7912749B1D9F",
-      "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "B880A8CD-8DE4-4EE8-8305-7912749B1D9F"
-      ]
-    },
-    "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E": {
-      "coordinate": [
-        66,
-        24
-      ],
-      "uid": "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E",
-      "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "2F384E6C-6FA9-4DB5-B234-02D3C1B5F91E"
-      ]
-    },
-    "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2": {
-      "coordinate": [
-        66,
-        43
-      ],
-      "uid": "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2",
-      "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "20ECA37E-5D3A-4659-ABDC-4A52C8E80CB2"
-      ]
-    },
-    "A28D2F42-A974-46A3-BE4E-90636D827481": {
-      "coordinate": [
-        29,
-        24
-      ],
-      "uid": "A28D2F42-A974-46A3-BE4E-90636D827481",
-      "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "A28D2F42-A974-46A3-BE4E-90636D827481"
-      ]
-    },
-    "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9": {
-      "coordinate": [
-        29,
-        43
-      ],
-      "uid": "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9",
-      "groupUId": "CC0D6C28-A099-47D4-A419-E73EB95E68EF",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "E00C7F86-0DA4-40D4-A56D-449B2F53E2D9"
-      ]
-    },
-    "71F3D8A0-11EE-4884-9B2B-D231092D70B9": {
-      "coordinate": [
-        6,
-        8
-      ],
-      "uid": "71F3D8A0-11EE-4884-9B2B-D231092D70B9",
-      "groupUId": "316614F6-6903-4128-B7A2-B941CBB18BC0"
-    },
-    "size": [
-      240,
-      240
-    ]
-  },
-  "signature": "6bd002bb0d4b3f4ddfcdff18ae3175ea"
+    "signature": "6bd002bb0d4b3f4ddfcdff18ae3175ea"
 }

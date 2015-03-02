@@ -1,1106 +1,1106 @@
 {
-  "agent": {
-    "enabled": true,
-    "module": {
-      "repo": "https://github.com/MadeiraCloud/salt.git",
-      "tag": "v2014-07-18"
-    }
-  },
-  "name": "Cassandra",
-  "region": "us-east-1",
-  "platform": "ec2-vpc",
-  "version": "2014-02-17",
-  "component": {
-    "55C8F073-9A6C-4321-B731-9D1C828D9B5D": {
-      "name": "RT-0",
-      "type": "AWS.VPC.RouteTable",
-      "uid": "55C8F073-9A6C-4321-B731-9D1C828D9B5D",
-      "resource": {
-        "PropagatingVgwSet": [],
-        "RouteTableId": "",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "AssociationSet": [
-          {
-            "Main": "true",
-            "RouteTableAssociationId": "",
-            "SubnetId": ""
-          }
-        ],
-        "RouteSet": [
-          {
-            "Origin": "CreateRouteTable",
-            "DestinationCidrBlock": "10.0.0.0/16",
-            "InstanceId": "",
-            "NetworkInterfaceId": "",
-            "GatewayId": "local"
-          },
-          {
-            "DestinationCidrBlock": "0.0.0.0/0",
-            "Origin": "",
-            "InstanceId": "",
-            "NetworkInterfaceId": "",
-            "GatewayId": "@{E2DDB55E-888A-4A86-ACA9-DB265F32ECC1.resource.InternetGatewayId}"
-          }
-        ]
-      }
-    },
-    "6BBCB052-7B1F-487D-A52D-55E7C440CCD7": {
-      "name": "vpc",
-      "type": "AWS.VPC.VPC",
-      "uid": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
-      "resource": {
-        "EnableDnsSupport": true,
-        "InstanceTenancy": "default",
-        "EnableDnsHostnames": false,
-        "DhcpOptionsId": "",
-        "VpcId": "",
-        "CidrBlock": "10.0.0.0/16"
-      }
-    },
-    "8A6A5B00-48A3-42FC-B2B8-7454FB69E4F6": {
-      "name": "DefaultACL",
-      "type": "AWS.VPC.NetworkAcl",
-      "uid": "8A6A5B00-48A3-42FC-B2B8-7454FB69E4F6",
-      "resource": {
-        "AssociationSet": [
-          {
-            "NetworkAclAssociationId": "",
-            "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}"
-          },
-          {
-            "NetworkAclAssociationId": "",
-            "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}"
-          }
-        ],
-        "Default": true,
-        "EntrySet": [
-          {
-            "Egress": true,
-            "Protocol": -1,
-            "RuleAction": "allow",
-            "RuleNumber": 100,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": true,
-            "Protocol": -1,
-            "RuleAction": "deny",
-            "RuleNumber": 32767,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": false,
-            "Protocol": -1,
-            "RuleAction": "allow",
-            "RuleNumber": 100,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          },
-          {
-            "Egress": false,
-            "Protocol": -1,
-            "RuleAction": "deny",
-            "RuleNumber": 32767,
-            "CidrBlock": "0.0.0.0/0",
-            "IcmpTypeCode": {
-              "Code": "",
-              "Type": ""
-            },
-            "PortRange": {
-              "From": "",
-              "To": ""
-            }
-          }
-        ],
-        "NetworkAclId": "",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}"
-      }
-    },
-    "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A": {
-      "uid": "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A",
-      "name": "us-east-1a",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1a",
-        "RegionName": "us-east-1"
-      }
-    },
-    "DBB8D87B-2679-4A96-AED9-AB6CCCB64049": {
-      "name": "subnet0",
-      "type": "AWS.VPC.Subnet",
-      "uid": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
-      "resource": {
-        "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.0.0/24"
-      }
-    },
-    "C165BE2E-B67C-4ECF-8524-61FF97683477": {
-      "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
-      "name": "us-east-1b",
-      "type": "AWS.EC2.AvailabilityZone",
-      "resource": {
-        "ZoneName": "us-east-1b",
-        "RegionName": "us-east-1"
-      }
-    },
-    "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
-      "name": "subnet1",
-      "type": "AWS.VPC.Subnet",
-      "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
-      "resource": {
-        "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "",
-        "CidrBlock": "10.0.1.0/24"
-      }
-    },
-    "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344": {
-      "type": "AWS.EC2.Instance",
-      "uid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
-      "name": "seed1",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
-      "serverGroupName": "seed1",
-      "state": [
-        {
-          "id": "state-76886E71-4CC6-45BF-92FE-E7F359B900A9",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
-          }
-        },
-        {
-          "id": "state-8478A7B5-9AAD-4D30-81EF-DB7D7552B183",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "datastax",
-            "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
-          }
-        },
-        {
-          "id": "state-614A31FA-C835-45D6-B0AD-7AD89E0A94FB",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "java-1.6.0-openjdk",
-                "value": "removed"
-              },
-              {
-                "key": "java-1.7.0-openjdk",
-                "value": ""
-              },
-              {
-                "key": "java-1.7.0-openjdk-devel",
-                "value": ""
-              },
-              {
-                "key": "tmux",
-                "value": ""
-              },
-              {
-                "key": "dsc20",
-                "value": ""
-              },
-              {
-                "key": "opscenter",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-8D765AAC-F0EA-48EE-8057-7B86EE72D8A3",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/cassandra/conf/cassandra.yaml",
-            "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
-          }
-        },
-        {
-          "id": "state-130D4489-6452-409B-98BB-EE03DDC46F8A",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/lib/cassandra/commitlog",
-              "/var/lib/cassandra/data",
-              "/var/lib/cassandra/saved_caches"
-            ],
-            "group": "cassandra",
-            "user": "cassandra"
-          }
-        },
-        {
-          "id": "state-1D5BDB2F-7574-477D-B608-0564E95C88C1",
-          "module": "linux.service",
-          "parameter": {
-            "name": [
-              "cassandra"
-            ],
-            "watch": [
-              "/etc/cassandra/conf/cassandra.yaml"
-            ]
-          }
-        },
-        {
-          "id": "state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "sleep 10",
-            "if-path-absent": [
-              "/var/lib/cassandra/initialized"
-            ]
-          }
-        },
-        {
-          "id": "state-3654D718-EFB8-4451-8B9B-447F6248AF0C",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/var/lib/cassandra/initialized",
-            "content": "up"
-          }
+    "agent": {
+        "enabled": true,
+        "module": {
+            "repo": "https://github.com/MadeiraCloud/salt.git",
+            "tag": "v2015-02-27"
         }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b047276d",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+    },
+    "name": "Cassandra",
+    "region": "us-east-1",
+    "platform": "ec2-vpc",
+    "version": "2014-02-17",
+    "component": {
+        "55C8F073-9A6C-4321-B731-9D1C828D9B5D": {
+            "name": "RT-0",
+            "type": "AWS.VPC.RouteTable",
+            "uid": "55C8F073-9A6C-4321-B731-9D1C828D9B5D",
+            "resource": {
+                "PropagatingVgwSet": [],
+                "RouteTableId": "",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "AssociationSet": [
+                    {
+                        "Main": "true",
+                        "RouteTableAssociationId": "",
+                        "SubnetId": ""
+                    }
+                ],
+                "RouteSet": [
+                    {
+                        "Origin": "CreateRouteTable",
+                        "DestinationCidrBlock": "10.0.0.0/16",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "local"
+                    },
+                    {
+                        "DestinationCidrBlock": "0.0.0.0/0",
+                        "Origin": "",
+                        "InstanceId": "",
+                        "NetworkInterfaceId": "",
+                        "GatewayId": "@{E2DDB55E-888A-4A86-ACA9-DB265F32ECC1.resource.InternetGatewayId}"
+                    }
+                ]
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "D32C92C2-C5A5-4C17-B3FC-1A27BEBF649A": {
-      "index": 0,
-      "uid": "D32C92C2-C5A5-4C17-B3FC-1A27BEBF649A",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "seed1-eni0",
-      "serverGroupUid": "D32C92C2-C5A5-4C17-B3FC-1A27BEBF649A",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.5",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
-            "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
-          },
-          {
-            "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
-            "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "0B8EECAF-58E0-4E61-BC7B-E083C30CBA72": {
-      "name": "DefaultKP",
-      "type": "AWS.EC2.KeyPair",
-      "uid": "0B8EECAF-58E0-4E61-BC7B-E083C30CBA72",
-      "resource": {
-        "KeyFingerprint": "",
-        "KeyName": "DefaultKP"
-      }
-    },
-    "4D6A270F-041F-4829-BCE2-EF9311AD139B": {
-      "name": "DefaultSG",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "4D6A270F-041F-4829-BCE2-EF9311AD139B",
-      "resource": {
-        "Default": true,
-        "GroupId": "",
-        "GroupName": "DefaultSG",
-        "GroupDescription": "Default Security Group",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "22",
-            "ToPort": "22",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "80",
-            "ToPort": "80",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "443",
-            "ToPort": "443",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "8963",
-            "ToPort": "8963",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          }
-        ]
-      }
-    },
-    "BC9203EA-4C72-4555-8396-A4F7119FCBED": {
-      "name": "cassandra",
-      "type": "AWS.EC2.SecurityGroup",
-      "uid": "BC9203EA-4C72-4555-8396-A4F7119FCBED",
-      "resource": {
-        "Default": false,
-        "GroupId": "",
-        "GroupName": "cassandra",
-        "GroupDescription": "Custom Security Group",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "IpPermissions": [
-          {
-            "FromPort": "8888",
-            "ToPort": "8888",
-            "IpRanges": "0.0.0.0/0",
-            "IpProtocol": "tcp"
-          },
-          {
-            "FromPort": "1024",
-            "ToPort": "65535",
-            "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
-            "IpProtocol": "tcp"
-          }
-        ],
-        "IpPermissionsEgress": [
-          {
-            "FromPort": "1024",
-            "ToPort": "65535",
-            "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
-            "IpProtocol": "tcp"
-          }
-        ]
-      }
-    },
-    "08B261D4-6086-481E-BE95-24EAB3E5FBC6": {
-      "type": "AWS.EC2.Instance",
-      "uid": "08B261D4-6086-481E-BE95-24EAB3E5FBC6",
-      "name": "host-2",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "08B261D4-6086-481E-BE95-24EAB3E5FBC6",
-      "serverGroupName": "host-2",
-      "state": [
-        {
-          "id": "state-2FF3DAB6-049B-483E-8E56-24A52DB9118E",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
-          }
+        "6BBCB052-7B1F-487D-A52D-55E7C440CCD7": {
+            "name": "vpc",
+            "type": "AWS.VPC.VPC",
+            "uid": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
+            "resource": {
+                "EnableDnsSupport": true,
+                "InstanceTenancy": "default",
+                "EnableDnsHostnames": false,
+                "DhcpOptionsId": "",
+                "VpcId": "",
+                "CidrBlock": "10.0.0.0/16"
+            }
         },
-        {
-          "id": "state-8413951A-B96F-4720-A6B9-B44FEC32AB4E",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "datastax",
-            "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
-          }
+        "8A6A5B00-48A3-42FC-B2B8-7454FB69E4F6": {
+            "name": "DefaultACL",
+            "type": "AWS.VPC.NetworkAcl",
+            "uid": "8A6A5B00-48A3-42FC-B2B8-7454FB69E4F6",
+            "resource": {
+                "AssociationSet": [
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}"
+                    },
+                    {
+                        "NetworkAclAssociationId": "",
+                        "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}"
+                    }
+                ],
+                "Default": true,
+                "EntrySet": [
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": true,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "allow",
+                        "RuleNumber": 100,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    },
+                    {
+                        "Egress": false,
+                        "Protocol": -1,
+                        "RuleAction": "deny",
+                        "RuleNumber": 32767,
+                        "CidrBlock": "0.0.0.0/0",
+                        "IcmpTypeCode": {
+                            "Code": "",
+                            "Type": ""
+                        },
+                        "PortRange": {
+                            "From": "",
+                            "To": ""
+                        }
+                    }
+                ],
+                "NetworkAclId": "",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}"
+            }
         },
-        {
-          "id": "state-3717CE0F-1095-4843-8601-C7B6C9EDF710",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "java-1.6.0-openjdk",
-                "value": "removed"
-              },
-              {
-                "key": "java-1.7.0-openjdk",
-                "value": ""
-              },
-              {
-                "key": "java-1.7.0-openjdk-devel",
-                "value": ""
-              },
-              {
-                "key": "tmux",
-                "value": ""
-              },
-              {
-                "key": "dsc20",
-                "value": ""
-              }
-            ]
-          }
+        "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A": {
+            "uid": "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A",
+            "name": "us-east-1a",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1a",
+                "RegionName": "us-east-1"
+            }
         },
-        {
-          "id": "state-3E1824E9-2450-4269-A1DA-0868F405F71F",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/cassandra/conf/cassandra.yaml",
-            "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
-          }
+        "DBB8D87B-2679-4A96-AED9-AB6CCCB64049": {
+            "name": "subnet0",
+            "type": "AWS.VPC.Subnet",
+            "uid": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
+            "resource": {
+                "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.0.0/24"
+            }
         },
-        {
-          "id": "state-DE73103D-E257-4467-B0DD-8491448EB05C",
-          "module": "meta.wait",
-          "parameter": {
+        "C165BE2E-B67C-4ECF-8524-61FF97683477": {
+            "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
+            "name": "us-east-1b",
+            "type": "AWS.EC2.AvailabilityZone",
+            "resource": {
+                "ZoneName": "us-east-1b",
+                "RegionName": "us-east-1"
+            }
+        },
+        "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
+            "name": "subnet1",
+            "type": "AWS.VPC.Subnet",
+            "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
+            "resource": {
+                "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "",
+                "CidrBlock": "10.0.1.0/24"
+            }
+        },
+        "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344": {
+            "type": "AWS.EC2.Instance",
+            "uid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
+            "name": "seed1",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
+            "serverGroupName": "seed1",
             "state": [
-              "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.state.state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A}"
-            ]
-          }
-        },
-        {
-          "id": "state-C381A74F-D86F-42B2-8165-1BB95EA0B22C",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/lib/cassandra/commitlog",
-              "/var/lib/cassandra/data",
-              "/var/lib/cassandra/saved_caches"
+                {
+                    "id": "state-76886E71-4CC6-45BF-92FE-E7F359B900A9",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+                    }
+                },
+                {
+                    "id": "state-8478A7B5-9AAD-4D30-81EF-DB7D7552B183",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "datastax",
+                        "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
+                    }
+                },
+                {
+                    "id": "state-614A31FA-C835-45D6-B0AD-7AD89E0A94FB",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "java-1.6.0-openjdk",
+                                "value": "removed"
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk",
+                                "value": ""
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk-devel",
+                                "value": ""
+                            },
+                            {
+                                "key": "tmux",
+                                "value": ""
+                            },
+                            {
+                                "key": "dsc20",
+                                "value": ""
+                            },
+                            {
+                                "key": "opscenter",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-8D765AAC-F0EA-48EE-8057-7B86EE72D8A3",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/cassandra/conf/cassandra.yaml",
+                        "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
+                    }
+                },
+                {
+                    "id": "state-130D4489-6452-409B-98BB-EE03DDC46F8A",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/lib/cassandra/commitlog",
+                            "/var/lib/cassandra/data",
+                            "/var/lib/cassandra/saved_caches"
+                        ],
+                        "group": "cassandra",
+                        "user": "cassandra"
+                    }
+                },
+                {
+                    "id": "state-1D5BDB2F-7574-477D-B608-0564E95C88C1",
+                    "module": "linux.service",
+                    "parameter": {
+                        "name": [
+                            "cassandra"
+                        ],
+                        "watch": [
+                            "/etc/cassandra/conf/cassandra.yaml"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "sleep 10",
+                        "if-path-absent": [
+                            "/var/lib/cassandra/initialized"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-3654D718-EFB8-4451-8B9B-447F6248AF0C",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/var/lib/cassandra/initialized",
+                        "content": "up"
+                    }
+                }
             ],
-            "group": "cassandra",
-            "user": "cassandra"
-          }
-        },
-        {
-          "id": "state-F8AE72F9-8479-46D4-97FB-C4F32101CB70",
-          "module": "linux.service",
-          "parameter": {
-            "name": [
-              "cassandra"
-            ],
-            "watch": [
-              "/etc/cassandra/conf/cassandra.yaml"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b047276d",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b047276d",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "6D82EEC8-8C30-4932-A3BB-6F0DD73A3DB3": {
-      "index": 0,
-      "uid": "6D82EEC8-8C30-4932-A3BB-6F0DD73A3DB3",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-2-eni0",
-      "serverGroupUid": "6D82EEC8-8C30-4932-A3BB-6F0DD73A3DB3",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.0.4",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
-            "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
-          },
-          {
-            "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
-            "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{08B261D4-6086-481E-BE95-24EAB3E5FBC6.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    },
-    "44B590C5-2A33-4620-8E3B-BCB42F944CAE": {
-      "type": "AWS.EC2.Instance",
-      "uid": "44B590C5-2A33-4620-8E3B-BCB42F944CAE",
-      "name": "host-3",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "44B590C5-2A33-4620-8E3B-BCB42F944CAE",
-      "serverGroupName": "host-3",
-      "state": [
-        {
-          "id": "state-7A6A479C-80BC-4B1F-9392-7B1B9DD9FBF7",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
-          }
+        "D32C92C2-C5A5-4C17-B3FC-1A27BEBF649A": {
+            "index": 0,
+            "uid": "D32C92C2-C5A5-4C17-B3FC-1A27BEBF649A",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "seed1-eni0",
+            "serverGroupUid": "D32C92C2-C5A5-4C17-B3FC-1A27BEBF649A",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.5",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
+                        "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
+                    },
+                    {
+                        "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
+                        "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
         },
-        {
-          "id": "state-BECBFEE6-836C-4131-B131-22212EF2A14B",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "datastax",
-            "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
-          }
+        "0B8EECAF-58E0-4E61-BC7B-E083C30CBA72": {
+            "name": "DefaultKP",
+            "type": "AWS.EC2.KeyPair",
+            "uid": "0B8EECAF-58E0-4E61-BC7B-E083C30CBA72",
+            "resource": {
+                "KeyFingerprint": "",
+                "KeyName": "DefaultKP"
+            }
         },
-        {
-          "id": "state-540D7423-F9C6-40F7-BAAA-4EA0EC8B2A85",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "java-1.6.0-openjdk",
-                "value": "removed"
-              },
-              {
-                "key": "java-1.7.0-openjdk",
-                "value": ""
-              },
-              {
-                "key": "java-1.7.0-openjdk-devel",
-                "value": ""
-              },
-              {
-                "key": "tmux",
-                "value": ""
-              },
-              {
-                "key": "dsc20",
-                "value": ""
-              }
-            ]
-          }
+        "4D6A270F-041F-4829-BCE2-EF9311AD139B": {
+            "name": "DefaultSG",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "4D6A270F-041F-4829-BCE2-EF9311AD139B",
+            "resource": {
+                "Default": true,
+                "GroupId": "",
+                "GroupName": "DefaultSG",
+                "GroupDescription": "Default Security Group",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "22",
+                        "ToPort": "22",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "80",
+                        "ToPort": "80",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "443",
+                        "ToPort": "443",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "8963",
+                        "ToPort": "8963",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    }
+                ]
+            }
         },
-        {
-          "id": "state-0C9BBAFF-341C-45F6-88AD-C292BB77AB65",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/cassandra/conf/cassandra.yaml",
-            "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
-          }
+        "BC9203EA-4C72-4555-8396-A4F7119FCBED": {
+            "name": "cassandra",
+            "type": "AWS.EC2.SecurityGroup",
+            "uid": "BC9203EA-4C72-4555-8396-A4F7119FCBED",
+            "resource": {
+                "Default": false,
+                "GroupId": "",
+                "GroupName": "cassandra",
+                "GroupDescription": "Custom Security Group",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "IpPermissions": [
+                    {
+                        "FromPort": "8888",
+                        "ToPort": "8888",
+                        "IpRanges": "0.0.0.0/0",
+                        "IpProtocol": "tcp"
+                    },
+                    {
+                        "FromPort": "1024",
+                        "ToPort": "65535",
+                        "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    }
+                ],
+                "IpPermissionsEgress": [
+                    {
+                        "FromPort": "1024",
+                        "ToPort": "65535",
+                        "IpRanges": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}",
+                        "IpProtocol": "tcp"
+                    }
+                ]
+            }
         },
-        {
-          "id": "state-D23A4B2B-6282-4B28-B4DE-8FFA3506EA23",
-          "module": "meta.wait",
-          "parameter": {
+        "08B261D4-6086-481E-BE95-24EAB3E5FBC6": {
+            "type": "AWS.EC2.Instance",
+            "uid": "08B261D4-6086-481E-BE95-24EAB3E5FBC6",
+            "name": "host-2",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "08B261D4-6086-481E-BE95-24EAB3E5FBC6",
+            "serverGroupName": "host-2",
             "state": [
-              "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.state.state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A}"
-            ]
-          }
-        },
-        {
-          "id": "state-30278EE9-ECE4-494D-941D-DC293F660A49",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/lib/cassandra/commitlog",
-              "/var/lib/cassandra/data",
-              "/var/lib/cassandra/saved_caches"
+                {
+                    "id": "state-2FF3DAB6-049B-483E-8E56-24A52DB9118E",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+                    }
+                },
+                {
+                    "id": "state-8413951A-B96F-4720-A6B9-B44FEC32AB4E",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "datastax",
+                        "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
+                    }
+                },
+                {
+                    "id": "state-3717CE0F-1095-4843-8601-C7B6C9EDF710",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "java-1.6.0-openjdk",
+                                "value": "removed"
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk",
+                                "value": ""
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk-devel",
+                                "value": ""
+                            },
+                            {
+                                "key": "tmux",
+                                "value": ""
+                            },
+                            {
+                                "key": "dsc20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-3E1824E9-2450-4269-A1DA-0868F405F71F",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/cassandra/conf/cassandra.yaml",
+                        "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
+                    }
+                },
+                {
+                    "id": "state-DE73103D-E257-4467-B0DD-8491448EB05C",
+                    "module": "meta.wait",
+                    "parameter": {
+                        "state": [
+                            "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.state.state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A}"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-C381A74F-D86F-42B2-8165-1BB95EA0B22C",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/lib/cassandra/commitlog",
+                            "/var/lib/cassandra/data",
+                            "/var/lib/cassandra/saved_caches"
+                        ],
+                        "group": "cassandra",
+                        "user": "cassandra"
+                    }
+                },
+                {
+                    "id": "state-F8AE72F9-8479-46D4-97FB-C4F32101CB70",
+                    "module": "linux.service",
+                    "parameter": {
+                        "name": [
+                            "cassandra"
+                        ],
+                        "watch": [
+                            "/etc/cassandra/conf/cassandra.yaml"
+                        ]
+                    }
+                }
             ],
-            "group": "cassandra",
-            "user": "cassandra"
-          }
-        },
-        {
-          "id": "state-001B1B76-ABFB-4C31-A424-DA66B32E0EF2",
-          "module": "linux.service",
-          "parameter": {
-            "name": [
-              "cassandra"
-            ],
-            "watch": [
-              "/etc/cassandra/conf/cassandra.yaml"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b047276d",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b047276d",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
             }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}"
         },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "9D5E7318-E727-49B5-976A-6260F41E1AB9": {
-      "index": 0,
-      "uid": "9D5E7318-E727-49B5-976A-6260F41E1AB9",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "host-3-eni0",
-      "serverGroupUid": "9D5E7318-E727-49B5-976A-6260F41E1AB9",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.1.4",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
-            "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
-          },
-          {
-            "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
-            "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{44B590C5-2A33-4620-8E3B-BCB42F944CAE.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
+        "6D82EEC8-8C30-4932-A3BB-6F0DD73A3DB3": {
+            "index": 0,
+            "uid": "6D82EEC8-8C30-4932-A3BB-6F0DD73A3DB3",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-2-eni0",
+            "serverGroupUid": "6D82EEC8-8C30-4932-A3BB-6F0DD73A3DB3",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A.resource.ZoneName}",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{DBB8D87B-2679-4A96-AED9-AB6CCCB64049.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.0.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
+                        "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
+                    },
+                    {
+                        "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
+                        "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{08B261D4-6086-481E-BE95-24EAB3E5FBC6.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "44B590C5-2A33-4620-8E3B-BCB42F944CAE": {
+            "type": "AWS.EC2.Instance",
+            "uid": "44B590C5-2A33-4620-8E3B-BCB42F944CAE",
+            "name": "host-3",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "44B590C5-2A33-4620-8E3B-BCB42F944CAE",
+            "serverGroupName": "host-3",
+            "state": [
+                {
+                    "id": "state-7A6A479C-80BC-4B1F-9392-7B1B9DD9FBF7",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+                    }
+                },
+                {
+                    "id": "state-BECBFEE6-836C-4131-B131-22212EF2A14B",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "datastax",
+                        "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
+                    }
+                },
+                {
+                    "id": "state-540D7423-F9C6-40F7-BAAA-4EA0EC8B2A85",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "java-1.6.0-openjdk",
+                                "value": "removed"
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk",
+                                "value": ""
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk-devel",
+                                "value": ""
+                            },
+                            {
+                                "key": "tmux",
+                                "value": ""
+                            },
+                            {
+                                "key": "dsc20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-0C9BBAFF-341C-45F6-88AD-C292BB77AB65",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/cassandra/conf/cassandra.yaml",
+                        "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
+                    }
+                },
+                {
+                    "id": "state-D23A4B2B-6282-4B28-B4DE-8FFA3506EA23",
+                    "module": "meta.wait",
+                    "parameter": {
+                        "state": [
+                            "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.state.state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A}"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-30278EE9-ECE4-494D-941D-DC293F660A49",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/lib/cassandra/commitlog",
+                            "/var/lib/cassandra/data",
+                            "/var/lib/cassandra/saved_caches"
+                        ],
+                        "group": "cassandra",
+                        "user": "cassandra"
+                    }
+                },
+                {
+                    "id": "state-001B1B76-ABFB-4C31-A424-DA66B32E0EF2",
+                    "module": "linux.service",
+                    "parameter": {
+                        "name": [
+                            "cassandra"
+                        ],
+                        "watch": [
+                            "/etc/cassandra/conf/cassandra.yaml"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b047276d",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "9D5E7318-E727-49B5-976A-6260F41E1AB9": {
+            "index": 0,
+            "uid": "9D5E7318-E727-49B5-976A-6260F41E1AB9",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "host-3-eni0",
+            "serverGroupUid": "9D5E7318-E727-49B5-976A-6260F41E1AB9",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.1.4",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
+                        "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
+                    },
+                    {
+                        "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
+                        "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{44B590C5-2A33-4620-8E3B-BCB42F944CAE.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
+        },
+        "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1": {
+            "name": "Internet-gateway",
+            "type": "AWS.VPC.InternetGateway",
+            "uid": "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1",
+            "resource": {
+                "InternetGatewayId": "",
+                "AttachmentSet": [
+                    {
+                        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}"
+                    }
+                ]
+            }
+        },
+        "B9559DFB-EF63-459F-BD43-F9462FCA05AF": {
+            "type": "AWS.EC2.Instance",
+            "uid": "B9559DFB-EF63-459F-BD43-F9462FCA05AF",
+            "name": "seed2",
+            "index": 0,
+            "number": 1,
+            "serverGroupUid": "B9559DFB-EF63-459F-BD43-F9462FCA05AF",
+            "serverGroupName": "seed2",
+            "state": [
+                {
+                    "id": "state-F6A72160-B33D-4151-8642-EC1CA265FD69",
+                    "module": "linux.cmd",
+                    "parameter": {
+                        "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
+                    }
+                },
+                {
+                    "id": "state-52C17B80-266D-445D-ACBE-2E6E53302E8B",
+                    "module": "linux.yum.repo",
+                    "parameter": {
+                        "name": "datastax",
+                        "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
+                    }
+                },
+                {
+                    "id": "state-9D83AD96-ABED-407A-A350-D71F7E9A409C",
+                    "module": "linux.yum.package",
+                    "parameter": {
+                        "name": [
+                            {
+                                "key": "java-1.6.0-openjdk",
+                                "value": "removed"
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk",
+                                "value": ""
+                            },
+                            {
+                                "key": "java-1.7.0-openjdk-devel",
+                                "value": ""
+                            },
+                            {
+                                "key": "tmux",
+                                "value": ""
+                            },
+                            {
+                                "key": "dsc20",
+                                "value": ""
+                            }
+                        ]
+                    }
+                },
+                {
+                    "id": "state-725932FB-0F26-4023-B6B4-EE4113654746",
+                    "module": "linux.file",
+                    "parameter": {
+                        "path": "/etc/cassandra/conf/cassandra.yaml",
+                        "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
+                    }
+                },
+                {
+                    "id": "state-7E735916-1D50-4E32-BB6C-0C984651A297",
+                    "module": "meta.wait",
+                    "parameter": {
+                        "state": [
+                            "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.state.state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A}"
+                        ]
+                    }
+                },
+                {
+                    "id": "state-98C55E3B-9381-4E29-A5EB-4181A5A3D299",
+                    "module": "linux.dir",
+                    "parameter": {
+                        "path": [
+                            "/var/lib/cassandra/commitlog",
+                            "/var/lib/cassandra/data",
+                            "/var/lib/cassandra/saved_caches"
+                        ],
+                        "group": "cassandra",
+                        "user": "cassandra"
+                    }
+                },
+                {
+                    "id": "state-62A62231-3815-4595-8A52-93C4F34A270C",
+                    "module": "linux.service",
+                    "parameter": {
+                        "name": [
+                            "cassandra"
+                        ],
+                        "watch": [
+                            "/etc/cassandra/conf/cassandra.yaml"
+                        ]
+                    }
+                }
+            ],
+            "resource": {
+                "UserData": {
+                    "Base64Encoded": false,
+                    "Data": ""
+                },
+                "BlockDeviceMapping": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "SnapshotId": "snap-b047276d",
+                            "VolumeSize": 8,
+                            "VolumeType": "standard"
+                        }
+                    }
+                ],
+                "Placement": {
+                    "Tenancy": "",
+                    "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}"
+                },
+                "InstanceId": "",
+                "ImageId": "ami-acfb71c4",
+                "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
+                "EbsOptimized": false,
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
+                "Monitoring": "disabled",
+                "NetworkInterface": [],
+                "InstanceType": "t2.micro",
+                "DisableApiTermination": false,
+                "ShutdownBehavior": "terminate",
+                "SecurityGroup": [],
+                "SecurityGroupId": []
+            }
+        },
+        "CE8C99D6-1341-4C2F-A1D3-8645A99308E3": {
+            "index": 0,
+            "uid": "CE8C99D6-1341-4C2F-A1D3-8645A99308E3",
+            "type": "AWS.VPC.NetworkInterface",
+            "name": "seed2-eni0",
+            "serverGroupUid": "CE8C99D6-1341-4C2F-A1D3-8645A99308E3",
+            "serverGroupName": "eni0",
+            "number": 1,
+            "resource": {
+                "SourceDestCheck": true,
+                "Description": "",
+                "NetworkInterfaceId": "",
+                "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
+                "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
+                "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
+                "AssociatePublicIpAddress": true,
+                "PrivateIpAddressSet": [
+                    {
+                        "PrivateIpAddress": "10.0.1.5",
+                        "AutoAssign": true,
+                        "Primary": true
+                    }
+                ],
+                "GroupSet": [
+                    {
+                        "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
+                        "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
+                    },
+                    {
+                        "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
+                        "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
+                    }
+                ],
+                "Attachment": {
+                    "InstanceId": "@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.resource.InstanceId}",
+                    "DeviceIndex": "0",
+                    "AttachmentId": ""
+                }
+            }
         }
-      }
     },
-    "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1": {
-      "name": "Internet-gateway",
-      "type": "AWS.VPC.InternetGateway",
-      "uid": "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1",
-      "resource": {
-        "InternetGatewayId": "",
-        "AttachmentSet": [
-          {
-            "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}"
-          }
+    "layout": {
+        "55C8F073-9A6C-4321-B731-9D1C828D9B5D": {
+            "coordinate": [
+                71,
+                32
+            ],
+            "uid": "55C8F073-9A6C-4321-B731-9D1C828D9B5D",
+            "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7"
+        },
+        "6BBCB052-7B1F-487D-A52D-55E7C440CCD7": {
+            "coordinate": [
+                5,
+                3
+            ],
+            "uid": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
+            "size": [
+                81,
+                74
+            ]
+        },
+        "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A": {
+            "coordinate": [
+                15,
+                12
+            ],
+            "uid": "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A",
+            "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
+            "size": [
+                48,
+                21
+            ]
+        },
+        "DBB8D87B-2679-4A96-AED9-AB6CCCB64049": {
+            "coordinate": [
+                17,
+                14
+            ],
+            "uid": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
+            "groupUId": "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A",
+            "size": [
+                39,
+                17
+            ]
+        },
+        "C165BE2E-B67C-4ECF-8524-61FF97683477": {
+            "coordinate": [
+                15,
+                37
+            ],
+            "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
+            "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
+            "size": [
+                48,
+                21
+            ]
+        },
+        "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
+            "coordinate": [
+                17,
+                39
+            ],
+            "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
+            "groupUId": "C165BE2E-B67C-4ECF-8524-61FF97683477",
+            "size": [
+                41,
+                17
+            ]
+        },
+        "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344": {
+            "coordinate": [
+                19,
+                18
+            ],
+            "uid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
+            "groupUId": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344"
+            ]
+        },
+        "08B261D4-6086-481E-BE95-24EAB3E5FBC6": {
+            "coordinate": [
+                39,
+                18
+            ],
+            "uid": "08B261D4-6086-481E-BE95-24EAB3E5FBC6",
+            "groupUId": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "08B261D4-6086-481E-BE95-24EAB3E5FBC6"
+            ]
+        },
+        "44B590C5-2A33-4620-8E3B-BCB42F944CAE": {
+            "coordinate": [
+                39,
+                43
+            ],
+            "uid": "44B590C5-2A33-4620-8E3B-BCB42F944CAE",
+            "groupUId": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "44B590C5-2A33-4620-8E3B-BCB42F944CAE"
+            ]
+        },
+        "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1": {
+            "coordinate": [
+                1,
+                32
+            ],
+            "uid": "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1",
+            "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7"
+        },
+        "B9559DFB-EF63-459F-BD43-F9462FCA05AF": {
+            "coordinate": [
+                19,
+                43
+            ],
+            "uid": "B9559DFB-EF63-459F-BD43-F9462FCA05AF",
+            "groupUId": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
+            "osType": "amazon",
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "instanceList": [
+                "B9559DFB-EF63-459F-BD43-F9462FCA05AF"
+            ]
+        },
+        "size": [
+            240,
+            240
         ]
-      }
     },
-    "B9559DFB-EF63-459F-BD43-F9462FCA05AF": {
-      "type": "AWS.EC2.Instance",
-      "uid": "B9559DFB-EF63-459F-BD43-F9462FCA05AF",
-      "name": "seed2",
-      "index": 0,
-      "number": 1,
-      "serverGroupUid": "B9559DFB-EF63-459F-BD43-F9462FCA05AF",
-      "serverGroupName": "seed2",
-      "state": [
-        {
-          "id": "state-F6A72160-B33D-4151-8642-EC1CA265FD69",
-          "module": "linux.cmd",
-          "parameter": {
-            "cmd": "grep -q $(hostname) /etc/hosts || echo \"@{self.PrivateIpAddress} $(hostname)\" >> /etc/hosts"
-          }
-        },
-        {
-          "id": "state-52C17B80-266D-445D-ACBE-2E6E53302E8B",
-          "module": "linux.yum.repo",
-          "parameter": {
-            "name": "datastax",
-            "content": "[datastax] \nname = DataStax Repo for Apache Cassandra\nbaseurl = http://rpm.datastax.com/community\nenabled = 1\ngpgcheck = 0"
-          }
-        },
-        {
-          "id": "state-9D83AD96-ABED-407A-A350-D71F7E9A409C",
-          "module": "linux.yum.package",
-          "parameter": {
-            "name": [
-              {
-                "key": "java-1.6.0-openjdk",
-                "value": "removed"
-              },
-              {
-                "key": "java-1.7.0-openjdk",
-                "value": ""
-              },
-              {
-                "key": "java-1.7.0-openjdk-devel",
-                "value": ""
-              },
-              {
-                "key": "tmux",
-                "value": ""
-              },
-              {
-                "key": "dsc20",
-                "value": ""
-              }
-            ]
-          }
-        },
-        {
-          "id": "state-725932FB-0F26-4023-B6B4-EE4113654746",
-          "module": "linux.file",
-          "parameter": {
-            "path": "/etc/cassandra/conf/cassandra.yaml",
-            "content": "cluster_name: 'Test Cluster'\nnum_tokens: 256\nhinted_handoff_enabled: true\nhinted_handoff_throttle_in_kb: 1024\nmax_hints_delivery_threads: 2\nbatchlog_replay_throttle_in_kb: 1024\nauthenticator: AllowAllAuthenticator\nauthorizer: AllowAllAuthorizer\npermissions_validity_in_ms: 2000\npartitioner: org.apache.cassandra.dht.Murmur3Partitioner\ndata_file_directories:\n    - /var/lib/cassandra/data\ncommitlog_directory: /var/lib/cassandra/commitlog\ndisk_failure_policy: stop\ncommit_failure_policy: stop\nkey_cache_size_in_mb:\nkey_cache_save_period: 14400\nrow_cache_size_in_mb: 0\nrow_cache_save_period: 0\nsaved_caches_directory: /var/lib/cassandra/saved_caches\ncommitlog_sync: periodic\ncommitlog_sync_period_in_ms: 10000\ncommitlog_segment_size_in_mb: 32\nseed_provider:\n    - class_name: org.apache.cassandra.locator.SimpleSeedProvider\n      parameters:\n          - seeds: \"@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.PrivateIpAddress},@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.PrivateIpAddress}\"\nconcurrent_reads: 32\nconcurrent_writes: 32\nmemtable_flush_queue_size: 4\ntrickle_fsync: false\ntrickle_fsync_interval_in_kb: 10240\nstorage_port: 7000\nssl_storage_port: 7001\nlisten_address: \nstart_native_transport: true\nnative_transport_port: 9042\nstart_rpc: true\nrpc_address: 0.0.0.0\nrpc_port: 9160\nrpc_keepalive: true\nrpc_server_type: sync\nthrift_framed_transport_size_in_mb: 15\nincremental_backups: false\nsnapshot_before_compaction: false\nauto_snapshot: true\ntombstone_warn_threshold: 1000\ntombstone_failure_threshold: 100000\ncolumn_index_size_in_kb: 64\nin_memory_compaction_limit_in_mb: 64\nmultithreaded_compaction: false\ncompaction_throughput_mb_per_sec: 16\ncompaction_preheat_key_cache: true\nread_request_timeout_in_ms: 5000\nrange_request_timeout_in_ms: 10000\nwrite_request_timeout_in_ms: 2000\ncas_contention_timeout_in_ms: 1000\ntruncate_request_timeout_in_ms: 60000\nrequest_timeout_in_ms: 10000\ncross_node_timeout: false\nendpoint_snitch: SimpleSnitch\ndynamic_snitch_update_interval_in_ms: 100\ndynamic_snitch_reset_interval_in_ms: 600000\ndynamic_snitch_badness_threshold: 0.1\nrequest_scheduler: org.apache.cassandra.scheduler.NoScheduler\nserver_encryption_options:\n    internode_encryption: none\n    keystore: conf/.keystore\n    keystore_password: cassandra\n    truststore: conf/.truststore\n    truststore_password: cassandra\nclient_encryption_options:\n    enabled: false\n    keystore: conf/.keystore\n    keystore_password: cassandra\ninternode_compression: all\ninter_dc_tcp_nodelay: false\npreheat_kernel_page_cache: false\n"
-          }
-        },
-        {
-          "id": "state-7E735916-1D50-4E32-BB6C-0C984651A297",
-          "module": "meta.wait",
-          "parameter": {
-            "state": [
-              "@{8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344.state.state-9D5F6BB5-BBB7-49C5-B8C8-D6D4F24B006A}"
-            ]
-          }
-        },
-        {
-          "id": "state-98C55E3B-9381-4E29-A5EB-4181A5A3D299",
-          "module": "linux.dir",
-          "parameter": {
-            "path": [
-              "/var/lib/cassandra/commitlog",
-              "/var/lib/cassandra/data",
-              "/var/lib/cassandra/saved_caches"
-            ],
-            "group": "cassandra",
-            "user": "cassandra"
-          }
-        },
-        {
-          "id": "state-62A62231-3815-4595-8A52-93C4F34A270C",
-          "module": "linux.service",
-          "parameter": {
-            "name": [
-              "cassandra"
-            ],
-            "watch": [
-              "/etc/cassandra/conf/cassandra.yaml"
-            ]
-          }
-        }
-      ],
-      "resource": {
-        "UserData": {
-          "Base64Encoded": false,
-          "Data": ""
-        },
-        "BlockDeviceMapping": [
-          {
-            "DeviceName": "/dev/sda1",
-            "Ebs": {
-              "SnapshotId": "snap-b047276d",
-              "VolumeSize": 8,
-              "VolumeType": "standard"
-            }
-          }
-        ],
-        "Placement": {
-          "Tenancy": "",
-          "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}"
-        },
-        "InstanceId": "",
-        "ImageId": "ami-acfb71c4",
-        "KeyName": "@{0B8EECAF-58E0-4E61-BC7B-E083C30CBA72.resource.KeyName}",
-        "EbsOptimized": false,
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
-        "Monitoring": "disabled",
-        "NetworkInterface": [],
-        "InstanceType": "t2.micro",
-        "DisableApiTermination": false,
-        "ShutdownBehavior": "terminate",
-        "SecurityGroup": [],
-        "SecurityGroupId": []
-      }
-    },
-    "CE8C99D6-1341-4C2F-A1D3-8645A99308E3": {
-      "index": 0,
-      "uid": "CE8C99D6-1341-4C2F-A1D3-8645A99308E3",
-      "type": "AWS.VPC.NetworkInterface",
-      "name": "seed2-eni0",
-      "serverGroupUid": "CE8C99D6-1341-4C2F-A1D3-8645A99308E3",
-      "serverGroupName": "eni0",
-      "number": 1,
-      "resource": {
-        "SourceDestCheck": true,
-        "Description": "",
-        "NetworkInterfaceId": "",
-        "AvailabilityZone": "@{C165BE2E-B67C-4ECF-8524-61FF97683477.resource.ZoneName}",
-        "VpcId": "@{6BBCB052-7B1F-487D-A52D-55E7C440CCD7.resource.VpcId}",
-        "SubnetId": "@{71F057A3-FED8-45FA-B5B5-0ECFB9F44998.resource.SubnetId}",
-        "AssociatePublicIpAddress": true,
-        "PrivateIpAddressSet": [
-          {
-            "PrivateIpAddress": "10.0.1.5",
-            "AutoAssign": true,
-            "Primary": true
-          }
-        ],
-        "GroupSet": [
-          {
-            "GroupName": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupName}",
-            "GroupId": "@{4D6A270F-041F-4829-BCE2-EF9311AD139B.resource.GroupId}"
-          },
-          {
-            "GroupName": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupName}",
-            "GroupId": "@{BC9203EA-4C72-4555-8396-A4F7119FCBED.resource.GroupId}"
-          }
-        ],
-        "Attachment": {
-          "InstanceId": "@{B9559DFB-EF63-459F-BD43-F9462FCA05AF.resource.InstanceId}",
-          "DeviceIndex": "0",
-          "AttachmentId": ""
-        }
-      }
-    }
-  },
-  "layout": {
-    "55C8F073-9A6C-4321-B731-9D1C828D9B5D": {
-      "coordinate": [
-        71,
-        32
-      ],
-      "uid": "55C8F073-9A6C-4321-B731-9D1C828D9B5D",
-      "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7"
-    },
-    "6BBCB052-7B1F-487D-A52D-55E7C440CCD7": {
-      "coordinate": [
-        5,
-        3
-      ],
-      "uid": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
-      "size": [
-        81,
-        74
-      ]
-    },
-    "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A": {
-      "coordinate": [
-        15,
-        12
-      ],
-      "uid": "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A",
-      "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
-      "size": [
-        48,
-        21
-      ]
-    },
-    "DBB8D87B-2679-4A96-AED9-AB6CCCB64049": {
-      "coordinate": [
-        17,
-        14
-      ],
-      "uid": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
-      "groupUId": "6B1AD8AF-990D-4471-B0A4-1ED4F5C6950A",
-      "size": [
-        39,
-        17
-      ]
-    },
-    "C165BE2E-B67C-4ECF-8524-61FF97683477": {
-      "coordinate": [
-        15,
-        37
-      ],
-      "uid": "C165BE2E-B67C-4ECF-8524-61FF97683477",
-      "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7",
-      "size": [
-        48,
-        21
-      ]
-    },
-    "71F057A3-FED8-45FA-B5B5-0ECFB9F44998": {
-      "coordinate": [
-        17,
-        39
-      ],
-      "uid": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
-      "groupUId": "C165BE2E-B67C-4ECF-8524-61FF97683477",
-      "size": [
-        41,
-        17
-      ]
-    },
-    "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344": {
-      "coordinate": [
-        19,
-        18
-      ],
-      "uid": "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344",
-      "groupUId": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "8B7B8B5A-2F88-42C8-945C-7AF8B6FB5344"
-      ]
-    },
-    "08B261D4-6086-481E-BE95-24EAB3E5FBC6": {
-      "coordinate": [
-        39,
-        18
-      ],
-      "uid": "08B261D4-6086-481E-BE95-24EAB3E5FBC6",
-      "groupUId": "DBB8D87B-2679-4A96-AED9-AB6CCCB64049",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "08B261D4-6086-481E-BE95-24EAB3E5FBC6"
-      ]
-    },
-    "44B590C5-2A33-4620-8E3B-BCB42F944CAE": {
-      "coordinate": [
-        39,
-        43
-      ],
-      "uid": "44B590C5-2A33-4620-8E3B-BCB42F944CAE",
-      "groupUId": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "44B590C5-2A33-4620-8E3B-BCB42F944CAE"
-      ]
-    },
-    "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1": {
-      "coordinate": [
-        1,
-        32
-      ],
-      "uid": "E2DDB55E-888A-4A86-ACA9-DB265F32ECC1",
-      "groupUId": "6BBCB052-7B1F-487D-A52D-55E7C440CCD7"
-    },
-    "B9559DFB-EF63-459F-BD43-F9462FCA05AF": {
-      "coordinate": [
-        19,
-        43
-      ],
-      "uid": "B9559DFB-EF63-459F-BD43-F9462FCA05AF",
-      "groupUId": "71F057A3-FED8-45FA-B5B5-0ECFB9F44998",
-      "osType": "amazon",
-      "architecture": "x86_64",
-      "rootDeviceType": "ebs",
-      "instanceList": [
-        "B9559DFB-EF63-459F-BD43-F9462FCA05AF"
-      ]
-    },
-    "size": [
-      240,
-      240
-    ]
-  },
-  "signature": "d0469d65c30803a1e785c8d625e56773"
+    "signature": "d0469d65c30803a1e785c8d625e56773"
 }
