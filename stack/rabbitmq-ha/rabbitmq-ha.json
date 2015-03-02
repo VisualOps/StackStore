@@ -373,9 +373,9 @@
                         "watch": [
                             "/etc/haproxy/haproxy.cfg"
                         ],
-                        "name": [
-                            "haproxy"
-                        ]
+                        "name": {
+                            "haproxy": ""
+                        }
                     },
                     "id": "state-EFB530A2-0D8E-4260-99B5-125CC1AEC706",
                     "module": "linux.service"
@@ -715,9 +715,9 @@
                         "watch": [
                             "/var/lib/rabbitmq/.erlang.cookie"
                         ],
-                        "name": [
-                            "rabbitmq-server"
-                        ]
+                        "name": {
+                            "rabbitmq-server": ""
+                        }
                     },
                     "id": "state-7B6788FA-ED1E-459D-8F2A-09D7BFB71557",
                     "module": "linux.service"
@@ -1076,9 +1076,9 @@
                         "watch": [
                             "/var/lib/rabbitmq/.erlang.cookie"
                         ],
-                        "name": [
-                            "rabbitmq-server"
-                        ]
+                        "name": {
+                            "rabbitmq-server": ""
+                        }
                     },
                     "id": "state-FD031F2D-EEFA-4FF8-81C4-05D35349AE57",
                     "module": "linux.service"

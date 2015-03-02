@@ -391,9 +391,9 @@
                     "id": "state-BEBD595A-D5F7-4EA0-AEA0-3F92B441532E",
                     "module": "linux.service",
                     "parameter": {
-                        "name": [
-                            "nginx"
-                        ],
+                        "name": {
+                            "nginx": ""
+                        },
                         "watch": [
                             "/etc/nginx.conf",
                             "/etc/nginx/sites-available/ghost.conf"
