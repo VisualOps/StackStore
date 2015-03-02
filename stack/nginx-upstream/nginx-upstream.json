@@ -271,9 +271,9 @@
                     "id": "state-9B2F0682-77F7-47BA-BD97-BF95583F8C62",
                     "module": "linux.service",
                     "parameter": {
-                        "name": [
-                            "nginx"
-                        ],
+                        "name": {
+                            "nginx": ""
+                        },
                         "watch": [
                             "/etc/nginx/conf.d/site.conf"
                         ]
@@ -458,9 +458,9 @@
                     "id": "state-42D81830-CA36-4365-BD33-99F0BDF56460",
                     "module": "linux.service",
                     "parameter": {
-                        "name": [
-                            "nginx"
-                        ],
+                        "name": {
+                            "nginx": ""
+                        },
                         "watch": [
                             "/etc/nginx/conf.d/site.conf"
                         ]
@@ -629,9 +629,9 @@
                     "id": "state-C2D84C37-F6B3-4AFD-A3F8-34C3E121B4B0",
                     "module": "linux.service",
                     "parameter": {
-                        "name": [
-                            "nginx"
-                        ],
+                        "name": {
+                            "nginx": ""
+                        },
                         "watch": [
                             "/etc/nginx/conf.d/site.conf"
                         ]
