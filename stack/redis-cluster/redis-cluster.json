@@ -1,7 +1,7 @@
 {
   "region": "us-east-1",
   "provider": "aws::global",
-  "time_update": 1433261543,
+  "time_update": 1433330217,
   "usage": "testing",
   "version": "2014-11-11",
   "resource_diff": true,
@@ -9,7 +9,7 @@
     "enabled": true,
     "module": {
       "repo": "https://github.com/MadeiraCloud/salt.git",
-      "tag": "v2015-02-27"
+      "tag": "v2015-03-26"
     }
   },
   "name": "Redis-Cluster",
@@ -237,10 +237,10 @@
               "/var/redis/6379",
               "/etc/redis"
             ],
-            "user": "root",
+            "recursive": true,
             "group": "root",
-            "mode": "0755",
-            "recursive": true
+            "user": "root",
+            "mode": "0755"
           },
           "id": "state-85E6CD53-06C7-4D5F-8E10-F3C615DF4C27",
           "module": "linux.dir"
@@ -472,10 +472,10 @@
               "/var/redis/6379",
               "/etc/redis"
             ],
-            "user": "root",
+            "recursive": true,
             "group": "root",
-            "mode": "0755",
-            "recursive": true
+            "user": "root",
+            "mode": "0755"
           },
           "id": "state-3F8A4814-2E30-45AD-B2D0-DC728FF1F896",
           "module": "linux.dir"
@@ -698,10 +698,10 @@
               "/var/redis/6379",
               "/etc/redis"
             ],
-            "user": "root",
+            "recursive": true,
             "group": "root",
-            "mode": "0755",
-            "recursive": true
+            "user": "root",
+            "mode": "0755"
           },
           "id": "state-F9B03A73-1A64-4F5F-9D2D-D9827A8192CB",
           "module": "linux.dir"
@@ -924,10 +924,10 @@
               "/var/redis/6379",
               "/etc/redis"
             ],
-            "user": "root",
+            "recursive": true,
             "group": "root",
-            "mode": "0755",
-            "recursive": true
+            "user": "root",
+            "mode": "0755"
           },
           "id": "state-C3252D8F-4917-4F23-836D-86996BA87949",
           "module": "linux.dir"
@@ -1150,10 +1150,10 @@
               "/var/redis/6379",
               "/etc/redis"
             ],
-            "user": "root",
+            "recursive": true,
             "group": "root",
-            "mode": "0755",
-            "recursive": true
+            "user": "root",
+            "mode": "0755"
           },
           "id": "state-A4D95E05-E1D0-4A99-A0FA-D8A892009EF1",
           "module": "linux.dir"
@@ -1431,10 +1431,10 @@
               "/var/redis/6379",
               "/etc/redis"
             ],
-            "user": "root",
+            "recursive": true,
             "group": "root",
-            "mode": "0755",
-            "recursive": true
+            "user": "root",
+            "mode": "0755"
           },
           "id": "state-30428ADE-B18A-4C2B-861A-8F94846589AB",
           "module": "linux.dir"
@@ -1771,5 +1771,5 @@
       240
     ]
   },
-  "signature": "b8bb49412c940a53544d8f52f5327662"
+  "signature": "f53a54a45f826641caf1759fd1c160e0"
 }
