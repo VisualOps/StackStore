@@ -521,7 +521,7 @@
         "EngineVersion": "5.6.21",
         "LicenseModel": "general-public-license",
         "MasterUsername": "root",
-        "MasterUserPassword": "MTIzNDU2Nzg=",
+        "MasterUserPassword": "12345678",
         "OptionGroupMembership": {
           "OptionGroupName": "default:mysql-5-6"
         },
