@@ -76,9 +76,12 @@
             "watch": [
               "/etc/httpd/conf/httpd.conf"
             ],
-            "name": {
-              "httpd": ""
-            }
+            "name": [
+              {
+                "key": "httpd",
+                "value": ""
+              }
+            ]
           },
           "id": "state-2F4AF545-65A2-4DCF-ADA4-AE2525B408B4",
           "module": "linux.service"
@@ -618,9 +621,12 @@
             "watch": [
               "/etc/my.cnf"
             ],
-            "name": {
-              "mysqld": ""
-            }
+            "name": [
+              {
+                "key": "mysqld",
+                "value": ""
+              }
+            ]
           },
           "id": "state-2CD9E5FB-C999-4B97-920D-A5E889CA5E19",
           "module": "linux.service"

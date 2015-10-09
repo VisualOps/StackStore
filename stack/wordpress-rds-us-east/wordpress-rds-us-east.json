@@ -76,9 +76,12 @@
             "watch": [
               "/etc/httpd/conf/httpd.conf"
             ],
-            "name": {
-              "httpd": ""
-            }
+            "name": [
+              {
+                "key": "httpd",
+                "value": ""
+              }
+            ]
           },
           "id": "state-2F4AF545-65A2-4DCF-ADA4-AE2525B408B4",
           "module": "linux.service"

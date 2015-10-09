@@ -259,9 +259,12 @@
             "watch": [
               "/etc/cassandra/conf/cassandra.yaml"
             ],
-            "name": {
-              "cassandra": ""
-            }
+            "name": [
+              {
+                "key": "cassandra",
+                "value": ""
+              }
+            ]
           },
           "id": "state-1D5BDB2F-7574-477D-B608-0564E95C88C1",
           "module": "linux.service"
@@ -456,9 +459,12 @@
             "watch": [
               "/etc/cassandra/conf/cassandra.yaml"
             ],
-            "name": {
-              "cassandra": ""
-            }
+            "name": [
+              {
+                "key": "cassandra",
+                "value": ""
+              }
+            ]
           },
           "id": "state-F8AE72F9-8479-46D4-97FB-C4F32101CB70",
           "module": "linux.service"
@@ -647,9 +653,12 @@
             "watch": [
               "/etc/cassandra/conf/cassandra.yaml"
             ],
-            "name": {
-              "cassandra": ""
-            }
+            "name": [
+              {
+                "key": "cassandra",
+                "value": ""
+              }
+            ]
           },
           "id": "state-001B1B76-ABFB-4C31-A424-DA66B32E0EF2",
           "module": "linux.service"
@@ -916,9 +925,12 @@
             "watch": [
               "/etc/cassandra/conf/cassandra.yaml"
             ],
-            "name": {
-              "cassandra": ""
-            }
+            "name": [
+              {
+                "key": "cassandra",
+                "value": ""
+              }
+            ]
           },
           "id": "state-62A62231-3815-4595-8A52-93C4F34A270C",
           "module": "linux.service"
