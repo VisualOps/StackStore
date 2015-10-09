@@ -10,7 +10,7 @@
       "tag": "v2015-03-26"
     }
   },
-  "name": "sapmle-spark-standalone-with-zookeeper",
+  "name": "sample-spark-standalone-with-zookeeper",
   "type": "aws",
   "component": {
     "E670050C-EEAC-4A08-BE3C-A0175F8D6B05": {
