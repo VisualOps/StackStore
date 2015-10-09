@@ -1,7 +1,8 @@
 {
   "region": "us-east-1",
   "provider": "aws::global",
-  "time_update": 1433330200,
+  "time_update": 1444394987,
+  "usage": "",
   "version": "2014-11-11",
   "agent": {
     "enabled": true,
@@ -230,8 +231,8 @@
       "type": "AWS.EC2.KeyPair",
       "uid": "6CDF5614-604F-48AE-82CA-D18990344094",
       "resource": {
-        "KeyFingerprint": "22:2f:95:6c:0b:04:86:6d:a2:86:c7:01:de:1d:74:48:81:90:a4:cc",
-        "KeyName": "KeyPair2DefaultKP"
+        "KeyFingerprint": "e6:ed:5a:69:e0:99:4c:13:45:13:76:fe:9e:cf:6a:be",
+        "KeyName": "DefaultKP"
       }
     },
     "8368C84A-0BFB-48F9-BC05-1039A263D6B3": {
@@ -266,6 +267,8 @@
       "serverGroupName": "Upstream-A",
       "state": [
         {
+          "id": "state-87BBD700-6967-4AF6-A4AA-EFE3AFA74599",
+          "module": "linux.apt.package",
           "parameter": {
             "name": [
               {
@@ -273,44 +276,45 @@
                 "value": "latest"
               }
             ]
-          },
-          "id": "state-87BBD700-6967-4AF6-A4AA-EFE3AFA74599",
-          "module": "linux.apt.package"
+          }
         },
         {
-          "parameter": {
-            "content": "server {\n  listen 80;\n  server_name @{0CF8B2E7-FD49-480E-BDB5-016B4C1D5715.PublicIp};\n  root /var/www/site/;\n}\n",
-            "path": "/etc/nginx/conf.d/site.conf"
-          },
           "id": "state-F019DB6A-5606-4387-B9B8-352A8F8731FA",
-          "module": "linux.file"
+          "module": "linux.file",
+          "parameter": {
+            "path": "/etc/nginx/conf.d/site.conf",
+            "content": "server {\n  listen 80;\n  server_name @{self.PrivateIpAddress};\n  root /var/www/site/;\n}\n"
+          }
         },
         {
-          "parameter": {
-            "content": "<!DOCTYPE html>\n<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta charset=\"utf-8\">\n    <title>Nginx Upstream</title> \n    <style type=\"text/css\">\n      body {\n        background-color: #313131;\n        color: #fff;\n        font-family: \"Hiragino Sans GB\",\"Hiragino Sans GB W3\",\"Microsoft YaHei\",\"微软雅黑\",tahoma,arial,simsun,\"宋体\";\n        text-align: center;\n      }\n      h1 {\n        font-size: 160px;\n      }\n      h3 {\n        margin-top: 100px;\n      }\n      h3 a {\n        color: #fff;\n        \n      }\n    </style>\n  <body>\n    <h1>Server-A</h1>\n    <h2>@{self.PrivateIpAddress}</h2>\n    <h3>Powered by <a target=\"_blank\" href=\"https://www.visualops.io/\">VisualOps</a></h3>\n   </body>\n</html>",
-            "path": "/var/www/site/index.html"
-          },
           "id": "state-1F7302AC-B488-48C1-A062-2D78A2591712",
-          "module": "linux.file"
+          "module": "linux.file",
+          "parameter": {
+            "path": "/var/www/site/index.html",
+            "content": "<!DOCTYPE html>\n<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta charset=\"utf-8\">\n    <title>Nginx Upstream</title> \n    <style type=\"text/css\">\n      body {\n        background-color: #313131;\n        color: #fff;\n        font-family: \"Hiragino Sans GB\",\"Hiragino Sans GB W3\",\"Microsoft YaHei\",\"微软雅黑\",tahoma,arial,simsun,\"宋体\";\n        text-align: center;\n      }\n      h1 {\n        font-size: 160px;\n      }\n      h3 {\n        margin-top: 100px;\n      }\n      h3 a {\n        color: #fff;\n        \n      }\n    </style>\n  <body>\n    <h1>Server-A</h1>\n    <h2>@{self.PrivateIpAddress}</h2>\n    <h3>Powered by <a target=\"_blank\" href=\"https://www.visualops.io/\">VisualOps</a></h3>\n   </body>\n</html>"
+          }
         },
         {
+          "id": "state-DB2EC57B-0499-4692-892D-EA611987C8F3",
+          "module": "linux.service",
           "parameter": {
+            "name": [
+              {
+                "key": "nginx",
+                "value": ""
+              }
+            ],
             "watch": [
               "/etc/nginx/conf.d/site.conf"
-            ],
-            "name": {
-              "nginx": ""
-            }
-          },
-          "id": "state-9B2F0682-77F7-47BA-BD97-BF95583F8C62",
-          "module": "linux.service"
+            ]
+          }
         },
         {
+          "id": "state-6E80645E-E92E-4051-AF7F-23545D944275",
+          "module": "meta.comment",
           "parameter": {
             "comment": "Open http://@{0CF8B2E7-FD49-480E-BDB5-016B4C1D5715.PublicIp} in browser"
-          },
-          "id": "state-6E80645E-E92E-4051-AF7F-23545D944275",
-          "module": "meta.comment"
+          }
         }
       ],
       "resource": {
@@ -322,7 +326,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-a606c11a",
+              "SnapshotId": "snap-3e1452fb",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -333,7 +337,7 @@
           "AvailabilityZone": "@{8368C84A-0BFB-48F9-BC05-1039A263D6B3.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-60f37908",
+        "ImageId": "ami-45a4a22c",
         "KeyName": "@{6CDF5614-604F-48AE-82CA-D18990344094.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
@@ -474,6 +478,8 @@
       "serverGroupName": "Portal",
       "state": [
         {
+          "id": "state-DC4C717E-9CDE-4AC5-82FC-F8858B25E17E",
+          "module": "linux.apt.package",
           "parameter": {
             "name": [
               {
@@ -481,36 +487,37 @@
                 "value": "latest"
               }
             ]
-          },
-          "id": "state-DC4C717E-9CDE-4AC5-82FC-F8858B25E17E",
-          "module": "linux.apt.package"
+          }
         },
         {
-          "parameter": {
-            "content": "upstream backend  {\n  server @{837060FB-E6BD-437F-BA41-A02B55CEFFAE.PrivateIpAddress};\n  server @{8AB6090C-84D4-4E98-A5F2-B443AFD10F4D.PrivateIpAddress};\n}\n\nserver {\n  listen 80;\n  server_name @{self.PublicIp};\n  location / {\n    proxy_set_header Host @{0CF8B2E7-FD49-480E-BDB5-016B4C1D5715.PublicIp};\n    proxy_pass  http://backend;\n  }\n}\n",
-            "path": "/etc/nginx/conf.d/site.conf"
-          },
           "id": "state-12F3C639-DF5A-44FF-A854-5B4C959ABD6B",
-          "module": "linux.file"
+          "module": "linux.file",
+          "parameter": {
+            "path": "/etc/nginx/conf.d/site.conf",
+            "content": "upstream backend  {\n  server @{837060FB-E6BD-437F-BA41-A02B55CEFFAE.PrivateIpAddress};\n  server @{8AB6090C-84D4-4E98-A5F2-B443AFD10F4D.PrivateIpAddress};\n}\n\nserver {\n  listen 80;\n  server_name @{self.PublicIp};\n  location / {\n    proxy_pass  http://backend;\n  }\n}\n"
+          }
         },
         {
+          "id": "state-2A248B13-6951-4F66-A1FA-B3C5B75F70F7",
+          "module": "linux.service",
           "parameter": {
+            "name": [
+              {
+                "key": "nginx",
+                "value": ""
+              }
+            ],
             "watch": [
               "/etc/nginx/conf.d/site.conf"
-            ],
-            "name": {
-              "nginx": ""
-            }
-          },
-          "id": "state-42D81830-CA36-4365-BD33-99F0BDF56460",
-          "module": "linux.service"
+            ]
+          }
         },
         {
+          "id": "state-CA1B4923-460E-4020-A391-CFA7800DA9B8",
+          "module": "meta.comment",
           "parameter": {
             "comment": "Open http://@{0CF8B2E7-FD49-480E-BDB5-016B4C1D5715.PublicIp} in browser"
-          },
-          "id": "state-CA1B4923-460E-4020-A391-CFA7800DA9B8",
-          "module": "meta.comment"
+          }
         }
       ],
       "resource": {
@@ -522,7 +529,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-a606c11a",
+              "SnapshotId": "snap-3e1452fb",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -533,7 +540,7 @@
           "AvailabilityZone": "@{7626422E-996B-4D8E-A792-EAB6FFCD7D9C.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-60f37908",
+        "ImageId": "ami-45a4a22c",
         "KeyName": "@{6CDF5614-604F-48AE-82CA-D18990344094.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
@@ -644,6 +651,8 @@
       "serverGroupName": "Upstream-B",
       "state": [
         {
+          "id": "state-5D3B9356-8A1C-4534-806B-7768D897D5E3",
+          "module": "linux.apt.package",
           "parameter": {
             "name": [
               {
@@ -651,44 +660,45 @@
                 "value": "latest"
               }
             ]
-          },
-          "id": "state-5D3B9356-8A1C-4534-806B-7768D897D5E3",
-          "module": "linux.apt.package"
+          }
         },
         {
-          "parameter": {
-            "content": "server {\n  listen 80;\n  server_name @{0CF8B2E7-FD49-480E-BDB5-016B4C1D5715.PublicIp};\n  root /var/www/site/;\n}",
-            "path": "/etc/nginx/conf.d/site.conf"
-          },
           "id": "state-5435D93D-55A0-4F06-A42E-EED693C0C579",
-          "module": "linux.file"
+          "module": "linux.file",
+          "parameter": {
+            "path": "/etc/nginx/conf.d/site.conf",
+            "content": "server {\n  listen 80;\n  server_name @{self.PrivateIpAddress};\n  root /var/www/site/;\n}"
+          }
         },
         {
-          "parameter": {
-            "content": "<!DOCTYPE html>\n<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta charset=\"utf-8\">\n    <title>Nginx Upstream</title> \n    <style type=\"text/css\">\n      body {\n        background-color: #313131;\n        color: #fff;\n        font-family: \"Hiragino Sans GB\",\"Hiragino Sans GB W3\",\"Microsoft YaHei\",\"微软雅黑\",tahoma,arial,simsun,\"宋体\";\n        text-align: center;\n      }\n      h1 {\n        font-size: 160px;\n      }\n      h3 {\n        margin-top: 100px;\n      }\n      h3 a {\n        color: #fff;\n        \n      }\n    </style>\n  <body>\n    <h1>Server-B</h1>\n    <h2>@{self.PrivateIpAddress}</h2>\n    <h3>Powered by <a target=\"_blank\" href=\"https://www.visualops.io/\">VisualOps</a></h3>\n   </body>\n</html>",
-            "path": "/var/www/site/index.html"
-          },
           "id": "state-3D86E42B-EF9B-4931-846D-7205BEA15003",
-          "module": "linux.file"
+          "module": "linux.file",
+          "parameter": {
+            "path": "/var/www/site/index.html",
+            "content": "<!DOCTYPE html>\n<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta charset=\"utf-8\">\n    <title>Nginx Upstream</title> \n    <style type=\"text/css\">\n      body {\n        background-color: #313131;\n        color: #fff;\n        font-family: \"Hiragino Sans GB\",\"Hiragino Sans GB W3\",\"Microsoft YaHei\",\"微软雅黑\",tahoma,arial,simsun,\"宋体\";\n        text-align: center;\n      }\n      h1 {\n        font-size: 160px;\n      }\n      h3 {\n        margin-top: 100px;\n      }\n      h3 a {\n        color: #fff;\n        \n      }\n    </style>\n  <body>\n    <h1>Server-B</h1>\n    <h2>@{self.PrivateIpAddress}</h2>\n    <h3>Powered by <a target=\"_blank\" href=\"https://www.visualops.io/\">VisualOps</a></h3>\n   </body>\n</html>"
+          }
         },
         {
+          "id": "state-D2A265F8-D32C-461F-8042-1C84150D32E3",
+          "module": "linux.service",
           "parameter": {
+            "name": [
+              {
+                "key": "nginx",
+                "value": ""
+              }
+            ],
             "watch": [
               "/etc/nginx/conf.d/site.conf"
-            ],
-            "name": {
-              "nginx": ""
-            }
-          },
-          "id": "state-C2D84C37-F6B3-4AFD-A3F8-34C3E121B4B0",
-          "module": "linux.service"
+            ]
+          }
         },
         {
+          "id": "state-AE0D0E9D-0BB9-4D7C-A027-05384A8AE57C",
+          "module": "meta.comment",
           "parameter": {
             "comment": "Open http://@{0CF8B2E7-FD49-480E-BDB5-016B4C1D5715.PublicIp} in browser"
-          },
-          "id": "state-AE0D0E9D-0BB9-4D7C-A027-05384A8AE57C",
-          "module": "meta.comment"
+          }
         }
       ],
       "resource": {
@@ -700,7 +710,7 @@
           {
             "DeviceName": "/dev/sda1",
             "Ebs": {
-              "SnapshotId": "snap-a606c11a",
+              "SnapshotId": "snap-3e1452fb",
               "VolumeSize": 8,
               "VolumeType": "standard"
             }
@@ -711,7 +721,7 @@
           "AvailabilityZone": "@{8368C84A-0BFB-48F9-BC05-1039A263D6B3.resource.ZoneName}"
         },
         "InstanceId": "",
-        "ImageId": "ami-60f37908",
+        "ImageId": "ami-45a4a22c",
         "KeyName": "@{6CDF5614-604F-48AE-82CA-D18990344094.resource.KeyName}",
         "EbsOptimized": false,
         "VpcId": "@{4A6B8409-0DEB-48A9-B6CD-C83EDB53D6E1.resource.VpcId}",
@@ -782,7 +792,7 @@
       "number": 1,
       "serverGroupUid": "4860E107-3EBB-47D1-8377-60C124D993DC",
       "serverGroupName": "NAT",
-      "state": null,
+      "state": [],
       "resource": {
         "UserData": {
           "Base64Encoded": false,
@@ -938,7 +948,7 @@
       "uid": "837060FB-E6BD-437F-BA41-A02B55CEFFAE",
       "groupUId": "25C12695-7C4B-40C8-8073-08B74F1B53EE",
       "osType": "ubuntu",
-      "architecture": "x86_64",
+      "architecture": "i386",
       "rootDeviceType": "ebs"
     },
     "39357D48-1D90-4332-8BBF-700D4D435895": {
@@ -957,7 +967,7 @@
       "uid": "0CF8B2E7-FD49-480E-BDB5-016B4C1D5715",
       "groupUId": "268697A4-2510-4955-8288-B61F4B6C7D36",
       "osType": "ubuntu",
-      "architecture": "x86_64",
+      "architecture": "i386",
       "rootDeviceType": "ebs"
     },
     "8AB6090C-84D4-4E98-A5F2-B443AFD10F4D": {
@@ -968,7 +978,7 @@
       "uid": "8AB6090C-84D4-4E98-A5F2-B443AFD10F4D",
       "groupUId": "25C12695-7C4B-40C8-8073-08B74F1B53EE",
       "osType": "ubuntu",
-      "architecture": "x86_64",
+      "architecture": "i386",
       "rootDeviceType": "ebs"
     },
     "780428AD-F656-417C-A32A-1D1D072B6AC3": {
@@ -999,5 +1009,5 @@
       240
     ]
   },
-  "signature": "10df807ec277299bbbc014eacbab2dbf"
+  "signature": "0b1c57d0354ffad60fe6c174e357942d"
 }
