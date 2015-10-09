@@ -1432,9 +1432,12 @@
             "watch": [
               "/etc/squid/squid.conf"
             ],
-            "name": {
-              "squid": ""
-            }
+            "name": [
+              {
+                "key": "squid",
+                "value": ""
+              }
+            ]
           },
           "id": "state-6659F314-6F8F-425C-ADDF-E068FE22C4D3",
           "module": "linux.service"
@@ -1466,9 +1469,12 @@
             "watch": [
               "/etc/sysconfig/iptables"
             ],
-            "name": {
-              "iptables": ""
-            }
+            "name": [
+              {
+                "key": "iptables",
+                "value": ""
+              }
+            ]
           },
           "id": "state-04E59A9A-2AD3-4B5E-800B-09EF20C48EFC",
           "module": "linux.service"
